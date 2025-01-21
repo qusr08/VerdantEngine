@@ -8,17 +8,12 @@ using UnityEngine;
 public class Garden : MonoBehaviour {
 	[Header("References")]
 	[SerializeField] private GameObject plantPrefab;
-	[Header("Properties")]
-	[SerializeField] private int gardenSize;
+	[SerializeField] private PlayerData _playerData;
 
 	/// <summary>
-	/// The grid of plants that represent the layout of the garden
+	/// A reference to the player data scriptable object
 	/// </summary>
-	public Plant[ , ] Grid { get; private set; }
-
-	private void Awake ( ) {
-		Grid = new Plant[gardenSize, gardenSize];
-	}
+	public PlayerData PlayerData => _playerData;
 
 	private void Start ( ) {
 		/// TEST: Create test plants
@@ -36,22 +31,7 @@ public class Garden : MonoBehaviour {
 	/// <param name="y">The y coordinate</param>
 	/// <returns>Whether or not the position is within the bounds of the garden</returns>
 	public bool IsPositionWithinGarden (int x, int y) {
-		return (x >= 0 && x < gardenSize && y >= 0 && y < gardenSize);
-	}
-
-	/// <summary>
-	/// Get a plant object at a specific position on the board
-	/// </summary>
-	/// <param name="x">The x coordinate to check</param>
-	/// <param name="y">The y coordinate to check</param>
-	/// <returns>A plant object if one is at the position, null otherwise. Will also return null if the position is out of the bounds of the board</returns>
-	public Plant GetPlantAt (int x, int y) {
-		// Check to see if the position is within the bounds of the garden before trying to access the position in the grid
-		if (!IsPositionWithinGarden(x, y)) {
-			return null;
-		}
-
-		return Grid[x, y];
+		return (x >= 0 && x < PlayerData.GardenSize && y >= 0 && y < PlayerData.GardenSize);
 	}
 
 	/// <summary>
@@ -73,7 +53,7 @@ public class Garden : MonoBehaviour {
 		}
 
 		// Return false if there is already a plant at the position specified
-		if (GetPlantAt(x, y) != null) {
+		if (PlayerData.Grid[x, y] != null) {
 			return false;
 		}
 
@@ -83,7 +63,7 @@ public class Garden : MonoBehaviour {
 		plant.Position = new Vector2Int(x, y);
 		plant.Initialize( );
 
-		Grid[x, y] = plant;
+		PlayerData.Grid[x, y] = plant;
 
 		return true;
 	}
