@@ -15,10 +15,10 @@ public class PlayerData : ScriptableObject {
 	/// <summary>
 	/// The grid of plants that represent the layout of the garden
 	/// </summary>
-	public Plant[ , ] Grid { get; private set; }
+	public Plant[ , ] Garden { get; private set; }
 
 	// https://gamedev.stackexchange.com/questions/188224/scriptableobjects-events-execution-order
 	private void OnEnable ( ) {
-		Grid = new Plant[gardenSize, gardenSize];
+		Garden = new Plant[gardenSize, gardenSize];
 	}
 }

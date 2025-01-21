@@ -353,7 +353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plantPrefab: {fileID: 40747490348631805, guid: 55b96b53aeacb454abe8070dd56a86c1, type: 3}
-  playerData: {fileID: 11400000, guid: 391beb7d74cb7d146863eca377d373a0, type: 2}
+  _playerData: {fileID: 11400000, guid: 391beb7d74cb7d146863eca377d373a0, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

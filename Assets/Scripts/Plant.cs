@@ -9,7 +9,7 @@ public enum PlantType {
 
 public class Plant : MonoBehaviour {
 	[Header("References")]
-	[SerializeField] private Garden garden;
+	[SerializeField] private GardenManager gardenManager;
 	[Header("Properties")]
 	[SerializeField] private PlantType _plantType;
 	[SerializeField] private Vector2Int _position;
@@ -40,7 +40,7 @@ public class Plant : MonoBehaviour {
 	}
 
 	private void Awake ( ) {
-		garden = FindObjectOfType<Garden>( );
+		gardenManager = FindObjectOfType<GardenManager>( );
 	}
 
 	/// <summary>
@@ -70,12 +70,12 @@ public class Plant : MonoBehaviour {
 
 				// If the position to check is not within the bounds of the garden, then continue to the next position
 				// Also continue to the next position if the current plant being checked is this plant
-				if (!garden.IsPositionWithinGarden(checkX, checkY) || (x == 0 && y == 0)) {
+				if (!gardenManager.IsPositionWithinGarden(checkX, checkY) || (x == 0 && y == 0)) {
 					continue;
 				}
 
 				// Get a reference to the plant at the current position being checked
-				Plant plant = garden.PlayerData.Grid[checkX, checkY];
+				Plant plant = gardenManager.PlayerData.Garden[checkX, checkY];
 
 				// If there is currently no plant at the current position, then continue to the next position
 				if (plant == null) {
