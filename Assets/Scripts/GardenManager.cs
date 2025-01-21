@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// This class is used for all functions
+/// This class is used for all functions relating to the garden. This does not store the data of the garden, that is done within the PlayerData scriptable object
 /// </summary>
 public class GardenManager : MonoBehaviour {
 	[Header("References")]
@@ -33,6 +33,8 @@ public class GardenManager : MonoBehaviour {
 		PlacePlant(PlantType.FLOWER, 2, 8);
 
 		MovePlant(PlayerData.Garden[1, 1], 1, 2);
+
+		UprootPlant(0, 0);
 
 		Debug.Log("Flower Count: " + CountPlants(exclusivePlantTypes: new List<PlantType>( ) { PlantType.FLOWER }));
 		Debug.Log("Cactus Count: " + CountPlants(exclusivePlantTypes: new List<PlantType>( ) { PlantType.CACTUS }));

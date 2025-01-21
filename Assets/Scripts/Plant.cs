@@ -7,6 +7,9 @@ public enum PlantType {
 	NONE, FLOWER, CACTUS
 }
 
+/// <summary>
+/// This class holds all data for each plant that is placed in the garden
+/// </summary>
 public class Plant : MonoBehaviour {
 	[Header("References")]
 	[SerializeField] private GardenManager gardenManager;

@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class holds all of the players data that needs to travel between scenes. This data will be stored in a single scriptable object within the project that can be referenced within the code
+/// </summary>
 [CreateAssetMenu(fileName = "PlayerData", menuName = "ScriptableObjects/PlayerData")]
 public class PlayerData : ScriptableObject {
 	[Header("Properties")]
