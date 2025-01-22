@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4735054093340245052}
   - component: {fileID: 2304596290164225159}
   - component: {fileID: 7672637934439269091}
+  - component: {fileID: 4693690865174523058}
   m_Layer: 0
   m_Name: P_Boss
   m_TagString: Untagged
@@ -107,3 +108,16 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &4693690865174523058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8411653872717465035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 236c71b08cb19d64b9fb1292315f96cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}

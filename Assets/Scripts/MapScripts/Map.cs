@@ -26,6 +26,9 @@ public class Map : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Populates the map with encounters
+    /// </summary>
     private void PopulateMap()
     {
         int nextEncounter = Random.Range(0, 10);
@@ -44,7 +47,7 @@ public class Map : MonoBehaviour
             }
             if(nextEncounter <= tempPercent)
             {
-                Debug.Log("Enconter: " + encounterAmount + " = " + i);
+                //Debug.Log("Enconter: " + encounterAmount + " = " + i);
                 encounterAmount++;
                 RepopulatePercents(i);
                 SpawnEncounter(i);
@@ -63,6 +66,10 @@ public class Map : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Basically reduces the chance of the selected encounter and increases the chances of the others
+    /// </summary>
+    /// <param name="i">The encounter to reduce</param>
     private void RepopulatePercents(int i)
     {
         //If the encounter chosen has a chance >= 40%, take 40% off it's chance and give the others +20%
@@ -124,12 +131,17 @@ public class Map : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Spawns the prefab of the encounter
+    /// </summary>
+    /// <param name="i">prefab to spawn. -1 or lower to spawn boss</param>
     private void SpawnEncounter(int i)
     {
         Vector3 nextPosition = new Vector3(2f * encounterAmount, 0, 0);
 
         if(i < 0)
         {
+            nextPosition.x += 2f;
             Instantiate(boss, nextPosition, transform.rotation);
             return;
         }
