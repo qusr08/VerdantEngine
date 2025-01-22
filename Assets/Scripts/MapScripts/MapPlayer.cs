@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MapPlayer : MonoBehaviour
 {
+
+    public GameObject CurrentEncounter;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,9 +23,17 @@ public class MapPlayer : MonoBehaviour
     /// Moves the player to selected encounter
     /// </summary>
     /// <param name="location">The encounter the player moves too</param>
-    public void MoveTo(GameObject location)
+    public bool MoveTo(GameObject location)
     {
         //Debug.Log(location);
-        transform.position = location.transform.position; 
+        if (CurrentEncounter.GetComponent<Encounter>().ConnectingNode.Contains(location))
+        {
+            transform.position = location.transform.position;
+            CurrentEncounter = location;
+            return true;
+
+        }
+
+        return false;
     }
 }

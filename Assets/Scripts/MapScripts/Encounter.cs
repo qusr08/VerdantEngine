@@ -5,6 +5,7 @@ using UnityEngine;
 public class Encounter : MonoBehaviour
 {
 
+    public List<GameObject> ConnectingNode;
     [SerializeField] private MapPlayer player;
 
     // Start is called before the first frame update
@@ -35,7 +36,11 @@ public class Encounter : MonoBehaviour
     /// </summary>
     void OnMouseDown()
     {
-        player.MoveTo(gameObject);
-        PlayerReached();
+        if(player.MoveTo(gameObject))
+        {
+            PlayerReached();
+
+        }
+        Debug.Log("Not connecting encounter");
     }
 }

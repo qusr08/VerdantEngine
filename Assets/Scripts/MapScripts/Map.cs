@@ -10,12 +10,20 @@ public class Map : MonoBehaviour
 
     [Header("Debug")]
     [SerializeField] private byte encountersBeforeBoss;
+    [SerializeField] private MapPlayer player;
     [SerializeField] private int[] percents = new int[] { 10, 0, 0, 0 }; //{Enemy, shop, ?, MapSplit(idk might remove this one)}
     private byte encounterAmount;
+    private GameObject encounter;
+    private GameObject prevEncounter;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (player == null)
+        {
+            player = GameObject.Find("Player").GetComponent<MapPlayer>();
+        }
+
         encounterAmount = 0;
         PopulateMap();
     }
@@ -142,10 +150,23 @@ public class Map : MonoBehaviour
         if(i < 0)
         {
             nextPosition.x += 2f;
-            Instantiate(boss, nextPosition, transform.rotation);
+            prevEncounter = encounter;
+            encounter = Instantiate(boss, nextPosition, transform.rotation);
+            prevEncounter.GetComponent<Encounter>().ConnectingNode.Add(encounter);
             return;
         }
 
-        Instantiate(prefabs[i], nextPosition, transform.rotation);
+        if(encounter != null)
+        {
+            prevEncounter = encounter;
+            encounter = Instantiate(prefabs[i], nextPosition, transform.rotation);
+            prevEncounter.GetComponent<Encounter>().ConnectingNode.Add(encounter);
+        }
+        else
+        {
+            encounter = Instantiate(prefabs[i], nextPosition, transform.rotation);
+            player.GetComponent<MapPlayer>().CurrentEncounter = encounter;
+        }
+
     }
 }
