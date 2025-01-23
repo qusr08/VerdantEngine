@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// This class is used for all functions relating to the garden. This does not store the data of the garden, that is done within the PlayerData scriptable object
@@ -147,6 +148,46 @@ public class GardenManager : MonoBehaviour {
 			// If the exclusive plants list is null, then just add every type of plant
 			if (exclusivePlantTypes == null || (exclusivePlantTypes != null && exclusivePlantTypes.Contains(Plants[i].PlantType))) {
 				filteredPlants.Add(Plants[i]);
+			}
+		}
+
+		return filteredPlants;
+	}
+
+	/// <summary>
+	/// Get plants that have been placed in the garden at the specified positions that match the exclusive and excluded plant types
+	/// </summary>
+	/// <param name="positions">A list of the positions to check for plants at</param>
+	/// <param name="exclusivePlantTypes">All plant types within this list will exclusively be added to the final list. If this parameter is left null, all plants of any plant type will be added</param>
+	/// <param name="excludedPlantTypes">All plant types within this list will never be added to the final list. If this parameter is left null, no plant types will be excluded</param>
+	/// <returns>A list of all the plants that are on the positions specified that match the exclusive and excluded plant types</returns>
+	public List<Plant> GetFilteredPlantsAtPositions (List<Vector2Int> positions, List<PlantType> exclusivePlantTypes = null, List<PlantType> excludedPlantTypes = null) {
+		List<Plant> filteredPlants = new List<Plant>();
+
+		// Loop through all positions specified for this function
+		foreach (Vector2Int position in positions) {
+			// If the position to check is not within the bounds of the garden, then continue to the next position
+			if (!IsPositionWithinGarden(position.x, position.y)) {
+				continue;
+			}
+
+			// Get a reference to the plant at the current position being checked
+			Plant plant = PlayerData.Garden[position.x, position.y];
+
+			// If there is currently no plant at the current position, then continue to the next position
+			if (plant == null) {
+				continue;
+			}
+
+			// If the current plant being checked has a plant type that is in the excluded plant types list, then ignore the plant and continue to the next position
+			if (excludedPlantTypes != null && excludedPlantTypes.Contains(plant.PlantType)) {
+				continue;
+			}
+
+			// If the current plant being checked has a plant type that is in the exclusive plant types list, then add that plant to the list of surrounding plants
+			// If the exclusive plants list is null, then just add every type of plant
+			if (exclusivePlantTypes == null || (exclusivePlantTypes != null && exclusivePlantTypes.Contains(plant.PlantType))) {
+				filteredPlants.Add(plant);
 			}
 		}
 
