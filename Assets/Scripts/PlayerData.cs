@@ -16,9 +16,9 @@ public class PlayerData : ScriptableObject {
 	public int GardenSize => gardenSize;
 
 	/// <summary>
-	/// The grid of plants that represent the layout of the garden
+	/// The grid of garden placeables that represent the layout of the garden
 	/// </summary>
-	public Plant[ , ] Garden { get; private set; }
+	public GardenPlaceable[ , ] Garden { get; private set; }
 
 	// https://gamedev.stackexchange.com/questions/188224/scriptableobjects-events-execution-order
 	private void OnEnable ( ) {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -21,8 +22,14 @@ public class GardenManager : MonoBehaviour {
 	/// </summary>
 	public List<Plant> Plants { get; private set; }
 
+	/// <summary>
+	/// A list of all the artifacts that are currently in the garden
+	/// </summary>
+	public List<Artifact> Artifacts { get; private set; }
+
 	private void Awake ( ) {
 		Plants = new List<Plant>( );
+		Artifacts = new List<Artifact>( );
 	}
 
 	private void Start ( ) {
@@ -33,7 +40,7 @@ public class GardenManager : MonoBehaviour {
 		PlacePlant(PlantType.CACTUS, 1, 0);
 		PlacePlant(PlantType.FLOWER, 2, 8);
 
-		MovePlant(PlayerData.Garden[1, 1], 1, 2);
+		MovePlant(PlayerData.Garden[1, 1] as Plant, 1, 2);
 
 		UprootPlant(0, 0);
 
@@ -57,7 +64,7 @@ public class GardenManager : MonoBehaviour {
 	/// <param name="plantType">The new plant object to place down</param>
 	/// <param name="x">The x coordinate to place the plant at</param>
 	/// <param name="y">The y coordinate to place the plant at</param>
-	/// <returns>true if the plant was placed successfully, false otherwise. If a plant is already at the position on the board, then the new plant is not placed and the function returns false</returns>
+	/// <returns>true if the plant was placed successfully, false otherwise. If a placeable is already at the position on the board, then the new plant is not placed and the function returns false</returns>
 	public bool PlacePlant (PlantType plantType, int x, int y) {
 		// Do not try to make a plant with a plant type of NONE
 		if (plantType == PlantType.NONE) {
@@ -69,16 +76,14 @@ public class GardenManager : MonoBehaviour {
 			return false;
 		}
 
-		// Return false if there is already a plant at the position specified
+		// Return false if there is already a placeable at the position specified
 		if (PlayerData.Garden[x, y] != null) {
 			return false;
 		}
 
 		// Place the plant onto the grid and update its position
 		Plant plant = Instantiate(plantPrefab, transform).GetComponent<Plant>( );
-		plant.PlantType = plantType;
-		plant.Position = new Vector2Int(x, y);
-		plant.Initialize( );
+		plant.Initialize(new Vector2Int(x, y));
 
 		PlayerData.Garden[x, y] = plant;
 		Plants.Add(plant);
@@ -87,15 +92,72 @@ public class GardenManager : MonoBehaviour {
 	}
 
 	/// <summary>
+	/// Set a new artifact to a certain position in the garden
+	/// </summary>
+	/// <param name="artifactType">The new artifact object to place down</param>
+	/// <param name="x">The x coordinate to place the artifact at</param>
+	/// <param name="y">The y coordinate to place the artifact at</param>
+	/// <returns>true if the artifact was placed successfully, false otherwise. If a placeable is already at the position on the board, then the new artifact is not placed and the function returns false</returns>
+	public bool PlaceArtifact (ArtifactType artifactType, int x, int y) {
+		// Do not try to make an artifact with an artifact type of NONE
+		if (artifactType == ArtifactType.NONE) {
+			return false;
+		}
+
+		// Return false if the position that the new artifact is being placed at is out of the bounds of the garden
+		if (!IsPositionWithinGarden(x, y)) {
+			return false;
+		}
+
+		// Return false if there is already a placeable at the position specified
+		if (PlayerData.Garden[x, y] != null) {
+			return false;
+		}
+
+		// Place the artifact onto the grid and update its position
+		Artifact artifact = Instantiate(plantPrefab, transform).GetComponent<Artifact>( );
+		artifact.Initialize(new Vector2Int(x, y));
+
+		PlayerData.Garden[x, y] = artifact;
+		Artifacts.Add(artifact);
+
+		return true;
+	}
+
+	/// <summary>
 	/// Remove a plant from the garden
 	/// </summary>
 	/// <param name="plant">The plant to remove</param>
-	/// <returns>true always</returns>
+	/// <returns>true if the plant was successfully removed from the garden</returns>
 	public bool UprootPlant (Plant plant) {
+		// If the plant object is null, then return false
+		if (plant == null) {
+			return false;
+		}
+
 		// Remove the plant from all lists and destroy it
 		Plants.Remove(plant);
 		PlayerData.Garden[plant.Position.x, plant.Position.y] = null;
 		Destroy(plant.gameObject);
+
+		return true;
+	}
+
+	/// <summary>
+	/// Remove an artifact from the garden
+	/// </summary>
+	/// <param name="artifact">The artifact to remove</param>
+	/// <returns>true if the artifact was successfully removed from the garden</returns>
+	public bool UprootArtifact (Artifact artifact) {
+		// If the artifact object is null, then return false
+		if (artifact == null) {
+			return false;
+		}
+
+		// Remove the artifact from all lists and destroy it
+		Artifacts.Remove(artifact);
+		PlayerData.Garden[artifact.Position.x, artifact.Position.y] = null;
+		Destroy(artifact.gameObject);
 
 		return true;
 	}
@@ -113,7 +175,7 @@ public class GardenManager : MonoBehaviour {
 		}
 
 		// Get the plant at the specified position
-		Plant plant = PlayerData.Garden[x, y];
+		Plant plant = PlayerData.Garden[x, y] as Plant;
 
 		// Return false if there is no plant at the position specified
 		if (plant == null) {
@@ -124,6 +186,38 @@ public class GardenManager : MonoBehaviour {
 		Plants.Remove(plant);
 		PlayerData.Garden[x, y] = null;
 		Destroy(plant.gameObject);
+
+		return true;
+	}
+
+	/// <summary>
+	/// Move a plant from its current position to another one
+	/// </summary>
+	/// <param name="plant">The plant that will be moved</param>
+	/// <param name="x">The x coordinate to move the plant to</param>
+	/// <param name="y">The y coordinate to move the plant to</param>
+	/// <returns>true if the plant was successfully moved, false otherwise. Also returns false if the position that the plant was going to move to is out of the bounds of the garden or there was already a plant at that position</returns>
+	public bool MovePlant (Plant plant, int x, int y) {
+		// If the plant that was going to be moved is null, then return false
+		if (plant == null) {
+			return false;
+		}
+
+		// Return false if the position that the plant is being move to is out of the bounds of the garden
+		if (!IsPositionWithinGarden(x, y)) {
+			return false;
+		}
+
+		// Return false if there is already a plant at the position specified
+		if (PlayerData.Garden[x, y] != null) {
+			return false;
+		}
+
+		// Remove the reference to the plant from its current position and add it to the position it is being moved to
+		// Also update the position of the plant
+		PlayerData.Garden[plant.Position.x, plant.Position.y] = null;
+		plant.Position = new Vector2Int(x, y);
+		PlayerData.Garden[plant.Position.x, plant.Position.y] = plant;
 
 		return true;
 	}
@@ -155,6 +249,32 @@ public class GardenManager : MonoBehaviour {
 	}
 
 	/// <summary>
+	/// Get artifacts that have been placed in the garden that match the exclusive and excluded artifact types specified. Filters through the current artifacts and only includes/excludes certain types
+	/// </summary>
+	/// <param name="exclusiveArtifactTypes">All artifact types within this list will exclusively be added to the final list. If this parameter is left null, all artifacts of any artifact type will be added</param>
+	/// <param name="excludedArtifactTypes">All artifact types within this list will never be added to the final list. If this parameter is left null, no artifact types will be excluded</param>
+	/// <returns>A list of all the artifacts that match the artifact types specified</returns>
+	public List<Artifact> GetFilteredArtifacts (List<ArtifactType> exclusiveArtifactTypes = null, List<ArtifactType> excludedArtifactTypes = null) {
+		List<Artifact> filteredArtifacts = new List<Artifact>( );
+
+		// Loop through all of the artifacts that have been placed into the garden
+		for (int i = 0; i < Artifacts.Count; i++) {
+			// If the current artifact being checked has an artifact type that is in the excluded artifact types list, then ignore the artifact and continue to the next position
+			if (excludedArtifactTypes != null && excludedArtifactTypes.Contains(Artifacts[i].ArtifactType)) {
+				continue;
+			}
+
+			// If the current artifact being checked has an artifact type that is in the exclusive artifact types list, then add that artifact to the list of surrounding artifacts
+			// If the exclusive artifacts list is null, then just add every type of artifact
+			if (exclusiveArtifactTypes == null || (exclusiveArtifactTypes != null && exclusiveArtifactTypes.Contains(Artifacts[i].ArtifactType))) {
+				filteredArtifacts.Add(Artifacts[i]);
+			}
+		}
+
+		return filteredArtifacts;
+	}
+
+	/// <summary>
 	/// Get plants that have been placed in the garden at the specified positions that match the exclusive and excluded plant types
 	/// </summary>
 	/// <param name="positions">A list of the positions to check for plants at</param>
@@ -162,7 +282,7 @@ public class GardenManager : MonoBehaviour {
 	/// <param name="excludedPlantTypes">All plant types within this list will never be added to the final list. If this parameter is left null, no plant types will be excluded</param>
 	/// <returns>A list of all the plants that are on the positions specified that match the exclusive and excluded plant types</returns>
 	public List<Plant> GetFilteredPlantsAtPositions (List<Vector2Int> positions, List<PlantType> exclusivePlantTypes = null, List<PlantType> excludedPlantTypes = null) {
-		List<Plant> filteredPlants = new List<Plant>();
+		List<Plant> filteredPlants = new List<Plant>( );
 
 		// Loop through all positions specified for this function
 		foreach (Vector2Int position in positions) {
@@ -172,7 +292,7 @@ public class GardenManager : MonoBehaviour {
 			}
 
 			// Get a reference to the plant at the current position being checked
-			Plant plant = PlayerData.Garden[position.x, position.y];
+			Plant plant = PlayerData.Garden[position.x, position.y] as Plant;
 
 			// If there is currently no plant at the current position, then continue to the next position
 			if (plant == null) {
@@ -205,29 +325,12 @@ public class GardenManager : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Move a plant from its current position to another one
+	/// Count how many artifacts of a specific artifact type are in the garden
 	/// </summary>
-	/// <param name="plant">The plant that will be moved</param>
-	/// <param name="x">The x coordinate to move the plant to</param>
-	/// <param name="y">The y coordinate to move the plant to</param>
-	/// <returns>true if the plant was successfully moved, false otherwise. Also returns false if the position that the plant was going to move to is out of the bounds of the garden or there was already a plant at that position</returns>
-	public bool MovePlant (Plant plant, int x, int y) {
-		// Return false if the position that the plant is being move to is out of the bounds of the garden
-		if (!IsPositionWithinGarden(x, y)) {
-			return false;
-		}
-
-		// Return false if there is already a plant at the position specified
-		if (PlayerData.Garden[x, y] != null) {
-			return false;
-		}
-
-		// Remove the reference to the plant from its current position and add it to the position it is being moved to
-		// Also update the position of the plant
-		PlayerData.Garden[plant.Position.x, plant.Position.y] = null;
-		plant.Position = new Vector2Int(x, y);
-		PlayerData.Garden[plant.Position.x, plant.Position.y] = plant;
-
-		return true;
+	/// <param name="exclusiveArtifactTypes">All artifact types within this list will exclusively be added to the final list. If this parameter is left null, all artifacts of any artifact type will be added</param>
+	/// <param name="excludedArtifactTypes">All artifact types within this list will never be added to the final list. If this parameter is left null, no artifact types will be excluded</param>
+	/// <returns>The number of artifacts that have been placed in the garden that match the specified exclusive and excluded artifact types</returns>
+	public int CountArtifacts (List<ArtifactType> exclusiveArtifactTypes = null, List<ArtifactType> excludedArtifactTypes = null) {
+		return GetFilteredArtifacts(exclusiveArtifactTypes, excludedArtifactTypes).Count;
 	}
 }
