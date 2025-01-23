@@ -6,14 +6,18 @@ using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
-    public GameObject[] items;
-    public GameObject[] plantPrefabs;
+    [SerializeField] GameObject[] items;
+    [SerializeField] GameObject[] plantPrefabs;
+    [SerializeField] PlayerWallet_Placeholder wallet;
+    [SerializeField] TMP_Text balanceText;
 
     // Start is called before the first frame update
     void Start()
     {
         ShufflePlants();
         FillShop();
+
+        balanceText.text = "Balance : " + wallet.balance.ToString();
     }
     void ShufflePlants()
     {
@@ -36,6 +40,8 @@ public class ShopManager : MonoBehaviour
     public void BuyPlant(int itemIndex)
     {
         string itemName = transform.GetChild(itemIndex - 1).GetChild(1).name;
-        Debug.Log("Buy Item " + itemIndex + ", Plant Name : " + itemName);
+        Debug.Log("Bought Item " + itemIndex + ", Plant Name : " + itemName);
+        wallet.balance = wallet.balance - transform.GetChild(itemIndex - 1).GetChild(1).GetComponent<Plant_Placeholder>().cost;
+        balanceText.text = "Balance : " + wallet.balance.ToString();
     }
 }
