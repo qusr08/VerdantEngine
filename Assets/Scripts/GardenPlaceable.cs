@@ -20,7 +20,7 @@ public class GardenPlaceable : MonoBehaviour {
 		}
 		set {
 			_position = value;
-			transform.localPosition = new Vector3(_position.x, 0f, _position.y);
+			transform.localPosition = new Vector3(_position.x, 0.5f, _position.y);
 		}
 	}
 
@@ -36,7 +36,7 @@ public class GardenPlaceable : MonoBehaviour {
 		Position = position;
 
 		// Make sure the plants are always facing towards the camera
-		transform.LookAt(-Camera.main.transform.position + transform.localPosition);
+		transform.LookAt(-Camera.main.transform.position + transform.position);
 		transform.localEulerAngles = new Vector3(0f, transform.localEulerAngles.y, 0f);
 	}
 

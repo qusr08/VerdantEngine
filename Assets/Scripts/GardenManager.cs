@@ -9,8 +9,13 @@ using UnityEngine.UIElements;
 /// </summary>
 public class GardenManager : MonoBehaviour {
 	[Header("References")]
-	[SerializeField] private GameObject plantPrefab;
+	[SerializeField] private PlantPrefabDictionary plantPrefabs;
+	[SerializeField] private ArtifactPrefabDictionary artifactPrefabs;
+	[SerializeField] private GameObject groundTilePrefab;
 	[SerializeField] private PlayerData _playerData;
+	[SerializeField] private Transform plantContainer;
+	[SerializeField] private Transform artifactContainer;
+	[SerializeField] private Transform groundTileContainer;
 
 	/// <summary>
 	/// A reference to the player data scriptable object
@@ -33,6 +38,22 @@ public class GardenManager : MonoBehaviour {
 	}
 
 	private void Start ( ) {
+		// Create all of the ground tiles for the garden
+		for (int x = 0; x < PlayerData.GardenSize; x++) {
+			for (int y = 0; y < PlayerData.GardenSize; y++) {
+				// Create the ground tile object and set its position
+				GameObject groundTile = Instantiate(groundTilePrefab, groundTileContainer);
+				groundTile.transform.localPosition = new Vector3(x, 0, y);
+
+				// Set the material color of the ground tile
+				MeshRenderer groundTileMeshRenderer = groundTile.GetComponent<MeshRenderer>( );
+				Material tempMaterial = new Material(groundTileMeshRenderer.material);
+				// Make the colors of the ground tiles a checkerboard pattern
+				tempMaterial.color = ((x + y) % 2 == 0 ? new Color(0.39f, 0.85f, 0.37f) : new Color(0.18f, 0.63f, 0.16f));
+				groundTileMeshRenderer.material = tempMaterial;
+			}
+		}
+
 		/// TEST: Create test plants and move them around
 		PlacePlant(PlantType.CACTUS, 6, 1);
 		PlacePlant(PlantType.FLOWER, 0, 0);
@@ -44,8 +65,8 @@ public class GardenManager : MonoBehaviour {
 
 		UprootPlant(0, 0);
 
-		Debug.Log("Flower Count: " + CountPlants(exclusivePlantTypes: new List<PlantType>( ) { PlantType.FLOWER }));
-		Debug.Log("Cactus Count: " + CountPlants(exclusivePlantTypes: new List<PlantType>( ) { PlantType.CACTUS }));
+		// Debug.Log("Flower Count: " + CountPlants(exclusivePlantTypes: new List<PlantType>( ) { PlantType.FLOWER }));
+		// Debug.Log("Cactus Count: " + CountPlants(exclusivePlantTypes: new List<PlantType>( ) { PlantType.CACTUS }));
 	}
 
 	/// <summary>
@@ -82,7 +103,7 @@ public class GardenManager : MonoBehaviour {
 		}
 
 		// Place the plant onto the grid and update its position
-		Plant plant = Instantiate(plantPrefab, transform).GetComponent<Plant>( );
+		Plant plant = Instantiate(plantPrefabs[plantType], plantContainer).GetComponent<Plant>( );
 		plant.Initialize(new Vector2Int(x, y));
 
 		PlayerData.Garden[x, y] = plant;
@@ -115,7 +136,7 @@ public class GardenManager : MonoBehaviour {
 		}
 
 		// Place the artifact onto the grid and update its position
-		Artifact artifact = Instantiate(plantPrefab, transform).GetComponent<Artifact>( );
+		Artifact artifact = Instantiate(artifactPrefabs[artifactType], artifactContainer).GetComponent<Artifact>( );
 		artifact.Initialize(new Vector2Int(x, y));
 
 		PlayerData.Garden[x, y] = artifact;
