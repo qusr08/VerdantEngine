@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a891f922542a39a4b957b8cad5a34f3d, type: 3}
   m_Name: Combat_1
   m_EditorClassIdentifier: 
-  frontLineEnemies: []
-  backLineLineEnemies: []
+  frontLineEnemies:
+  - {fileID: 7051596728495582928, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+  - {fileID: 7051596728495582928, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+  - {fileID: 7051596728495582928, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+  backLineLineEnemies:
+  - {fileID: 7051596728495582928, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+  - {fileID: 7051596728495582928, guid: b95126a70dec6f54f82474ca31982657, type: 3}
   IsEliteRewards: 0

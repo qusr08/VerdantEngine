@@ -15,8 +15,10 @@ MonoBehaviour:
   damage: 3
   manaCost: 3
   attackText: Lama ani kan
-  attackName: PJ party
+  attackName: BackLine
   type: 0
+  targetingType: 1
   isCoolDown: 0
   coolDown: 0
   icon: {fileID: 21300000, guid: 60d67b281d13d6841ad2b66728ab3e52, type: 3}
+  targetNum: 0

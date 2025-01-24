@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   manaCost: 3
-  attackText: Punch for 5
-  attackName: Mind Goblins
+  attackText: FrontLine
+  attackName: Front Line
   type: 2
+  targetingType: 0
   isCoolDown: 0
   coolDown: 0
   icon: {fileID: 21300000, guid: 1973831bb10faa340a44f158b4054087, type: 3}
+  targetNum: 0

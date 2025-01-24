@@ -15,8 +15,10 @@ MonoBehaviour:
   damage: 5
   manaCost: 2
   attackText: Block this boy
-  attackName: Ligma
+  attackName: Target 3
   type: 0
+  targetingType: 4
   isCoolDown: 0
   coolDown: 0
   icon: {fileID: 21300000, guid: df2b03b6fe8a4ed4b8fa6ace123ea223, type: 3}
+  targetNum: 3

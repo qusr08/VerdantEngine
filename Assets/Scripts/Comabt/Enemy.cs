@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public int health;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +15,10 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         
+    }
+    public void attacked(Attack_SO incoingAttack)
+    {
+        health -= incoingAttack.damage;
+        Debug.Log("Ouch, i just took " + incoingAttack.damage + ". Now I have " + health + " health");
     }
 }
