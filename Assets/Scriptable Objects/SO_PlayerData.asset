@@ -13,3 +13,8 @@ MonoBehaviour:
   m_Name: SO_PlayerData
   m_EditorClassIdentifier: 
   gardenSize: 10
+  CurrentAttacks:
+  - {fileID: 11400000, guid: d04f24c3972d588429b4bca3f504afda, type: 2}
+  - {fileID: 11400000, guid: 1496a1f858064c54ab1f8b9e695f07fa, type: 2}
+  - {fileID: 11400000, guid: 1ca00d970efe1b74f9ef52762c38e9c2, type: 2}
+  - {fileID: 11400000, guid: a60e59485b2c12d44acd701305b4f55c, type: 2}
