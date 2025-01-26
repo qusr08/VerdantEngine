@@ -138,6 +138,7 @@ public class CombatManager : MonoBehaviour
         {
             enemy.attacked(playerAttacks[current_Attack_Index]);
         }
+        EnemyTurn();
     }
 
     //Used for selecting enemies, should probably find a better way of doing this
@@ -155,6 +156,16 @@ public class CombatManager : MonoBehaviour
                 Enemy enemy = hit.collider.GetComponent<Enemy>();
                 SelectEnemy(enemy);
             }
+        }
+    }
+
+    public void EnemyTurn()
+    {
+        foreach (GameObject enemy in enemies)
+        {
+         EnemyAttack_SO enemyAttack = enemy.GetComponent<Enemy>().PlayTurn();
+            player.cuurentHealth -= enemyAttack.damage;
+            Debug.Log(enemy.name + " attacked the player using " + enemyAttack.attackName + " dealing " + enemyAttack.damage + " to the player");
         }
     }
 }

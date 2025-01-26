@@ -99,6 +99,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  attacks:
+  - {fileID: 11400000, guid: 8c75a54b0f54a174d90e18a8d3950d0b, type: 2}
+  attacksAreRandom: 0
 --- !u!65 &6843448182824146307
 BoxCollider:
   m_ObjectHideFlags: 0
