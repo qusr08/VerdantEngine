@@ -5,8 +5,14 @@ using UnityEngine;
 public class Encounter : MonoBehaviour
 {
 
+    public bool First = false;
+
     public List<GameObject> ConnectingNode;
     [SerializeField] private MapPlayer player;
+
+    [Header("Text")]
+    [SerializeField] private string Name;
+    [SerializeField] private string Rewards;
 
     // Start is called before the first frame update
     void Start()
@@ -14,6 +20,11 @@ public class Encounter : MonoBehaviour
         if(player == null)
         {
             player = GameObject.Find("Player").GetComponent<MapPlayer>();
+        }
+
+        if(First)
+        {
+            PlayerReached();
         }
     }
 
@@ -28,7 +39,9 @@ public class Encounter : MonoBehaviour
     /// </summary>
     protected void PlayerReached()
     {
-        Debug.Log("Player is at " + gameObject.name);
+        MapText text = GameObject.Find("Text (TMP)").GetComponent<MapText>();
+        text.AtEvent(Name, Rewards);
+        //Debug.Log("Player is at " + gameObject.name);
     }
 
     /// <summary>

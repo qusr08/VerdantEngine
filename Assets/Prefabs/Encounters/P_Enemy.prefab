@@ -118,4 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 236c71b08cb19d64b9fb1292315f96cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ConnectingNode: []
   player: {fileID: 0}
+  Name: Enemy
+  Rewards: Doubloon x3

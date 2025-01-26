@@ -165,7 +165,8 @@ public class Map : MonoBehaviour
         else
         {
             encounter = Instantiate(prefabs[i], nextPosition, transform.rotation);
-            player.GetComponent<MapPlayer>().CurrentEncounter = encounter;
+            player.GetComponent<MapPlayer>().MoveTo(encounter, true);
+            encounter.GetComponent<Encounter>().First = true;
         }
 
     }

@@ -23,10 +23,11 @@ public class MapPlayer : MonoBehaviour
     /// Moves the player to selected encounter
     /// </summary>
     /// <param name="location">The encounter the player moves too</param>
-    public bool MoveTo(GameObject location)
+    /// <param name="force">Set true if and only if you want to force movement</param>
+    public bool MoveTo(GameObject location, bool force = false)
     {
         //Debug.Log(location);
-        if (CurrentEncounter.GetComponent<Encounter>().ConnectingNode.Contains(location))
+        if (force || CurrentEncounter.GetComponent<Encounter>().ConnectingNode.Contains(location))
         {
             transform.position = location.transform.position;
             CurrentEncounter = location;
