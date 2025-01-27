@@ -701,11 +701,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce93a619a2ba40e42bb226cecc8eb2de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabs:
+  enemyChance: 10
+  shopChance: 0
+  eventChance: 0
+  enemyRates: 0600000004000000
+  eventRates: 0800000002000000
+  enemyPrefabs:
   - {fileID: 666919218090433101, guid: 9d7edbe9527a2a34ea67cb78ae28284d, type: 3}
-  - {fileID: 6104538219593501443, guid: 05fca9e121d37bc42aa1c69f9283428a, type: 3}
+  - {fileID: 666919218090433101, guid: b68f0bba874cb9643b8a76ed165441fc, type: 3}
+  eventPrefabs:
   - {fileID: 4618349442100260367, guid: 9483c4dd8ef14444db6d313493e4a662, type: 3}
-  boss: {fileID: 8411653872717465035, guid: e2c1d974e93897b4ba7f99457057c302, type: 3}
+  - {fileID: 4618349442100260367, guid: b2dea6382c1509d4895819221744a1b3, type: 3}
+  shopPrefabs:
+  - {fileID: 6104538219593501443, guid: 05fca9e121d37bc42aa1c69f9283428a, type: 3}
+  bossPrefabs:
+  - {fileID: 8411653872717465035, guid: e2c1d974e93897b4ba7f99457057c302, type: 3}
   encountersBeforeBoss: 10
   player: {fileID: 0}
   percents: 0a000000000000000000000000000000

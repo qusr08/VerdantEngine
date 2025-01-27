@@ -4,21 +4,35 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
+    [Header("Spawn Rates")]
+    [SerializeField] private int enemyChance;
+    [SerializeField] private int shopChance;
+    [SerializeField] private int eventChance;
+    [SerializeField] private int[] enemyRates;
+    [SerializeField] private int[] eventRates;
+
+
     [Header("Prefabs")]
-    [SerializeField] private GameObject[] prefabs = new GameObject[3];
-    [SerializeField] private GameObject boss;
+    [SerializeField] private GameObject[] enemyPrefabs;
+    [SerializeField] private GameObject[] eventPrefabs;
+    [SerializeField] private GameObject[] shopPrefabs;
+    [SerializeField] private GameObject[] bossPrefabs;
 
     [Header("Debug")]
     [SerializeField] private byte encountersBeforeBoss;
     [SerializeField] private MapPlayer player;
-    [SerializeField] private int[] percents = new int[] { 10, 0, 0, 0 }; //{Enemy, shop, ?, MapSplit(idk might remove this one)}
+    [SerializeField] private int[] percents;
     private byte encounterAmount;
     private GameObject encounter;
     private GameObject prevEncounter;
 
+    enum Type { Enemy, Shop, Event, Boss };
+
     // Start is called before the first frame update
     void Start()
     {
+        percents = new int[] { enemyChance, shopChance, eventChance };
+
         if (player == null)
         {
             player = GameObject.Find("Player").GetComponent<MapPlayer>();
@@ -58,14 +72,25 @@ public class Map : MonoBehaviour
                 //Debug.Log("Enconter: " + encounterAmount + " = " + i);
                 encounterAmount++;
                 RepopulatePercents(i);
-                SpawnEncounter(i);
+                switch (i)
+                {
+                    case 0:
+                        SpawnEncounter(Type.Enemy);
+                        break;
+                    case 1:
+                        SpawnEncounter(Type.Shop);
+                        break;
+                    case 2:
+                        SpawnEncounter(Type.Event);
+                        break;
+                }
                 break;
             }
         }
 
         if(encounterAmount >= encountersBeforeBoss)
         {
-            SpawnEncounter(-1);
+            SpawnEncounter(Type.Boss);
         }
         else
         {
@@ -143,31 +168,86 @@ public class Map : MonoBehaviour
     /// Spawns the prefab of the encounter
     /// </summary>
     /// <param name="i">prefab to spawn. -1 or lower to spawn boss</param>
-    private void SpawnEncounter(int i)
+    private void SpawnEncounter(Type type)
     {
         Vector3 nextPosition = new Vector3(2f * encounterAmount, 0, 0);
 
-        if(i < 0)
+        switch (type)
+            {
+            case Type.Enemy:
+                if (encounter != null)
+                {
+                    prevEncounter = encounter;
+                    encounter = Instantiate(enemyPrefabs[GetSubType(enemyRates)], nextPosition, transform.rotation);
+                    prevEncounter.GetComponent<Encounter>().ConnectingNode.Add(encounter);
+                }
+                else
+                {
+                    encounter = Instantiate(enemyPrefabs[GetSubType(enemyRates)], nextPosition, transform.rotation);
+                    player.GetComponent<MapPlayer>().MoveTo(encounter, true);
+                    encounter.GetComponent<Encounter>().First = true;
+                }
+                break;
+            case Type.Shop:
+                if (encounter != null)
+                {
+                    prevEncounter = encounter;
+                    encounter = Instantiate(shopPrefabs[0], nextPosition, transform.rotation);
+                    prevEncounter.GetComponent<Encounter>().ConnectingNode.Add(encounter);
+                }
+                else
+                {
+                    encounter = Instantiate(shopPrefabs[0], nextPosition, transform.rotation);
+                    player.GetComponent<MapPlayer>().MoveTo(encounter, true);
+                    encounter.GetComponent<Encounter>().First = true;
+                }
+                break;
+            case Type.Event:
+                if (encounter != null)
+                {
+                    prevEncounter = encounter;
+                    encounter = Instantiate(eventPrefabs[GetSubType(eventRates)], nextPosition, transform.rotation);
+                    prevEncounter.GetComponent<Encounter>().ConnectingNode.Add(encounter);
+                }
+                else
+                {
+                    encounter = Instantiate(eventPrefabs[GetSubType(eventRates)], nextPosition, transform.rotation);
+                    player.GetComponent<MapPlayer>().MoveTo(encounter, true);
+                    encounter.GetComponent<Encounter>().First = true;
+                }
+                break;
+            case Type.Boss:
+                nextPosition.x += 2f;
+                prevEncounter = encounter;
+                encounter = Instantiate(bossPrefabs[0], nextPosition, transform.rotation);
+                prevEncounter.GetComponent<Encounter>().ConnectingNode.Add(encounter);
+                break;
+        }
+            
+    }
+
+    private int GetSubType(int[] odds)
+    {
+        int nextEncounter = Random.Range(0, 10);
+
+        for (byte i = 0; i < odds.Length; i++)
         {
-            nextPosition.x += 2f;
-            prevEncounter = encounter;
-            encounter = Instantiate(boss, nextPosition, transform.rotation);
-            prevEncounter.GetComponent<Encounter>().ConnectingNode.Add(encounter);
-            return;
+            int tempPercent = odds[i];
+
+            //If the previous type wasn't spawned, add it's chances to this type. This allows something like a [3, 3, 4] to work. The first one is 3, the second turns to 6, and the final is 10.
+            if (i > 0)
+            {
+                for (byte j = 0; j < i; j++)
+                {
+                    tempPercent += odds[j];
+                }
+            }
+            if (nextEncounter <= tempPercent)
+            {
+                return i;
+            }
         }
 
-        if(encounter != null)
-        {
-            prevEncounter = encounter;
-            encounter = Instantiate(prefabs[i], nextPosition, transform.rotation);
-            prevEncounter.GetComponent<Encounter>().ConnectingNode.Add(encounter);
-        }
-        else
-        {
-            encounter = Instantiate(prefabs[i], nextPosition, transform.rotation);
-            player.GetComponent<MapPlayer>().MoveTo(encounter, true);
-            encounter.GetComponent<Encounter>().First = true;
-        }
-
+        return 0; //This should never call
     }
 }
