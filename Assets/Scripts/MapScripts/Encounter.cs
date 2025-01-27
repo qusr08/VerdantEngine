@@ -52,7 +52,7 @@ public class Encounter : MonoBehaviour
         if(player.MoveTo(gameObject))
         {
             PlayerReached();
-
+            return;
         }
         Debug.Log("Not connecting encounter");
     }

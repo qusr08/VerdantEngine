@@ -18,6 +18,7 @@ public class Map : MonoBehaviour
     [SerializeField] private GameObject[] eventPrefabs;
     [SerializeField] private GameObject[] shopPrefabs;
     [SerializeField] private GameObject[] bossPrefabs;
+    [SerializeField] private GameObject startPrefab;
 
     [Header("Debug")]
     [SerializeField] private byte encountersBeforeBoss;
@@ -45,6 +46,11 @@ public class Map : MonoBehaviour
 
         encounters = new List<GameObject>();
         prevEncounters = new List<GameObject>();
+
+        encounters.Add(Instantiate(startPrefab, new Vector3(0, 1.5f, 0), transform.rotation));
+        player.GetComponent<MapPlayer>().MoveTo(encounters[encounters.Count - 1], true);
+        EncounterToPrev();
+
         PopulateMap();
     }
 
@@ -191,30 +197,25 @@ public class Map : MonoBehaviour
     /// <param name="i">prefab to spawn. -1 or lower to spawn boss</param>
     private void SpawnEncounter(Type type)
     {
-        Vector3 nextPosition = new Vector3(2f * encounterNumber, 2f * (encounterOptions - 1), 0);
+        Vector3 nextPosition = new Vector3(2f * (encounterNumber + 1), 2f * (encounterOptions - 1), 0);
+
+        if(encounterNumber%2 == 0)
+        {
+            nextPosition.y += .75f;
+        }
 
         if(nextPosition.y < 0)
         {
-            nextPosition.y = 0;
+            nextPosition.y = 1.5f;
         }
 
         switch (type)
             {
             case Type.Enemy:
-                if (prevEncounters.Count <= 0)
+                encounters.Add(Instantiate(enemyPrefabs[GetSubType(enemyRates)], nextPosition, transform.rotation));
+                for(int i = 0; i<prevEncounters.Count; i++)
                 {
-                    encounters.Add(Instantiate(enemyPrefabs[GetSubType(enemyRates)], nextPosition, transform.rotation));
-                    player.GetComponent<MapPlayer>().MoveTo(encounters[encounters.Count - 1], true);
-                    encounters[encounters.Count - 1].GetComponent<Encounter>().First = true;
-                    
-                }
-                else
-                {
-                    encounters.Add(Instantiate(enemyPrefabs[GetSubType(enemyRates)], nextPosition, transform.rotation));
-                    for(int i = 0; i<prevEncounters.Count; i++)
-                    {
-                        prevEncounters[i].GetComponent<Encounter>().ConnectingNode.Add(encounters[encounters.Count - 1]);
-                    }
+                    prevEncounters[i].GetComponent<Encounter>().ConnectingNode.Add(encounters[encounters.Count - 1]);
                 }
                 break;
             case Type.Shop:

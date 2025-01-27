@@ -716,6 +716,7 @@ MonoBehaviour:
   - {fileID: 6104538219593501443, guid: 05fca9e121d37bc42aa1c69f9283428a, type: 3}
   bossPrefabs:
   - {fileID: 8411653872717465035, guid: e2c1d974e93897b4ba7f99457057c302, type: 3}
+  startPrefab: {fileID: 1824143272799046452, guid: 8e71267587a299943b263780a3fbc609, type: 3}
   encountersBeforeBoss: 10
   player: {fileID: 0}
   percents: 0a000000000000000000000000000000
