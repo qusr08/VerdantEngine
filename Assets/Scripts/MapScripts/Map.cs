@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class Map : MonoBehaviour
 {
@@ -22,9 +23,10 @@ public class Map : MonoBehaviour
     [SerializeField] private byte encountersBeforeBoss;
     [SerializeField] private MapPlayer player;
     [SerializeField] private int[] percents;
-    private byte encounterAmount;
-    private GameObject encounter;
-    private GameObject prevEncounter;
+    private byte encounterNumber;
+    private byte encounterOptions;
+    private List<GameObject> encounters;
+    private List<GameObject> prevEncounters;
 
     enum Type { Enemy, Shop, Event, Boss };
 
@@ -38,7 +40,11 @@ public class Map : MonoBehaviour
             player = GameObject.Find("Player").GetComponent<MapPlayer>();
         }
 
-        encounterAmount = 0;
+        encounterNumber = 0;
+
+
+        encounters = new List<GameObject>();
+        prevEncounters = new List<GameObject>();
         PopulateMap();
     }
 
@@ -55,40 +61,55 @@ public class Map : MonoBehaviour
     {
         int nextEncounter = Random.Range(0, 10);
 
-        for(byte i = 0; i < percents.Length; i++)
+        if (encounterNumber%2 == 0)
         {
-            int tempPercent = percents[i];
+            encounterOptions = 2;
+        }else
+        {
+            encounterOptions = 3;
+        }
 
-            //If the previous type wasn't spawned, add it's chances to this type. This allows something like a [3, 3, 4] to work. The first one is 3, the second turns to 6, and the final is 10.
-            if(i > 0)
+        while(encounterOptions > 0)
+        {
+            for (byte i = 0; i < percents.Length; i++)
             {
-                for(byte j = 0; j < i; j++)
+                int tempPercent = percents[i];
+
+                //If the previous type wasn't spawned, add it's chances to this type. This allows something like a [3, 3, 4] to work. The first one is 3, the second turns to 6, and the final is 10.
+                if (i > 0)
                 {
-                    tempPercent += percents[j];
+                    for (byte j = 0; j < i; j++)
+                    {
+                        tempPercent += percents[j];
+                    }
                 }
-            }
-            if(nextEncounter <= tempPercent)
-            {
-                //Debug.Log("Enconter: " + encounterAmount + " = " + i);
-                encounterAmount++;
-                RepopulatePercents(i);
-                switch (i)
+                if (nextEncounter <= tempPercent)
                 {
-                    case 0:
-                        SpawnEncounter(Type.Enemy);
-                        break;
-                    case 1:
-                        SpawnEncounter(Type.Shop);
-                        break;
-                    case 2:
-                        SpawnEncounter(Type.Event);
-                        break;
+                    //Debug.Log("Enconter: " + encounterAmount + " = " + i);
+                    RepopulatePercents(i);
+                    switch (i)
+                    {
+                        case 0:
+                            SpawnEncounter(Type.Enemy);
+                            break;
+                        case 1:
+                            SpawnEncounter(Type.Shop);
+                            break;
+                        case 2:
+                            SpawnEncounter(Type.Event);
+                            break;
+                    }
+
+                    encounterOptions--;
+                    break;
                 }
-                break;
             }
         }
 
-        if(encounterAmount >= encountersBeforeBoss)
+        encounterNumber++;
+        EncounterToPrev();
+
+        if (encounterNumber >= encountersBeforeBoss)
         {
             SpawnEncounter(Type.Boss);
         }
@@ -170,57 +191,52 @@ public class Map : MonoBehaviour
     /// <param name="i">prefab to spawn. -1 or lower to spawn boss</param>
     private void SpawnEncounter(Type type)
     {
-        Vector3 nextPosition = new Vector3(2f * encounterAmount, 0, 0);
+        Vector3 nextPosition = new Vector3(2f * encounterNumber, 2f * (encounterOptions - 1), 0);
+
+        if(nextPosition.y < 0)
+        {
+            nextPosition.y = 0;
+        }
 
         switch (type)
             {
             case Type.Enemy:
-                if (encounter != null)
+                if (prevEncounters.Count <= 0)
                 {
-                    prevEncounter = encounter;
-                    encounter = Instantiate(enemyPrefabs[GetSubType(enemyRates)], nextPosition, transform.rotation);
-                    prevEncounter.GetComponent<Encounter>().ConnectingNode.Add(encounter);
+                    encounters.Add(Instantiate(enemyPrefabs[GetSubType(enemyRates)], nextPosition, transform.rotation));
+                    player.GetComponent<MapPlayer>().MoveTo(encounters[encounters.Count - 1], true);
+                    encounters[encounters.Count - 1].GetComponent<Encounter>().First = true;
+                    
                 }
                 else
                 {
-                    encounter = Instantiate(enemyPrefabs[GetSubType(enemyRates)], nextPosition, transform.rotation);
-                    player.GetComponent<MapPlayer>().MoveTo(encounter, true);
-                    encounter.GetComponent<Encounter>().First = true;
+                    encounters.Add(Instantiate(enemyPrefabs[GetSubType(enemyRates)], nextPosition, transform.rotation));
+                    for(int i = 0; i<prevEncounters.Count; i++)
+                    {
+                        prevEncounters[i].GetComponent<Encounter>().ConnectingNode.Add(encounters[encounters.Count - 1]);
+                    }
                 }
                 break;
             case Type.Shop:
-                if (encounter != null)
+                encounters.Add(Instantiate(shopPrefabs[0], nextPosition, transform.rotation));
+                for (int i = 0; i < prevEncounters.Count; i++)
                 {
-                    prevEncounter = encounter;
-                    encounter = Instantiate(shopPrefabs[0], nextPosition, transform.rotation);
-                    prevEncounter.GetComponent<Encounter>().ConnectingNode.Add(encounter);
-                }
-                else
-                {
-                    encounter = Instantiate(shopPrefabs[0], nextPosition, transform.rotation);
-                    player.GetComponent<MapPlayer>().MoveTo(encounter, true);
-                    encounter.GetComponent<Encounter>().First = true;
+                    prevEncounters[i].GetComponent<Encounter>().ConnectingNode.Add(encounters[encounters.Count - 1]);
                 }
                 break;
             case Type.Event:
-                if (encounter != null)
+                encounters.Add(Instantiate(eventPrefabs[GetSubType(eventRates)], nextPosition, transform.rotation));
+                for (int i = 0; i < prevEncounters.Count; i++)
                 {
-                    prevEncounter = encounter;
-                    encounter = Instantiate(eventPrefabs[GetSubType(eventRates)], nextPosition, transform.rotation);
-                    prevEncounter.GetComponent<Encounter>().ConnectingNode.Add(encounter);
-                }
-                else
-                {
-                    encounter = Instantiate(eventPrefabs[GetSubType(eventRates)], nextPosition, transform.rotation);
-                    player.GetComponent<MapPlayer>().MoveTo(encounter, true);
-                    encounter.GetComponent<Encounter>().First = true;
+                    prevEncounters[i].GetComponent<Encounter>().ConnectingNode.Add(encounters[encounters.Count - 1]);
                 }
                 break;
             case Type.Boss:
-                nextPosition.x += 2f;
-                prevEncounter = encounter;
-                encounter = Instantiate(bossPrefabs[0], nextPosition, transform.rotation);
-                prevEncounter.GetComponent<Encounter>().ConnectingNode.Add(encounter);
+                encounters.Add(Instantiate(bossPrefabs[0], nextPosition, transform.rotation));
+                for (int i = 0; i < prevEncounters.Count; i++)
+                {
+                    prevEncounters[i].GetComponent<Encounter>().ConnectingNode.Add(encounters[encounters.Count - 1]);
+                }
                 break;
         }
             
@@ -249,5 +265,17 @@ public class Map : MonoBehaviour
         }
 
         return 0; //This should never call
+    }
+
+    private void EncounterToPrev()
+    {
+        prevEncounters.Clear();
+
+        for(int i = 0; i < encounters.Count; i++)
+        {
+            prevEncounters.Add(encounters[i]);
+        }
+
+        encounters.Clear();
     }
 }
