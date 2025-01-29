@@ -213,34 +213,75 @@ public class Map : MonoBehaviour
             {
             case Type.Enemy:
                 encounters.Add(Instantiate(enemyPrefabs[GetSubType(enemyRates)], nextPosition, transform.rotation));
-                for(int i = 0; i<prevEncounters.Count; i++)
+                /*for(int i = 0; i<prevEncounters.Count; i++)
                 {
                     prevEncounters[i].GetComponent<Encounter>().ConnectingNode.Add(encounters[encounters.Count - 1]);
-                }
+                }*/
                 break;
             case Type.Shop:
                 encounters.Add(Instantiate(shopPrefabs[0], nextPosition, transform.rotation));
-                for (int i = 0; i < prevEncounters.Count; i++)
+                /*for (int i = 0; i < prevEncounters.Count; i++)
                 {
                     prevEncounters[i].GetComponent<Encounter>().ConnectingNode.Add(encounters[encounters.Count - 1]);
-                }
+                }*/
                 break;
             case Type.Event:
                 encounters.Add(Instantiate(eventPrefabs[GetSubType(eventRates)], nextPosition, transform.rotation));
-                for (int i = 0; i < prevEncounters.Count; i++)
+                /*for (int i = 0; i < prevEncounters.Count; i++)
                 {
                     prevEncounters[i].GetComponent<Encounter>().ConnectingNode.Add(encounters[encounters.Count - 1]);
-                }
+                }*/
                 break;
             case Type.Boss:
                 encounters.Add(Instantiate(bossPrefabs[0], nextPosition, transform.rotation));
                 for (int i = 0; i < prevEncounters.Count; i++)
                 {
-                    prevEncounters[i].GetComponent<Encounter>().ConnectingNode.Add(encounters[encounters.Count - 1]);
+                    prevEncounters[i].GetComponent<Encounter>().AddConnection(encounters[encounters.Count - 1]);
                 }
-                break;
+                return;
         }
-            
+
+        if (prevEncounters.Count <= 0)
+        {
+            return;
+        }
+
+        //If there are 2 options in this line
+        if(encounterNumber % 2 == 0)
+        {
+            if(encounterOptions > 1 || prevEncounters.Count == 1)
+            {
+                prevEncounters[0].GetComponent<Encounter>().AddConnection(encounters[encounters.Count - 1]);
+                //Debug.DrawLine(prevEncounters[0].transform.position, encounters[encounters.Count - 1].transform.position, Color.blue, 5);
+                if(prevEncounters.Count > 1)
+                {
+                    prevEncounters[1].GetComponent<Encounter>().AddConnection(encounters[encounters.Count - 1]);
+                    //Debug.DrawLine(prevEncounters[1].transform.position, encounters[encounters.Count - 1].transform.position, Color.blue, 5);
+                }
+            }
+            else
+            {
+                prevEncounters[1].GetComponent<Encounter>().AddConnection(encounters[encounters.Count - 1]);
+                //Debug.DrawLine(prevEncounters[1].transform.position, encounters[encounters.Count - 1].transform.position, Color.red, 5);
+                prevEncounters[2].GetComponent<Encounter>().AddConnection(encounters[encounters.Count - 1]);
+                //Debug.DrawLine(prevEncounters[2].transform.position, encounters[encounters.Count - 1].transform.position, Color.red, 5);
+            }
+        }
+        //If there are 3 options in this line
+        else
+        {
+            if (encounterOptions >= 2)
+            {
+                prevEncounters[0].GetComponent<Encounter>().AddConnection(encounters[encounters.Count - 1]);
+                //Debug.DrawLine(prevEncounters[0].transform.position, encounters[encounters.Count - 1].transform.position, Color.green, 5);
+            }
+            if(encounterOptions <= 2)
+            {
+                prevEncounters[1].GetComponent<Encounter>().AddConnection(encounters[encounters.Count - 1]);
+                //Debug.DrawLine(prevEncounters[1].transform.position, encounters[encounters.Count - 1].transform.position, Color.black, 5);
+            }
+        }
+
     }
 
     private int GetSubType(int[] odds)

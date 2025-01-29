@@ -20,12 +20,25 @@ public class MapText : MonoBehaviour
         
     }
 
+    //Currently not called
     public void AtEvent(string type, string rewards = "")
     {
 
         if(rewards != "")
         {
             text.text = "" + type + " - " + rewards;
+            return;
+        }
+
+        text.text = "" + type;
+    }
+
+    public void HoverEvent(string type, string rewards = "")
+    {
+
+        if (rewards != "")
+        {
+            text.text = "" + rewards;
             return;
         }
 
