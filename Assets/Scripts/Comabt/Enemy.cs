@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     {
         
     }
-    public void attacked(Attack_SO incoingAttack)
+    public void attacked(Part_SO incoingAttack)
     {
         health -= incoingAttack.damage;
         Debug.Log("Ouch, i just took " + incoingAttack.damage + ". Now I have " + health + " health");

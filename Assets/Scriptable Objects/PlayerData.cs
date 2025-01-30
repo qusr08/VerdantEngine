@@ -22,7 +22,7 @@ public class PlayerData : ScriptableObject {
 	/// </summary>
 	public GardenPlaceable[ , ] Garden { get; private set; }
 
-	public List<Attack_SO> CurrentAttacks;
+	public List<Part_SO> currentParts;
 
 	// https://gamedev.stackexchange.com/questions/188224/scriptableobjects-events-execution-order
 	private void OnEnable ( ) {

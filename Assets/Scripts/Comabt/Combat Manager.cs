@@ -7,24 +7,23 @@ using TMPro;
 public class CombatManager : MonoBehaviour
 {
     [Header("References")]
+    public Player_Combat_Manager player_Combat_Manager;
     public ComabtObject currentComabt;
     public PlayerData player;
     public GardenManager garden;
    [SerializeField] private List<Transform> spawnLocations;
     private List<GameObject> enemies = new List<GameObject>();
-    private List<GameObject> frontEnemies = new List<GameObject>();
-    private List<GameObject> backEnemies = new List<GameObject>(); 
 
     //Current attack being concidered
-    private int current_Attack_Index;
+    private Part_SO current_Attack;
     //Currently selected enemies to attack
     private Queue<Enemy> selectedEnemis = new Queue<Enemy>();
     //number of enemies to select
     int maxTargets;
-    bool isSelecting = false;
+    bool isTrageting = false;
 
     [Header("UI")]
-    private List <Attack_SO> playerAttacks;
+    private List <Part_SO> playerAttacks;
     public List<Image> attackIcons;
     public List<TMP_Text> attack_Names;
     public TMP_Text attack_TextBox;
@@ -38,15 +37,16 @@ public class CombatManager : MonoBehaviour
         
         SetUpEnemies();
         //Get attacks from player
-        playerAttacks = player.CurrentAttacks;
+        playerAttacks = player.currentParts;
         ComabatMenuSetUp();
+        player_Combat_Manager.SetUp(player, garden, this);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && isSelecting) // Right Click (0 for Left Click)
+        if (Input.GetMouseButtonDown(0) && isTrageting) // Right Click (0 for Left Click)
         {
 
             MouseClick();
@@ -59,16 +59,9 @@ public class CombatManager : MonoBehaviour
     {
         //Sapwn enemy prefabs and place them in the backline or front line.
         //Currently the game is limited to 3 enemies each.
-        for (int i = 0; i < currentComabt.frontLineEnemies.Count; i++)
+        for (int i = 0; i < currentComabt.enemies.Count; i++)
         {
-            frontEnemies.Add(Instantiate(currentComabt.frontLineEnemies[i], spawnLocations[i]));
-            enemies.Add(frontEnemies[i]);
-        }
-        for (int i = 0; i < currentComabt.backLineLineEnemies.Count; i++)
-        {
-            backEnemies.Add(Instantiate(currentComabt.backLineLineEnemies[i], spawnLocations[i + 3]));
-            enemies.Add(backEnemies[i]);
-            
+            enemies.Add(Instantiate(currentComabt.enemies[i], spawnLocations[i]));
         }
     }
     public void ComabatMenuSetUp()
@@ -79,12 +72,13 @@ public class CombatManager : MonoBehaviour
             attack_Names[i].text = playerAttacks[i].attackName;
         }
     }
-    public void AttackChoosen(int index)
+    public IEnumerator StartTargeting(Part_SO part, System.Action onComplete)
     {
-        current_Attack_Index = index;
-        attack_CostBox.text = playerAttacks[current_Attack_Index].manaCost.ToString();
-        attack_TextBox.text = playerAttacks[current_Attack_Index].attackText.ToString();
-        isSelecting = false;
+        current_Attack = part;
+        attack_CostBox.text = current_Attack.manaCost.ToString();
+        attack_TextBox.text = current_Attack.attackText.ToString();
+        isTrageting = false;
+        
 
         //decelect
         while (selectedEnemis.Count > 0)
@@ -93,32 +87,30 @@ public class CombatManager : MonoBehaviour
             enemy.GetComponent<SpriteRenderer>().color = Color.white;
         }
 
-        switch (playerAttacks[current_Attack_Index].targetingType)
+        switch (part.targetingType)
         {
-            case TargetingType.FrontLine:
-                foreach (GameObject item in frontEnemies)
-                {
-                    maxTargets = 3;
-                    SelectEnemy(item.GetComponent<Enemy>());
-                }
-                break;
-            case TargetingType.BackLine:
-                foreach (GameObject item in backEnemies)
-                {
-                    maxTargets = 3;
-                    SelectEnemy(item.GetComponent<Enemy>());
-                }
-                break;
+        
             case TargetingType.Self:
                 break;
             case TargetingType.Graden:
                 break;
             case TargetingType.traget:
-                isSelecting = true;
-                maxTargets = playerAttacks[current_Attack_Index].targetNum;
+                isTrageting = true;
+                maxTargets = current_Attack.targetNum;
                 break;
+            case TargetingType.all:
+                foreach (GameObject enemy in enemies)
+                {
+                    SelectEnemy( enemy.GetComponent<Enemy>());
+                }
+                break;
+            
             default:
                 break;
+        }
+        while (isTrageting)
+        {
+            yield return null;
         }
 
     }
@@ -136,7 +128,7 @@ public class CombatManager : MonoBehaviour
     {
         foreach (Enemy enemy in selectedEnemis)
         {
-            enemy.attacked(playerAttacks[current_Attack_Index]);
+            enemy.attacked(current_Attack);
         }
         EnemyTurn();
     }
@@ -167,5 +159,10 @@ public class CombatManager : MonoBehaviour
             player.cuurentHealth -= enemyAttack.damage;
             Debug.Log(enemy.name + " attacked the player using " + enemyAttack.attackName + " dealing " + enemyAttack.damage + " to the player");
         }
+    }
+    
+    public void StartShootingPhase()
+    {
+        StartCoroutine(player_Combat_Manager.PlayerTurn());
     }
 }

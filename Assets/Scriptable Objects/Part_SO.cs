@@ -14,15 +14,15 @@ public enum AttackType
 }
 public enum TargetingType
 {
-    FrontLine,
-    BackLine,
+    
     Self,
     Graden,
-    traget
+    traget,
+    all
 }
 
-[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Attack_SO", order = 1)]
-public class Attack_SO : ScriptableObject
+[CreateAssetMenu(fileName = "Part", menuName = "ScriptableObjects/Part", order = 1)]
+public class Part_SO : ScriptableObject
 {
     public int damage;
 
@@ -33,7 +33,7 @@ public class Attack_SO : ScriptableObject
 
     public AttackType type;
     public TargetingType targetingType;
-    public bool isCoolDown;
+    public int maxCoolDown;
 
     public int coolDown;
 
