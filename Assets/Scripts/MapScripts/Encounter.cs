@@ -39,7 +39,7 @@ public class Encounter : MonoBehaviour
     /// </summary>
     protected void PlayerReached()
     {
-        MapText text = GameObject.Find("Text (TMP)").GetComponent<MapText>();
+        MapUI text = GameObject.Find("Reward Text").GetComponent<MapUI>();
         text.AtEvent(Name, Rewards);
         //Debug.Log("Player is at " + gameObject.name);
     }
@@ -84,7 +84,7 @@ public class Encounter : MonoBehaviour
 
     void OnMouseOver()
     {
-        MapText text = GameObject.Find("Text (TMP)").GetComponent<MapText>();
+        MapUI text = GameObject.Find("Reward Text").GetComponent<MapUI>();
         text.HoverEvent(Name, Rewards);
     }
 }

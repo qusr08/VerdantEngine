@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
-public class MapText : MonoBehaviour
+public class MapUI : MonoBehaviour
 {
 
     [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private string gardenSceneName;
 
     // Start is called before the first frame update
     void Start()
@@ -43,5 +45,10 @@ public class MapText : MonoBehaviour
         }
 
         text.text = "" + type;
+    }
+
+    public void ToGarden()
+    {
+        SceneManager.LoadScene(gardenSceneName);
     }
 }
