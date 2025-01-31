@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30af8a37119313b4f989a3af05da9143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  garden: {fileID: 0}
-  _plantType: 0
+  gardenManager: {fileID: 0}
   _position: {x: 0, y: 0}
+  _plantType: 1
+  cost: 0

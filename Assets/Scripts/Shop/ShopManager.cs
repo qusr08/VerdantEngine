@@ -8,7 +8,7 @@ public class ShopManager : MonoBehaviour
 {
     [SerializeField] GameObject[] items;
     [SerializeField] GameObject[] plantPrefabs;
-    [SerializeField] PlayerWallet_Placeholder wallet;
+    [SerializeField] PlayerData playerData;
     [SerializeField] TMP_Text balanceText;
 
     // Start is called before the first frame update
@@ -17,7 +17,7 @@ public class ShopManager : MonoBehaviour
         ShufflePlants();
         FillShop();
 
-        balanceText.text = "Balance : " + wallet.balance.ToString();
+        balanceText.text = "Balance : " + playerData.playerMoney.ToString();
     }
     void ShufflePlants()
     {
@@ -34,14 +34,14 @@ public class ShopManager : MonoBehaviour
         for(int i = 0; i < items.Length; i++)
         {
             Instantiate(plantPrefabs[i], items[i].transform);
-            items[i].transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = plantPrefabs[i].name;
+            items[i].transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = plantPrefabs[i].name; //Display plant name on buttons
         }
     }
     public void BuyPlant(int itemIndex)
     {
         string itemName = transform.GetChild(itemIndex - 1).GetChild(1).name;
         Debug.Log("Bought Item " + itemIndex + ", Plant Name : " + itemName);
-        wallet.balance = wallet.balance - transform.GetChild(itemIndex - 1).GetChild(1).GetComponent<Plant_Placeholder>().cost;
-        balanceText.text = "Balance : " + wallet.balance.ToString();
+        playerData.playerMoney = playerData.playerMoney - transform.GetChild(itemIndex - 1).GetChild(1).GetComponent<Plant>().cost;
+        balanceText.text = "Balance : " + playerData.playerMoney.ToString();
     }
 }

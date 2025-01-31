@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: SO_PlayerData
   m_EditorClassIdentifier: 
   gardenSize: 10
+  playerMoney: 100

@@ -9,6 +9,7 @@ using UnityEngine;
 public class PlayerData : ScriptableObject {
 	[Header("Properties")]
 	[SerializeField] private int gardenSize;
+	[SerializeField] public int playerMoney = 100;
 
 	/// <summary>
 	/// The size of the garden (both width and height)
