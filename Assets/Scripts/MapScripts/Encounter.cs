@@ -44,6 +44,15 @@ public class Encounter : MonoBehaviour
         //Debug.Log("Player is at " + gameObject.name);
     }
 
+    /// <summary>
+    /// Runs when the player is at this encounter, and then leaves it
+    /// </summary>
+    public void PlayerLeave()
+    {
+        //Currently just hide this encounter. Eventually replace it's graphic
+        gameObject.SetActive(false);
+    }
+
     public void AddConnection(GameObject connection)
     {
         ConnectingNode.Add(connection);

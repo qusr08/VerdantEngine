@@ -29,10 +29,14 @@ public class MapPlayer : MonoBehaviour
         //Debug.Log(location);
         if (force || CurrentEncounter.GetComponent<Encounter>().ConnectingNode.Contains(location))
         {
+            if(CurrentEncounter != null)
+            {
+                CurrentEncounter.GetComponent<Encounter>().PlayerLeave();
+            }
+
             transform.position = location.transform.position;
             CurrentEncounter = location;
             return true;
-
         }
 
         return false;
