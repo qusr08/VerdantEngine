@@ -12,6 +12,9 @@ public class Map : MonoBehaviour
     [SerializeField] private int[] enemyRates;
     [SerializeField] private int[] eventRates;
 
+    [Header("Forced Encounters")]
+    [SerializeField] private int[] spawnIndex;
+    [SerializeField] private Type[] spawnType;
 
     [Header("Prefabs")]
     [SerializeField] private GameObject[] enemyPrefabs;
@@ -65,22 +68,41 @@ public class Map : MonoBehaviour
     /// </summary>
     private void PopulateMap()
     {
-        int nextEncounter = Random.Range(0, 10);
 
-        if (encounterNumber%2 == 0)
+        if (encounterNumber % 2 == 0)
         {
             encounterOptions = 2;
-        }else
+        }
+        else
         {
             encounterOptions = 3;
         }
 
+        for (int i = 0; i < spawnIndex.Length; i++)
+        {
+            if (encounterNumber == spawnIndex[i])
+            {
+                while (encounterOptions > 0)
+                {
+                    SpawnEncounter(spawnType[i]);
+                    encounterOptions--;
+                }
+
+                encounterNumber++;
+                EncounterToPrev();
+                PopulateMap();
+                return;
+            }
+
+        }
+
         while(encounterOptions > 0)
         {
+            int nextEncounter = Random.Range(0, 100);
+
             for (byte i = 0; i < percents.Length; i++)
             {
                 int tempPercent = percents[i];
-
                 //If the previous type wasn't spawned, add it's chances to this type. This allows something like a [3, 3, 4] to work. The first one is 3, the second turns to 6, and the final is 10.
                 if (i > 0)
                 {
@@ -92,7 +114,7 @@ public class Map : MonoBehaviour
                 if (nextEncounter <= tempPercent)
                 {
                     //Debug.Log("Enconter: " + encounterAmount + " = " + i);
-                    RepopulatePercents(i);
+                    //RepopulatePercents(i);
                     switch (i)
                     {
                         case 0:
@@ -126,6 +148,134 @@ public class Map : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Spawns the prefab of the encounter
+    /// </summary>
+    /// <param name="i">prefab to spawn. -1 or lower to spawn boss</param>
+    private void SpawnEncounter(Type type)
+    {
+        Vector3 nextPosition = new Vector3(2f * (encounterNumber + 1), 2f * (encounterOptions - 1), 0);
+
+        if(encounterNumber%2 == 0)
+        {
+            nextPosition.y += .75f;
+        }
+
+        if(nextPosition.y < 0)
+        {
+            nextPosition.y = 1.5f;
+        }
+
+        switch (type)
+            {
+            case Type.Enemy:
+                encounters.Add(Instantiate(enemyPrefabs[GetSubType(enemyRates)], nextPosition, transform.rotation));
+                break;
+            case Type.Shop:
+                encounters.Add(Instantiate(shopPrefabs[0], nextPosition, transform.rotation));
+                break;
+            case Type.Event:
+                encounters.Add(Instantiate(eventPrefabs[GetSubType(eventRates)], nextPosition, transform.rotation));
+                break;
+            case Type.Boss:
+                encounters.Add(Instantiate(bossPrefabs[0], nextPosition, transform.rotation));
+                for (int i = 0; i < prevEncounters.Count; i++)
+                {
+                    prevEncounters[i].GetComponent<Encounter>().AddConnection(encounters[encounters.Count - 1]);
+                }
+                return;
+        }
+
+        if (prevEncounters.Count <= 0)
+        {
+            return;
+        }
+
+        //If there are 2 options in this line
+        if(encounterNumber % 2 == 0)
+        {
+            if(encounterOptions > 1 || prevEncounters.Count == 1)
+            {
+                prevEncounters[0].GetComponent<Encounter>().AddConnection(encounters[encounters.Count - 1]);
+                //Debug.DrawLine(prevEncounters[0].transform.position, encounters[encounters.Count - 1].transform.position, Color.blue, 5);
+                if(prevEncounters.Count > 1)
+                {
+                    prevEncounters[1].GetComponent<Encounter>().AddConnection(encounters[encounters.Count - 1]);
+                    //Debug.DrawLine(prevEncounters[1].transform.position, encounters[encounters.Count - 1].transform.position, Color.blue, 5);
+                }
+            }
+            else
+            {
+                prevEncounters[1].GetComponent<Encounter>().AddConnection(encounters[encounters.Count - 1]);
+                //Debug.DrawLine(prevEncounters[1].transform.position, encounters[encounters.Count - 1].transform.position, Color.red, 5);
+                prevEncounters[2].GetComponent<Encounter>().AddConnection(encounters[encounters.Count - 1]);
+                //Debug.DrawLine(prevEncounters[2].transform.position, encounters[encounters.Count - 1].transform.position, Color.red, 5);
+            }
+        }
+        //If there are 3 options in this line
+        else
+        {
+            if (encounterOptions >= 2)
+            {
+                prevEncounters[0].GetComponent<Encounter>().AddConnection(encounters[encounters.Count - 1]);
+                //Debug.DrawLine(prevEncounters[0].transform.position, encounters[encounters.Count - 1].transform.position, Color.green, 5);
+            }
+            if(encounterOptions <= 2)
+            {
+                prevEncounters[1].GetComponent<Encounter>().AddConnection(encounters[encounters.Count - 1]);
+                //Debug.DrawLine(prevEncounters[1].transform.position, encounters[encounters.Count - 1].transform.position, Color.black, 5);
+            }
+        }
+
+    }
+
+    /// <summary>
+    /// Takes an array of ints 1-10 (that add to 10) and randomly selects an index based on values (that represent the chance of being picked)
+    /// </summary>
+    /// <param name="odds">The chances for each sub-type</param>
+    /// <returns>The index of the chosen value</returns>
+    private int GetSubType(int[] odds)
+    {
+        int nextEncounter = Random.Range(0, 10);
+
+        for (byte i = 0; i < odds.Length; i++)
+        {
+            int tempPercent = odds[i];
+
+            //If the previous type wasn't spawned, add it's chances to this type. This allows something like a [3, 3, 4] to work. The first one is 3, the second turns to 6, and the final is 10.
+            if (i > 0)
+            {
+                for (byte j = 0; j < i; j++)
+                {
+                    tempPercent += odds[j];
+                }
+            }
+            if (nextEncounter <= tempPercent)
+            {
+                return i;
+            }
+        }
+
+        return 0; //This should never call
+    }
+
+    /// <summary>
+    /// Populates prevEncounts with what is currently in encounters
+    /// </summary>
+    private void EncounterToPrev()
+    {
+        prevEncounters.Clear();
+
+        for(int i = 0; i < encounters.Count; i++)
+        {
+            prevEncounters.Add(encounters[i]);
+        }
+
+        encounters.Clear();
+    }
+
+
+    //===================UNUSED====================
     /// <summary>
     /// Basically reduces the chance of the selected encounter and increases the chances of the others
     /// </summary>
@@ -191,133 +341,4 @@ public class Map : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Spawns the prefab of the encounter
-    /// </summary>
-    /// <param name="i">prefab to spawn. -1 or lower to spawn boss</param>
-    private void SpawnEncounter(Type type)
-    {
-        Vector3 nextPosition = new Vector3(2f * (encounterNumber + 1), 2f * (encounterOptions - 1), 0);
-
-        if(encounterNumber%2 == 0)
-        {
-            nextPosition.y += .75f;
-        }
-
-        if(nextPosition.y < 0)
-        {
-            nextPosition.y = 1.5f;
-        }
-
-        switch (type)
-            {
-            case Type.Enemy:
-                encounters.Add(Instantiate(enemyPrefabs[GetSubType(enemyRates)], nextPosition, transform.rotation));
-                /*for(int i = 0; i<prevEncounters.Count; i++)
-                {
-                    prevEncounters[i].GetComponent<Encounter>().ConnectingNode.Add(encounters[encounters.Count - 1]);
-                }*/
-                break;
-            case Type.Shop:
-                encounters.Add(Instantiate(shopPrefabs[0], nextPosition, transform.rotation));
-                /*for (int i = 0; i < prevEncounters.Count; i++)
-                {
-                    prevEncounters[i].GetComponent<Encounter>().ConnectingNode.Add(encounters[encounters.Count - 1]);
-                }*/
-                break;
-            case Type.Event:
-                encounters.Add(Instantiate(eventPrefabs[GetSubType(eventRates)], nextPosition, transform.rotation));
-                /*for (int i = 0; i < prevEncounters.Count; i++)
-                {
-                    prevEncounters[i].GetComponent<Encounter>().ConnectingNode.Add(encounters[encounters.Count - 1]);
-                }*/
-                break;
-            case Type.Boss:
-                encounters.Add(Instantiate(bossPrefabs[0], nextPosition, transform.rotation));
-                for (int i = 0; i < prevEncounters.Count; i++)
-                {
-                    prevEncounters[i].GetComponent<Encounter>().AddConnection(encounters[encounters.Count - 1]);
-                }
-                return;
-        }
-
-        if (prevEncounters.Count <= 0)
-        {
-            return;
-        }
-
-        //If there are 2 options in this line
-        if(encounterNumber % 2 == 0)
-        {
-            if(encounterOptions > 1 || prevEncounters.Count == 1)
-            {
-                prevEncounters[0].GetComponent<Encounter>().AddConnection(encounters[encounters.Count - 1]);
-                //Debug.DrawLine(prevEncounters[0].transform.position, encounters[encounters.Count - 1].transform.position, Color.blue, 5);
-                if(prevEncounters.Count > 1)
-                {
-                    prevEncounters[1].GetComponent<Encounter>().AddConnection(encounters[encounters.Count - 1]);
-                    //Debug.DrawLine(prevEncounters[1].transform.position, encounters[encounters.Count - 1].transform.position, Color.blue, 5);
-                }
-            }
-            else
-            {
-                prevEncounters[1].GetComponent<Encounter>().AddConnection(encounters[encounters.Count - 1]);
-                //Debug.DrawLine(prevEncounters[1].transform.position, encounters[encounters.Count - 1].transform.position, Color.red, 5);
-                prevEncounters[2].GetComponent<Encounter>().AddConnection(encounters[encounters.Count - 1]);
-                //Debug.DrawLine(prevEncounters[2].transform.position, encounters[encounters.Count - 1].transform.position, Color.red, 5);
-            }
-        }
-        //If there are 3 options in this line
-        else
-        {
-            if (encounterOptions >= 2)
-            {
-                prevEncounters[0].GetComponent<Encounter>().AddConnection(encounters[encounters.Count - 1]);
-                //Debug.DrawLine(prevEncounters[0].transform.position, encounters[encounters.Count - 1].transform.position, Color.green, 5);
-            }
-            if(encounterOptions <= 2)
-            {
-                prevEncounters[1].GetComponent<Encounter>().AddConnection(encounters[encounters.Count - 1]);
-                //Debug.DrawLine(prevEncounters[1].transform.position, encounters[encounters.Count - 1].transform.position, Color.black, 5);
-            }
-        }
-
-    }
-
-    private int GetSubType(int[] odds)
-    {
-        int nextEncounter = Random.Range(0, 10);
-
-        for (byte i = 0; i < odds.Length; i++)
-        {
-            int tempPercent = odds[i];
-
-            //If the previous type wasn't spawned, add it's chances to this type. This allows something like a [3, 3, 4] to work. The first one is 3, the second turns to 6, and the final is 10.
-            if (i > 0)
-            {
-                for (byte j = 0; j < i; j++)
-                {
-                    tempPercent += odds[j];
-                }
-            }
-            if (nextEncounter <= tempPercent)
-            {
-                return i;
-            }
-        }
-
-        return 0; //This should never call
-    }
-
-    private void EncounterToPrev()
-    {
-        prevEncounters.Clear();
-
-        for(int i = 0; i < encounters.Count; i++)
-        {
-            prevEncounters.Add(encounters[i]);
-        }
-
-        encounters.Clear();
-    }
 }
