@@ -17,8 +17,8 @@ MonoBehaviour:
   attackText: Lama ani kan
   attackName: BackLine
   type: 0
-  targetingType: 1
-  isCoolDown: 0
-  coolDown: 0
+  targetingType: 3
+  maxCoolDown: 4
+  coolDown: 4
   icon: {fileID: 21300000, guid: 60d67b281d13d6841ad2b66728ab3e52, type: 3}
   targetNum: 0

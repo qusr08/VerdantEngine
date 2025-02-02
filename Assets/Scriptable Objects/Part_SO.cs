@@ -42,6 +42,7 @@ public class Part_SO : ScriptableObject
     //Used for target attacks
     public int targetNum;
 
+    private List <Enemy> targets;
 }
 
 

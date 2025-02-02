@@ -17,8 +17,8 @@ MonoBehaviour:
   attackText: FrontLine
   attackName: Front Line
   type: 2
-  targetingType: 0
-  isCoolDown: 0
-  coolDown: 0
+  targetingType: 2
+  maxCoolDown: 3
+  coolDown: 3
   icon: {fileID: 21300000, guid: 1973831bb10faa340a44f158b4054087, type: 3}
-  targetNum: 0
+  targetNum: 2
