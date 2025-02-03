@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +8,10 @@ public class Enemy : MonoBehaviour
     public int health;
     // Start is called before the first frame update
     public List<EnemyAttack_SO> attacks;
+    private EnemyAttack_SO currentAttack;
 
     public bool attacksAreRandom;
+    [HideInInspector] public CombatManager manager; 
     void Start()
     {
         
@@ -24,8 +27,31 @@ public class Enemy : MonoBehaviour
         health -= incoingAttack.damage;
         Debug.Log("Ouch, i just took " + incoingAttack.damage + ". Now I have " + health + " health");
     }
+
     public EnemyAttack_SO PlayTurn()
     {
-        return attacks[0];
+        return currentAttack;
+    }
+    public void MarkMapBeforeAttack()
+    {
+        currentAttack = attacks[0];
+        int randomAim = UnityEngine.Random.Range(0, manager.garden.PlayerData.GardenSize);
+        currentAttack.currentAim = new List<Vector2>();  
+
+        if (currentAttack.lineAttackIsVertical)
+        {
+
+            for (int i = 0; i <  manager.garden.PlayerData.GardenSize; i++)
+            {
+                currentAttack.currentAim.Add(new Vector2(randomAim, i));
+            }
+        }
+        else
+        {
+            for (int i = 0; i < manager.garden.PlayerData.GardenSize; i++)
+            {
+                currentAttack.currentAim.Add(new Vector2( i, randomAim));
+            }
+        }
     }
 }

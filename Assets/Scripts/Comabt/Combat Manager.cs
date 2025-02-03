@@ -52,6 +52,7 @@ public class CombatManager : MonoBehaviour
         {
             enemyObjects[i] = (Instantiate(currentComabt.enemies[i], spawnLocations[i]));
             enemyData[i]=(enemyObjects[i].GetComponent<Enemy>());
+            enemyData[i].manager = this;
         }
     }
     public void ComabatMenuSetUp()
@@ -120,6 +121,12 @@ public class CombatManager : MonoBehaviour
             player.cuurentHealth -= enemyAttack.damage;
             Debug.Log(enemy.name + " attacked the player using " + enemyAttack.attackName + " dealing " + enemyAttack.damage + " to the player");
         }
+    }
+
+ 
+    public void MarkGarden()
+    {
+
     }
 
     public void EndPlayerTurn()
