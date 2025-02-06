@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public CombatManager manager; 
     void Start()
     {
-        
+        currentAttack = attacks[0];
     }
 
     // Update is called once per frame
@@ -26,7 +26,16 @@ public class Enemy : MonoBehaviour
     {
         health -= incoingAttack.damage;
         Debug.Log("Ouch, i just took " + incoingAttack.damage + ". Now I have " + health + " health");
+        if (health <= 0)
+        {
+            Die();
+        }
     }
+    public void Die()
+    {
+        manager.EnemyDied(this);
+    }
+
 
     public EnemyAttack_SO PlayTurn()
     {

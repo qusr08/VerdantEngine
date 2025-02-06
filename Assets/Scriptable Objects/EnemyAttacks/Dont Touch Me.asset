@@ -14,12 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackName: Dont Touch Me
   attackGrid:
-  - value: 0000000000
-  - value: 0000000000
-  - value: 0000000000
-  - value: 0000000000
-  - value: 0000000000
-  attackSize: 5
+  - value: 000000000000
+  - value: 000000000000
+  - value: 000000000000
+  - value: 000000000000
+  - value: 000000000000
+  - value: 000000000000
+  attackSize: 6
   targetType: 0
   attackType: 0
   damage: 2
+  lineAttackIsVertical: 0
+  currentAim: []
