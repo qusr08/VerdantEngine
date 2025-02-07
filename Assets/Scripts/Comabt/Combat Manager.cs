@@ -8,6 +8,7 @@ public class CombatManager : MonoBehaviour
 {
     [Header("References")]
     public Player_Combat_Manager player_Combat_Manager;
+    public ComabtUI_Manager combatUIManager;
     public ComabtObject currentComabt;
     public PlayerData player;
     public GardenManager garden;
@@ -53,6 +54,7 @@ public class CombatManager : MonoBehaviour
             enemyObjects[i] = (Instantiate(currentComabt.enemies[i], spawnLocations[i]));
             enemyData[i]=(enemyObjects[i].GetComponent<Enemy>());
         }
+        combatUIManager.setUp(this);
     }
     public void ComabatMenuSetUp()
     {

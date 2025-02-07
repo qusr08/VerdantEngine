@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public int MaxHealth;
     public int health;
     // Start is called before the first frame update
     public List<EnemyAttack_SO> attacks;
 
+    public Sprite icon;
+
     public bool attacksAreRandom;
     void Start()
     {
-        
+        MaxHealth = health;
     }
 
     // Update is called once per frame
