@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum ArtifactType {
-	NONE, FLAMINGO, WELL
+	NONE
 }
 
 /// <summary>
 /// This class holds all data for each artifact that is placed in the garden
 /// </summary>
-public class Artifact : GardenPlaceable {
+public abstract class Artifact : GardenPlaceable {
 	[Header("Properties - Artifact")]
 	[SerializeField] private ArtifactType _artifactType;
 

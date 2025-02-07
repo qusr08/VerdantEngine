@@ -5,11 +5,35 @@ using UnityEngine;
 /// <summary>
 /// The highest abstracted class for all objects that will be able to be placed in the garden. This includes artifacts and plants (so far)
 /// </summary>
-public class GardenPlaceable : MonoBehaviour {
+public abstract class GardenPlaceable : MonoBehaviour {
 	[Header("References - GardenPlaceable")]
 	[SerializeField] protected GardenManager gardenManager;
 	[Header("Properties - GardenPlaceable")]
 	[SerializeField] private Vector2Int _position;
+	[SerializeField, Min(0)] private int _health;
+	[SerializeField, Min(0)] private int _cost;
+
+	/// <summary>
+	/// The cost of this garden placeable in a shop
+	/// </summary>
+	public int Cost => _cost;
+
+	/// <summary>
+	/// The current health of this garden placeable
+	/// </summary>
+	public int Health {
+		get => _health;
+		set {
+			_health = value;
+
+			// If the garden placeable has run out of health, then destroy it and call its OnKilled function
+			if (_health <= 0) {
+				OnKilled( );
+
+				Destroy(gameObject);
+			}
+		}
+	}
 
 	/// <summary>
 	/// The position of this plant in the garden
@@ -65,7 +89,7 @@ public class GardenPlaceable : MonoBehaviour {
 				// Get a reference to the plant at the current position being checked
 				// If the garden has another object at this position that is not a plant, then the "as" operator will return null
 				// https://www.geeksforgeeks.org/c-sharp-as-operator-keyword/
-				Plant plant = gardenManager.PlayerData.Garden[checkX, checkY] as Plant;
+				Plant plant = gardenManager.PlayerData.Garden[checkX, checkY].GardenPlaceable as Plant;
 
 				// If there is currently no plant at the current position, then continue to the next position
 				if (plant == null) {
@@ -111,7 +135,7 @@ public class GardenPlaceable : MonoBehaviour {
 				}
 
 				// Get a reference to the artifact at the current position being checked
-				Artifact artifact = gardenManager.PlayerData.Garden[checkX, checkY] as Artifact;
+				Artifact artifact = gardenManager.PlayerData.Garden[checkX, checkY].GardenPlaceable as Artifact;
 
 				// If there is currently no artifact at the current position, then continue to the next position
 				if (artifact == null) {
@@ -155,4 +179,29 @@ public class GardenPlaceable : MonoBehaviour {
 	public int CountSurroundingArtifacts (int radius, List<ArtifactType> exclusiveArtifactTypes = null, List<ArtifactType> excludedArtifactTypes = null) {
 		return GetSurroundingArtifacts(radius, exclusiveArtifactTypes, excludedArtifactTypes).Count;
 	}
+
+	/// <summary>
+	/// Called when the garden is update in any way. This means that when a plant is placed or removed on the board, this function is called
+	/// </summary>
+	public virtual void OnGardenUpdated ( ) { }
+
+	/// <summary>
+	/// Called when the player's turn starts
+	/// </summary>
+	public virtual void OnTurnStart ( ) { }
+
+	/// <summary>
+	/// Called when the player's turn ends
+	/// </summary>
+	public virtual void OnTurnEnd ( ) { }
+
+	/// <summary>
+	/// Called when this garden placeable takes damage
+	/// </summary>
+	public virtual void OnTakeDamage ( ) { }
+
+	/// <summary>
+	/// Called when this garden placeable is killed
+	/// </summary>
+	public virtual void OnKilled ( ) { }
 }
