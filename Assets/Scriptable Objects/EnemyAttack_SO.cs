@@ -17,6 +17,7 @@ public class EnemyAttack_SO : ScriptableObject
 
     public enum EnemyTargeting
     {
+        Line,
         Shape,
         All,
         Allies,
@@ -35,6 +36,8 @@ public class EnemyAttack_SO : ScriptableObject
     public EnemyTargeting targetType;
     public EnemyAttackType attackType;
     public int damage;
+    public bool lineAttackIsVertical;
+    [HideInInspector] public List<Vector2> currentAim;
 
     private void OnEnable()
     {

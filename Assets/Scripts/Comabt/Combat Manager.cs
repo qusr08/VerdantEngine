@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
+using System;
 
 public class CombatManager : MonoBehaviour
 {
@@ -13,15 +15,15 @@ public class CombatManager : MonoBehaviour
     public PlayerData player;
     public GardenManager garden;
    [SerializeField] private List<Transform> spawnLocations;
-    private GameObject[] enemyObjects;
-    private  Enemy [] enemyData;
+    private List<GameObject> enemyObjects;
+    private  List<Enemy> enemyData;
 
     //number of enemies to select
     int maxTargets;
     bool isTrageting = false;
 
 
-    
+    public GameObject CombatWonScreen;
 
 
     // Start is called before the first frame update
@@ -46,13 +48,14 @@ public class CombatManager : MonoBehaviour
     {
         //Sapwn enemy prefabs and place them in the backline or front line.
         //Currently the game is limited to 3 enemies each.
-        enemyData = new Enemy[currentComabt.enemies.Count];
-        enemyObjects = new GameObject[currentComabt.enemies.Count];
+        enemyData = new List<Enemy>();
+        enemyObjects = new List<GameObject>();
 
         for (int i = 0; i < currentComabt.enemies.Count; i++)
         {
-            enemyObjects[i] = (Instantiate(currentComabt.enemies[i], spawnLocations[i]));
-            enemyData[i]=(enemyObjects[i].GetComponent<Enemy>());
+            enemyObjects.Add (Instantiate(currentComabt.enemies[i], spawnLocations[i]));
+            enemyData.Add((enemyObjects[i].GetComponent<Enemy>()));
+            enemyData[i].manager = this;
         }
         combatUIManager.setUp(this);
     }
@@ -116,12 +119,18 @@ public class CombatManager : MonoBehaviour
     
     public void EnemyTurn()
     {
-        foreach (GameObject enemy in enemyObjects)
+        foreach (Enemy enemy in enemyData)
         {
-            EnemyAttack_SO enemyAttack = enemy.GetComponent<Enemy>().PlayTurn();
+            EnemyAttack_SO enemyAttack = enemy.PlayTurn();
             player.cuurentHealth -= enemyAttack.damage;
             Debug.Log(enemy.name + " attacked the player using " + enemyAttack.attackName + " dealing " + enemyAttack.damage + " to the player");
         }
+    }
+
+ 
+    public void MarkGarden()
+    {
+
     }
 
     public void EndPlayerTurn()
@@ -129,6 +138,25 @@ public class CombatManager : MonoBehaviour
         StartCoroutine(player_Combat_Manager.PlayerTurn());
     }
     
+    public void EnemyDied(Enemy enemy)
+    {
+        for (int i = 0; i < enemyData.Count; i++)
+        {
+            if (enemyData[i]== enemy)
+            {
+                enemyObjects.Remove(enemy.gameObject);
+                enemyData.Remove(enemy.GetComponent<Enemy>());
+
+                Destroy(enemy.gameObject);
+                
+
+            }
+        } 
+        if(enemyData.Count==0)
+        {
+            CombatWonScreen.SetActive(true);
+        }
+    }
     
     ///               ///
     ///Code Grave Yard///
