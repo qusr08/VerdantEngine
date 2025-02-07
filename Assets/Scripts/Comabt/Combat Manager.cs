@@ -17,7 +17,7 @@ public class CombatManager : MonoBehaviour
    [SerializeField] private List<Transform> spawnLocations;
     private List<GameObject> enemyObjects;
     private  List<Enemy> enemyData;
-
+    bool playerFreeze = false;
     //number of enemies to select
     int maxTargets;
     bool isTrageting = false;
@@ -50,14 +50,18 @@ public class CombatManager : MonoBehaviour
         //Currently the game is limited to 3 enemies each.
         enemyData = new List<Enemy>();
         enemyObjects = new List<GameObject>();
+        combatUIManager.combat = (this);
 
         for (int i = 0; i < currentComabt.enemies.Count; i++)
         {
             enemyObjects.Add (Instantiate(currentComabt.enemies[i], spawnLocations[i]));
             enemyData.Add((enemyObjects[i].GetComponent<Enemy>()));
             enemyData[i].manager = this;
+            enemyData[i].enemyID = i;
+            combatUIManager.AddEnemyHealth(enemyData[i]);
+            combatUIManager.SetHealth(enemyData[i]);
+
         }
-        combatUIManager.setUp(this);
     }
     public void ComabatMenuSetUp()
     {
@@ -125,6 +129,7 @@ public class CombatManager : MonoBehaviour
             player.cuurentHealth -= enemyAttack.damage;
             Debug.Log(enemy.name + " attacked the player using " + enemyAttack.attackName + " dealing " + enemyAttack.damage + " to the player");
         }
+        playerFreeze = false;
     }
 
  
@@ -135,7 +140,12 @@ public class CombatManager : MonoBehaviour
 
     public void EndPlayerTurn()
     {
-        StartCoroutine(player_Combat_Manager.PlayerTurn());
+        if (!playerFreeze)
+        {
+            playerFreeze = true;
+
+            StartCoroutine(player_Combat_Manager.PlayerTurn());
+        }
     }
     
     public void EnemyDied(Enemy enemy)
@@ -144,6 +154,7 @@ public class CombatManager : MonoBehaviour
         {
             if (enemyData[i]== enemy)
             {
+                combatUIManager.KillEnemy(enemy);
                 enemyObjects.Remove(enemy.gameObject);
                 enemyData.Remove(enemy.GetComponent<Enemy>());
 

@@ -13,12 +13,15 @@ public class EnemyHealthUIObject : MonoBehaviour
     public void SetUp(Enemy enemy)
     {
         this.enemy = enemy;
+        healthSlider.maxValue = enemy.health;
+        healthSlider.value = healthSlider.maxValue;
+        HealthUpdate();
         image.sprite = enemy.icon;
         healthSlider.value = 1;
     }
     public void HealthUpdate()
     {
-        healthSlider.value = (enemy.MaxHealth / enemy.health);
+        healthSlider.value =  enemy.health;
         
     }
     public void Kill()

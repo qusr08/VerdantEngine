@@ -98,10 +98,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2e898fdc3a80e84ea9461202800c93e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 0
+  icon: {fileID: 21300000, guid: 935bc15fbab2fe0419f2f7b6f46bac4e, type: 3}
   health: 10
   attacks:
   - {fileID: 11400000, guid: 8c75a54b0f54a174d90e18a8d3950d0b, type: 2}
   attacksAreRandom: 0
+  manager: {fileID: 0}
 --- !u!65 &6843448182824146307
 BoxCollider:
   m_ObjectHideFlags: 0

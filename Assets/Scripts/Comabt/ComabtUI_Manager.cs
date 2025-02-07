@@ -11,23 +11,32 @@ public class ComabtUI_Manager : MonoBehaviour
     public Transform healthUIperent;
     public List<EnemyHealthUIObject> enemyHealthUIObjects = new List<EnemyHealthUIObject>();
 
-    public void setUp(CombatManager combatManager)
+    public void AddEnemyHealth(Enemy enemy)
     {
-        combat = combatManager;
-        foreach (GameObject item in combat.currentComabt.enemies)
+        EnemyHealthUIObject uiPanel = Instantiate(enemyUIprefeb, healthUIperent).GetComponent<EnemyHealthUIObject>();
+        uiPanel.SetUp( enemy);
+        enemyHealthUIObjects.Add(uiPanel);
+    }
+    public void SetHealth(Enemy enemy)
+    {
+        foreach (EnemyHealthUIObject item in enemyHealthUIObjects)
         {
-            Enemy enemy = item.GetComponent<Enemy>();
-            enemyHealthUIObjects.Add(Instantiate(enemyUIprefeb, healthUIperent).GetComponent<EnemyHealthUIObject>());
-
+            if(item.enemy.enemyID == enemy.enemyID)
+            {
+                item.HealthUpdate();
+                break;
+            }
         }
     }
-    public void SetHealth()
+    public void KillEnemy(Enemy enemy)
     {
-        
-    }
-    public void KillEnemy()
-    {
-
+        foreach (EnemyHealthUIObject item in enemyHealthUIObjects)
+        {
+            if (item.enemy == enemy)
+            {
+                item.Kill();
+            }
+        }
     }
 
 
