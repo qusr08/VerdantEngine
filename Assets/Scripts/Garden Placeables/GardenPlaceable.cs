@@ -12,11 +12,12 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	[SerializeField] private Vector2Int _position;
 	[SerializeField, Min(0)] private int _health;
 	[SerializeField, Min(0)] private int _cost;
+    [SerializeField, Min(0)] private int _energy;
 
-	/// <summary>
-	/// The cost of this garden placeable in a shop
-	/// </summary>
-	public int Cost => _cost;
+    /// <summary>
+    /// The cost of this garden placeable in a shop
+    /// </summary>
+    public int Cost => _cost;
 
 	/// <summary>
 	/// The current health of this garden placeable

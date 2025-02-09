@@ -41,13 +41,19 @@ public class GardenManager : MonoBehaviour {
 		CreateGardenTiles( );
 
 		/// TEST: Create test plants and move them around
-		PlacePlant(PlantType.POWER_FLOWER, 5, 1);
-		PlacePlant(PlantType.EMPOWEROOT, 0, 0);
-		PlacePlant(PlantType.HARDY_HEDGE, 1, 1);
-		PlacePlant(PlantType.HARDY_HEDGE, 1, 0);
-		PlacePlant(PlantType.SHIELDING_SHRUB, 2, 5);
+        PlacePlant(PlantType.HARDY_HEDGE, 3, 1);
+		PlacePlant(PlantType.HARDY_HEDGE, 3, 2);
+        PlacePlant(PlantType.HARDY_HEDGE, 3, 3);
+        PlacePlant(PlantType.EMPOWEROOT, 4, 4);
+		PlacePlant(PlantType.EMPOWEROOT, 1, 2);
+		PlacePlant(PlantType.POWER_FLOWER, 1, 3);
+        PlacePlant(PlantType.POWER_FLOWER, 0, 2);
+        PlacePlant(PlantType.POWER_FLOWER, 0, 3);
+        PlacePlant(PlantType.SHIELDING_SHRUB, 2, 5);
+        PlacePlant(PlantType.POWER_FLOWER, 1, 5);
 
-		MovePlant(PlayerData.Garden[1, 1].GardenPlaceable as Plant, 1, 2);
+
+        MovePlant(PlayerData.Garden[1, 1].GardenPlaceable as Plant, 1, 2);
 
 		UprootPlant(0, 0);
 

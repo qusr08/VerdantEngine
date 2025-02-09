@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: SO_PlayerData
   m_EditorClassIdentifier: 
   gardenSize: 6
+  energy: 0
