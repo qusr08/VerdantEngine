@@ -17,8 +17,8 @@ public class DrawerMenu : MonoBehaviour
         float width = menuPanel.rect.width;
 
         // Set positions (Assuming the menu slides in from the left)
-        hiddenPosition = new Vector3(width, 0, 0);
-        visiblePosition = new Vector2(0, 0);
+        hiddenPosition = new Vector3( 0, 0);
+        visiblePosition = new Vector2(-width, 0);
 
         // Start with the menu hidden
         menuPanel.anchoredPosition = hiddenPosition;
