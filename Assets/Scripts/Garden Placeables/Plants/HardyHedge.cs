@@ -4,18 +4,19 @@ using UnityEngine;
 using System.Linq;
 
 public class HardyHedge : Plant {
+
+    bool gained = false;
     public override void OnGardenUpdated()
     {
         List<PlantType> exclusivePlantTypes = new List<PlantType>();
         exclusivePlantTypes.Add(PlantType.HARDY_HEDGE);
         List<Plant> plants = GetSurroundingPlants(1, exclusivePlantTypes);
-        Health += plants.Count;
 
-/*        foreach (var plant in plants)
+        if (plants.Count > 0 && !gained)
         {
-            Debug.Log(Position.ToString() + plant.Position.ToString());
-        }*/
-
-
+            gained = true;
+           // Debug.Log("I Hardy Gain " + Position);
+            Health += plants.Count;
+        }
     }
 }
