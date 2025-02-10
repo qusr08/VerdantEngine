@@ -26,7 +26,7 @@ public class Pause : MonoBehaviour
 
     }
 
-    public void TogglePause()
+    public void OnPause()
     {
         paused = !paused;
 
