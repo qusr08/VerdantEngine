@@ -49,8 +49,9 @@ public class GardenManager : MonoBehaviour {
 		PlacePlant(PlantType.POWER_FLOWER, 1, 3);
         PlacePlant(PlantType.POWER_FLOWER, 0, 2);
         PlacePlant(PlantType.POWER_FLOWER, 0, 3);
-        PlacePlant(PlantType.SHIELDING_SHRUB, 2, 5);
-        PlacePlant(PlantType.POWER_FLOWER, 1, 5);
+        PlacePlant(PlantType.SHIELDING_SHRUB, 3, 5);
+		PlacePlant(PlantType.SHIELDING_SHRUB, 2, 5);
+		PlacePlant(PlantType.POWER_FLOWER, 1, 5);
 
 
         MovePlant(PlayerData.Garden[1, 1].GardenPlaceable as Plant, 1, 2);

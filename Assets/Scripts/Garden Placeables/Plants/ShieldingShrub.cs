@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ShieldingShrub : Plant {
+    /// <summary>
+	/// All adjacent plants gain +1 HP
+	/// </summary>
     public override void OnGardenUpdated()
     {
         base.OnGardenUpdated();
