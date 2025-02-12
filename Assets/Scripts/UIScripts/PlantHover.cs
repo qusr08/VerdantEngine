@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlantHover : MonoBehaviour
 {
+    [SerializeField] private GameObject plantName;
+    [SerializeField] private GameObject plantDescription;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +17,10 @@ public class PlantHover : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void UpdateText(string name, string description)
+    {
+
     }
 }
