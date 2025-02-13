@@ -41,7 +41,7 @@ public class Player_Combat_Manager : MonoBehaviour
 
                 yield return combatManager.StartShooting(part.part);
 
-                part.gameObject.GetComponent<Image>().color = Color.blue;
+                part.gameObject.GetComponent<Image>().color = Color.white;
 
                 // Fire the part after targeting is complete (or immediately if no targeting needed)
             }

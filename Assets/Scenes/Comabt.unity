@@ -811,10 +811,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plantPrefabs:
-    m_keys: 0100000002000000
+    m_keys: 01000000020000000300000004000000
     m_values:
-    - {fileID: 40747490348631805, guid: 55b96b53aeacb454abe8070dd56a86c1, type: 3}
-    - {fileID: 40747490348631805, guid: 55b96b53aeacb454abe8070dd56a86c1, type: 3}
+    - {fileID: 6371657452616558428, guid: 495b03ff328772b47bd7462b991d2aa6, type: 3}
+    - {fileID: 2280655750686021930, guid: 9c24111afdfa1d64588fa90baa3e96bb, type: 3}
+    - {fileID: 3335414605574756413, guid: e07043412d85b934c8a4872024267dc6, type: 3}
+    - {fileID: 3020584395285068545, guid: 70f1aa7c24556df418c61c4896ad2fdd, type: 3}
   artifactPrefabs:
     m_keys: 
     m_values: []

@@ -24,6 +24,8 @@ public class PlayerData : ScriptableObject {
 
 	public List<Part_SO> currentParts;
 
+
+
 	// https://gamedev.stackexchange.com/questions/188224/scriptableobjects-events-execution-order
 	private void OnEnable ( ) {
 		Garden = new GardenTile[gardenSize, gardenSize];
