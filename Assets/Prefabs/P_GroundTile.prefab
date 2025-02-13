@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4006505984609034908}
   - component: {fileID: 448801957063846098}
   - component: {fileID: 8148155505968398655}
+  - component: {fileID: -2156174691880560368}
   m_Layer: 0
   m_Name: P_GroundTile
   m_TagString: Untagged
@@ -106,3 +107,25 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &-2156174691880560368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6778073468744122207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54bf2cd48b1be9341831b10ffa284c1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 448801957063846098}
+  basicColors:
+  - {r: 0.24003203, g: 0.5849056, b: 0.31046453, a: 1}
+  - {r: 0.14035244, g: 0.3584906, b: 0.18497162, a: 1}
+  attackedColors:
+  - {r: 0.6981132, g: 0.18770024, b: 0.18770024, a: 1}
+  - {r: 0.4716981, g: 0.11792453, b: 0.11792453, a: 1}
+  _position: {x: 0, y: 0}
+  _gardenPlaceable: {fileID: 0}
+  _isAttacked: 0
