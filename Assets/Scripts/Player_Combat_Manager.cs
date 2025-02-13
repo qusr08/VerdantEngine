@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Player_Combat_Manager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Player_Combat_Manager : MonoBehaviour
     public Transform weaponMenuPerent;
     [HideInInspector]public List<WeaponMenuItem> MenuObjects = new List<WeaponMenuItem>();
     public GameObject weaponMenuObject;
+    int energy = 0;
+    public TextMeshProUGUI energyText;
 
     public void SetUp( PlayerData data, GardenManager garden, CombatManager combatManager)
     {
@@ -26,14 +29,25 @@ public class Player_Combat_Manager : MonoBehaviour
 
         }
     }
+
+    public void PlayerStartTurn()
+    {
+        energy = garden.CountPlants(new List<PlantType>() { PlantType.POWER_FLOWER }, null);
+        energyText.text = energy.ToString();
+
+    }
     public IEnumerator PlayerTurn()
     {
+        energy = garden.CountPlants(new List<PlantType>() { PlantType.POWER_FLOWER }, null);
+        energyText.text = energy.ToString();
         foreach (WeaponMenuItem part in MenuObjects)
         {
 
             part.part.coolDown--;
-            if (part.part.coolDown <= 0)
+            if (part.part.coolDown <= 0 && (energy-part.part.manaCost)>0)
             {
+                energy = -part.part.manaCost;
+                energyText.text = energy.ToString();
                 part.gameObject.GetComponent<Image>().color = Color.red;
 
 
@@ -44,6 +58,10 @@ public class Player_Combat_Manager : MonoBehaviour
                 part.gameObject.GetComponent<Image>().color = Color.white;
 
                 // Fire the part after targeting is complete (or immediately if no targeting needed)
+            }
+            else
+            {
+                part.part.coolDown= 0;
             }
             part.coolDownText.text = part.part.coolDown.ToString();
 

@@ -33,7 +33,7 @@ public class CombatManager : MonoBehaviour
         SetUpEnemies();
         //Get attacks from player
         ComabatMenuSetUp();
-
+        player_Combat_Manager.PlayerStartTurn();
     }
 
     // Update is called once per frame
@@ -130,6 +130,7 @@ public class CombatManager : MonoBehaviour
             Debug.Log(enemy.name + " attacked the player using " + enemyAttack.attackName + " dealing " + enemyAttack.damage + " to the player");
         }
         playerFreeze = false;
+        player_Combat_Manager.PlayerStartTurn();
     }
 
  
