@@ -38,7 +38,6 @@ public class Player_Combat_Manager : MonoBehaviour
     }
     public IEnumerator PlayerTurn()
     {
-        energy = garden.CountPlants(new List<PlantType>() { PlantType.POWER_FLOWER }, null);
         energyText.text = energy.ToString();
         foreach (WeaponMenuItem part in MenuObjects)
         {
@@ -46,7 +45,7 @@ public class Player_Combat_Manager : MonoBehaviour
             part.part.coolDown--;
             if (part.part.coolDown <= 0 && (energy-part.part.manaCost)>0)
             {
-                energy = -part.part.manaCost;
+                energy -= part.part.manaCost;
                 energyText.text = energy.ToString();
                 part.gameObject.GetComponent<Image>().color = Color.red;
 
@@ -61,10 +60,10 @@ public class Player_Combat_Manager : MonoBehaviour
             }
             else
             {
-                part.part.coolDown= 0;
+                part.part.coolDown= 1;
             }
             part.coolDownText.text = part.part.coolDown.ToString();
-
+            
         }
         combatManager.EnemyTurn();
     }
@@ -72,7 +71,7 @@ public class Player_Combat_Manager : MonoBehaviour
     public int GetAddedDamage()
     {
         int powerAdded;
-        powerAdded = garden.CountPlants(new List<PlantType>() { PlantType.POWER_FLOWER }, null);
+        powerAdded = garden.CountPlants(new List<PlantType>() { PlantType.EMPOWEROOT }, null);
         return (powerAdded);
     }
 

@@ -10,6 +10,6 @@ public class PowerFlower : Plant {
     public override void OnTurnStart()
     {
         Debug.Log("Generate 1 Energy");
-        FindObjectOfType<GardenManager>().PlayerData.Energy += 1;
+        //FindObjectOfType<GardenManager>().PlayerData.Energy += 1;
     }
 }
