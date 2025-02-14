@@ -47,10 +47,4 @@ public abstract class Plant : GardenPlaceable {
                 break;
         }
 	}
-
-    void OnMouseOver()
-    {
-        PlantHover text = GameObject.Find("LeftSide").GetComponent<PlantHover>();
-        //text.HoverEvent(Name, Rewards);
-    }
 }
