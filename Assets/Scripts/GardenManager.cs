@@ -263,7 +263,9 @@ public class GardenManager : MonoBehaviour {
 				GardenTile gardenTile = Instantiate(groundTilePrefab, groundTileContainer).GetComponent<GardenTile>( );
 				gardenTile.Position = new Vector2Int(x, y);
 				PlayerData.Garden[x, y] = gardenTile;
-			}
+				gardenTile.UIDisplay = FindObjectOfType<PlantHover>();
+
+            }
 		}
 	}
 

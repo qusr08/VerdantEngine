@@ -391,6 +391,7 @@ GameObject:
   - component: {fileID: 1152701327}
   - component: {fileID: 1152701329}
   - component: {fileID: 1152701328}
+  - component: {fileID: 1152701330}
   m_Layer: 5
   m_Name: LeftSide
   m_TagString: Untagged
@@ -457,6 +458,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152701326}
   m_CullTransparentMesh: 1
+--- !u!114 &1152701330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152701326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f08629787cbc81f47ad17381c3446d32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantName: {fileID: 2056712410}
+  plantDescription: {fileID: 1722718491}
 --- !u!1 &1472229983
 GameObject:
   m_ObjectHideFlags: 0

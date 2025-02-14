@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlantHover : MonoBehaviour
 {
-    [SerializeField] private GameObject plantName;
-    [SerializeField] private GameObject plantDescription;
+    [SerializeField] private TMP_Text plantName;
+    [SerializeField] private TMP_Text plantDescription;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class PlantHover : MonoBehaviour
 
     public void UpdateText(string name, string description)
     {
-
+        plantName.text = name;
+        plantDescription.text = description;
     }
 }
