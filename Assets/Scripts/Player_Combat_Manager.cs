@@ -68,11 +68,18 @@ public class Player_Combat_Manager : MonoBehaviour
         }
         combatManager.EnemyTurn();
     }
-  
 
-  
+    public int GetAddedDamage()
+    {
+        int powerAdded;
+        powerAdded = garden.CountPlants(new List<PlantType>() { PlantType.POWER_FLOWER }, null);
+        return (powerAdded);
+    }
 
-  
+
+
+
+
 
 
 

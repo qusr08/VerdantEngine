@@ -26,9 +26,10 @@ public class Enemy : MonoBehaviour
     {
 
     }
-    public void attacked(Part_SO incoingAttack)
+    public void attacked(Part_SO incoingAttack, Player_Combat_Manager player)
     {
-        health -= incoingAttack.damage;
+        
+        health -= incoingAttack.damage+ player.GetAddedDamage();
         manager.combatUIManager.SetHealth(this);
         Debug.Log("Ouch, i just took " + incoingAttack.damage + ". Now I have " + health + " health");
         if (health <= 0)

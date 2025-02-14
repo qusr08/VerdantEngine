@@ -78,7 +78,7 @@ public class CombatManager : MonoBehaviour
         foreach (Enemy item in targetEnemies)
         {
             item.GetComponent<SpriteRenderer>().color = Color.red;
-            item.attacked(part);
+            item.attacked(part,player_Combat_Manager);
         }
 
         yield return new WaitForSeconds(3);
