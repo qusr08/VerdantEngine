@@ -105,6 +105,7 @@ public class CombatManager : MonoBehaviour
             case TargetingType.traget:
                 for (int i = 0; i < part.targetNum; i++)
                 {
+                    if(enemyData.Count>i)
                     targetEnemies.Add(enemyData[i]);
                 }
                 break;
