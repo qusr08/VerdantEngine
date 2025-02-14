@@ -20,7 +20,7 @@ public class Pause : MonoBehaviour
         /*if(timer <= 0)
         {
             timer = 1;
-            Pause();
+            OnPause();
         }
         timer -= Time.deltaTime;*/
 
@@ -28,6 +28,7 @@ public class Pause : MonoBehaviour
 
     public void OnPause()
     {
+
         paused = !paused;
 
         if (paused)
