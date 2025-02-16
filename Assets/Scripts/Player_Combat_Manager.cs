@@ -34,7 +34,6 @@ public class Player_Combat_Manager : MonoBehaviour
 
     public void PlayerStartTurn()
     {
-        combatManager.SetEnemyAttackVisuals();
         energy = garden.CountPlants(new List<PlantType>() { PlantType.POWER_FLOWER }, null);
         energyText.text = energy.ToString();
 

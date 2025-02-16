@@ -58,9 +58,15 @@ public class CombatManager : MonoBehaviour
             enemyData.Add((enemyObjects[i].GetComponent<Enemy>()));
             enemyData[i].manager = this;
             enemyData[i].enemyID = i;
+            enemyData[i].gameObject.name = "Enemy " + i;
             combatUIManager.AddEnemyHealth(enemyData[i]);
             combatUIManager.SetHealth(enemyData[i]);
 
+        }
+
+        foreach (Enemy enemy in enemyData)
+        {
+            enemy.ChooseAttack();
         }
     }
     public void ComabatMenuSetUp()
@@ -153,11 +159,7 @@ public class CombatManager : MonoBehaviour
     
 
  
-    public void MarkGarden()
-    {
-
-    }
-
+ 
     public void EndPlayerTurn()
     {
         if (!playerFreeze)
