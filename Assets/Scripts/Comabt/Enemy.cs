@@ -55,13 +55,15 @@ public class Enemy : MonoBehaviour
 
     public void MarkMapBeforeAttack()
     {
+        FinalAim.Clear();
+        currentAim.Clear();
         if (currentAttack == null)
         {
             currentAttack = attacks[0];
         }
 
         // Clear previous markings
-        UnmarkTiles();
+     //   UnmarkTiles();
 
         int gardenSize = manager.garden.PlayerData.GardenSize;
         int randomAim = UnityEngine.Random.Range(0, gardenSize);
@@ -105,8 +107,8 @@ public class Enemy : MonoBehaviour
         // Set up the final aim for marking, stopping if there is a collision
         foreach (GardenTile tile in currentAim)
         {
-            FinalAim.Add(tile);
             tile.IsAttacked = true;
+            FinalAim.Add(tile);
             Debug.Log(gameObject.name+" is marking tile as attacked: " + tile.Position);
             if (tile.GardenPlaceable != null)
                 break;
@@ -115,6 +117,7 @@ public class Enemy : MonoBehaviour
 
     public void UnmarkTiles()
     {
+        Debug.LogWarning(gameObject.name + " Unmarked his targets");
         foreach (GardenTile tile in FinalAim)
         {
             tile.IsAttacked = false;

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 using System;
+using static UnityEditor.Progress;
 
 public class CombatManager : MonoBehaviour
 {
@@ -129,12 +130,13 @@ public class CombatManager : MonoBehaviour
 
     public void SetEnemyAttackVisuals()
     {
-        
-            foreach (Enemy enemy in enemyData)
+        foreach (GardenTile item in player.Garden)
+        {
+            item.IsAttacked = false;
+        }
+        foreach (Enemy enemy in enemyData)
             {
             enemy.MarkMapBeforeAttack();
-
-
             }
 
     }
@@ -150,6 +152,10 @@ public class CombatManager : MonoBehaviour
         }
         playerFreeze = false;
 
+        foreach (GardenTile item in player.Garden)
+        {
+            item.IsAttacked = false;
+        }
         foreach (Enemy enemy in enemyData)
         {
             enemy.ChooseAttack();

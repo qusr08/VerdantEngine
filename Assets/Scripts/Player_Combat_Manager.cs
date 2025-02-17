@@ -91,8 +91,9 @@ public class Player_Combat_Manager : MonoBehaviour
             GardenTile tileHit = enemy.FinalAim[enemy.FinalAim.Count - 1];
             if (tileHit != null && tileHit.GardenPlaceable != null)
             {
-                tileHit.GardenPlaceable.Health -= attack.damage;
                 Debug.Log(enemy.name + " attacked the player using " + attack.attackName + " dealing " + attack.damage + " to the " + tileHit.GardenPlaceable.name);
+
+                tileHit.GardenPlaceable.Health -= attack.damage;
             }
             else
             {
