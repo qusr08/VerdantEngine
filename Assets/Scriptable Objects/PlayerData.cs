@@ -22,14 +22,15 @@ public class PlayerData : ScriptableObject {
 	/// </summary>
 	public GardenTile[ , ] Garden { get; private set; }
 
+	/// <summary>
+	/// The player's current inventory
+	/// </summary>
+	public List<InventoryItem> Inventory { get; private set; }
+
 	public List<Part_SO> currentParts;
-
-
 
 	// https://gamedev.stackexchange.com/questions/188224/scriptableobjects-events-execution-order
 	private void OnEnable ( ) {
 		Garden = new GardenTile[gardenSize, gardenSize];
 	}
-
-	
 }
