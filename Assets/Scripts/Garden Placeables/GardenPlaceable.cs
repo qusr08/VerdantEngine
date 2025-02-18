@@ -9,32 +9,45 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	[Header("References - GardenPlaceable")]
 	[SerializeField] protected GardenManager gardenManager;
 	[Header("Properties - GardenPlaceable")]
-	[SerializeField] private Vector2Int _position;
-	[SerializeField, Min(0)] private int _health;
-	[SerializeField, Min(0)] private int _cost;
-    [SerializeField, Min(0)] private int _energy;
+	[SerializeField, Min(0), Tooltip("The maximum health of this garden placeable without any modifiers.")] private int _maxHealth;
+	[SerializeField, Min(0), Tooltip("The cost of this garden placeable in the shop.")] private int _cost;
+	[SerializeField, Tooltip("The name of this garden placeable.")] private string _name;
+	[SerializeField, Tooltip("The description of this garden placeable.")] private string _description;
+	[SerializeField, Tooltip("The sprite that shows up in the inventory for this garden placeable.")] private Sprite _inventorySprite;
+	[Space]
+	[SerializeField, Tooltip("The position of this garden placeable on the garden.")] private Vector2Int _position;
 
-    /// <summary>
-    /// The cost of this garden placeable in a shop
-    /// </summary>
-    public int Cost => _cost;
+	private Stat _healthStat;
 
 	/// <summary>
-	/// The current health of this garden placeable
+	/// The cost of this garden placeable in a shop
 	/// </summary>
-	public int Health {
-		get => _health;
-		set {
-			_health = value;
+	public int Cost => _cost;
 
-			// If the garden placeable has run out of health, then destroy it and call its OnKilled function
-			if (_health <= 0) {
-				OnKilled( );
+	/// <summary>
+	/// The name of this garden placeable
+	/// </summary>
+	public string Name { get => _name; }
 
-				Destroy(gameObject);
-			}
-		}
-	}
+	/// <summary>
+	/// The description of this garden placeable
+	/// </summary>
+	public string Description { get => _description; }
+
+	/// <summary>
+	/// The sprite that will show up in the inventory of this garden placeable
+	/// </summary>
+	public Sprite InventorySprite { get => _inventorySprite; }
+
+	/// <summary>
+	/// The max health of this garden placeable
+	/// </summary>
+	public int MaxHealth { get => _maxHealth; private set { HealthStat.MaxValue = _maxHealth = value; } }
+
+	/// <summary>
+	/// Information about the health of this garden placeable
+	/// </summary>
+	public Stat HealthStat { get => _healthStat; private set => _healthStat = value; }
 
 	/// <summary>
 	/// The position of this plant in the garden

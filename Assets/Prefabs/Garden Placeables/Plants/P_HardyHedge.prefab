@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 164589016474248900, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
       propertyPath: m_Name
-      value: P_HardyHedge Variant
+      value: P_HardyHedge
       objectReference: {fileID: 0}
     - target: {fileID: 7061688495639312982, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -78,7 +78,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gardenManager: {fileID: 0}
-  _position: {x: 0, y: 0}
-  _health: 0
+  _maxHealth: 3
   _cost: 0
+  _name: Hardy Hedge
+  _description: 
+  _inventorySprite: {fileID: 0}
+  _position: {x: 0, y: 0}
   _plantType: 3
