@@ -9,10 +9,10 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	[Header("References - GardenPlaceable")]
 	[SerializeField] protected GardenManager gardenManager;
 	[Header("Properties - GardenPlaceable")]
-	[SerializeField, Min(0), Tooltip("The maximum health of this garden placeable without any modifiers.")] private int _maxHealth;
+	[SerializeField, Min(0), Tooltip("The starting health of this garden placeable without any modifiers.")] private int _startingHealth;
 	[SerializeField, Min(0), Tooltip("The cost of this garden placeable in the shop.")] private int _cost;
 	[SerializeField, Tooltip("The name of this garden placeable.")] private string _name;
-	[SerializeField, Tooltip("The description of this garden placeable.")] private string _description;
+	[SerializeField, Multiline, Tooltip("The description of this garden placeable.")] private string _description;
 	[SerializeField, Tooltip("The sprite that shows up in the inventory for this garden placeable.")] private Sprite _inventorySprite;
 	[Space]
 	[SerializeField, Tooltip("The position of this garden placeable on the garden.")] private Vector2Int _position;
@@ -40,9 +40,9 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	public Sprite InventorySprite { get => _inventorySprite; }
 
 	/// <summary>
-	/// The max health of this garden placeable
+	/// The starting health of this garden placeable
 	/// </summary>
-	public int MaxHealth { get => _maxHealth; private set { HealthStat.MaxValue = _maxHealth = value; } }
+	public int StartingHealth => _startingHealth;
 
 	/// <summary>
 	/// Information about the health of this garden placeable
@@ -72,6 +72,10 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	/// <param name="position">The position to set the the placeable to</param>
 	public void Initialize (Vector2Int position) {
 		Position = position;
+
+		// Set up stats
+		HealthStat = new Stat(StartingHealth);
+		HealthStat.WhenZero += OnKilled;
 
 		// Make sure the plants are always facing towards the camera
 		transform.LookAt(-Camera.main.transform.position + transform.position);

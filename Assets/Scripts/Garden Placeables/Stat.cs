@@ -15,7 +15,7 @@ public class Stat {
 			_currentValue = Mathf.Min(_currentValue, MaxValue);
 			
 			if (CurrentValue <= 0) {
-				WhenZero( );
+				WhenZero?.Invoke( );
 			}
 		}
 	}
@@ -39,7 +39,7 @@ public class Stat {
 	private List<StatModifier> modifiers;
 	private int totalModifier;
 
-	public Stat (int currentValue, int maxValue) {
+	public Stat (int currentValue, int maxValue = 99999999) {
 		CurrentValue = currentValue;
 		MaxValue = maxValue;
 
