@@ -23,9 +23,9 @@ public class PlayerData : ScriptableObject {
 	public GardenTile[ , ] Garden { get; private set; }
 
 	/// <summary>
-	/// The player's current inventory
+	/// A reference to the player's inventory
 	/// </summary>
-	public List<InventoryItem> Inventory { get; private set; }
+	public Inventory inventory { get; private set; }
 
 	public List<Part_SO> currentParts;
 

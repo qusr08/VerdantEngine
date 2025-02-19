@@ -9,8 +9,8 @@ using UnityEngine.UIElements;
 /// </summary>
 public class GardenManager : MonoBehaviour {
 	[Header("References")]
-	[SerializeField] private PlantPrefabDictionary plantPrefabs;
-	[SerializeField] private ArtifactPrefabDictionary artifactPrefabs;
+	[SerializeField] private PlantPrefabDictionary _plantPrefabs;
+	[SerializeField] private ArtifactPrefabDictionary _artifactPrefabs;
 	[SerializeField] private GameObject groundTilePrefab;
 	[SerializeField] private PlayerData _playerData;
 	[SerializeField] private Transform plantContainer;
@@ -21,6 +21,16 @@ public class GardenManager : MonoBehaviour {
 	/// A reference to the player data scriptable object
 	/// </summary>
 	public PlayerData PlayerData => _playerData;
+
+	/// <summary>
+	/// A list of all the plant prefabs that can be placed on the garden
+	/// </summary>
+	public PlantPrefabDictionary PlantPrefabs { get => _plantPrefabs; private set => _plantPrefabs = value; }
+
+	/// <summary>
+	/// A list of all the artifact prefabs that can be placed on the garden
+	/// </summary>
+	public ArtifactPrefabDictionary ArtifactPrefabs { get => _artifactPrefabs; private set => _artifactPrefabs = value; }
 
 	/// <summary>
 	/// A list of all the plants that are currently in the garden
@@ -96,7 +106,7 @@ public class GardenManager : MonoBehaviour {
 		}
 
 		// Place the plant onto the grid and update its position
-		Plant plant = Instantiate(plantPrefabs[plantType], plantContainer).GetComponent<Plant>( );
+		Plant plant = Instantiate(PlantPrefabs[plantType], plantContainer).GetComponent<Plant>( );
 		plant.Initialize(new Vector2Int(x, y));
 
 		PlayerData.Garden[x, y].GardenPlaceable = plant;
@@ -130,7 +140,7 @@ public class GardenManager : MonoBehaviour {
 		}
 
 		// Place the artifact onto the grid and update its position
-		Artifact artifact = Instantiate(artifactPrefabs[artifactType], artifactContainer).GetComponent<Artifact>( );
+		Artifact artifact = Instantiate(ArtifactPrefabs[artifactType], artifactContainer).GetComponent<Artifact>( );
 		artifact.Initialize(new Vector2Int(x, y));
 
 		PlayerData.Garden[x, y].GardenPlaceable = artifact;
