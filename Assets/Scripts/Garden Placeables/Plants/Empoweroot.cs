@@ -18,7 +18,9 @@ public class Empoweroot : Plant {
             }
         } else
         {
-            Debug.Log("Player stopped receiving +1 Damage from " + Position);
+            if (damageAdded) {
+                Debug.Log("Player stopped receiving +1 Damage from " + Position);
+            }
             damageAdded = false;
         }
     }
