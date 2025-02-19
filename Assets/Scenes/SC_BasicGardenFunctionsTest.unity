@@ -866,14 +866,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be91d802dbdc4484aa565f8c5cc2f6dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plantPrefabs:
+  _plantPrefabs:
     m_keys: 01000000020000000300000004000000
     m_values:
     - {fileID: 6371657452616558428, guid: 495b03ff328772b47bd7462b991d2aa6, type: 3}
     - {fileID: 2280655750686021930, guid: 9c24111afdfa1d64588fa90baa3e96bb, type: 3}
     - {fileID: 3335414605574756413, guid: e07043412d85b934c8a4872024267dc6, type: 3}
     - {fileID: 3020584395285068545, guid: 70f1aa7c24556df418c61c4896ad2fdd, type: 3}
-  artifactPrefabs:
+  _artifactPrefabs:
     m_keys: 
     m_values: []
   groundTilePrefab: {fileID: 6778073468744122207, guid: e849fdfe6785c8844ae36b546a419676, type: 3}

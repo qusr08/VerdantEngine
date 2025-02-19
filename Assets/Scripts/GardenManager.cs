@@ -55,15 +55,15 @@ public class GardenManager : MonoBehaviour {
 
 		/// TEST: Create test plants and move them around
         PlacePlant(PlantType.HARDY_HEDGE, 3, 1);
-		//PlacePlant(PlantType.HARDY_HEDGE, 3, 2);
-        //PlacePlant(PlantType.HARDY_HEDGE, 3, 3);
+		PlacePlant(PlantType.HARDY_HEDGE, 3, 2);
+        PlacePlant(PlantType.HARDY_HEDGE, 3, 3);
         PlacePlant(PlantType.EMPOWEROOT, 4, 4);
 		PlacePlant(PlantType.EMPOWEROOT, 1, 2);
 		PlacePlant(PlantType.POWER_FLOWER, 1, 3);
         PlacePlant(PlantType.POWER_FLOWER, 0, 2);
         PlacePlant(PlantType.POWER_FLOWER, 0, 3);
-        //PlacePlant(PlantType.SHIELDING_SHRUB, 3, 5);
-		//PlacePlant(PlantType.SHIELDING_SHRUB, 2, 5);
+        PlacePlant(PlantType.SHIELDING_SHRUB, 3, 5);
+		PlacePlant(PlantType.SHIELDING_SHRUB, 2, 5);
 		PlacePlant(PlantType.POWER_FLOWER, 1, 5);
 
 

@@ -206,7 +206,9 @@ public abstract class GardenPlaceable : MonoBehaviour {
     /// <summary>
     /// Called when the garden is update in any way. This means that when a plant is placed or removed on the board, this function is called
     /// </summary>
-    public virtual void OnGardenUpdated ( ) { }
+    public virtual void OnGardenUpdated ( ) {
+		Debug.Log("Placeable at (" + Position.x + ", " + Position.y + ") has " + HealthStat.CurrentValue + "/" + HealthStat.MaxValue + " Health");
+	}
 
 	/// <summary>
 	/// Called when the player's turn starts
