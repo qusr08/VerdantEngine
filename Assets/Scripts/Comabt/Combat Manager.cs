@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 using System;
+using static UnityEditor.Progress;
 
 public class CombatManager : MonoBehaviour
 {
@@ -58,9 +59,15 @@ public class CombatManager : MonoBehaviour
             enemyData.Add((enemyObjects[i].GetComponent<Enemy>()));
             enemyData[i].manager = this;
             enemyData[i].enemyID = i;
+            enemyData[i].gameObject.name = "Enemy " + i;
             combatUIManager.AddEnemyHealth(enemyData[i]);
             combatUIManager.SetHealth(enemyData[i]);
 
+        }
+
+        foreach (Enemy enemy in enemyData)
+        {
+            enemy.ChooseAttack();
         }
     }
     public void ComabatMenuSetUp()
@@ -121,25 +128,44 @@ public class CombatManager : MonoBehaviour
         return targetEnemies;
     }
 
-    
+    public void SetEnemyAttackVisuals()
+    {
+        foreach (GardenTile item in player.Garden)
+        {
+            item.IsAttacked = false;
+        }
+        foreach (Enemy enemy in enemyData)
+            {
+            enemy.MarkMapBeforeAttack();
+            }
+
+    }
+
     public void EnemyTurn()
     {
         foreach (Enemy enemy in enemyData)
         {
             EnemyAttack_SO enemyAttack = enemy.PlayTurn();
+
             player.cuurentHealth -= enemyAttack.damage;
-            Debug.Log(enemy.name + " attacked the player using " + enemyAttack.attackName + " dealing " + enemyAttack.damage + " to the player");
+            player_Combat_Manager.ApplyDamageToGarden(enemy, enemyAttack);
         }
         playerFreeze = false;
+
+        foreach (GardenTile item in player.Garden)
+        {
+            item.IsAttacked = false;
+        }
+        foreach (Enemy enemy in enemyData)
+        {
+            enemy.ChooseAttack();
+        }
         player_Combat_Manager.PlayerStartTurn();
     }
+    
 
  
-    public void MarkGarden()
-    {
-
-    }
-
+ 
     public void EndPlayerTurn()
     {
         if (!playerFreeze)

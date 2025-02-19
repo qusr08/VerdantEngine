@@ -37,7 +37,7 @@ public class EnemyAttack_SO : ScriptableObject
     public EnemyAttackType attackType;
     public int damage;
     public bool lineAttackIsVertical;
-    [HideInInspector] public List<Vector2> currentAim;
+    
 
     private void OnEnable()
     {

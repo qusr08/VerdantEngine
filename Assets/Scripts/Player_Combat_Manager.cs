@@ -14,12 +14,14 @@ public class Player_Combat_Manager : MonoBehaviour
     public GameObject weaponMenuObject;
     int energy = 0;
     public TextMeshProUGUI energyText;
+    PlayerData playerData;
 
     public void SetUp( PlayerData data, GardenManager garden, CombatManager combatManager)
     {
+        playerData = data;
         this.combatManager = combatManager;
         this.garden = garden;
-        parts = data.currentParts;
+        parts = playerData.currentParts;
         foreach (Part_SO part in parts )
         {
             GameObject spawnedItem;
@@ -36,6 +38,7 @@ public class Player_Combat_Manager : MonoBehaviour
         energyText.text = energy.ToString();
 
     }
+
     public IEnumerator PlayerTurn()
     {
         energyText.text = energy.ToString();
@@ -75,6 +78,30 @@ public class Player_Combat_Manager : MonoBehaviour
         return (powerAdded);
     }
 
+    public void ApplyDamageToGarden(Enemy enemy, EnemyAttack_SO attack)
+    {
+        if (attack.lineAttackIsVertical && enemy.FinalAim.Count == playerData.GardenSize)
+        { 
+            playerData.cuurentHealth -= attack.damage;
+            Debug.Log(enemy.name + " attacked the player using " + attack.attackName + " dealing " + attack.damage + " to the player");
+
+        }
+        else
+        {
+            GardenTile tileHit = enemy.FinalAim[enemy.FinalAim.Count - 1];
+            if (tileHit != null && tileHit.GardenPlaceable != null)
+            {
+                Debug.Log(enemy.name + " attacked the player using " + attack.attackName + " dealing " + attack.damage + " to the " + tileHit.GardenPlaceable.name);
+
+                tileHit.GardenPlaceable.Health -= attack.damage;
+            }
+            else
+            {
+                Debug.Log("Taeget got killed before turn");
+            }
+
+        }
+    }
 
 
 
