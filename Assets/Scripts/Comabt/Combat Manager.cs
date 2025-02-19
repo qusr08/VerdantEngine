@@ -65,6 +65,11 @@ public class CombatManager : MonoBehaviour
 
         }
 
+        AllEnemeiesSrartRound();
+    }
+
+    public void AllEnemeiesSrartRound()
+    {
         foreach (Enemy enemy in enemyData)
         {
             enemy.StartRound();

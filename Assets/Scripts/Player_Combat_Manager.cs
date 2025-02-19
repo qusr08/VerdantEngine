@@ -36,6 +36,7 @@ public class Player_Combat_Manager : MonoBehaviour
     {
         energy = garden.CountPlants(new List<PlantType>() { PlantType.POWER_FLOWER }, null);
         energyText.text = energy.ToString();
+        combatManager.AllEnemeiesSrartRound();
 
     }
 

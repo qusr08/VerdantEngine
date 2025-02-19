@@ -115,6 +115,7 @@ public class Enemy : MonoBehaviour
         // Set Icon for map
         if (iconHolder != null)
         {
+            iconHolder.SetActive(true);
             iconHolder.transform.SetParent(currentAim[0].transform);
             iconHolder.transform.localPosition = Vector3.zero;
         }
@@ -143,5 +144,6 @@ public class Enemy : MonoBehaviour
         }
         FinalAim.Clear();
         currentAim.Clear();
+        iconHolder.SetActive(false);
     }
 }
