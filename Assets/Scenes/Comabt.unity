@@ -1087,7 +1087,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_Combat_Manager: {fileID: 1198069308}
   combatUIManager: {fileID: 414572767}
-  currentComabt: {fileID: 11400000, guid: 0388f1ddce0134f438feaec552506c5f, type: 2}
+  currentComabt: {fileID: 11400000, guid: 421a9601bfb82c344ac580f0caeedce9, type: 2}
   player: {fileID: 1707282257}
   garden: {fileID: 228952662}
   spawnLocations:
