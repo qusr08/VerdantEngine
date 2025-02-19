@@ -9,18 +9,31 @@ using UnityEngine.UIElements;
 /// </summary>
 public class GardenManager : MonoBehaviour {
 	[Header("References")]
-	[SerializeField] private PlantPrefabDictionary plantPrefabs;
-	[SerializeField] private ArtifactPrefabDictionary artifactPrefabs;
+	[SerializeField] private PlantPrefabDictionary _plantPrefabs;
+	[SerializeField] private ArtifactPrefabDictionary _artifactPrefabs;
 	[SerializeField] private GameObject groundTilePrefab;
 	[SerializeField] private PlayerData _playerData;
 	[SerializeField] private Transform plantContainer;
 	[SerializeField] private Transform artifactContainer;
 	[SerializeField] private Transform groundTileContainer;
 
+	[Header("Garden ID System")]
+	[SerializeField] private static uint nextId = 1;
+
 	/// <summary>
 	/// A reference to the player data scriptable object
 	/// </summary>
 	public PlayerData PlayerData => _playerData;
+
+	/// <summary>
+	/// A list of all the plant prefabs that can be placed on the garden
+	/// </summary>
+	public PlantPrefabDictionary PlantPrefabs { get => _plantPrefabs; private set => _plantPrefabs = value; }
+
+	/// <summary>
+	/// A list of all the artifact prefabs that can be placed on the garden
+	/// </summary>
+	public ArtifactPrefabDictionary ArtifactPrefabs { get => _artifactPrefabs; private set => _artifactPrefabs = value; }
 
 	/// <summary>
 	/// A list of all the plants that are currently in the garden
@@ -41,15 +54,22 @@ public class GardenManager : MonoBehaviour {
 		CreateGardenTiles( );
 
 		/// TEST: Create test plants and move them around
-		PlacePlant(PlantType.POWER_FLOWER, 5, 1);
-		PlacePlant(PlantType.EMPOWEROOT, 0, 0);
-		PlacePlant(PlantType.HARDY_HEDGE, 1, 1);
-		PlacePlant(PlantType.HARDY_HEDGE, 1, 0);
-		PlacePlant(PlantType.SHIELDING_SHRUB, 2, 5);
+        PlacePlant(PlantType.HARDY_HEDGE, 3, 1);
+		//PlacePlant(PlantType.HARDY_HEDGE, 3, 2);
+        //PlacePlant(PlantType.HARDY_HEDGE, 3, 3);
+        PlacePlant(PlantType.EMPOWEROOT, 4, 4);
+		PlacePlant(PlantType.EMPOWEROOT, 1, 2);
+		PlacePlant(PlantType.POWER_FLOWER, 1, 3);
+        PlacePlant(PlantType.POWER_FLOWER, 0, 2);
+        PlacePlant(PlantType.POWER_FLOWER, 0, 3);
+        //PlacePlant(PlantType.SHIELDING_SHRUB, 3, 5);
+		//PlacePlant(PlantType.SHIELDING_SHRUB, 2, 5);
+		PlacePlant(PlantType.POWER_FLOWER, 1, 5);
 
-		MovePlant(PlayerData.Garden[1, 1].GardenPlaceable as Plant, 1, 2);
 
-		UprootPlant(0, 0);
+        //MovePlant(PlayerData.Garden[1, 1].GardenPlaceable as Plant, 1, 2);
+
+		//UprootPlant(0, 0);
 
 		// Debug.Log("Flower Count: " + CountPlants(exclusivePlantTypes: new List<PlantType>( ) { PlantType.FLOWER }));
 		// Debug.Log("Cactus Count: " + CountPlants(exclusivePlantTypes: new List<PlantType>( ) { PlantType.CACTUS }));
@@ -89,7 +109,7 @@ public class GardenManager : MonoBehaviour {
 		}
 
 		// Place the plant onto the grid and update its position
-		Plant plant = Instantiate(plantPrefabs[plantType], plantContainer).GetComponent<Plant>( );
+		Plant plant = Instantiate(PlantPrefabs[plantType], plantContainer).GetComponent<Plant>( );
 		plant.Initialize(new Vector2Int(x, y));
 
 		PlayerData.Garden[x, y].GardenPlaceable = plant;
@@ -123,7 +143,7 @@ public class GardenManager : MonoBehaviour {
 		}
 
 		// Place the artifact onto the grid and update its position
-		Artifact artifact = Instantiate(artifactPrefabs[artifactType], artifactContainer).GetComponent<Artifact>( );
+		Artifact artifact = Instantiate(ArtifactPrefabs[artifactType], artifactContainer).GetComponent<Artifact>( );
 		artifact.Initialize(new Vector2Int(x, y));
 
 		PlayerData.Garden[x, y].GardenPlaceable = artifact;
@@ -256,7 +276,9 @@ public class GardenManager : MonoBehaviour {
 				GardenTile gardenTile = Instantiate(groundTilePrefab, groundTileContainer).GetComponent<GardenTile>( );
 				gardenTile.Position = new Vector2Int(x, y);
 				PlayerData.Garden[x, y] = gardenTile;
-			}
+				gardenTile.UIDisplay = FindObjectOfType<PlantHover>();
+
+            }
 		}
 	}
 
@@ -371,4 +393,14 @@ public class GardenManager : MonoBehaviour {
 	public int CountArtifacts (List<ArtifactType> exclusiveArtifactTypes = null, List<ArtifactType> excludedArtifactTypes = null) {
 		return GetFilteredArtifacts(exclusiveArtifactTypes, excludedArtifactTypes).Count;
 	}
+
+	/// <summary>
+	/// Always returns a unique ID number, to be used as identifiers for the plants in the garden.
+	/// </summary>
+	/// <returns>a unique ID in the form of an unsigned int.</returns>
+	public static uint GetId() {
+		uint returnId = nextId;
+		nextId++;
+		return returnId;
+    }
 }

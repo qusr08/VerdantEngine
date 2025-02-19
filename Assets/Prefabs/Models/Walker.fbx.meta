@@ -5,15 +5,20 @@ ModelImporter:
   internalIDToNameTable: []
   externalObjects:
   - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: a882638e60615fd44bf16e641d166068, type: 2}
+  - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: walkerDiffuse
-    second: {fileID: 2800000, guid: e5a8dd34cad34484fa815db3542ddfe6, type: 3}
+    second: {fileID: 2800000, guid: cb7eab31f16fed1479296f43c3ebaebb, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: walkerRoughness
-    second: {fileID: 2800000, guid: 28cd0d9da3acd7646bd9d68e58d6c9ba, type: 3}
+    second: {fileID: 2800000, guid: 6d152253558f93d41a503bd0c2ffeb05, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

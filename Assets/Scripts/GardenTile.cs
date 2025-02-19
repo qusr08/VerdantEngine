@@ -12,10 +12,14 @@ public class GardenTile : MonoBehaviour {
 	[SerializeField] private GardenPlaceable _gardenPlaceable;
 	[SerializeField] private bool _isAttacked;
 
-	/// <summary>
-	/// Whether or not the current tile is being attacked
-	/// </summary>
-	public bool IsAttacked {
+	[Header("UI")]
+	[SerializeField] private PlantHover _UIDisplay;
+
+
+    /// <summary>
+    /// Whether or not the current tile is being attacked
+    /// </summary>
+    public bool IsAttacked {
 		get => _isAttacked;
 		set {
 			_isAttacked = value;
@@ -24,10 +28,22 @@ public class GardenTile : MonoBehaviour {
 		}
 	}
 
-	/// <summary>
-	/// The garden placeable that is on this garden tile
-	/// </summary>
-	public GardenPlaceable GardenPlaceable { get => _gardenPlaceable; set => _gardenPlaceable = value; }
+    /// <summary>
+    /// Whether or not the current tile is being attacked
+    /// </summary>
+    public PlantHover UIDisplay
+    {
+        get => _UIDisplay;
+        set
+        {
+            _UIDisplay = value;
+        }
+    }
+
+    /// <summary>
+    /// The garden placeable that is on this garden tile
+    /// </summary>
+    public GardenPlaceable GardenPlaceable { get => _gardenPlaceable; set => _gardenPlaceable = value; }
 
 	/// <summary>
 	/// The position of this garden tile within the garden
@@ -44,12 +60,18 @@ public class GardenTile : MonoBehaviour {
 
 	private void OnMouseEnter ( ) {
 		/// TESTING
-		IsAttacked = true;
-	}
+		//IsAttacked = true;
+		if(_gardenPlaceable != null)
+		{
+			_UIDisplay.UpdateText(_gardenPlaceable.gameObject.name, "Description");
+            //Debug.Log(_gardenPlaceable.gameObject.name);
+
+        }
+    }
 
 	private void OnMouseExit ( ) {
 		/// TESTING
-		IsAttacked = false;
+		//IsAttacked = false;
 	}
 
 	/// <summary>

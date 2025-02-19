@@ -9,9 +9,15 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	[Header("References - GardenPlaceable")]
 	[SerializeField] protected GardenManager gardenManager;
 	[Header("Properties - GardenPlaceable")]
-	[SerializeField] private Vector2Int _position;
-	[SerializeField, Min(0)] private int _health;
-	[SerializeField, Min(0)] private int _cost;
+	[SerializeField, Min(0), Tooltip("The starting health of this garden placeable without any modifiers.")] private int _startingHealth;
+	[SerializeField, Min(0), Tooltip("The cost of this garden placeable in the shop.")] private int _cost;
+	[SerializeField, Tooltip("The name of this garden placeable.")] private string _name;
+	[SerializeField, Multiline, Tooltip("The description of this garden placeable.")] private string _description;
+	[SerializeField, Tooltip("The sprite that shows up in the inventory for this garden placeable.")] private Sprite _inventorySprite;
+	[Space]
+	[SerializeField, Tooltip("The position of this garden placeable on the garden.")] private Vector2Int _position;
+
+	private Stat _healthStat;
 
 	/// <summary>
 	/// The cost of this garden placeable in a shop
@@ -19,21 +25,29 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	public int Cost => _cost;
 
 	/// <summary>
-	/// The current health of this garden placeable
+	/// The name of this garden placeable
 	/// </summary>
-	public int Health {
-		get => _health;
-		set {
-			_health = value;
+	public string Name { get => _name; }
 
-			// If the garden placeable has run out of health, then destroy it and call its OnKilled function
-			if (_health <= 0) {
-				OnKilled( );
+	/// <summary>
+	/// The description of this garden placeable
+	/// </summary>
+	public string Description { get => _description; }
 
-				Destroy(gameObject);
-			}
-		}
-	}
+	/// <summary>
+	/// The sprite that will show up in the inventory of this garden placeable
+	/// </summary>
+	public Sprite InventorySprite { get => _inventorySprite; }
+
+	/// <summary>
+	/// The starting health of this garden placeable
+	/// </summary>
+	public int StartingHealth => _startingHealth;
+
+	/// <summary>
+	/// Information about the health of this garden placeable
+	/// </summary>
+	public Stat HealthStat { get => _healthStat; private set => _healthStat = value; }
 
 	/// <summary>
 	/// The position of this plant in the garden
@@ -48,7 +62,8 @@ public abstract class GardenPlaceable : MonoBehaviour {
 		}
 	}
 
-	private void Awake ( ) {
+    #region Initialization
+    private void Awake ( ) {
 		gardenManager = FindObjectOfType<GardenManager>( );
 	}
 
@@ -59,19 +74,25 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	public void Initialize (Vector2Int position) {
 		Position = position;
 
+		// Set up stats
+		HealthStat = new Stat(StartingHealth);
+		HealthStat.WhenZero += OnKilled;
+
 		// Make sure the plants are always facing towards the camera
 		transform.LookAt(-Camera.main.transform.position + transform.position);
 		transform.localEulerAngles = new Vector3(0f, transform.localEulerAngles.y, 0f);
 	}
+    #endregion
 
-	/// <summary>
-	/// Get a list of specific plants that are surrounding this garden placeable within a certain radius
-	/// </summary>
-	/// <param name="radius">The radius around this plant to check for other plants</param>
-	/// <param name="exclusivePlantTypes">All plant types within this list will exclusively be added to the final surrounding plants list. If this parameter is left null, all plants of any plant type will be added</param>
-	/// <param name="excludedPlantTypes">All plant types within this list will never be added to the final surrounding plants list. If this parameter is left null, no plant types will be excluded</param>
-	/// <returns>A list of all the surrounding plant objects around this garden placeable that match the exclusive and excluded plant types</returns>
-	public List<Plant> GetSurroundingPlants (int radius, List<PlantType> exclusivePlantTypes = null, List<PlantType> excludedPlantTypes = null) {
+    #region Helper Methods
+    /// <summary>
+    /// Get a list of specific plants that are surrounding this garden placeable within a certain radius
+    /// </summary>
+    /// <param name="radius">The radius around this plant to check for other plants</param>
+    /// <param name="exclusivePlantTypes">All plant types within this list will exclusively be added to the final surrounding plants list. If this parameter is left null, all plants of any plant type will be added</param>
+    /// <param name="excludedPlantTypes">All plant types within this list will never be added to the final surrounding plants list. If this parameter is left null, no plant types will be excluded</param>
+    /// <returns>A list of all the surrounding plant objects around this garden placeable that match the exclusive and excluded plant types</returns>
+    public List<Plant> GetSurroundingPlants (int radius, List<PlantType> exclusivePlantTypes = null, List<PlantType> excludedPlantTypes = null) {
 		List<Plant> surroundingPlants = new List<Plant>( );
 
 		// Loop through all plants that are surrounding this garden placeable within a certain radius
@@ -179,11 +200,13 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	public int CountSurroundingArtifacts (int radius, List<ArtifactType> exclusiveArtifactTypes = null, List<ArtifactType> excludedArtifactTypes = null) {
 		return GetSurroundingArtifacts(radius, exclusiveArtifactTypes, excludedArtifactTypes).Count;
 	}
+	#endregion
 
-	/// <summary>
-	/// Called when the garden is update in any way. This means that when a plant is placed or removed on the board, this function is called
-	/// </summary>
-	public virtual void OnGardenUpdated ( ) { }
+    #region Effect Triggers
+    /// <summary>
+    /// Called when the garden is update in any way. This means that when a plant is placed or removed on the board, this function is called
+    /// </summary>
+    public virtual void OnGardenUpdated ( ) { }
 
 	/// <summary>
 	/// Called when the player's turn starts
@@ -204,4 +227,5 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	/// Called when this garden placeable is killed
 	/// </summary>
 	public virtual void OnKilled ( ) { }
+    #endregion
 }

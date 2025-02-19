@@ -17,4 +17,10 @@ public abstract class Artifact : GardenPlaceable {
 	/// The type of this artifact
 	/// </summary>
 	public ArtifactType ArtifactType => _artifactType;
+
+	public override void OnKilled ( ) {
+		base.OnKilled( );
+
+		gardenManager.UprootArtifact(this);
+	}
 }
