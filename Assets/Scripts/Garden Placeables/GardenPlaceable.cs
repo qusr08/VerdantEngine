@@ -10,6 +10,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	[SerializeField] protected GardenManager gardenManager;
 	[Header("Properties - GardenPlaceable")]
 	[SerializeField] private Vector2Int _position;
+	[SerializeField, Min(0)] private uint _id;
 	[SerializeField, Min(0)] private int _health;
 	[SerializeField, Min(0)] private int _cost;
     [SerializeField, Min(0)] private int _energy;
@@ -51,6 +52,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 
 	private void Awake ( ) {
 		gardenManager = FindObjectOfType<GardenManager>( );
+		_id = GardenManager.GetId();
 	}
 
 	/// <summary>

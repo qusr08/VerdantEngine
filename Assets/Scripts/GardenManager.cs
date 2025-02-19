@@ -17,6 +17,9 @@ public class GardenManager : MonoBehaviour {
 	[SerializeField] private Transform artifactContainer;
 	[SerializeField] private Transform groundTileContainer;
 
+	[Header("Garden ID System")]
+	[SerializeField] private static uint nextId = 0;
+
 	/// <summary>
 	/// A reference to the player data scriptable object
 	/// </summary>
@@ -378,4 +381,14 @@ public class GardenManager : MonoBehaviour {
 	public int CountArtifacts (List<ArtifactType> exclusiveArtifactTypes = null, List<ArtifactType> excludedArtifactTypes = null) {
 		return GetFilteredArtifacts(exclusiveArtifactTypes, excludedArtifactTypes).Count;
 	}
+
+	/// <summary>
+	/// Always returns a unique ID number, to be used as identifiers for the plants in the garden.
+	/// </summary>
+	/// <returns>a unique ID in the form of an unsigned int.</returns>
+	public static uint GetId() {
+		uint returnId = nextId;
+		nextId++;
+		return returnId;
+    }
 }
