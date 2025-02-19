@@ -93,7 +93,7 @@ public class Player_Combat_Manager : MonoBehaviour
             {
                 Debug.Log(enemy.name + " attacked the player using " + attack.attackName + " dealing " + attack.damage + " to the " + tileHit.GardenPlaceable.name);
 
-                tileHit.GardenPlaceable.Health -= attack.damage;
+                tileHit.GardenPlaceable.HealthStat.CurrentValue -= attack.damage;
             }
             else
             {
