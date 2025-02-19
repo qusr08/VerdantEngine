@@ -31,19 +31,19 @@ public abstract class Plant : GardenPlaceable {
 		switch (PlantType)
 		{
             case PlantType.NONE:
-                Health = 0;
+                CurrentHealth = 0;
                 break;
             case PlantType.POWER_FLOWER:
-                Health = 1;
+                CurrentHealth = 1;
                 break;
             case PlantType.SHIELDING_SHRUB:
-                Health = 2;
+                CurrentHealth = 2;
                 break;
             case PlantType.HARDY_HEDGE:
-                Health = 3;
+                CurrentHealth = 3;
                 break;
             case PlantType.EMPOWEROOT:
-                Health = 1;
+                CurrentHealth = 1;
                 break;
         }
 	}

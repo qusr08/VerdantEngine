@@ -10,21 +10,16 @@ public class Empoweroot : Plant {
     bool damageAdded = false;
     public override void OnGardenUpdated()
     {
-        if(CountSurroundingPlants(1) >= 3 && !damageAdded)
+        if(CountSurroundingPlants(1) >= 3)
         {
-            damageAdded = true;
-            Debug.Log("+1 Damage from " + Position);
+            if (!damageAdded) {
+                Debug.Log("Player began receiving +1 Damage from " + Position);
+                damageAdded = true;
+            }
+        } else
+        {
+            Debug.Log("Player stopped receiving +1 Damage from " + Position);
+            damageAdded = false;
         }
-
-        if (EffectCondition()) {
-            ApplyEffect();
-        }
-    }
-
-    public bool EffectCondition() {
-        return CountSurroundingPlants(1) >= 3;
-    }
-    public void ApplyEffect() {
-        Debug.Log("+1 Damage from " + Position);
     }
 }

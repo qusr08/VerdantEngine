@@ -11,7 +11,8 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	[Header("Properties - GardenPlaceable")]
 	[SerializeField] private Vector2Int _position;
 	[SerializeField, Min(0)] private uint _id;
-	[SerializeField, Min(0)] private int _health;
+	[SerializeField, Min(0)] private int _maxHealth;
+	[SerializeField, Min(0)] private int _currentHealth;
 	[SerializeField, Min(0)] private int _cost;
     [SerializeField, Min(0)] private int _energy;
 
@@ -22,19 +23,45 @@ public abstract class GardenPlaceable : MonoBehaviour {
     public int Cost => _cost;
 
 	/// <summary>
+	/// The unique ID for this specific GardenPlaceable.
+	/// </summary>
+	public uint Id {
+		get => _id;
+    }
+
+	/// <summary>
+	/// The maximum health the garden placeable can have.
+	/// </summary>
+	public int MaxHealth {
+		get => _maxHealth;
+		set {
+			_maxHealth = value;
+
+			// Reduce the CurrentHealth by the same amount that maxHealth was reduced by.
+			CurrentHealth = CurrentHealth - value;
+		}
+	}
+
+	/// <summary>
 	/// The current health of this garden placeable
 	/// </summary>
-	public int Health {
-		get => _health;
+	public int CurrentHealth {
+		get => _currentHealth;
 		set {
-			_health = value;
+			_currentHealth = value;
 
 			// If the garden placeable has run out of health, then destroy it and call its OnKilled function
-			if (_health <= 0) {
+			if (_currentHealth <= 0) {
 				OnKilled( );
 
 				Destroy(gameObject);
 			}
+
+			// If the garden placeable has more health than is allowed by its max health, set the
+			// placeable's health to its max health.
+			if (_currentHealth > MaxHealth) {
+				_currentHealth = MaxHealth;
+            }
 		}
 	}
 
@@ -187,7 +214,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	public int CountSurroundingArtifacts (int radius, List<ArtifactType> exclusiveArtifactTypes = null, List<ArtifactType> excludedArtifactTypes = null) {
 		return GetSurroundingArtifacts(radius, exclusiveArtifactTypes, excludedArtifactTypes).Count;
 	}
-    #endregion
+	#endregion
 
     #region Effect Triggers
     /// <summary>
