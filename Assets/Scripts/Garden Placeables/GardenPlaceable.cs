@@ -61,12 +61,10 @@ public abstract class GardenPlaceable : MonoBehaviour {
 			transform.localPosition = new Vector3(_position.x, 0.5f, _position.y);
 		}
 	}
-    #endregion
 
     #region Initialization
     private void Awake ( ) {
 		gardenManager = FindObjectOfType<GardenManager>( );
-		_id = GardenManager.GetId();
 	}
 
 	/// <summary>
