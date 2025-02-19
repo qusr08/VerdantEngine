@@ -28,6 +28,18 @@ public class ComabtUI_Manager : MonoBehaviour
             }
         }
     }
+
+    public void SetCoolDown(Enemy enemy)
+    {
+        foreach (EnemyHealthUIObject item in enemyHealthUIObjects)
+        {
+            if (item.enemy.enemyID == enemy.enemyID)
+            {
+                item.UpdateCoolDown();
+                break;
+            }
+        }
+    }
     public void KillEnemy(Enemy enemy)
     {
         foreach (EnemyHealthUIObject item in enemyHealthUIObjects)

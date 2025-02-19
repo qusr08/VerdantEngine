@@ -67,7 +67,7 @@ public class CombatManager : MonoBehaviour
 
         foreach (Enemy enemy in enemyData)
         {
-            enemy.ChooseAttack();
+            enemy.StartRound();
         }
     }
     public void ComabatMenuSetUp()
@@ -143,23 +143,24 @@ public class CombatManager : MonoBehaviour
 
     public void EnemyTurn()
     {
-        foreach (Enemy enemy in enemyData)
-        {
-            EnemyAttack_SO enemyAttack = enemy.PlayTurn();
-
-            player.cuurentHealth -= enemyAttack.damage;
-            player_Combat_Manager.ApplyDamageToGarden(enemy, enemyAttack);
-        }
-        playerFreeze = false;
-
         foreach (GardenTile item in player.Garden)
         {
             item.IsAttacked = false;
         }
+      
         foreach (Enemy enemy in enemyData)
         {
-            enemy.ChooseAttack();
+            if (enemy.currentCoolDown == 0)
+            {
+                EnemyAttack_SO enemyAttack = enemy.PlayTurn();
+
+                player_Combat_Manager.ApplyDamageToGarden(enemy, enemyAttack);
+            }
+
         }
+        playerFreeze = false;
+
+       
         player_Combat_Manager.PlayerStartTurn();
     }
     

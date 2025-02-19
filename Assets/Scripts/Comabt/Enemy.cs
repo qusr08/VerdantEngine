@@ -16,6 +16,8 @@ public class Enemy : MonoBehaviour
     public bool attacksAreRandom;
     [HideInInspector] public CombatManager manager;
     public GameObject iconHolder;
+    [HideInInspector] public int currentCoolDown;
+    private bool needNewAttack = true;
 
     void Start()
     {
@@ -46,15 +48,32 @@ public class Enemy : MonoBehaviour
         return currentAttack;
     }
 
-    public void ChooseAttack()
+    public void StartRound()
     {
-        if (attacks.Count > 0)
+        
+            currentCoolDown--;
+        if (attacks.Count > 0 && needNewAttack)
+        {
             currentAttack = attacks[0];
-        MarkMapBeforeAttack();
+            currentCoolDown = currentAttack.maxCoolDown;
+            needNewAttack = false;
+        }
+        if (currentCoolDown == 0)
+        { MarkMapBeforeAttack();
+            needNewAttack = true;
+        }
+       
+        manager.combatUIManager.SetCoolDown(this);
+
+
     }
 
     public void MarkMapBeforeAttack()
     {
+        if ((currentCoolDown!=0))
+        {
+            return;
+        }
         FinalAim.Clear();
         currentAim.Clear();
         if (currentAttack == null)
