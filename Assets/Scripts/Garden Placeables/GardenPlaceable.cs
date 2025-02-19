@@ -15,6 +15,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	[SerializeField, Min(0)] private int _cost;
     [SerializeField, Min(0)] private int _energy;
 
+    #region Properties
     /// <summary>
     /// The cost of this garden placeable in a shop
     /// </summary>
@@ -49,8 +50,10 @@ public abstract class GardenPlaceable : MonoBehaviour {
 			transform.localPosition = new Vector3(_position.x, 0.5f, _position.y);
 		}
 	}
+    #endregion
 
-	private void Awake ( ) {
+    #region Initialization
+    private void Awake ( ) {
 		gardenManager = FindObjectOfType<GardenManager>( );
 		_id = GardenManager.GetId();
 	}
@@ -66,15 +69,17 @@ public abstract class GardenPlaceable : MonoBehaviour {
 		transform.LookAt(-Camera.main.transform.position + transform.position);
 		transform.localEulerAngles = new Vector3(0f, transform.localEulerAngles.y, 0f);
 	}
+    #endregion
 
-	/// <summary>
-	/// Get a list of specific plants that are surrounding this garden placeable within a certain radius
-	/// </summary>
-	/// <param name="radius">The radius around this plant to check for other plants</param>
-	/// <param name="exclusivePlantTypes">All plant types within this list will exclusively be added to the final surrounding plants list. If this parameter is left null, all plants of any plant type will be added</param>
-	/// <param name="excludedPlantTypes">All plant types within this list will never be added to the final surrounding plants list. If this parameter is left null, no plant types will be excluded</param>
-	/// <returns>A list of all the surrounding plant objects around this garden placeable that match the exclusive and excluded plant types</returns>
-	public List<Plant> GetSurroundingPlants (int radius, List<PlantType> exclusivePlantTypes = null, List<PlantType> excludedPlantTypes = null) {
+    #region Helper Methods
+    /// <summary>
+    /// Get a list of specific plants that are surrounding this garden placeable within a certain radius
+    /// </summary>
+    /// <param name="radius">The radius around this plant to check for other plants</param>
+    /// <param name="exclusivePlantTypes">All plant types within this list will exclusively be added to the final surrounding plants list. If this parameter is left null, all plants of any plant type will be added</param>
+    /// <param name="excludedPlantTypes">All plant types within this list will never be added to the final surrounding plants list. If this parameter is left null, no plant types will be excluded</param>
+    /// <returns>A list of all the surrounding plant objects around this garden placeable that match the exclusive and excluded plant types</returns>
+    public List<Plant> GetSurroundingPlants (int radius, List<PlantType> exclusivePlantTypes = null, List<PlantType> excludedPlantTypes = null) {
 		List<Plant> surroundingPlants = new List<Plant>( );
 
 		// Loop through all plants that are surrounding this garden placeable within a certain radius
@@ -182,11 +187,13 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	public int CountSurroundingArtifacts (int radius, List<ArtifactType> exclusiveArtifactTypes = null, List<ArtifactType> excludedArtifactTypes = null) {
 		return GetSurroundingArtifacts(radius, exclusiveArtifactTypes, excludedArtifactTypes).Count;
 	}
+    #endregion
 
-	/// <summary>
-	/// Called when the garden is update in any way. This means that when a plant is placed or removed on the board, this function is called
-	/// </summary>
-	public virtual void OnGardenUpdated ( ) { }
+    #region Effect Triggers
+    /// <summary>
+    /// Called when the garden is update in any way. This means that when a plant is placed or removed on the board, this function is called
+    /// </summary>
+    public virtual void OnGardenUpdated ( ) { }
 
 	/// <summary>
 	/// Called when the player's turn starts
@@ -207,4 +214,5 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	/// Called when this garden placeable is killed
 	/// </summary>
 	public virtual void OnKilled ( ) { }
+    #endregion
 }

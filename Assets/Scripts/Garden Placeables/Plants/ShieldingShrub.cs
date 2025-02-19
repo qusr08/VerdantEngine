@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShieldingShrub : Plant {
     /// <summary>
-	/// All adjacent plants gain +1 HP
+	/// All adjacent plants gain +1 max HP
 	/// </summary>
     public override void OnGardenUpdated()
     {

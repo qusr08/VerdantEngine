@@ -15,6 +15,16 @@ public class Empoweroot : Plant {
             damageAdded = true;
             Debug.Log("+1 Damage from " + Position);
         }
+
+        if (EffectCondition()) {
+            ApplyEffect();
+        }
     }
 
+    public bool EffectCondition() {
+        return CountSurroundingPlants(1) >= 3;
+    }
+    public void ApplyEffect() {
+        Debug.Log("+1 Damage from " + Position);
+    }
 }
