@@ -17,6 +17,9 @@ public class GardenManager : MonoBehaviour {
 	[SerializeField] private Transform artifactContainer;
 	[SerializeField] private Transform groundTileContainer;
 
+	[Header("Garden ID System")]
+	[SerializeField] private static uint nextId = 1;
+
 	/// <summary>
 	/// A reference to the player data scriptable object
 	/// </summary>
@@ -52,21 +55,21 @@ public class GardenManager : MonoBehaviour {
 
 		/// TEST: Create test plants and move them around
         PlacePlant(PlantType.HARDY_HEDGE, 3, 1);
-		PlacePlant(PlantType.HARDY_HEDGE, 3, 2);
-        PlacePlant(PlantType.HARDY_HEDGE, 3, 3);
+		//PlacePlant(PlantType.HARDY_HEDGE, 3, 2);
+        //PlacePlant(PlantType.HARDY_HEDGE, 3, 3);
         PlacePlant(PlantType.EMPOWEROOT, 4, 4);
 		PlacePlant(PlantType.EMPOWEROOT, 1, 2);
 		PlacePlant(PlantType.POWER_FLOWER, 1, 3);
         PlacePlant(PlantType.POWER_FLOWER, 0, 2);
         PlacePlant(PlantType.POWER_FLOWER, 0, 3);
-        PlacePlant(PlantType.SHIELDING_SHRUB, 3, 5);
-		PlacePlant(PlantType.SHIELDING_SHRUB, 2, 5);
+        //PlacePlant(PlantType.SHIELDING_SHRUB, 3, 5);
+		//PlacePlant(PlantType.SHIELDING_SHRUB, 2, 5);
 		PlacePlant(PlantType.POWER_FLOWER, 1, 5);
 
 
-        MovePlant(PlayerData.Garden[1, 1].GardenPlaceable as Plant, 1, 2);
+        //MovePlant(PlayerData.Garden[1, 1].GardenPlaceable as Plant, 1, 2);
 
-		UprootPlant(0, 0);
+		//UprootPlant(0, 0);
 
 		// Debug.Log("Flower Count: " + CountPlants(exclusivePlantTypes: new List<PlantType>( ) { PlantType.FLOWER }));
 		// Debug.Log("Cactus Count: " + CountPlants(exclusivePlantTypes: new List<PlantType>( ) { PlantType.CACTUS }));
@@ -390,4 +393,14 @@ public class GardenManager : MonoBehaviour {
 	public int CountArtifacts (List<ArtifactType> exclusiveArtifactTypes = null, List<ArtifactType> excludedArtifactTypes = null) {
 		return GetFilteredArtifacts(exclusiveArtifactTypes, excludedArtifactTypes).Count;
 	}
+
+	/// <summary>
+	/// Always returns a unique ID number, to be used as identifiers for the plants in the garden.
+	/// </summary>
+	/// <returns>a unique ID in the form of an unsigned int.</returns>
+	public static uint GetId() {
+		uint returnId = nextId;
+		nextId++;
+		return returnId;
+    }
 }
