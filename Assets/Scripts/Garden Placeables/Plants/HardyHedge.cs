@@ -27,8 +27,10 @@ public class HardyHedge : Plant {
         else
         {
             gainedFromID = 0;
-            gained = false;
-            MaxHealth -= 1;
+            if (gained) {
+                MaxHealth -= 1;
+                gained = false;
+            }
         }
         
     }
