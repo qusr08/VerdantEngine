@@ -60,7 +60,7 @@ public class GardenTile : MonoBehaviour {
 
 	private void OnMouseEnter ( ) {
 		/// TESTING
-		IsAttacked = true;
+		//IsAttacked = true;
 		if(_gardenPlaceable != null)
 		{
 			_UIDisplay.UpdateText(_gardenPlaceable.gameObject.name, "Description");
@@ -71,7 +71,7 @@ public class GardenTile : MonoBehaviour {
 
 	private void OnMouseExit ( ) {
 		/// TESTING
-		IsAttacked = false;
+		//IsAttacked = false;
 	}
 
 	/// <summary>

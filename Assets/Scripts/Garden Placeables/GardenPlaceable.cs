@@ -31,7 +31,14 @@ public abstract class GardenPlaceable : MonoBehaviour {
 			if (_health <= 0) {
 				OnKilled( );
 
-				Destroy(gameObject);
+				// Uproot the plant from the garden properly after it is killed
+				if (this is Plant)
+                {
+                    gardenManager.UprootPlant(this as Plant);
+                } else if (this is Artifact)
+				{
+                    gardenManager.UprootArtifact(this as Artifact);
+                }
 			}
 		}
 	}
