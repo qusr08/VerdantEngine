@@ -821,7 +821,7 @@ MonoBehaviour:
     m_keys: 
     m_values: []
   groundTilePrefab: {fileID: 6778073468744122207, guid: e849fdfe6785c8844ae36b546a419676, type: 3}
-  _playerData: {fileID: 11400000, guid: 391beb7d74cb7d146863eca377d373a0, type: 2}
+  _playerData: {fileID: 1707282257}
   plantContainer: {fileID: 908425984}
   artifactContainer: {fileID: 1625065070}
   groundTileContainer: {fileID: 1248689023}
@@ -1088,7 +1088,7 @@ MonoBehaviour:
   player_Combat_Manager: {fileID: 1198069308}
   combatUIManager: {fileID: 414572767}
   currentComabt: {fileID: 11400000, guid: 0388f1ddce0134f438feaec552506c5f, type: 2}
-  player: {fileID: 11400000, guid: 391beb7d74cb7d146863eca377d373a0, type: 2}
+  player: {fileID: 1707282257}
   garden: {fileID: 228952662}
   spawnLocations:
   - {fileID: 1873178112}
@@ -6153,6 +6153,59 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1707282255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1707282256}
+  - component: {fileID: 1707282257}
+  m_Layer: 0
+  m_Name: PlayerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1707282256
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707282255}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1707282257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707282255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ddaabf345f10a643a681ac07b17b782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gardenSize: 6
+  cuurentHealth: 0
+  maxHealth: 0
+  money: 0
+  currentParts:
+  - {fileID: 11400000, guid: d04f24c3972d588429b4bca3f504afda, type: 2}
+  - {fileID: 11400000, guid: 1496a1f858064c54ab1f8b9e695f07fa, type: 2}
+  - {fileID: 11400000, guid: 1ca00d970efe1b74f9ef52762c38e9c2, type: 2}
+  - {fileID: 11400000, guid: a60e59485b2c12d44acd701305b4f55c, type: 2}
 --- !u!1 &1717702279
 GameObject:
   m_ObjectHideFlags: 0
@@ -7735,3 +7788,4 @@ SceneRoots:
   - {fileID: 1198069309}
   - {fileID: 414572768}
   - {fileID: 341434490}
+  - {fileID: 1707282256}
