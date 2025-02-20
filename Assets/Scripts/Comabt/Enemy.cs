@@ -117,7 +117,17 @@ public class Enemy : MonoBehaviour
         {
             iconHolder.SetActive(true);
             iconHolder.transform.SetParent(currentAim[0].transform);
-            iconHolder.transform.localPosition = Vector3.zero;
+            if (currentAttack.lineAttackIsVertical)
+            {
+                iconHolder.transform.localPosition = Vector3.zero + new Vector3(0, 2, -1);
+                iconHolder.transform.rotation = new Quaternion(0.506545067f, -0.493368179f, 0.493368179f, -0.506545067f);
+            }
+            else
+            {
+                iconHolder.transform.localPosition = Vector3.zero + new Vector3(2, -1, -1);
+                iconHolder.transform.rotation = new Quaternion(0.00228309655f, -0.707103133f, 0.707103133f, -0.00228309655f);
+
+            }
         }
         else
         {
