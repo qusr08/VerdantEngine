@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public abstract class InventoryBox : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
 	[Header("References - InventoryItem")]
 	[SerializeField] protected Inventory inventory;
+	[SerializeField] protected PlayerDataManager playerDataManager;
 	[SerializeField] protected GardenManager gardenManager;
 	[SerializeField] protected TextMeshProUGUI amountText;
 	[SerializeField] protected Image image;
@@ -40,18 +41,15 @@ public abstract class InventoryBox : MonoBehaviour, IPointerDownHandler, IPointe
 		}
 	}
 
-	private void OnValidate ( ) {
+	private void Awake ( ) {
 		inventory = FindObjectOfType<Inventory>( );
 		gardenManager = FindObjectOfType<GardenManager>( );
-	}
-
-	private void Awake ( ) {
-		OnValidate( );
+		playerDataManager = FindObjectOfType<PlayerDataManager>( );
 	}
 
 	public void OnPointerDown (PointerEventData eventData) {
-		inventory.MouseImage.sprite = Prefab.GetComponent<GardenPlaceable>( ).InventorySprite;
-		inventory.MouseImage.gameObject.SetActive(true);
+		playerDataManager.MouseImage.sprite = Prefab.GetComponent<GardenPlaceable>( ).InventorySprite;
+		playerDataManager.MouseImage.gameObject.SetActive(true);
 	}
 
 	public virtual void OnPointerUp (PointerEventData eventData) {

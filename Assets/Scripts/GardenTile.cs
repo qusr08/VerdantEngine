@@ -5,7 +5,8 @@ using UnityEngine;
 public class GardenTile : MonoBehaviour {
 	[Header("References")]
 	[SerializeField] private MeshRenderer meshRenderer;
-	[SerializeField] private Inventory inventory;
+	[SerializeField] private PlayerDataManager playerDataManager;
+	[SerializeField] private GardenManager gardenManager;
 	[Header("Properties")]
 	[SerializeField] private Color[ ] basicColors;
 	[SerializeField] private Color[ ] attackedColors;
@@ -40,12 +41,12 @@ public class GardenTile : MonoBehaviour {
 			// Update the inventory's selected tile based on the new value
 			if (_isSelected) {
 				// Set the inventory's selected tile to this tile
-				inventory.SelectedGardenTile = this;
+				gardenManager.SelectedGardenTile = this;
 			} else {
 				// Only set the selected tile to null if it is still the current selected tile
 				// It may be possible that another tile is selected before this one sets the selected tile to null, which would break the code
-				if (inventory.SelectedGardenTile == this) {
-					inventory.SelectedGardenTile = null;
+				if (gardenManager.SelectedGardenTile == this) {
+					gardenManager.SelectedGardenTile = null;
 				}
 			}
 
@@ -82,7 +83,8 @@ public class GardenTile : MonoBehaviour {
 	}
 
 	private void Awake ( ) {
-		inventory = FindObjectOfType<Inventory>( );
+		playerDataManager = FindObjectOfType<PlayerDataManager>( );
+		gardenManager = FindObjectOfType<GardenManager>( );
 	}
 
 	private void OnMouseEnter ( ) {
@@ -96,6 +98,10 @@ public class GardenTile : MonoBehaviour {
 
 	private void OnMouseDown ( ) {
 
+	}
+
+	private void OnMouseUp ( ) {
+		
 	}
 
 	private void OnMouseExit ( ) {

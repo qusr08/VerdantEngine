@@ -4073,10 +4073,6 @@ MonoBehaviour:
   itemBoxesContainer: {fileID: 168390826}
   plantInventoryBoxPrefab: {fileID: 3238021987426479396, guid: ceed34fd4434c70409ea344eca908668, type: 3}
   artifactInventoryBoxPrefab: {fileID: 4097344936816239343, guid: 88de780301c1e784685cf3c7f7e6bb95, type: 3}
-  _selectedGardenTile: {fileID: 0}
-  mouseImage: {fileID: 1983731385}
-  mouseImageTransform: {fileID: 1983731384}
-  guiCanvas: {fileID: 1544708344}
 --- !u!1 &1049007371
 GameObject:
   m_ObjectHideFlags: 0
@@ -5867,11 +5863,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ddaabf345f10a643a681ac07b17b782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gardenSize: 6
+  _gardenSize: 6
   cuurentHealth: 10
   maxHealth: 10
   money: 0
-  currentParts: []
+  _selectedGardenTile: {fileID: 0}
+  _mouseImage: {fileID: 1983731385}
+  mouseImageTransform: {fileID: 1983731384}
+  guiCanvas: {fileID: 1544708344}
 --- !u!1 &1717702279
 GameObject:
   m_ObjectHideFlags: 0
