@@ -15,7 +15,7 @@ public class Player_Combat_Manager : MonoBehaviour
     int energy = 0;
     public TextMeshProUGUI energyText;
     PlayerData playerData;
-
+    public GameObject damageIndicatorPrefab;
     public void SetUp( PlayerData data, GardenManager garden, CombatManager combatManager)
     {
         playerData = data;
@@ -93,6 +93,13 @@ public class Player_Combat_Manager : MonoBehaviour
             if (tileHit != null && tileHit.GardenPlaceable != null)
             {
                 Debug.Log(enemy.name + " attacked the player using " + attack.attackName + " dealing " + attack.damage + " to the " + tileHit.GardenPlaceable.name);
+
+                // Spawn the damage indicator
+                GameObject indicator = Instantiate(damageIndicatorPrefab, tileHit.transform.position, tileHit.GardenPlaceable.transform.rotation);
+
+                // Set the damage text
+                indicator.GetComponent<DamageIndicator>().SetDamage(attack.damage);
+
 
                 tileHit.GardenPlaceable.Health -= attack.damage;
             }

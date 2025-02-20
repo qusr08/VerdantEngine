@@ -16,7 +16,6 @@ public class GardenManager : MonoBehaviour {
 	[SerializeField] private Transform plantContainer;
 	[SerializeField] private Transform artifactContainer;
 	[SerializeField] private Transform groundTileContainer;
-
 	/// <summary>
 	/// A reference to the player data scriptable object
 	/// </summary>
