@@ -35,6 +35,7 @@ public class PlayerDataManager : MonoBehaviour {
 	public List<Part_SO> CurrentParts { get; private set; }
 
 	private void Awake ( ) {
+		CurrentParts = new List<Part_SO>( );
 		Garden = new GardenTile[GardenSize, GardenSize];
 	}
 
