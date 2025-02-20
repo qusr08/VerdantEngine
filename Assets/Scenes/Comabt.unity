@@ -825,7 +825,6 @@ MonoBehaviour:
   plantContainer: {fileID: 908425984}
   artifactContainer: {fileID: 1625065070}
   groundTileContainer: {fileID: 1248689023}
-  DamageIndicatorPrefab: {fileID: 985783835550424020, guid: bf932e9924e884748b9300dabc7007d9, type: 3}
 --- !u!4 &228952663
 Transform:
   m_ObjectHideFlags: 0
@@ -4681,6 +4680,7 @@ MonoBehaviour:
   MenuObjects: []
   weaponMenuObject: {fileID: 4827586323188922309, guid: 38abc307291588c4db7046042d976e59, type: 3}
   energyText: {fileID: 548699481}
+  damageIndicatorPrefab: {fileID: 985783835550424020, guid: bf932e9924e884748b9300dabc7007d9, type: 3}
 --- !u!4 &1198069309
 Transform:
   m_ObjectHideFlags: 0
