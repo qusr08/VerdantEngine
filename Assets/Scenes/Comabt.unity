@@ -5772,6 +5772,9 @@ MonoBehaviour:
   mouseImage: {fileID: 1983731385}
   mouseImageTransform: {fileID: 1983731384}
   guiCanvas: {fileID: 1544708344}
+  _currentActions: 3
+  _maxActions: 3
+  actionsText: {fileID: 701897918}
 --- !u!1 &1717702279
 GameObject:
   m_ObjectHideFlags: 0

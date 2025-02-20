@@ -101,27 +101,37 @@ public class GardenTile : MonoBehaviour {
 	}
 
 	private void OnMouseDown ( ) {
-		// If the garden placeable is not equal to null, then it can be picked up
-		if (GardenPlaceable != null) {
-			playerDataManager.MouseSprite = GardenPlaceable.InventorySprite;
-			GardenPlaceable.GetComponent<MeshRenderer>( ).enabled = false;
-		}
-	}
-
-	private void OnMouseUp ( ) {
-		// If there is no selected tile, then return and do nothing
-		if (gardenManager.SelectedGardenTile == null) {
+		// If this tile has no garden placeable, then do not try to move it
+		if (GardenPlaceable == null) {
 			return;
 		}
 
-		// If there is a plant at the selected garden tile already, do not try to move this garden placeable to that tile
-		if (gardenManager.SelectedGardenTile.GardenPlaceable != null) {
+		playerDataManager.MouseSprite = GardenPlaceable.InventorySprite;
+		GardenPlaceable.GetComponent<MeshRenderer>( ).enabled = false;
+	}
+
+	private void OnMouseUp ( ) {
+		// If this tile has no garden placeable, then do not try to move it
+		if (GardenPlaceable == null) {
 			return;
 		}
 
 		GardenPlaceable.GetComponent<MeshRenderer>( ).enabled = true;
-		GardenPlaceable.GardenTile = gardenManager.SelectedGardenTile;
 		playerDataManager.MouseSprite = null;
+
+		// If there is a plant at the selected garden tile already, do not try to move this garden placeable to that tile
+		if (gardenManager.SelectedGardenTile != null && gardenManager.SelectedGardenTile.GardenPlaceable != null) {
+			return;
+		}
+
+		// If there are no more actions remaining, then do not try to move it
+		if (playerDataManager.CurrentActions <= 0) {
+			return;
+		}
+
+		// Actually place the garden placeable on the new tile and decrease the action stat counter
+		GardenPlaceable.GardenTile = gardenManager.SelectedGardenTile;
+		playerDataManager.CurrentActions--;
 	}
 
 	/// <summary>

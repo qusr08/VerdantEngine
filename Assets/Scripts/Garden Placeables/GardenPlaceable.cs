@@ -11,7 +11,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	[SerializeField] protected GardenManager gardenManager;
 	[SerializeField] protected PlayerDataManager playerDataManager;
 	[Header("Properties - GardenPlaceable")]
-	[SerializeField, Min(0), Tooltip("The starting health of this garden placeable without any modifiers.")] private int _startingHealth;
+	[SerializeField, Min(0), Tooltip("The starting health of this garden placeable without any modifiers.")] private int _maxHealth;
 	[SerializeField, Min(0), Tooltip("The cost of this garden placeable in the shop.")] private int _cost;
 	[SerializeField, Tooltip("The name of this garden placeable.")] private string _name;
 	[SerializeField, Multiline, Tooltip("The description of this garden placeable.")] private string _description;
@@ -42,14 +42,24 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	public Sprite InventorySprite { get => _inventorySprite; }
 
 	/// <summary>
-	/// The starting health of this garden placeable
-	/// </summary>
-	public int StartingHealth => _startingHealth;
-
-	/// <summary>
 	/// Information about the health of this garden placeable
 	/// </summary>
 	public Stat HealthStat { get => _healthStat; private set => _healthStat = value; }
+
+	/// <summary>
+	/// The max health of this garden placeable
+	/// </summary>
+	public int MaxHealth {
+		get => _maxHealth;
+		set {
+			_maxHealth = value;
+
+			// Make sure to update the health stat as well
+			if (HealthStat != null) {
+				HealthStat.MaxValue = _maxHealth;
+			}
+		}
+	}
 
 	/// <summary>
 	/// The position of this plant in the garden
@@ -94,7 +104,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 		GardenTile = gardenTile;
 
 		// Set up stats
-		HealthStat = new Stat(StartingHealth);
+		HealthStat = new Stat(MaxHealth, MaxHealth);
 		HealthStat.WhenZero += OnKilled;
 
 		// Make sure the plants are always facing towards the camera
