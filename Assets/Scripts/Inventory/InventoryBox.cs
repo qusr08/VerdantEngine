@@ -1,12 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public abstract class InventoryBox : MonoBehaviour {
+public abstract class InventoryBox : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
 	[Header("References - InventoryItem")]
 	[SerializeField] protected Inventory inventory;
+	[SerializeField] protected PlayerDataManager playerDataManager;
 	[SerializeField] protected GardenManager gardenManager;
 	[SerializeField] protected TextMeshProUGUI amountText;
 	[SerializeField] protected Image image;
@@ -38,20 +41,19 @@ public abstract class InventoryBox : MonoBehaviour {
 		}
 	}
 
-	private void OnValidate ( ) {
+	private void Awake ( ) {
 		inventory = FindObjectOfType<Inventory>( );
 		gardenManager = FindObjectOfType<GardenManager>( );
+		playerDataManager = FindObjectOfType<PlayerDataManager>( );
 	}
 
-	private void Awake ( ) {
-		OnValidate( );
+	public void OnPointerDown (PointerEventData eventData) {
+		playerDataManager.MouseImage.sprite = Prefab.GetComponent<GardenPlaceable>( ).InventorySprite;
+		playerDataManager.MouseImage.gameObject.SetActive(true);
 	}
 
-	private void OnMouseDown ( ) {
-		
-	}
-
-	private void OnMouseUp ( ) {
-
+	public virtual void OnPointerUp (PointerEventData eventData) {
+		throw new NotImplementedException( );
+		/// NOTE: This function should be overridden in child classes to implement placeable type specific code
 	}
 }

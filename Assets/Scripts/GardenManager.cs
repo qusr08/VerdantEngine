@@ -12,18 +12,17 @@ public class GardenManager : MonoBehaviour {
 	[SerializeField] private PlantPrefabDictionary _plantPrefabs;
 	[SerializeField] private ArtifactPrefabDictionary _artifactPrefabs;
 	[SerializeField] private GameObject groundTilePrefab;
-	[SerializeField] private PlayerData _playerData;
+	[SerializeField] private PlayerDataManager _playerData;
 	[SerializeField] private Transform plantContainer;
 	[SerializeField] private Transform artifactContainer;
 	[SerializeField] private Transform groundTileContainer;
-
-	[Header("Garden ID System")]
-	[SerializeField] private static uint nextId = 1;
+	[Space]
+	[SerializeField] private GardenTile _selectedGardenTile;
 
 	/// <summary>
 	/// A reference to the player data scriptable object
 	/// </summary>
-	public PlayerData PlayerData => _playerData;
+	public PlayerDataManager PlayerData => _playerData;
 
 	/// <summary>
 	/// A list of all the plant prefabs that can be placed on the garden
@@ -44,6 +43,11 @@ public class GardenManager : MonoBehaviour {
 	/// A list of all the artifacts that are currently in the garden
 	/// </summary>
 	public List<Artifact> Artifacts { get; private set; }
+
+	/// <summary>
+	/// The garden tile that is currently selected
+	/// </summary>
+	public GardenTile SelectedGardenTile { get => _selectedGardenTile; set => _selectedGardenTile = value; }
 
 	private void Awake ( ) {
 		Plants = new List<Plant>( );
@@ -393,14 +397,4 @@ public class GardenManager : MonoBehaviour {
 	public int CountArtifacts (List<ArtifactType> exclusiveArtifactTypes = null, List<ArtifactType> excludedArtifactTypes = null) {
 		return GetFilteredArtifacts(exclusiveArtifactTypes, excludedArtifactTypes).Count;
 	}
-
-	/// <summary>
-	/// Always returns a unique ID number, to be used as identifiers for the plants in the garden.
-	/// </summary>
-	/// <returns>a unique ID in the form of an unsigned int.</returns>
-	public static uint GetId() {
-		uint returnId = nextId;
-		nextId++;
-		return returnId;
-    }
 }
