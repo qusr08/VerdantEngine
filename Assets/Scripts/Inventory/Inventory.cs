@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour {
 	[Header("References - Inventory")]
@@ -8,11 +9,26 @@ public class Inventory : MonoBehaviour {
 	[SerializeField] private Transform itemBoxesContainer;
 	[SerializeField] private GameObject plantInventoryBoxPrefab;
 	[SerializeField] private GameObject artifactInventoryBoxPrefab;
+	[Space]
+	[SerializeField] private GardenTile _selectedGardenTile;
+	[SerializeField] private Image mouseImage;
+	[SerializeField] private RectTransform mouseImageTransform;
+	[SerializeField] private Canvas guiCanvas;
 
 	/// <summary>
 	/// A list of all the inventory boxes
 	/// </summary>
 	public List<InventoryBox> InventoryBoxes { get => _inventoryBoxes; private set => _inventoryBoxes = value; }
+
+	/// <summary>
+	/// The garden tile that is currently selected
+	/// </summary>
+	public GardenTile SelectedGardenTile { get => _selectedGardenTile; set => _selectedGardenTile = value; }
+
+	/// <summary>
+	/// A reference to the mouse image that follows the mouse around. This can be used to show what plant is being placed
+	/// </summary>
+	public Image MouseImage { get => mouseImage; private set => mouseImage = value; }
 
 	private void Start ( ) {
 		/// TESTING
@@ -20,6 +36,11 @@ public class Inventory : MonoBehaviour {
 		AddPlant(PlantType.HARDY_HEDGE);
 		AddPlant(PlantType.HARDY_HEDGE);
 		RemovePlant(PlantType.HARDY_HEDGE);
+	}
+
+	private void Update ( ) {
+		// Set the mouse image to match wherever the mouse is
+		mouseImageTransform.anchoredPosition = Input.mousePosition / guiCanvas.scaleFactor;
 	}
 
 	/// <summary>
