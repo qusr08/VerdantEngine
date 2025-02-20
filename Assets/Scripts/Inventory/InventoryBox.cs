@@ -48,8 +48,7 @@ public abstract class InventoryBox : MonoBehaviour, IPointerDownHandler, IPointe
 	}
 
 	public void OnPointerDown (PointerEventData eventData) {
-		playerDataManager.MouseImage.sprite = Prefab.GetComponent<GardenPlaceable>( ).InventorySprite;
-		playerDataManager.MouseImage.gameObject.SetActive(true);
+		playerDataManager.MouseSprite = Prefab.GetComponent<GardenPlaceable>( ).InventorySprite;
 	}
 
 	public virtual void OnPointerUp (PointerEventData eventData) {

@@ -15,9 +15,14 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public List<GardenTile> FinalAim = new List<GardenTile>();
     public bool attacksAreRandom;
     [HideInInspector] public CombatManager manager;
-    public GameObject iconHolder;
+	[HideInInspector] private PlayerDataManager playerDataManager;
+	public GameObject iconHolder;
 
-    void Start()
+	private void Awake ( ) {
+		playerDataManager = FindObjectOfType<PlayerDataManager>();
+	}
+
+	void Start()
     {
         maxHealth = health;
         if (attacks.Count > 0)
@@ -65,7 +70,7 @@ public class Enemy : MonoBehaviour
         // Clear previous markings
      //   UnmarkTiles();
 
-        int gardenSize = manager.garden.PlayerData.GardenSize;
+        int gardenSize = playerDataManager.GardenSize;
         int randomAim = UnityEngine.Random.Range(0, gardenSize);
 
         if (currentAttack.lineAttackIsVertical)

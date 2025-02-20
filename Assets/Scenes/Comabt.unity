@@ -775,10 +775,8 @@ MonoBehaviour:
     m_keys: 
     m_values: []
   groundTilePrefab: {fileID: 6778073468744122207, guid: e849fdfe6785c8844ae36b546a419676, type: 3}
-  _playerData: {fileID: 1707282257}
-  plantContainer: {fileID: 908425984}
-  artifactContainer: {fileID: 1625065070}
-  groundTileContainer: {fileID: 1248689023}
+  playerDataManager: {fileID: 1707282257}
+  _selectedGardenTile: {fileID: 0}
 --- !u!4 &228952663
 Transform:
   m_ObjectHideFlags: 0
@@ -791,10 +789,7 @@ Transform:
   m_LocalPosition: {x: 0.60474455, y: 5.552852, z: -1.4827546}
   m_LocalScale: {x: 0.25518373, y: 0.25518376, z: 0.2551837}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 1248689023}
-  - {fileID: 908425984}
-  - {fileID: 1625065070}
+  m_Children: []
   m_Father: {fileID: 281454751}
   m_LocalEulerAnglesHint: {x: 0, y: -3.8, z: 0}
 --- !u!1 &238726483
@@ -3545,37 +3540,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!1 &908425983
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 908425984}
-  m_Layer: 0
-  m_Name: Plants
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &908425984
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 908425983}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 228952663}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &948025136
 GameObject:
   m_ObjectHideFlags: 0
@@ -4461,37 +4425,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1248689022
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1248689023}
-  m_Layer: 0
-  m_Name: Ground Tiles
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1248689023
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1248689022}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 228952663}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1252792317
 GameObject:
@@ -5579,37 +5512,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1607299417}
   m_CullTransparentMesh: 1
---- !u!1 &1625065069
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1625065070}
-  m_Layer: 0
-  m_Name: Artifacts
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1625065070
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625065069}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 228952663}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1629569550
 GameObject:
   m_ObjectHideFlags: 0
@@ -5867,8 +5769,7 @@ MonoBehaviour:
   cuurentHealth: 10
   maxHealth: 10
   money: 0
-  _selectedGardenTile: {fileID: 0}
-  _mouseImage: {fileID: 1983731385}
+  mouseImage: {fileID: 1983731385}
   mouseImageTransform: {fileID: 1983731384}
   guiCanvas: {fileID: 1544708344}
 --- !u!1 &1717702279
@@ -6452,7 +6353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1983731384
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6479,7 +6380,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1983731383}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
