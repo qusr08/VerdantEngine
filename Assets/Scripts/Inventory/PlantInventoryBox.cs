@@ -25,8 +25,7 @@ public class PlantInventoryBox : InventoryBox {
 
 	public override void OnPointerUp (PointerEventData eventData) {
 		// Reset the mouse image sprite
-		playerDataManager.MouseImage.gameObject.SetActive(false);
-		playerDataManager.MouseImage.sprite = null;
+		playerDataManager.MouseSprite = null;
 
 		// If there is no garden tile selected, then do nothing
 		if (gardenManager.SelectedGardenTile == null) {

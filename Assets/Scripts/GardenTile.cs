@@ -96,22 +96,38 @@ public class GardenTile : MonoBehaviour {
 		IsSelected = true;
 	}
 
-	private void OnMouseDown ( ) {
+	private void OnMouseExit ( ) {
+		IsSelected = false;
+	}
 
+	private void OnMouseDown ( ) {
+		// If the garden placeable is not equal to null, then it can be picked up
+		if (GardenPlaceable != null) {
+			playerDataManager.MouseSprite = GardenPlaceable.InventorySprite;
+			GardenPlaceable.GetComponent<MeshRenderer>( ).enabled = false;
+		}
 	}
 
 	private void OnMouseUp ( ) {
-		
-	}
+		// If there is no selected tile, then return and do nothing
+		if (gardenManager.SelectedGardenTile == null) {
+			return;
+		}
 
-	private void OnMouseExit ( ) {
-		IsSelected = false;
+		// If there is a plant at the selected garden tile already, do not try to move this garden placeable to that tile
+		if (gardenManager.SelectedGardenTile.GardenPlaceable != null) {
+			return;
+		}
+
+		GardenPlaceable.GetComponent<MeshRenderer>( ).enabled = true;
+		GardenPlaceable.GardenTile = gardenManager.SelectedGardenTile;
+		playerDataManager.MouseSprite = null;
 	}
 
 	/// <summary>
 	/// Update this garden tile's material based on if it is attacked or not
 	/// </summary>
-	private void UpdateMaterial () {
+	private void UpdateMaterial ( ) {
 		// Set the material color of the ground tile
 		Material tempMaterial = new Material(meshRenderer.material);
 		// Make the colors of the ground tiles a checkerboard pattern
