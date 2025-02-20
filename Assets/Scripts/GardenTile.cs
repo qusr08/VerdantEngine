@@ -94,6 +94,10 @@ public class GardenTile : MonoBehaviour {
 		IsSelected = true;
 	}
 
+	private void OnMouseDown ( ) {
+
+	}
+
 	private void OnMouseExit ( ) {
 		IsSelected = false;
 	}
@@ -101,8 +105,7 @@ public class GardenTile : MonoBehaviour {
 	/// <summary>
 	/// Update this garden tile's material based on if it is attacked or not
 	/// </summary>
-	/// <param name="forceAttackedState">Whether or not to force the tile to appear as if it was attacked</param>
-	private void UpdateMaterial (bool forceAttackedState = false) {
+	private void UpdateMaterial () {
 		// Set the material color of the ground tile
 		Material tempMaterial = new Material(meshRenderer.material);
 		// Make the colors of the ground tiles a checkerboard pattern
