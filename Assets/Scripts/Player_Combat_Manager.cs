@@ -14,14 +14,14 @@ public class Player_Combat_Manager : MonoBehaviour
     public GameObject weaponMenuObject;
     int energy = 0;
     public TextMeshProUGUI energyText;
-    PlayerData playerData;
+    PlayerDataManager playerData;
 
-    public void SetUp( PlayerData data, GardenManager garden, CombatManager combatManager)
+    public void SetUp( PlayerDataManager data, GardenManager garden, CombatManager combatManager)
     {
         playerData = data;
         this.combatManager = combatManager;
         this.garden = garden;
-        parts = playerData.currentParts;
+        parts = playerData.CurrentParts;
         foreach (Part_SO part in parts )
         {
             GameObject spawnedItem;
