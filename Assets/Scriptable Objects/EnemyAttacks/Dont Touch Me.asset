@@ -25,4 +25,4 @@ MonoBehaviour:
   attackType: 0
   damage: 2
   lineAttackIsVertical: 0
-  currentAim: []
+  maxCoolDown: 2
