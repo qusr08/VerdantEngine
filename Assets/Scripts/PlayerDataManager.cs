@@ -37,7 +37,9 @@ public class PlayerDataManager : MonoBehaviour {
 			hpSlider.value = (float)_currentHealth / (float)maxHealth;
 			if (_currentHealth <= 0)
 			{
-			}
+				youLose.SetActive(true);
+
+            }
 		}
 	}
 
