@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     private bool needNewAttack = true;
     int randomAim;
     bool isFirstTimethisRound = true;
+    bool attackDIrection = true;
     void Start()
     {
         maxHealth = health;
@@ -90,15 +91,29 @@ public class Enemy : MonoBehaviour
         {
             randomAim = UnityEngine.Random.Range(0, gardenSize);
             isFirstTimethisRound = false;
+            attackDIrection = (UnityEngine.Random.value <= 0.5f);
+
         }
 
-        if (currentAttack.lineAttackIsVertical)
+        if (currentAttack.lineAttackIsHorizental)
         {
-            for (int i = gardenSize - 1; i >= 0; i--)
+            if (attackDIrection)
             {
-                GardenTile tile = manager.player.Garden[randomAim, i];
-                if (tile != null)
-                    currentAim.Add(tile);
+                for (int i = gardenSize - 1; i >= 0; i--)
+                {
+                    GardenTile tile = manager.player.Garden[randomAim, i];
+                    if (tile != null)
+                        currentAim.Add(tile);
+                }
+            }
+            else
+            {
+                for (int i = 0 ; i < gardenSize; i++)
+                {
+                    GardenTile tile = manager.player.Garden[randomAim, i];
+                    if (tile != null)
+                        currentAim.Add(tile);
+                }
             }
         }
         else
@@ -122,7 +137,7 @@ public class Enemy : MonoBehaviour
         {
             iconHolder.SetActive(true);
             iconHolder.transform.SetParent(currentAim[0].transform);
-            if (currentAttack.lineAttackIsVertical)
+            if (currentAttack.lineAttackIsHorizental)
             {
                 iconHolder.transform.localPosition = Vector3.zero + new Vector3(0, 2, -1);
                 iconHolder.transform.rotation = new Quaternion(0.506545067f, -0.493368179f, 0.493368179f, -0.506545067f);

@@ -23,5 +23,5 @@ MonoBehaviour:
   targetType: 0
   attackType: 3
   damage: 1
-  lineAttackIsVertical: 1
+  lineAttackIsHorizental: 1
   maxCoolDown: 1

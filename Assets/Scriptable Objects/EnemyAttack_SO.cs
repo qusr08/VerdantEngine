@@ -36,7 +36,7 @@ public class EnemyAttack_SO : ScriptableObject
     public EnemyTargeting targetType;
     public EnemyAttackType attackType;
     public int damage;
-    public bool lineAttackIsVertical;
+    public bool lineAttackIsHorizental;
     public int maxCoolDown;
 
 

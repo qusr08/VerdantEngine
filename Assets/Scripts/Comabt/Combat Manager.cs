@@ -93,7 +93,7 @@ public class CombatManager : MonoBehaviour
             item.attacked(part,player_Combat_Manager);
         }
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
 
 
 
