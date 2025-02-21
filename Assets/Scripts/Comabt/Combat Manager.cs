@@ -167,6 +167,7 @@ public class CombatManager : MonoBehaviour
 
        
         player_Combat_Manager.PlayerStartTurn();
+        AllEnemeiesSrartRound();
     }
     
 
