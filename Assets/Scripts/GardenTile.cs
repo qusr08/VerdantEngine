@@ -93,7 +93,7 @@ public class GardenTile : MonoBehaviour {
 
 	private void OnMouseEnter ( ) {
 		if (GardenPlaceable != null) {
-			UIDisplay.UpdateText(GardenPlaceable.Name, GardenPlaceable.Description, GardenPlaceable.HealthStat);
+			UIDisplay.UpdateText(GardenPlaceable.Name, GardenPlaceable.Description, GardenPlaceable.HealthStat, GardenPlaceable.InventorySprite);
 			//Debug.Log(GardenPlaceable.gameObject.name);
 		}
 
