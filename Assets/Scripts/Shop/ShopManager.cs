@@ -39,9 +39,11 @@ public class ShopManager : MonoBehaviour
     }
     public void BuyPlant(int itemIndex)
     {
-        string itemName = transform.GetChild(itemIndex - 1).GetChild(1).name;
-        Debug.Log("Bought Item " + itemIndex + ", Plant Name : " + itemName);
-        playerData.playerMoney = playerData.playerMoney - transform.GetChild(itemIndex - 1).GetChild(1).GetComponent<Plant>().cost;
-        balanceText.text = "Balance : " + playerData.playerMoney.ToString();
+        if (playerData.playerMoney >= transform.GetChild(itemIndex - 1).GetChild(1).GetComponent<Plant>().cost) {
+            string itemName = transform.GetChild(itemIndex - 1).GetChild(1).name;
+            Debug.Log("Bought Item " + itemIndex + ", Plant Name : " + itemName);
+            playerData.playerMoney = playerData.playerMoney - transform.GetChild(itemIndex - 1).GetChild(1).GetComponent<Plant>().cost;
+            balanceText.text = "Balance : " + playerData.playerMoney.ToString();
+        }
     }
 }
