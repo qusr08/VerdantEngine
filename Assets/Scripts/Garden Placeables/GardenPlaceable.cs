@@ -105,6 +105,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 
 		// Set up stats
 		HealthStat = new Stat(MaxHealth, MaxHealth);
+		Debug.Log("1... Placeable at (" + Position.x + ", " + Position.y + ") has " + HealthStat.CurrentValue + "/" + HealthStat.MaxValue + " Health");
 		HealthStat.WhenZero += OnKilled;
 
 		// Make sure the plants are always facing towards the camera

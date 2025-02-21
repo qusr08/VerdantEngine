@@ -79,7 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gardenManager: {fileID: 0}
   playerDataManager: {fileID: 0}
-  _startingHealth: 3
+  _maxHealth: 3
   _cost: 0
   _name: Hardy Hedge
   _description: 

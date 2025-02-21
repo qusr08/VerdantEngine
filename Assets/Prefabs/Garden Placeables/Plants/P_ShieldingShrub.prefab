@@ -79,7 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gardenManager: {fileID: 0}
   playerDataManager: {fileID: 0}
-  _startingHealth: 2
+  _maxHealth: 2
   _cost: 0
   _name: Shielding Shrub
   _description: 
