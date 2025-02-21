@@ -84,7 +84,7 @@ public class Enemy : MonoBehaviour
         // Clear previous markings
      //   UnmarkTiles();
 
-        int gardenSize = manager.garden.PlayerData.GardenSize;
+        int gardenSize = manager.garden.playerDataManager.GardenSize;
         int randomAim = UnityEngine.Random.Range(0, gardenSize);
 
         if (currentAttack.lineAttackIsVertical)

@@ -21,7 +21,7 @@ MonoBehaviour:
   - value: 0000000000
   attackSize: 5
   targetType: 0
-  attackType: 0
+  attackType: 3
   damage: 1
   lineAttackIsVertical: 1
-  currentAim: []
+  maxCoolDown: 1

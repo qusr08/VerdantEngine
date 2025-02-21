@@ -4548,7 +4548,6 @@ MonoBehaviour:
   MenuObjects: []
   weaponMenuObject: {fileID: 4827586323188922309, guid: 38abc307291588c4db7046042d976e59, type: 3}
   energyText: {fileID: 548699481}
-  damageIndicatorPrefab: {fileID: 985783835550424020, guid: bf932e9924e884748b9300dabc7007d9, type: 3}
 --- !u!4 &1198069309
 Transform:
   m_ObjectHideFlags: 0
@@ -5913,6 +5912,9 @@ MonoBehaviour:
   _currentActions: 3
   _maxActions: 3
   actionsText: {fileID: 701897918}
+  CurrentParts:
+  - {fileID: 11400000, guid: 001b5f5f0c0685f489002903a568926f, type: 2}
+  - {fileID: 11400000, guid: 001b5f5f0c0685f489002903a568926f, type: 2}
 --- !u!1 &1717702279
 GameObject:
   m_ObjectHideFlags: 0

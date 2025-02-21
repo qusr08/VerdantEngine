@@ -12,7 +12,7 @@ public class GardenManager : MonoBehaviour {
 	[SerializeField] private PlantPrefabDictionary _plantPrefabs;
 	[SerializeField] private ArtifactPrefabDictionary _artifactPrefabs;
 	[SerializeField] private GameObject groundTilePrefab;
-	[SerializeField] private PlayerDataManager playerDataManager;
+	[SerializeField] public PlayerDataManager playerDataManager;
 	[Space]
 	[SerializeField] private GardenTile _selectedGardenTile;
 
