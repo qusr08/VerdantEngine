@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Stat {
-	public delegate void OnZero ( );
-	public OnZero WhenZero;
+	public delegate void StatFunction ( );
+	public StatFunction WhenZero;
+	public StatFunction OnUpdateCurrentValue;
 
 	/// <summary>
 	/// The current value of this stat
@@ -12,8 +13,10 @@ public class Stat {
 	public int CurrentValue {
 		get => _currentValue + totalModifier;
 		set {
-			_currentValue = Mathf.Min(_currentValue, MaxValue);
-			
+			_currentValue = Mathf.Min(value, MaxValue);
+
+			OnUpdateCurrentValue?.Invoke( );
+
 			if (CurrentValue <= 0) {
 				WhenZero?.Invoke( );
 			}
@@ -30,20 +33,33 @@ public class Stat {
 			_maxValue = value;
 
 			// Make sure the current value always stays under the max value
-			CurrentValue = _currentValue;
+			_currentValue = Mathf.Min(_currentValue, MaxValue);
 		}
 
 	}
 	private int _maxValue;
 
+	/// <summary>
+	/// The starting value for this stat
+	/// </summary>
+	public int StartingValue { get => _startingValue; set => _startingValue = value; }
+	private int _startingValue;
+
 	private List<StatModifier> modifiers;
 	private int totalModifier;
 
-	public Stat (int currentValue, int maxValue = 99999999) {
-		CurrentValue = currentValue;
+	public Stat (int startingValue, int maxValue = 99999999) {
+		CurrentValue = StartingValue = startingValue;
 		MaxValue = maxValue;
 
 		modifiers = new List<StatModifier>( );
+	}
+
+	/// <summary>
+	/// Reset this stat back to its starting value
+	/// </summary>
+	public void Reset ( ) {
+		CurrentValue = StartingValue;
 	}
 
 	/// <summary>

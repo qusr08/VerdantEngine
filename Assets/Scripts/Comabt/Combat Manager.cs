@@ -178,6 +178,9 @@ public class CombatManager : MonoBehaviour
         {
             playerFreeze = true;
 
+            // Reset the current actions for the player
+            player.CurrentActions = player.MaxActions;
+
             StartCoroutine(player_Combat_Manager.PlayerTurn());
         }
     }

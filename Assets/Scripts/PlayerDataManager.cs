@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,9 +11,13 @@ public class PlayerDataManager : MonoBehaviour {
 	[SerializeField] public int maxHealth;
 	[SerializeField] public int money;
 	[Space]
-	[SerializeField] private Image _mouseImage;
+	[SerializeField] private Image mouseImage;
 	[SerializeField] private RectTransform mouseImageTransform;
 	[SerializeField] private Canvas guiCanvas;
+	[Space]
+	[SerializeField] private int _currentActions;
+	[SerializeField] private int _maxActions;
+	[SerializeField] private TextMeshProUGUI actionsText;
 
 	/// <summary>
 	/// The size of the garden (both width and height)
@@ -20,9 +25,32 @@ public class PlayerDataManager : MonoBehaviour {
 	public int GardenSize { get => _gardenSize; private set => _gardenSize = value; }
 
 	/// <summary>
-	/// A reference to the mouse image that follows the mouse around. This can be used to show what plant is being placed
+	/// A reference to the mouse sprite that follows the mouse around. This can be used to show what plant is being placed
 	/// </summary>
-	public Image MouseImage { get => _mouseImage; private set => _mouseImage = value; }
+	public Sprite MouseSprite {
+		get => mouseImage.sprite;
+		set {
+			mouseImage.sprite = value;
+			mouseImage.enabled = (value != null);
+		}
+	}
+
+	/// <summary>
+	/// The maximum actions that a player can take during their turn
+	/// </summary>
+	public int MaxActions => _maxActions;
+
+	/// <summary>
+	/// The current remaining actions for the player during their turn
+	/// </summary>
+	public int CurrentActions { 
+		get => _currentActions; 
+		set {
+			_currentActions = value;
+
+			actionsText.text = $"{_currentActions} / {MaxActions}";
+		}
+	}
 
 	/// <summary>
 	/// The grid of garden placeables that represent the layout of the garden
@@ -35,6 +63,7 @@ public class PlayerDataManager : MonoBehaviour {
 	public List<Part_SO> CurrentParts { get; private set; }
 
 	private void Awake ( ) {
+		CurrentParts = new List<Part_SO>( );
 		Garden = new GardenTile[GardenSize, GardenSize];
 	}
 

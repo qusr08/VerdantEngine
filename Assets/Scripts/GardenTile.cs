@@ -89,29 +89,55 @@ public class GardenTile : MonoBehaviour {
 
 	private void OnMouseEnter ( ) {
 		if (GardenPlaceable != null) {
-			UIDisplay.UpdateText(GardenPlaceable.gameObject.name, "Description");
+			UIDisplay.UpdateText(GardenPlaceable.Name, GardenPlaceable.Description, GardenPlaceable.HealthStat);
 			//Debug.Log(GardenPlaceable.gameObject.name);
 		}
 
 		IsSelected = true;
 	}
 
-	private void OnMouseDown ( ) {
+	private void OnMouseExit ( ) {
+		IsSelected = false;
+	}
 
+	private void OnMouseDown ( ) {
+		// If this tile has no garden placeable, then do not try to move it
+		if (GardenPlaceable == null) {
+			return;
+		}
+
+		playerDataManager.MouseSprite = GardenPlaceable.InventorySprite;
+		GardenPlaceable.GetComponent<MeshRenderer>( ).enabled = false;
 	}
 
 	private void OnMouseUp ( ) {
-		
-	}
+		// If this tile has no garden placeable, then do not try to move it
+		if (GardenPlaceable == null) {
+			return;
+		}
 
-	private void OnMouseExit ( ) {
-		IsSelected = false;
+		GardenPlaceable.GetComponent<MeshRenderer>( ).enabled = true;
+		playerDataManager.MouseSprite = null;
+
+		// If there is a plant at the selected garden tile already, do not try to move this garden placeable to that tile
+		if (gardenManager.SelectedGardenTile != null && gardenManager.SelectedGardenTile.GardenPlaceable != null) {
+			return;
+		}
+
+		// If there are no more actions remaining, then do not try to move it
+		if (playerDataManager.CurrentActions <= 0) {
+			return;
+		}
+
+		// Actually place the garden placeable on the new tile and decrease the action stat counter
+		GardenPlaceable.GardenTile = gardenManager.SelectedGardenTile;
+		playerDataManager.CurrentActions--;
 	}
 
 	/// <summary>
 	/// Update this garden tile's material based on if it is attacked or not
 	/// </summary>
-	private void UpdateMaterial () {
+	private void UpdateMaterial ( ) {
 		// Set the material color of the ground tile
 		Material tempMaterial = new Material(meshRenderer.material);
 		// Make the colors of the ground tiles a checkerboard pattern

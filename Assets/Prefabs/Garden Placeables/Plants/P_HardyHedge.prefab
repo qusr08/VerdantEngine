@@ -78,10 +78,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gardenManager: {fileID: 0}
-  _startingHealth: 3
+  playerDataManager: {fileID: 0}
+  _maxHealth: 3
   _cost: 0
   _name: Hardy Hedge
-  _description: 
-  _inventorySprite: {fileID: 0}
-  _position: {x: 0, y: 0}
+  _description: Gains +1 hitpoint if next to another Hardy Hedge
+  _inventorySprite: {fileID: 21300000, guid: c859bf9bc9317404586538eb2fa656e1, type: 3}
+  _gardenTile: {fileID: 0}
   _plantType: 3

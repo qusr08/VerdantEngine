@@ -25,8 +25,7 @@ public class PlantInventoryBox : InventoryBox {
 
 	public override void OnPointerUp (PointerEventData eventData) {
 		// Reset the mouse image sprite
-		playerDataManager.MouseImage.gameObject.SetActive(false);
-		playerDataManager.MouseImage.sprite = null;
+		playerDataManager.MouseSprite = null;
 
 		// If there is no garden tile selected, then do nothing
 		if (gardenManager.SelectedGardenTile == null) {
@@ -38,8 +37,14 @@ public class PlantInventoryBox : InventoryBox {
 			return;
 		}
 
+		// If there are no actions remaining, then do not place a new plant
+		if (playerDataManager.CurrentActions <= 0) {
+			return;
+		}
+
 		// Place the selected plant type in the garden
 		gardenManager.PlacePlant(PlantType, gardenManager.SelectedGardenTile.Position.x, gardenManager.SelectedGardenTile.Position.y);
+		playerDataManager.CurrentActions--;
 		Amount--;
 	}
 }

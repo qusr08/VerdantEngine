@@ -25,8 +25,7 @@ public class ArtifactInventoryBox : InventoryBox {
 
 	public override void OnPointerUp (PointerEventData eventData) {
 		// Reset the mouse image sprite
-		playerDataManager.MouseImage.gameObject.SetActive(false);
-		playerDataManager.MouseImage.sprite = null;
+		playerDataManager.MouseSprite = null;
 
 		// If there is no garden tile selected, then do nothing
 		if (gardenManager.SelectedGardenTile == null) {
@@ -38,8 +37,14 @@ public class ArtifactInventoryBox : InventoryBox {
 			return;
 		}
 
+		// If there are no actions remaining, then do not place a new artifact
+		if (playerDataManager.CurrentActions <= 0) {
+			return;
+		}
+
 		// Place the artifact on the garden
 		gardenManager.PlaceArtifact(ArtifactType, gardenManager.SelectedGardenTile.Position.x, gardenManager.SelectedGardenTile.Position.y);
+		playerDataManager.CurrentActions--;
 		Amount--;
 	}
 }
