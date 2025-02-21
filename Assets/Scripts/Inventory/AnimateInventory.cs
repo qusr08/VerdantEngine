@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class DrawerMenu : MonoBehaviour
+public class AnimateInventory : MonoBehaviour
 {
     public RectTransform menuPanel;
     public float slideDuration = 0.3f; // Time in seconds for animation
@@ -17,8 +17,8 @@ public class DrawerMenu : MonoBehaviour
         float width = menuPanel.rect.width;
 
         // Set positions (Assuming the menu slides in from the left)
-        hiddenPosition = new Vector3( 0, 0);
-        visiblePosition = new Vector2(-width, 0);
+        hiddenPosition = new Vector3(width, 0);
+        visiblePosition = new Vector2(0, 0);
 
         // Start with the menu hidden
         menuPanel.anchoredPosition = hiddenPosition;

@@ -9,17 +9,22 @@ using UnityEngine.UIElements;
 /// </summary>
 public class GardenManager : MonoBehaviour {
 	[Header("References")]
-	[SerializeField] private PlantPrefabDictionary plantPrefabs;
-	[SerializeField] private ArtifactPrefabDictionary artifactPrefabs;
+	[SerializeField] private PlantPrefabDictionary _plantPrefabs;
+	[SerializeField] private ArtifactPrefabDictionary _artifactPrefabs;
 	[SerializeField] private GameObject groundTilePrefab;
-	[SerializeField] private PlayerData _playerData;
-	[SerializeField] private Transform plantContainer;
-	[SerializeField] private Transform artifactContainer;
-	[SerializeField] private Transform groundTileContainer;
+	[SerializeField] public PlayerDataManager playerDataManager;
+	[Space]
+	[SerializeField] private GardenTile _selectedGardenTile;
+
 	/// <summary>
-	/// A reference to the player data scriptable object
+	/// A list of all the plant prefabs that can be placed on the garden
 	/// </summary>
-	public PlayerData PlayerData => _playerData;
+	public PlantPrefabDictionary PlantPrefabs { get => _plantPrefabs; private set => _plantPrefabs = value; }
+
+	/// <summary>
+	/// A list of all the artifact prefabs that can be placed on the garden
+	/// </summary>
+	public ArtifactPrefabDictionary ArtifactPrefabs { get => _artifactPrefabs; private set => _artifactPrefabs = value; }
 
 	/// <summary>
 	/// A list of all the plants that are currently in the garden
@@ -31,7 +36,14 @@ public class GardenManager : MonoBehaviour {
 	/// </summary>
 	public List<Artifact> Artifacts { get; private set; }
 
+	/// <summary>
+	/// The garden tile that is currently selected
+	/// </summary>
+	public GardenTile SelectedGardenTile { get => _selectedGardenTile; set => _selectedGardenTile = value; }
+
 	private void Awake ( ) {
+		playerDataManager = FindObjectOfType<PlayerDataManager>( );
+
 		Plants = new List<Plant>( );
 		Artifacts = new List<Artifact>( );
 	}
@@ -41,21 +53,21 @@ public class GardenManager : MonoBehaviour {
 
 		/// TEST: Create test plants and move them around
         PlacePlant(PlantType.HARDY_HEDGE, 3, 1);
-		PlacePlant(PlantType.HARDY_HEDGE, 3, 2);
-        PlacePlant(PlantType.HARDY_HEDGE, 3, 3);
+		//PlacePlant(PlantType.HARDY_HEDGE, 3, 2);
+        //PlacePlant(PlantType.HARDY_HEDGE, 3, 3);
         PlacePlant(PlantType.EMPOWEROOT, 4, 4);
 		PlacePlant(PlantType.EMPOWEROOT, 1, 2);
 		PlacePlant(PlantType.POWER_FLOWER, 1, 3);
         PlacePlant(PlantType.POWER_FLOWER, 0, 2);
         PlacePlant(PlantType.POWER_FLOWER, 0, 3);
-        PlacePlant(PlantType.SHIELDING_SHRUB, 3, 5);
-		PlacePlant(PlantType.SHIELDING_SHRUB, 2, 5);
+        //PlacePlant(PlantType.SHIELDING_SHRUB, 3, 5);
+		//PlacePlant(PlantType.SHIELDING_SHRUB, 2, 5);
 		PlacePlant(PlantType.POWER_FLOWER, 1, 5);
 
 
-        MovePlant(PlayerData.Garden[1, 1].GardenPlaceable as Plant, 1, 2);
+        //MovePlant(PlayerData.Garden[1, 1].GardenPlaceable as Plant, 1, 2);
 
-		UprootPlant(0, 0);
+		//UprootPlant(0, 0);
 
 		// Debug.Log("Flower Count: " + CountPlants(exclusivePlantTypes: new List<PlantType>( ) { PlantType.FLOWER }));
 		// Debug.Log("Cactus Count: " + CountPlants(exclusivePlantTypes: new List<PlantType>( ) { PlantType.CACTUS }));
@@ -68,7 +80,7 @@ public class GardenManager : MonoBehaviour {
 	/// <param name="y">The y coordinate</param>
 	/// <returns>Whether or not the position is within the bounds of the garden</returns>
 	public bool IsPositionWithinGarden (int x, int y) {
-		return (x >= 0 && x < PlayerData.GardenSize && y >= 0 && y < PlayerData.GardenSize);
+		return (x >= 0 && x < playerDataManager.GardenSize && y >= 0 && y < playerDataManager.GardenSize);
 	}
 
 	/// <summary>
@@ -90,15 +102,15 @@ public class GardenManager : MonoBehaviour {
 		}
 
 		// Return false if there is already a placeable at the position specified
-		if (PlayerData.Garden[x, y].GardenPlaceable != null) {
+		if (playerDataManager.Garden[x, y].GardenPlaceable != null) {
 			return false;
 		}
 
 		// Place the plant onto the grid and update its position
-		Plant plant = Instantiate(plantPrefabs[plantType], plantContainer).GetComponent<Plant>( );
-		plant.Initialize(new Vector2Int(x, y));
+		Plant plant = Instantiate(PlantPrefabs[plantType], playerDataManager.Garden[x, y].transform).GetComponent<Plant>( );
+		plant.Initialize(playerDataManager.Garden[x, y]);
 
-		PlayerData.Garden[x, y].GardenPlaceable = plant;
+		playerDataManager.Garden[x, y].GardenPlaceable = plant;
 		Plants.Add(plant);
 		UpdateGarden( );
 
@@ -124,15 +136,15 @@ public class GardenManager : MonoBehaviour {
 		}
 
 		// Return false if there is already a placeable at the position specified
-		if (PlayerData.Garden[x, y].GardenPlaceable != null) {
+		if (playerDataManager.Garden[x, y].GardenPlaceable != null) {
 			return false;
 		}
 
 		// Place the artifact onto the grid and update its position
-		Artifact artifact = Instantiate(artifactPrefabs[artifactType], artifactContainer).GetComponent<Artifact>( );
-		artifact.Initialize(new Vector2Int(x, y));
+		Artifact artifact = Instantiate(ArtifactPrefabs[artifactType], playerDataManager.Garden[x, y].transform).GetComponent<Artifact>( );
+		artifact.Initialize(playerDataManager.Garden[x, y]);
 
-		PlayerData.Garden[x, y].GardenPlaceable = artifact;
+		playerDataManager.Garden[x, y].GardenPlaceable = artifact;
 		Artifacts.Add(artifact);
 		UpdateGarden( );
 
@@ -152,7 +164,7 @@ public class GardenManager : MonoBehaviour {
 
 		// Remove the plant from all lists and destroy it
 		Plants.Remove(plant);
-		PlayerData.Garden[plant.Position.x, plant.Position.y].GardenPlaceable = null;
+		playerDataManager.Garden[plant.Position.x, plant.Position.y].GardenPlaceable = null;
 		Destroy(plant.gameObject);
 		UpdateGarden( );
 
@@ -172,7 +184,7 @@ public class GardenManager : MonoBehaviour {
 
 		// Remove the artifact from all lists and destroy it
 		Artifacts.Remove(artifact);
-		PlayerData.Garden[artifact.Position.x, artifact.Position.y].GardenPlaceable = null;
+		playerDataManager.Garden[artifact.Position.x, artifact.Position.y].GardenPlaceable = null;
 		Destroy(artifact.gameObject);
 		UpdateGarden( );
 
@@ -192,7 +204,7 @@ public class GardenManager : MonoBehaviour {
 		}
 
 		// Get the plant at the specified position
-		Plant plant = PlayerData.Garden[x, y].GardenPlaceable as Plant;
+		Plant plant = playerDataManager.Garden[x, y].GardenPlaceable as Plant;
 
 		// Return false if there is no plant at the position specified
 		if (plant == null) {
@@ -201,7 +213,7 @@ public class GardenManager : MonoBehaviour {
 
 		// Remove the plant from all lists and destroy it
 		Plants.Remove(plant);
-		PlayerData.Garden[x, y].GardenPlaceable = null;
+		playerDataManager.Garden[x, y].GardenPlaceable = null;
 		Destroy(plant.gameObject);
 		UpdateGarden( );
 
@@ -227,15 +239,15 @@ public class GardenManager : MonoBehaviour {
 		}
 
 		// Return false if there is already a plant at the position specified
-		if (PlayerData.Garden[x, y].GardenPlaceable != null) {
+		if (playerDataManager.Garden[x, y].GardenPlaceable != null) {
 			return false;
 		}
 
 		// Remove the reference to the plant from its current position and add it to the position it is being moved to
 		// Also update the position of the plant
-		PlayerData.Garden[plant.Position.x, plant.Position.y].GardenPlaceable = null;
-		plant.Position = new Vector2Int(x, y);
-		PlayerData.Garden[plant.Position.x, plant.Position.y].GardenPlaceable = plant;
+		playerDataManager.Garden[plant.Position.x, plant.Position.y].GardenPlaceable = null;
+		plant.GardenTile = playerDataManager.Garden[x, y];
+		playerDataManager.Garden[plant.Position.x, plant.Position.y].GardenPlaceable = plant;
 		UpdateGarden( );
 
 		return true;
@@ -246,7 +258,7 @@ public class GardenManager : MonoBehaviour {
 	/// </summary>
 	private void UpdateGarden ( ) {
 		// Loop through all garden tiles and update the garden placeables on them
-		foreach (GardenTile gardenTile in PlayerData.Garden) {
+		foreach (GardenTile gardenTile in playerDataManager.Garden) {
 			gardenTile.GardenPlaceable?.OnGardenUpdated( );
 		}
 	}
@@ -256,12 +268,12 @@ public class GardenManager : MonoBehaviour {
 	/// </summary>
 	private void CreateGardenTiles ( ) {
 		// Create all of the ground tiles for the garden
-		for (int x = 0; x < PlayerData.GardenSize; x++) {
-			for (int y = 0; y < PlayerData.GardenSize; y++) {
+		for (int x = 0; x < playerDataManager.GardenSize; x++) {
+			for (int y = 0; y < playerDataManager.GardenSize; y++) {
 				// Create the ground tile object and set its position
-				GardenTile gardenTile = Instantiate(groundTilePrefab, groundTileContainer).GetComponent<GardenTile>( );
+				GardenTile gardenTile = Instantiate(groundTilePrefab, transform).GetComponent<GardenTile>( );
 				gardenTile.Position = new Vector2Int(x, y);
-				PlayerData.Garden[x, y] = gardenTile;
+				playerDataManager.Garden[x, y] = gardenTile;
 				gardenTile.UIDisplay = FindObjectOfType<PlantHover>();
 
             }
@@ -338,7 +350,7 @@ public class GardenManager : MonoBehaviour {
 			}
 
 			// Get a reference to the plant at the current position being checked
-			Plant plant = PlayerData.Garden[position.x, position.y].GardenPlaceable as Plant;
+			Plant plant = playerDataManager.Garden[position.x, position.y].GardenPlaceable as Plant;
 
 			// If there is currently no plant at the current position, then continue to the next position
 			if (plant == null) {

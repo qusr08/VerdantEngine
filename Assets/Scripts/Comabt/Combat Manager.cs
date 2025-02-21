@@ -13,7 +13,7 @@ public class CombatManager : MonoBehaviour
     public Player_Combat_Manager player_Combat_Manager;
     public ComabtUI_Manager combatUIManager;
     public ComabtObject currentComabt;
-    public PlayerData player;
+    public PlayerDataManager player;
     public GardenManager garden;
    [SerializeField] private List<Transform> spawnLocations;
     private List<GameObject> enemyObjects;
@@ -178,6 +178,9 @@ public class CombatManager : MonoBehaviour
         if (!playerFreeze)
         {
             playerFreeze = true;
+
+            // Reset the current actions for the player
+            player.CurrentActions = player.MaxActions;
 
             StartCoroutine(player_Combat_Manager.PlayerTurn());
         }

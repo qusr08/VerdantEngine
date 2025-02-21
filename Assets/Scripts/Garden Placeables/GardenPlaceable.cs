@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// The highest abstracted class for all objects that will be able to be placed in the garden. This includes artifacts and plants (so far)
@@ -8,37 +9,54 @@ using UnityEngine;
 public abstract class GardenPlaceable : MonoBehaviour {
 	[Header("References - GardenPlaceable")]
 	[SerializeField] protected GardenManager gardenManager;
+	[SerializeField] protected PlayerDataManager playerDataManager;
 	[Header("Properties - GardenPlaceable")]
-	[SerializeField] private Vector2Int _position;
-	[SerializeField, Min(0)] private int _health;
-	[SerializeField, Min(0)] private int _cost;
-    [SerializeField, Min(0)] private int _energy;
+	[SerializeField, Min(0), Tooltip("The starting health of this garden placeable without any modifiers.")] private int _maxHealth;
+	[SerializeField, Min(0), Tooltip("The cost of this garden placeable in the shop.")] private int _cost;
+	[SerializeField, Tooltip("The name of this garden placeable.")] private string _name;
+	[SerializeField, Multiline, Tooltip("The description of this garden placeable.")] private string _description;
+	[SerializeField, Tooltip("The sprite that shows up in the inventory for this garden placeable.")] private Sprite _inventorySprite;
+	[Space]
+	[SerializeField, Tooltip("The garden tile that this plant is on.")] private GardenTile _gardenTile;
 
-    /// <summary>
-    /// The cost of this garden placeable in a shop
-    /// </summary>
-    public int Cost => _cost;
+	private Stat _healthStat;
 
 	/// <summary>
-	/// The current health of this garden placeable
+	/// The cost of this garden placeable in a shop
 	/// </summary>
-	public int Health {
-		get => _health;
+	public int Cost => _cost;
+
+	/// <summary>
+	/// The name of this garden placeable
+	/// </summary>
+	public string Name { get => _name; }
+
+	/// <summary>
+	/// The description of this garden placeable
+	/// </summary>
+	public string Description { get => _description; }
+
+	/// <summary>
+	/// The sprite that will show up in the inventory of this garden placeable
+	/// </summary>
+	public Sprite InventorySprite { get => _inventorySprite; }
+
+	/// <summary>
+	/// Information about the health of this garden placeable
+	/// </summary>
+	public Stat HealthStat { get => _healthStat; private set => _healthStat = value; }
+
+	/// <summary>
+	/// The max health of this garden placeable
+	/// </summary>
+	public int MaxHealth {
+		get => _maxHealth;
 		set {
-			_health = value;
+			_maxHealth = value;
 
-			// If the garden placeable has run out of health, then destroy it and call its OnKilled function
-			if (_health <= 0) {
-				OnKilled( );
-
-				// Uproot the plant from the garden properly after it is killed
-				if (this is Plant)
-                {
-                    gardenManager.UprootPlant(this as Plant);
-                } else if (this is Artifact)
-				{
-                    gardenManager.UprootArtifact(this as Artifact);
-                }
+			// Make sure to update the health stat as well
+			if (HealthStat != null) {
+				HealthStat.MaxValue = _maxHealth;
 			}
 		}
 	}
@@ -46,32 +64,56 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	/// <summary>
 	/// The position of this plant in the garden
 	/// </summary>
-	public Vector2Int Position {
-		get {
-			return _position;
-		}
+	public Vector2Int Position => GardenTile.Position;
+
+	/// <summary>
+	/// The garden tile that this plant is on
+	/// </summary>
+	public GardenTile GardenTile {
+		get => _gardenTile;
 		set {
-			_position = value;
-			transform.localPosition = new Vector3(_position.x, 0.5f, _position.y);
+			// If the incoming value is equal to null or to the current garden tile value, then return
+			if (_gardenTile == value || value == null) {
+				return;
+			}
+
+			// Remove the reference of this garden placeable from the old garden tile
+			if (_gardenTile != null) {
+				_gardenTile.GardenPlaceable = null;
+			}
+			_gardenTile = value;
+			_gardenTile.GardenPlaceable = this;
+			transform.SetParent(_gardenTile.transform, false);
+
+			// Should be changing the y value but because the garden tile is rotated, we need to set the z value instead
+			transform.localPosition = new Vector3(0f, 0f, -0.5f);
 		}
 	}
 
+	#region Initialization
 	private void Awake ( ) {
 		gardenManager = FindObjectOfType<GardenManager>( );
+		playerDataManager = FindObjectOfType<PlayerDataManager>( );
 	}
 
 	/// <summary>
 	/// Initialize this plant right after it has been created in the garden. Everything in this function needs to be called before Awake() but after it is instantiated in the garden.
 	/// </summary>
-	/// <param name="position">The position to set the the placeable to</param>
-	public void Initialize (Vector2Int position) {
-		Position = position;
+	/// <param name="gardenTile">The garden tile that this plant is starting on</param>
+	public void Initialize (GardenTile gardenTile) {
+		GardenTile = gardenTile;
+
+		// Set up stats
+		HealthStat = new Stat(MaxHealth, MaxHealth);
+		HealthStat.WhenZero += OnKilled;
 
 		// Make sure the plants are always facing towards the camera
 		transform.LookAt(-Camera.main.transform.position + transform.position);
-		transform.localEulerAngles = new Vector3(0f, transform.localEulerAngles.y, 0f);
+		// transform.localEulerAngles = new Vector3(0f, transform.localEulerAngles.y, 0f);
 	}
+	#endregion
 
+	#region Helper Methods
 	/// <summary>
 	/// Get a list of specific plants that are surrounding this garden placeable within a certain radius
 	/// </summary>
@@ -97,7 +139,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 				// Get a reference to the plant at the current position being checked
 				// If the garden has another object at this position that is not a plant, then the "as" operator will return null
 				// https://www.geeksforgeeks.org/c-sharp-as-operator-keyword/
-				Plant plant = gardenManager.PlayerData.Garden[checkX, checkY].GardenPlaceable as Plant;
+				Plant plant = playerDataManager.Garden[checkX, checkY].GardenPlaceable as Plant;
 
 				// If there is currently no plant at the current position, then continue to the next position
 				if (plant == null) {
@@ -143,7 +185,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 				}
 
 				// Get a reference to the artifact at the current position being checked
-				Artifact artifact = gardenManager.PlayerData.Garden[checkX, checkY].GardenPlaceable as Artifact;
+				Artifact artifact = playerDataManager.Garden[checkX, checkY].GardenPlaceable as Artifact;
 
 				// If there is currently no artifact at the current position, then continue to the next position
 				if (artifact == null) {
@@ -187,7 +229,9 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	public int CountSurroundingArtifacts (int radius, List<ArtifactType> exclusiveArtifactTypes = null, List<ArtifactType> excludedArtifactTypes = null) {
 		return GetSurroundingArtifacts(radius, exclusiveArtifactTypes, excludedArtifactTypes).Count;
 	}
+	#endregion
 
+	#region Effect Triggers
 	/// <summary>
 	/// Called when the garden is update in any way. This means that when a plant is placed or removed on the board, this function is called
 	/// </summary>
@@ -212,4 +256,5 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	/// Called when this garden placeable is killed
 	/// </summary>
 	public virtual void OnKilled ( ) { }
+	#endregion
 }
