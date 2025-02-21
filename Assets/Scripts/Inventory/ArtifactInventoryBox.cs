@@ -37,8 +37,14 @@ public class ArtifactInventoryBox : InventoryBox {
 			return;
 		}
 
+		// If there are no actions remaining, then do not place a new artifact
+		if (playerDataManager.CurrentActions <= 0) {
+			return;
+		}
+
 		// Place the artifact on the garden
 		gardenManager.PlaceArtifact(ArtifactType, gardenManager.SelectedGardenTile.Position.x, gardenManager.SelectedGardenTile.Position.y);
+		playerDataManager.CurrentActions--;
 		Amount--;
 	}
 }
