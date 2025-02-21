@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5af78cb4b9b62438d56a9c16f9f214, type: 3}
+  m_Name: Revitalizing Sprinklers
+  m_EditorClassIdentifier: 
+  damage: 1
+  manaCost: 1
+  attackText: Deals 1 damage to the target.
+  attackName: 'Small Cannon '
+  type: 0
+  targetingType: 1
+  maxCoolDown: 3
+  coolDown: 0
+  icon: {fileID: 21300000, guid: 2531cb67b05562e46bc406c84e535298, type: 3}
+  targetNum: 1

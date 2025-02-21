@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b5af78cb4b9b62438d56a9c16f9f214, type: 3}
-  m_Name: Part
+  m_Name: Small Cannon
   m_EditorClassIdentifier: 
   damage: 1
   manaCost: 2
