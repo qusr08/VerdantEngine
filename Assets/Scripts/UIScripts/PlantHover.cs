@@ -7,6 +7,7 @@ public class PlantHover : MonoBehaviour
 {
     [SerializeField] private TMP_Text plantName;
     [SerializeField] private TMP_Text plantDescription;
+    [SerializeField] private TMP_Text plantHP;
 
     // Start is called before the first frame update
     void Start()
@@ -20,9 +21,11 @@ public class PlantHover : MonoBehaviour
         
     }
 
-    public void UpdateText(string name, string description)
+    public void UpdateText(string name, string description, Stat HealthStat)
     {
         plantName.text = name;
         plantDescription.text = description;
+        plantHP.text = "" + HealthStat.MaxValue + "/" + HealthStat.CurrentValue;
+
     }
 }

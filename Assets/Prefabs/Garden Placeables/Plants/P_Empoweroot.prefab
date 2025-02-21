@@ -79,10 +79,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gardenManager: {fileID: 0}
   playerDataManager: {fileID: 0}
-  _startingHealth: 1
+  _maxHealth: 1
   _cost: 0
-  _name: Empoweroot
-  _description: 
+  _name: Blast Bloom
+  _description: When the Blast Bloom is adjacent to three other plants, all weapons
+    deal +1 damage
   _inventorySprite: {fileID: 21300000, guid: 19128026478a80c419d1bcf925440a42, type: 3}
   _gardenTile: {fileID: 0}
   _plantType: 4
