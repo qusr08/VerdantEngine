@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerDataManager : MonoBehaviour {
 	[Header("Properties")]
 	[SerializeField] private int _gardenSize;
-	[SerializeField] public int cuurentHealth;
+	[SerializeField] private int _currentHealth;
 	[SerializeField] public int maxHealth;
 	[SerializeField] public int money;
 	[Space]
@@ -18,11 +18,28 @@ public class PlayerDataManager : MonoBehaviour {
 	[SerializeField] private int _currentActions;
 	[SerializeField] private int _maxActions;
 	[SerializeField] private TextMeshProUGUI actionsText;
+	[SerializeField] private Slider hpSlider;
+    [SerializeField] private GameObject youLose;
 
-	/// <summary>
-	/// The size of the garden (both width and height)
-	/// </summary>
-	public int GardenSize { get => _gardenSize; private set => _gardenSize = value; }
+
+    /// <summary>
+    /// The size of the garden (both width and height)
+    /// </summary>
+    public int GardenSize { get => _gardenSize; private set => _gardenSize = value; }
+
+	public int CurrentHealth
+	{
+		get => _currentHealth;
+		set
+		{
+			_currentHealth = value;
+
+			hpSlider.value = (float)_currentHealth / (float)maxHealth;
+			if (_currentHealth <= 0)
+			{
+			}
+		}
+	}
 
 	/// <summary>
 	/// A reference to the mouse sprite that follows the mouse around. This can be used to show what plant is being placed
@@ -65,10 +82,14 @@ public class PlayerDataManager : MonoBehaviour {
 	private void Awake ( ) {
 		//currentParts = new List<Part_SO>( );
 		Garden = new GardenTile[GardenSize, GardenSize];
-	}
+		_currentHealth = maxHealth;
+        hpSlider.value = _currentHealth / maxHealth;
 
-	private void Update ( ) {
+    }
+
+    private void Update ( ) {
 		// Set the mouse image to match wherever the mouse is
 		mouseImageTransform.anchoredPosition = Input.mousePosition / guiCanvas.scaleFactor;
 	}
+	
 }

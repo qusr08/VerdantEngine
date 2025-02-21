@@ -81,9 +81,9 @@ public class Player_Combat_Manager : MonoBehaviour
 
     public void ApplyDamageToGarden(Enemy enemy, EnemyAttack_SO attack)
     {
-        if (attack.lineAttackIsVertical && enemy.FinalAim.Count == playerData.GardenSize)
+        if (!attack.lineAttackIsVertical && enemy.FinalAim.Count == playerData.GardenSize)
         { 
-            playerData.cuurentHealth -= attack.damage;
+            playerData.CurrentHealth -= attack.damage;
             Debug.Log(enemy.name + " attacked the player using " + attack.attackName + " dealing " + attack.damage + " to the player");
 
         }
