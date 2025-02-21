@@ -14,14 +14,14 @@ public class Player_Combat_Manager : MonoBehaviour
     public GameObject weaponMenuObject;
     int energy = 0;
     public TextMeshProUGUI energyText;
-    PlayerData playerData;
-    public GameObject damageIndicatorPrefab;
-    public void SetUp( PlayerData data, GardenManager garden, CombatManager combatManager)
+    PlayerDataManager playerData;
+
+    public void SetUp( PlayerDataManager data, GardenManager garden, CombatManager combatManager)
     {
         playerData = data;
         this.combatManager = combatManager;
         this.garden = garden;
-        parts = playerData.currentParts;
+        parts = playerData.CurrentParts;
         foreach (Part_SO part in parts )
         {
             GameObject spawnedItem;
@@ -36,7 +36,6 @@ public class Player_Combat_Manager : MonoBehaviour
     {
         energy = garden.CountPlants(new List<PlantType>() { PlantType.POWER_FLOWER }, null);
         energyText.text = energy.ToString();
-        combatManager.AllEnemeiesSrartRound();
 
     }
 
@@ -94,14 +93,7 @@ public class Player_Combat_Manager : MonoBehaviour
             {
                 Debug.Log(enemy.name + " attacked the player using " + attack.attackName + " dealing " + attack.damage + " to the " + tileHit.GardenPlaceable.name);
 
-                // Spawn the damage indicator
-                GameObject indicator = Instantiate(damageIndicatorPrefab, tileHit.transform.position, tileHit.GardenPlaceable.transform.rotation);
-
-                // Set the damage text
-                indicator.GetComponent<DamageIndicator>().SetDamage(attack.damage);
-
-
-                tileHit.GardenPlaceable.Health -= attack.damage;
+                tileHit.GardenPlaceable.HealthStat.CurrentValue -= attack.damage;
             }
             else
             {

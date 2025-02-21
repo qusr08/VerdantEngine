@@ -21,30 +21,10 @@ public abstract class Plant : GardenPlaceable {
 	/// </summary>
 	public PlantType PlantType => _plantType;
 
-    private void OnEnable()
-    {
-        PlantSetup();
-        //OnTurnStart();
-    }
-	private void PlantSetup()
-	{
-		switch (PlantType)
-		{
-            case PlantType.NONE:
-                Health = 0;
-                break;
-            case PlantType.POWER_FLOWER:
-                Health = 1;
-                break;
-            case PlantType.SHIELDING_SHRUB:
-                Health = 2;
-                break;
-            case PlantType.HARDY_HEDGE:
-                Health = 3;
-                break;
-            case PlantType.EMPOWEROOT:
-                Health = 1;
-                break;
-        }
+	public override void OnKilled ( ) {
+		base.OnKilled( );
+
+		// Uproot the plant from the garden when it is killed
+        gardenManager.UprootPlant(this);
 	}
 }
