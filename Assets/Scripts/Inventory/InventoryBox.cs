@@ -16,7 +16,7 @@ public abstract class InventoryBox : MonoBehaviour, IPointerDownHandler, IPointe
 	[Header("Properties - InventoryItem")]
 	[SerializeField] private int _amount;
 	[SerializeField] protected GameObject _prefab;
-
+	[SerializeField] protected CombatManager combatManager;
 	/// <summary>
 	/// The prefab associated with this inventory box. Use this to get information about the item stored
 	/// </summary>
@@ -45,6 +45,8 @@ public abstract class InventoryBox : MonoBehaviour, IPointerDownHandler, IPointe
 		inventory = FindObjectOfType<Inventory>( );
 		gardenManager = FindObjectOfType<GardenManager>( );
 		playerDataManager = FindObjectOfType<PlayerDataManager>( );
+		combatManager = FindObjectOfType<CombatManager>();
+
 	}
 
 	public void OnPointerDown (PointerEventData eventData) {

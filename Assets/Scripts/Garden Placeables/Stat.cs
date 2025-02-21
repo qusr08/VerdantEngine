@@ -13,6 +13,7 @@ public class Stat {
 	public int CurrentValue {
 		get => _currentValue + totalModifier;
 		set {
+			Debug.LogWarning(value);
 			_currentValue = Mathf.Min(value, MaxValue);
 
 			OnUpdateCurrentValue?.Invoke( );
@@ -23,7 +24,7 @@ public class Stat {
 		}
 	}
 	private int _currentValue;
-
+	
 	/// <summary>
 	/// The max value of this stat
 	/// </summary>
@@ -49,8 +50,10 @@ public class Stat {
 	private int totalModifier;
 
 	public Stat (int startingValue, int maxValue = 99999999) {
-		CurrentValue = StartingValue = startingValue;
 		MaxValue = maxValue;
+
+		CurrentValue = startingValue;
+		StartingValue = startingValue;
 
 		modifiers = new List<StatModifier>( );
 	}

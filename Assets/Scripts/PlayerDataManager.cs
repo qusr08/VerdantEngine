@@ -60,10 +60,10 @@ public class PlayerDataManager : MonoBehaviour {
 	/// <summary>
 	/// A list of all the current parts on the mech
 	/// </summary>
-	public List<Part_SO> CurrentParts { get; private set; }
+	[SerializeField] public List<Part_SO> currentParts;
 
 	private void Awake ( ) {
-		CurrentParts = new List<Part_SO>( );
+		//currentParts = new List<Part_SO>( );
 		Garden = new GardenTile[GardenSize, GardenSize];
 	}
 

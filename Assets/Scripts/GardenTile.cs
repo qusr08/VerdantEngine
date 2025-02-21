@@ -7,6 +7,8 @@ public class GardenTile : MonoBehaviour {
 	[SerializeField] private MeshRenderer meshRenderer;
 	[SerializeField] private PlayerDataManager playerDataManager;
 	[SerializeField] private GardenManager gardenManager;
+	[SerializeField] private CombatManager combatManager;
+
 	[Header("Properties")]
 	[SerializeField] private Color[ ] basicColors;
 	[SerializeField] private Color[ ] attackedColors;
@@ -85,6 +87,8 @@ public class GardenTile : MonoBehaviour {
 	private void Awake ( ) {
 		playerDataManager = FindObjectOfType<PlayerDataManager>( );
 		gardenManager = FindObjectOfType<GardenManager>( );
+		combatManager = FindObjectOfType<CombatManager>();
+
 	}
 
 	private void OnMouseEnter ( ) {
@@ -132,6 +136,7 @@ public class GardenTile : MonoBehaviour {
 		// Actually place the garden placeable on the new tile and decrease the action stat counter
 		GardenPlaceable.GardenTile = gardenManager.SelectedGardenTile;
 		playerDataManager.CurrentActions--;
+		combatManager.SetEnemyAttackVisuals();
 	}
 
 	/// <summary>

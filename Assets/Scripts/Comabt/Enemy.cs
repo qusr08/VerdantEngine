@@ -18,7 +18,8 @@ public class Enemy : MonoBehaviour
     public GameObject iconHolder;
     [HideInInspector] public int currentCoolDown;
     private bool needNewAttack = true;
-
+    int randomAim;
+    bool isFirstTimethisRound = true;
     void Start()
     {
         maxHealth = health;
@@ -50,7 +51,7 @@ public class Enemy : MonoBehaviour
 
     public void StartRound()
     {
-        
+        isFirstTimethisRound = true;
             currentCoolDown--;
         if (attacks.Count > 0 && needNewAttack)
         {
@@ -85,7 +86,11 @@ public class Enemy : MonoBehaviour
      //   UnmarkTiles();
 
         int gardenSize = manager.garden.playerDataManager.GardenSize;
-        int randomAim = UnityEngine.Random.Range(0, gardenSize);
+        if (isFirstTimethisRound)
+        {
+            randomAim = UnityEngine.Random.Range(0, gardenSize);
+            isFirstTimethisRound = false;
+        }
 
         if (currentAttack.lineAttackIsVertical)
         {

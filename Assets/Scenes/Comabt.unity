@@ -470,8 +470,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
-    m_Right: 0
+    m_Left: 10
+    m_Right: 10
     m_Top: 10
     m_Bottom: 10
   m_ChildAlignment: 0
@@ -775,7 +775,7 @@ MonoBehaviour:
     m_keys: 
     m_values: []
   groundTilePrefab: {fileID: 6778073468744122207, guid: e849fdfe6785c8844ae36b546a419676, type: 3}
-  playerDataManager: {fileID: 1707282257}
+  playerDataManager: {fileID: 0}
   _selectedGardenTile: {fileID: 0}
 --- !u!4 &228952663
 Transform:
@@ -1179,23 +1179,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 5855e77f5cc36ce44a2a73a6e82ed1aa, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.4383864
+      value: 4.63
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5855e77f5cc36ce44a2a73a6e82ed1aa, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.4383864
+      value: 4.63
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5855e77f5cc36ce44a2a73a6e82ed1aa, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.4383864
+      value: 4.63
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5855e77f5cc36ce44a2a73a6e82ed1aa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.53
+      value: -6.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5855e77f5cc36ce44a2a73a6e82ed1aa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -25.75
+      value: -37.96
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5855e77f5cc36ce44a2a73a6e82ed1aa, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4126,7 +4126,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7d9168405dee0634784e6d882df0d384, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 75657ad46e8f90240ae159f6362a87b3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4548,6 +4548,8 @@ MonoBehaviour:
   MenuObjects: []
   weaponMenuObject: {fileID: 4827586323188922309, guid: 38abc307291588c4db7046042d976e59, type: 3}
   energyText: {fileID: 548699481}
+  playerData: {fileID: 1707282257}
+  damageIndicatorPrefab: {fileID: 985783835550424020, guid: bf932e9924e884748b9300dabc7007d9, type: 3}
 --- !u!4 &1198069309
 Transform:
   m_ObjectHideFlags: 0
@@ -5912,8 +5914,7 @@ MonoBehaviour:
   _currentActions: 3
   _maxActions: 3
   actionsText: {fileID: 701897918}
-  CurrentParts:
-  - {fileID: 11400000, guid: 001b5f5f0c0685f489002903a568926f, type: 2}
+  currentParts:
   - {fileID: 11400000, guid: 001b5f5f0c0685f489002903a568926f, type: 2}
 --- !u!1 &1717702279
 GameObject:

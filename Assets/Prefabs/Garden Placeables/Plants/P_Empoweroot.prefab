@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_Empoweroot
       objectReference: {fileID: 0}
+    - target: {fileID: 4482992049444851102, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d761413eb52018341887006b79d83301, type: 2}
     - target: {fileID: 7061688495639312982, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -84,6 +88,6 @@ MonoBehaviour:
   _name: Blast Bloom
   _description: When the Blast Bloom is adjacent to three other plants, all weapons
     deal +1 damage
-  _inventorySprite: {fileID: 21300000, guid: 19128026478a80c419d1bcf925440a42, type: 3}
+  _inventorySprite: {fileID: 21300000, guid: ca95c795063b3134e94b2b240b20aa3d, type: 3}
   _gardenTile: {fileID: 0}
   _plantType: 4

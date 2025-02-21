@@ -14,9 +14,9 @@ public class Player_Combat_Manager : MonoBehaviour
     public GameObject weaponMenuObject;
     int energy = 0;
     public TextMeshProUGUI energyText;
-    PlayerData playerData;
+    public PlayerDataManager playerData;
     public GameObject damageIndicatorPrefab;
-    public void SetUp( PlayerData data, GardenManager garden, CombatManager combatManager)
+    public void SetUp(PlayerDataManager data, GardenManager garden, CombatManager combatManager)
     {
         playerData = data;
         this.combatManager = combatManager;
@@ -101,7 +101,7 @@ public class Player_Combat_Manager : MonoBehaviour
                 indicator.GetComponent<DamageIndicator>().SetDamage(attack.damage);
 
 
-                tileHit.GardenPlaceable.Health -= attack.damage;
+                tileHit.GardenPlaceable.HealthStat.CurrentValue -= attack.damage;
             }
             else
             {
