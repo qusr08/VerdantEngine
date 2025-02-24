@@ -52,23 +52,27 @@ public class GardenManager : MonoBehaviour {
 		CreateGardenTiles( );
 
 		/// TEST: Create test plants and move them around
-        PlacePlant(PlantType.HARDY_HEDGE, 2, 0);
-		PlacePlant(PlantType.HARDY_HEDGE, 3, 1);
-		PlacePlant(PlantType.HARDY_HEDGE, 2, 2);
-		PlacePlant(PlantType.HARDY_HEDGE, 2, 3);
-		PlacePlant(PlantType.HARDY_HEDGE, 3, 4);
-		PlacePlant(PlantType.HARDY_HEDGE, 2, 5);
+		PlacePlant(PlantType.HARDY_HEDGE, 1, 3);
+		PlacePlant(PlantType.EMPOWEROOT, 0, 2);
+		PlacePlant(PlantType.POWER_FLOWER, 0, 3);
 
+		//PlacePlant(PlantType.HARDY_HEDGE, 2, 0);
+		//PlacePlant(PlantType.HARDY_HEDGE, 3, 1);
+		//PlacePlant(PlantType.HARDY_HEDGE, 2, 2);
+		//PlacePlant(PlantType.HARDY_HEDGE, 2, 3);
+		//PlacePlant(PlantType.HARDY_HEDGE, 3, 4);
+		//PlacePlant(PlantType.HARDY_HEDGE, 2, 5);
 
-		PlacePlant(PlantType.EMPOWEROOT, 1, 2);
-		PlacePlant(PlantType.EMPOWEROOT, 1, 3);
-		PlacePlant(PlantType.POWER_FLOWER, 0, 1);
-        PlacePlant(PlantType.POWER_FLOWER, 0, 2);
-        PlacePlant(PlantType.POWER_FLOWER, 0, 3);
-		PlacePlant(PlantType.POWER_FLOWER, 0, 4);
+		//PlacePlant(PlantType.EMPOWEROOT, 1, 2);
+		//PlacePlant(PlantType.EMPOWEROOT, 1, 3);
 
-		PlacePlant(PlantType.SHIELDING_SHRUB, 2, 1);
-		PlacePlant(PlantType.SHIELDING_SHRUB, 2, 4);
+		//PlacePlant(PlantType.POWER_FLOWER, 0, 1);
+		//PlacePlant(PlantType.POWER_FLOWER, 0, 2);
+		//PlacePlant(PlantType.POWER_FLOWER, 0, 3);
+		//PlacePlant(PlantType.POWER_FLOWER, 0, 4);
+
+		//PlacePlant(PlantType.SHIELDING_SHRUB, 2, 1);
+		//PlacePlant(PlantType.SHIELDING_SHRUB, 2, 4);
 
 
 		//MovePlant(PlayerData.Garden[1, 1].GardenPlaceable as Plant, 1, 2);
