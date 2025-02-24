@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour {
-	[Header("References - Inventory")]
 	[SerializeField] private List<InventoryBox> _inventoryBoxes;
 	[SerializeField] private Transform itemBoxesContainer;
 	[SerializeField] private GameObject plantInventoryBoxPrefab;

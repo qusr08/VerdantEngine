@@ -4,9 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class PlantInventoryBox : InventoryBox {
-	[Header("Properties - PlantInventoryItem")]
+	[Header("PlantInventoryBox")]
 	[SerializeField] private PlantType _plantType;
-   
 
 	/// <summary>
 	/// The plant type of this inventory item
@@ -47,6 +46,6 @@ public class PlantInventoryBox : InventoryBox {
 		gardenManager.PlacePlant(PlantType, gardenManager.SelectedGardenTile.Position.x, gardenManager.SelectedGardenTile.Position.y);
 		playerDataManager.CurrentActions--;
 		Amount--;
-		combatManager.SetEnemyAttackVisuals();
+		combatManager.UpdateEnemyAttackVisuals();
 	}
 }

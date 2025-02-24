@@ -7,13 +7,13 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public abstract class InventoryBox : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
-	[Header("References - InventoryItem")]
+	[Header("InventoryBox")]
 	[SerializeField] protected Inventory inventory;
 	[SerializeField] protected PlayerDataManager playerDataManager;
 	[SerializeField] protected GardenManager gardenManager;
 	[SerializeField] protected TextMeshProUGUI amountText;
 	[SerializeField] protected Image image;
-	[Header("Properties - InventoryItem")]
+	[Space]
 	[SerializeField] private int _amount;
 	[SerializeField] protected GameObject _prefab;
 	[SerializeField] protected CombatManager combatManager;
