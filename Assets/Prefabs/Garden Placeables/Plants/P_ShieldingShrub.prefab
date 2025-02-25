@@ -83,7 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gardenManager: {fileID: 0}
   playerDataManager: {fileID: 0}
-  _maxHealth: 2
+  _startingHealth: 2
   _cost: 0
   _name: Shielding Shrub
   _description: All adjacent plants gain +1 max hitpoint
