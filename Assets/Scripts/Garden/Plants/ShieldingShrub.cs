@@ -6,10 +6,11 @@ public class ShieldingShrub : Plant {
 	public override void OnGardenUpdated ( ) {
 		base.OnGardenUpdated( );
 
-		// All adjacent plants gain +1 HP
-		List<Plant> plants = GetSurroundingPlants(1);
-		foreach (Plant plant in plants) {
-			plant.HealthStat.SetModifier(1, this);
+		// All adjacent plants get +1 shield
+		RemoveModifiersFromEffectedGardenPlaceables( );
+		foreach (Plant plant in GetSurroundingPlants(1)) {
+			effectedGardenPlaceables.Add(plant);
+			plant.ShieldStat.AddModifier(1, this);
 		}
 	}
 }

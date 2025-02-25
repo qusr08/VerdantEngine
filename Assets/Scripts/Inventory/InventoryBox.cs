@@ -17,12 +17,12 @@ public abstract class InventoryBox : MonoBehaviour, IPointerDownHandler, IPointe
 	[SerializeField] private int _amount;
 	[SerializeField] protected GameObject _prefab;
 	[SerializeField] protected CombatManager combatManager;
-    [SerializeField] private PlantHover _UIDisplay;
+	[SerializeField] private PlantHover _UIDisplay;
 
-    /// <summary>
-    /// The prefab associated with this inventory box. Use this to get information about the item stored
-    /// </summary>
-    public GameObject Prefab { get => _prefab; protected set => _prefab = value; }
+	/// <summary>
+	/// The prefab associated with this inventory box. Use this to get information about the item stored
+	/// </summary>
+	public GameObject Prefab { get => _prefab; protected set => _prefab = value; }
 
 	/// <summary>
 	/// The amount of this item in the inventory
@@ -43,28 +43,26 @@ public abstract class InventoryBox : MonoBehaviour, IPointerDownHandler, IPointe
 		}
 	}
 
-    /// <summary>
-    /// Whether or not the current tile is being hovered
-    /// </summary>
-    public PlantHover UIDisplay
-    {
-        get => _UIDisplay;
-        set
-        {
-            _UIDisplay = value;
-        }
-    }
+	/// <summary>
+	/// Whether or not the current tile is being hovered
+	/// </summary>
+	public PlantHover UIDisplay {
+		get => _UIDisplay;
+		set {
+			_UIDisplay = value;
+		}
+	}
 
-    private void Awake ( ) {
+	private void Awake ( ) {
 		inventory = FindObjectOfType<Inventory>( );
 		gardenManager = FindObjectOfType<GardenManager>( );
 		playerDataManager = FindObjectOfType<PlayerDataManager>( );
-		combatManager = FindObjectOfType<CombatManager>();
-        UIDisplay = FindObjectOfType<PlantHover>();
+		combatManager = FindObjectOfType<CombatManager>( );
+		UIDisplay = FindObjectOfType<PlantHover>( );
 
-    }
+	}
 
-    public void OnPointerDown (PointerEventData eventData) {
+	public void OnPointerDown (PointerEventData eventData) {
 		playerDataManager.MouseSprite = Prefab.GetComponent<GardenPlaceable>( ).InventorySprite;
 	}
 
@@ -73,10 +71,7 @@ public abstract class InventoryBox : MonoBehaviour, IPointerDownHandler, IPointe
 		/// NOTE: This function should be overridden in child classes to implement placeable type specific code
 	}
 
-    public void OnMouseEnter()
-    {
-        UIDisplay.UpdateText(Prefab.GetComponent<GardenPlaceable>().Name, Prefab.GetComponent<GardenPlaceable>().Description,
-            Prefab.GetComponent<GardenPlaceable>().MaxHealth, Prefab.GetComponent<GardenPlaceable>().MaxHealth, Prefab.GetComponent<GardenPlaceable>().InventorySprite);
-
-    }
+	public void OnMouseEnter ( ) {
+		UIDisplay.UpdateText(Prefab.GetComponent<GardenPlaceable>( ));
+	}
 }

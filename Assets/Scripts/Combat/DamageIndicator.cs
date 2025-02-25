@@ -5,7 +5,7 @@ public class DamageIndicator : MonoBehaviour {
 	[SerializeField] private TextMeshProUGUI numberText;
 	[SerializeField] private float duration = 1f; // Time before it disappears
 	[SerializeField] private float floatSpeed = 1f; // Speed at which it rises
-	
+
 	private float elapsedTime = 0f;
 
 	public void SetDamage (float damage) {

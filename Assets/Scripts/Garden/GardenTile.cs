@@ -16,7 +16,7 @@ public class GardenTile : MonoBehaviour {
 	[SerializeField] private bool _isAttacked;
 	[SerializeField] private bool _isSelected;
 	[Space]
-	[SerializeField] private PlantHover _UIDisplay;
+	[SerializeField] private PlantHover _plantHoverDisplay;
 
 	/// <summary>
 	/// Whether or not the current tile is being attacked
@@ -55,12 +55,12 @@ public class GardenTile : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Whether or not the current tile is being attacked
+	/// A reference to the plant hover display object
 	/// </summary>
-	public PlantHover UIDisplay {
-		get => _UIDisplay;
+	public PlantHover PlantHoverDisplay {
+		get => _plantHoverDisplay;
 		set {
-			_UIDisplay = value;
+			_plantHoverDisplay = value;
 		}
 	}
 
@@ -86,12 +86,12 @@ public class GardenTile : MonoBehaviour {
 		playerDataManager = FindObjectOfType<PlayerDataManager>( );
 		gardenManager = FindObjectOfType<GardenManager>( );
 		combatManager = FindObjectOfType<CombatManager>();
-
+		PlantHoverDisplay = FindObjectOfType<PlantHover>( );
 	}
 
 	private void OnMouseEnter ( ) {
 		if (GardenPlaceable != null) {
-			UIDisplay.UpdateText(GardenPlaceable.Name, GardenPlaceable.Description, GardenPlaceable.HealthStat.CurrentValue, GardenPlaceable.HealthStat.MaxValue, GardenPlaceable.InventorySprite);
+			PlantHoverDisplay.UpdateText(GardenPlaceable);
 			//Debug.Log(GardenPlaceable.gameObject.name);
 		}
 
@@ -121,8 +121,8 @@ public class GardenTile : MonoBehaviour {
 		GardenPlaceable.GetComponent<MeshRenderer>( ).enabled = true;
 		playerDataManager.MouseSprite = null;
 
-		// If there is a plant at the selected garden tile already, do not try to move this garden placeable to that tile
-		if (gardenManager.SelectedGardenTile != null && gardenManager.SelectedGardenTile.GardenPlaceable != null) {
+		// If there is no selected garden tile, then also return
+		if (gardenManager.SelectedGardenTile == null) {
 			return;
 		}
 
@@ -132,7 +132,7 @@ public class GardenTile : MonoBehaviour {
 		}
 
 		// Actually place the garden placeable on the new tile and decrease the action stat counter
-		GardenPlaceable.GardenTile = gardenManager.SelectedGardenTile;
+		gardenManager.MovePlant(GardenPlaceable as Plant, gardenManager.SelectedGardenTile);
 		playerDataManager.CurrentActions--;
 		combatManager.UpdateEnemyAttackVisuals();
 	}

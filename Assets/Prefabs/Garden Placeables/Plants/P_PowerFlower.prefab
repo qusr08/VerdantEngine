@@ -83,10 +83,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gardenManager: {fileID: 0}
   playerDataManager: {fileID: 0}
-  _maxHealth: 1
+  startingHealth: 1
   _cost: 0
   _name: Power Flower
   _description: Generates 1 energy each turn
   _inventorySprite: {fileID: 21300000, guid: 473c8770fdd40d14a8d28c1f64bc1d0c, type: 3}
   _gardenTile: {fileID: 0}
+  effectedGardenPlaceables: []
   _plantType: 1

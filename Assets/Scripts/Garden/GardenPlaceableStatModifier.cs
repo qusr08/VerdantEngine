@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatModifier {
+public class GardenPlaceableStatModifier {
 	/// <summary>
 	/// The value of this stat modifier
 	/// </summary>
@@ -13,7 +13,7 @@ public class StatModifier {
 	/// </summary>
 	public GardenPlaceable FromGardenPlaceable { get ; private set; }
 
-	public StatModifier (int value, GardenPlaceable fromGardenPlaceable) {
+	public GardenPlaceableStatModifier (int value, GardenPlaceable fromGardenPlaceable) {
 		Value = value;
 		FromGardenPlaceable = fromGardenPlaceable;
 	}

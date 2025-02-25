@@ -10,6 +10,7 @@ public class PlayerDataManager : MonoBehaviour {
 	[SerializeField] private int _currentHealth;
 	[SerializeField] private int _maxHealth;
 	[SerializeField] private int _money;
+	[SerializeField] private List<PlayerAttackSO> _playerAttacks;
 	[Space]
 	[SerializeField] private Image mouseImage;
 	[SerializeField] private RectTransform mouseImageTransform;
@@ -85,10 +86,9 @@ public class PlayerDataManager : MonoBehaviour {
 	/// <summary>
 	/// A list of all the current attacks on this mech
 	/// </summary>
-	public List<PlayerAttackSO> attacks { get; private set; }
+	public List<PlayerAttackSO> PlayerAttacks { get => _playerAttacks; private set => _playerAttacks = value; }
 
 	private void Awake ( ) {
-		attacks = new List<PlayerAttackSO>( );
 		Garden = new GardenTile[GardenSize, GardenSize];
 		CurrentHealth = MaxHealth;
 		hpSlider.value = CurrentHealth / MaxHealth;

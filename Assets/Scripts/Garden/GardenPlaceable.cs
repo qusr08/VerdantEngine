@@ -11,15 +11,17 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	[SerializeField] protected GardenManager gardenManager;
 	[SerializeField] protected PlayerDataManager playerDataManager;
 	[Space]
-	[SerializeField, Min(0), Tooltip("The starting health of this garden placeable without any modifiers.")] private int _maxHealth;
+	[SerializeField, Min(0), Tooltip("The starting health of this garden placeable.")] private int startingHealth;
 	[SerializeField, Min(0), Tooltip("The cost of this garden placeable in the shop.")] private int _cost;
 	[SerializeField, Tooltip("The name of this garden placeable.")] private string _name;
 	[SerializeField, Multiline, Tooltip("The description of this garden placeable.")] private string _description;
 	[SerializeField, Tooltip("The sprite that shows up in the inventory for this garden placeable.")] private Sprite _inventorySprite;
 	[Space]
 	[SerializeField, Tooltip("The garden tile that this plant is on.")] private GardenTile _gardenTile;
+	[SerializeField, Tooltip("The garden placeables that are currently effected by this garden placeable's stat modifiers.")] protected List<GardenPlaceable> effectedGardenPlaceables;
 
-	private Stat _healthStat;
+	private GardenPlaceableStat _healthStat;
+	private GardenPlaceableStat _shieldStat;
 
 	/// <summary>
 	/// The cost of this garden placeable in a shop
@@ -42,24 +44,14 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	public Sprite InventorySprite { get => _inventorySprite; }
 
 	/// <summary>
-	/// Information about the health of this garden placeable
+	/// The current health stat of this garden placeable
 	/// </summary>
-	public Stat HealthStat { get => _healthStat; private set => _healthStat = value; }
+	public GardenPlaceableStat HealthStat { get => _healthStat; private set => _healthStat = value; }
 
 	/// <summary>
-	/// The max health of this garden placeable
+	/// The current shield stat of this garden placeable
 	/// </summary>
-	public int MaxHealth {
-		get => _maxHealth;
-		set {
-			_maxHealth = value;
-
-			// Make sure to update the health stat as well
-			if (HealthStat != null) {
-				HealthStat.MaxValue = _maxHealth;
-			}
-		}
-	}
+	public GardenPlaceableStat ShieldStat { get => _shieldStat; private set => _shieldStat = value; }
 
 	/// <summary>
 	/// The position of this plant in the garden
@@ -83,17 +75,18 @@ public abstract class GardenPlaceable : MonoBehaviour {
 			}
 			_gardenTile = value;
 			_gardenTile.GardenPlaceable = this;
-			transform.SetParent(_gardenTile.transform, false);
 
 			// Should be changing the y value but because the garden tile is rotated, we need to set the z value instead
+			transform.SetParent(_gardenTile.transform, false);
 			transform.localPosition = new Vector3(0f, 0f, -0.5f);
 		}
 	}
 
-	#region Initialization
 	private void Awake ( ) {
 		gardenManager = FindObjectOfType<GardenManager>( );
 		playerDataManager = FindObjectOfType<PlayerDataManager>( );
+
+		effectedGardenPlaceables = new List<GardenPlaceable>( );
 	}
 
 	/// <summary>
@@ -104,16 +97,15 @@ public abstract class GardenPlaceable : MonoBehaviour {
 		GardenTile = gardenTile;
 
 		// Set up stats
-		HealthStat = new Stat(MaxHealth, MaxHealth);
+		HealthStat = new GardenPlaceableStat(startingHealth);
 		HealthStat.WhenZero += OnKilled;
+		ShieldStat = new GardenPlaceableStat(0);
 
 		// Make sure the plants are always facing towards the camera
 		transform.LookAt(-Camera.main.transform.position + transform.position);
 		// transform.localEulerAngles = new Vector3(0f, transform.localEulerAngles.y, 0f);
 	}
-	#endregion
 
-	#region Helper Methods
 	/// <summary>
 	/// Get a list of specific plants that are surrounding this garden placeable within a certain radius
 	/// </summary>
@@ -229,9 +221,19 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	public int CountSurroundingArtifacts (int radius, List<ArtifactType> exclusiveArtifactTypes = null, List<ArtifactType> excludedArtifactTypes = null) {
 		return GetSurroundingArtifacts(radius, exclusiveArtifactTypes, excludedArtifactTypes).Count;
 	}
-	#endregion
 
-	#region Effect Triggers
+	/// <summary>
+	/// Remove all modifiers from all the garden placeables that are effected by this garden placeable. This should be used before recalculating modifiers
+	/// </summary>
+	protected void RemoveModifiersFromEffectedGardenPlaceables ( ) {
+		// Clear all modifiers from the previously effected garden placeables
+		for (int i = effectedGardenPlaceables.Count - 1; i >= 0; i--) {
+			effectedGardenPlaceables[i].HealthStat.RemoveModifiers(this);
+			effectedGardenPlaceables[i].ShieldStat.RemoveModifiers(this);
+			effectedGardenPlaceables.RemoveAt(i);
+		}
+	}
+
 	/// <summary>
 	/// Called when the garden is update in any way. This means that when a plant is placed or removed on the board, this function is called
 	/// </summary>
@@ -256,5 +258,4 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	/// Called when this garden placeable is killed
 	/// </summary>
 	public virtual void OnKilled ( ) { }
-	#endregion
 }

@@ -168,7 +168,7 @@ public class GardenManager : MonoBehaviour {
 
 		// Remove the plant from all lists and destroy it
 		Plants.Remove(plant);
-		playerDataManager.Garden[plant.Position.x, plant.Position.y].GardenPlaceable = null;
+		plant.GardenTile.GardenPlaceable = null;
 		Destroy(plant.gameObject);
 		UpdateGarden( );
 
@@ -196,62 +196,25 @@ public class GardenManager : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Remove a plant from the garden
-	/// </summary>
-	/// <param name="x">The x coordinate of the plant to remove</param>
-	/// <param name="y">The y coordinate of the plant to remove</param>
-	/// <returns>true if there was a plant successfully removed, false otherwise. Also returns false if the position specified was out of the bounds of the garden or there was no plant at the specified position to remove</returns>
-	public bool UprootPlant (int x, int y) {
-		// Return false if the position that the new plant is being placed at is out of the bounds of the garden
-		if (!IsPositionWithinGarden(x, y)) {
-			return false;
-		}
-
-		// Get the plant at the specified position
-		Plant plant = playerDataManager.Garden[x, y].GardenPlaceable as Plant;
-
-		// Return false if there is no plant at the position specified
-		if (plant == null) {
-			return false;
-		}
-
-		// Remove the plant from all lists and destroy it
-		Plants.Remove(plant);
-		playerDataManager.Garden[x, y].GardenPlaceable = null;
-		Destroy(plant.gameObject);
-		UpdateGarden( );
-
-		return true;
-	}
-
-	/// <summary>
 	/// Move a plant from its current position to another one
 	/// </summary>
 	/// <param name="plant">The plant that will be moved</param>
 	/// <param name="x">The x coordinate to move the plant to</param>
 	/// <param name="y">The y coordinate to move the plant to</param>
 	/// <returns>true if the plant was successfully moved, false otherwise. Also returns false if the position that the plant was going to move to is out of the bounds of the garden or there was already a plant at that position</returns>
-	public bool MovePlant (Plant plant, int x, int y) {
+	public bool MovePlant (Plant plant, GardenTile gardenTile) {
 		// If the plant that was going to be moved is null, then return false
-		if (plant == null) {
+		if (plant == null || gardenTile == null) {
 			return false;
 		}
 
-		// Return false if the position that the plant is being move to is out of the bounds of the garden
-		if (!IsPositionWithinGarden(x, y)) {
-			return false;
-		}
-
-		// Return false if there is already a plant at the position specified
-		if (playerDataManager.Garden[x, y].GardenPlaceable != null) {
+		// If there is a plant at the garden tile already, do not try to move this garden placeable to that tile
+		if (gardenTile.GardenPlaceable != null) {
 			return false;
 		}
 
 		// Remove the reference to the plant from its current position and add it to the position it is being moved to
-		// Also update the position of the plant
-		playerDataManager.Garden[plant.Position.x, plant.Position.y].GardenPlaceable = null;
-		plant.GardenTile = playerDataManager.Garden[x, y];
-		playerDataManager.Garden[plant.Position.x, plant.Position.y].GardenPlaceable = plant;
+		plant.GardenTile = gardenTile;
 		UpdateGarden( );
 
 		return true;
@@ -264,6 +227,11 @@ public class GardenManager : MonoBehaviour {
 		// Loop through all garden tiles and update the garden placeables on them
 		foreach (GardenTile gardenTile in playerDataManager.Garden) {
 			gardenTile.GardenPlaceable?.OnGardenUpdated( );
+		}
+
+		// Update the plant hover display as well
+		if (SelectedGardenTile != null && SelectedGardenTile.GardenPlaceable != null) {
+			SelectedGardenTile.PlantHoverDisplay.UpdateText(SelectedGardenTile.GardenPlaceable);
 		}
 	}
 
@@ -278,9 +246,7 @@ public class GardenManager : MonoBehaviour {
 				GardenTile gardenTile = Instantiate(groundTilePrefab, transform).GetComponent<GardenTile>( );
 				gardenTile.Position = new Vector2Int(x, y);
 				playerDataManager.Garden[x, y] = gardenTile;
-				gardenTile.UIDisplay = FindObjectOfType<PlantHover>();
-
-            }
+			}
 		}
 	}
 

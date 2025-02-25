@@ -17,7 +17,7 @@ public class PlayerCombatManager : MonoBehaviour {
 	[SerializeField] private int energy = 0;
 
 	private void Start ( ) {
-		foreach (PlayerAttackSO playerAttack in playerDataManager.attacks) {
+		foreach (PlayerAttackSO playerAttack in playerDataManager.PlayerAttacks) {
 			weaponMenuItems.Add(Instantiate(weaponMenuItemPrefab, weaponMenuContainer).GetComponent<PlayerAttackMenuItem>( ));
 			weaponMenuItems[weaponMenuItems.Count - 1].PlayerAttack = playerAttack;
 		}
@@ -69,11 +69,17 @@ public class PlayerCombatManager : MonoBehaviour {
 			if (tileHit != null && tileHit.GardenPlaceable != null) {
 				Debug.Log(enemy.name + " attacked the player using " + enemyAttack.Name + " dealing " + enemyAttack.Damage + " to the " + tileHit.GardenPlaceable.name);
 
-				// Spawn the damage indicator
-				DamageIndicator indicator = Instantiate(damageIndicatorPrefab, tileHit.transform.position, tileHit.GardenPlaceable.transform.rotation).GetComponent<DamageIndicator>();
-				indicator.SetDamage(enemyAttack.Damage);
+				// Calculate the amount of damage that the enemy will deal to the plant
+				// Make sure to factor in the shield that the plant has as well
+				// Also make sure that the damage done never goes below 0, as that would add health back to the plant
+				int damageDealt = Mathf.Max(0, enemyAttack.Damage - tileHit.GardenPlaceable.ShieldStat.CurrentValue);
 
-				tileHit.GardenPlaceable.HealthStat.CurrentValue -= enemyAttack.Damage;
+				// Spawn the damage indicator
+				DamageIndicator indicator = Instantiate(damageIndicatorPrefab, tileHit.transform.position, tileHit.GardenPlaceable.transform.rotation).GetComponent<DamageIndicator>( );
+				indicator.SetDamage(damageDealt);
+
+				// Deal damage to the garden placeable that was hit by the attack
+				tileHit.GardenPlaceable.HealthStat.BaseValue -= damageDealt;
 			} else {
 				Debug.Log("Taeget got killed before turn");
 			}
