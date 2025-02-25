@@ -11,7 +11,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	[SerializeField] protected GardenManager gardenManager;
 	[SerializeField] protected PlayerDataManager playerDataManager;
 	[Space]
-	[SerializeField, Min(0), Tooltip("The starting health of this garden placeable.")] private int startingHealth;
+	[SerializeField, Min(0), Tooltip("The starting health of this garden placeable.")] private int _startingHealth;
 	[SerializeField, Min(0), Tooltip("The cost of this garden placeable in the shop.")] private int _cost;
 	[SerializeField, Tooltip("The name of this garden placeable.")] private string _name;
 	[SerializeField, Multiline, Tooltip("The description of this garden placeable.")] private string _description;
@@ -22,6 +22,11 @@ public abstract class GardenPlaceable : MonoBehaviour {
 
 	private GardenPlaceableStat _healthStat;
 	private GardenPlaceableStat _shieldStat;
+
+	/// <summary>
+	/// The starting health of this garden placeable
+	/// </summary>
+	public int StartingHealth => _startingHealth;
 
 	/// <summary>
 	/// The cost of this garden placeable in a shop
@@ -97,8 +102,9 @@ public abstract class GardenPlaceable : MonoBehaviour {
 		GardenTile = gardenTile;
 
 		// Set up stats
-		HealthStat = new GardenPlaceableStat(startingHealth);
+		HealthStat = new GardenPlaceableStat(StartingHealth);
 		HealthStat.WhenZero += OnKilled;
+		HealthStat.OnUpdateCurrentValue += OnTakeDamage;
 		ShieldStat = new GardenPlaceableStat(0);
 
 		// Make sure the plants are always facing towards the camera
@@ -237,7 +243,10 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	/// <summary>
 	/// Called when the garden is update in any way. This means that when a plant is placed or removed on the board, this function is called
 	/// </summary>
-	public virtual void OnGardenUpdated ( ) { }
+	public virtual void OnGardenUpdated ( ) {
+		// Since the garden was changed, all modifiers should be updated
+		RemoveModifiersFromEffectedGardenPlaceables( );
+	}
 
 	/// <summary>
 	/// Called when the player's turn starts
@@ -257,5 +266,8 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	/// <summary>
 	/// Called when this garden placeable is killed
 	/// </summary>
-	public virtual void OnKilled ( ) { }
+	public virtual void OnKilled ( ) {
+		// Since this garden placeable was killed, remove all modifiers it was giving out
+		RemoveModifiersFromEffectedGardenPlaceables( );
+	}
 }

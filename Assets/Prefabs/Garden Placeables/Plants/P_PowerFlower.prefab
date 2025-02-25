@@ -83,7 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gardenManager: {fileID: 0}
   playerDataManager: {fileID: 0}
-  startingHealth: 1
+  _startingHealth: 1
   _cost: 0
   _name: Power Flower
   _description: Generates 1 energy each turn

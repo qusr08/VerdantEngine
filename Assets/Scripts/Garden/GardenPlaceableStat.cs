@@ -2,6 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+
+Logic Loop:
+- plant gets moved when it has no base health and only modifier health
+- plant calls OnGardenUpdate
+- modifiers are removed from plant
+- plant calls OnKilled
+
+ */
+
 public class GardenPlaceableStat {
 	public delegate void StatFunction ( );
 	public StatFunction WhenZero;
@@ -105,14 +115,13 @@ public class GardenPlaceableStat {
 	/// Remove all stat modifiers from a specific garden placeable
 	/// </summary>
 	/// <param name="fromGardenPlaceable">The garden placeable to check for when removing modifiers</param>
-	public void RemoveModifiers (GardenPlaceable fromGardenPlaceable) {
+	public void RemoveModifiers (GardenPlaceable fromGardenPlaceable = null) {
 		// Loop through all modifiers to check and see if a modifier from the new garden placeable is already in the modifier list
 		for (int i = modifiers.Count - 1; i >= 0; i--) {
 			// Remove all modifiers that reference the new garden placeable
-			if (modifiers[i].FromGardenPlaceable == fromGardenPlaceable) {
+			if (fromGardenPlaceable == null || modifiers[i].FromGardenPlaceable == fromGardenPlaceable) {
 				TotalModifier -= modifiers[i].Value;
 				modifiers.RemoveAt(i);
-				return;
 			}
 		}
 	}

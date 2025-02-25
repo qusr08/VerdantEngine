@@ -170,7 +170,7 @@ public class GardenManager : MonoBehaviour {
 		Plants.Remove(plant);
 		plant.GardenTile.GardenPlaceable = null;
 		Destroy(plant.gameObject);
-		UpdateGarden( );
+		// UpdateGarden( );
 
 		return true;
 	}
@@ -190,7 +190,7 @@ public class GardenManager : MonoBehaviour {
 		Artifacts.Remove(artifact);
 		playerDataManager.Garden[artifact.Position.x, artifact.Position.y].GardenPlaceable = null;
 		Destroy(artifact.gameObject);
-		UpdateGarden( );
+		// UpdateGarden( );
 
 		return true;
 	}
@@ -224,13 +224,19 @@ public class GardenManager : MonoBehaviour {
 	/// Update all garden placeables currently on the garden
 	/// </summary>
 	private void UpdateGarden ( ) {
-		// Loop through all garden tiles and update the garden placeables on them
-		foreach (GardenTile gardenTile in playerDataManager.Garden) {
-			gardenTile.GardenPlaceable?.OnGardenUpdated( );
+		// Loop through all garden placeables and call their on garden update function
+		for (int i = Plants.Count - 1; i >= 0; i--) {
+			Plants[i].OnGardenUpdated( );
+		}
+		for (int i = Artifacts.Count - 1; i >= 0; i--) {
+			Artifacts[i].OnGardenUpdated( );
 		}
 
 		// Update the plant hover display as well
+		// When you move a plant, the UI does not get updated otherwise
 		if (SelectedGardenTile != null && SelectedGardenTile.GardenPlaceable != null) {
+			/// TO DO: Need to update the plant hover display for when the selected tile is not null but the garden placeable was destroyed (as in just show nothing on the plant display)
+			/// Should be able to pass "null" into the UpdateText() function to clear all data
 			SelectedGardenTile.PlantHoverDisplay.UpdateText(SelectedGardenTile.GardenPlaceable);
 		}
 	}
