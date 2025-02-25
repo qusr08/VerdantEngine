@@ -8,9 +8,9 @@ public class HardyHedge : Plant {
 		base.OnGardenUpdated( );
 
 		// Gains +1 HP if next to another Hardy Hedge
-		foreach (Plant hardyHedge in GetSurroundingPlants(1, new List<PlantType>( ) { PlantType.HARDY_HEDGE })) {
-			effectedGardenPlaceables.Add(hardyHedge);
-			hardyHedge.HealthStat.AddModifier(1, this);
-		}
+		//foreach (Plant hardyHedge in GetSurroundingPlants(1, new List<PlantType>( ) { PlantType.HARDY_HEDGE })) {
+		//	effectedGardenPlaceables.Add(hardyHedge);
+		//	hardyHedge.HealthStat.AddModifier(1, this);
+		//}
 	}
 }
