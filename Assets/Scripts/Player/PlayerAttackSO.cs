@@ -20,7 +20,7 @@ public enum PlayerTargetingType {
 	ALL
 }
 
-[CreateAssetMenu(fileName = "MechPart", menuName = "ScriptableObjects/MechPart", order = 1)]
+[CreateAssetMenu(fileName = "PlayerAttack", menuName = "ScriptableObjects/PlayerAttack", order = 1)]
 public class PlayerAttackSO : ScriptableObject {
 	[SerializeField] private int _damage;
 	[SerializeField] private int _manaCost;

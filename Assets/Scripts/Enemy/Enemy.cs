@@ -54,7 +54,17 @@ public class Enemy : MonoBehaviour {
 	/// <summary>
 	/// The current cooldown of this enemy
 	/// </summary>
-	public int CurrentCooldown { get => _currentCooldown; private set => _currentCooldown = value; }
+	public int CurrentCooldown { 
+		get => _currentCooldown;
+		private set {
+			_currentCooldown = value;
+
+			if (_currentCooldown == 0) {
+				MarkMapBeforeAttack( );
+				needNewAttack = true;
+			}
+		}
+	}
 
 	// private bool attacksAreRandom;
 	private bool needNewAttack = true;
@@ -86,7 +96,6 @@ public class Enemy : MonoBehaviour {
 
 	public void StartRound ( ) {
 		isInitialized = false;
-		CurrentCooldown--;
 
 		if (attacks.Count > 0 && needNewAttack) {
 			CurrentAttack = attacks[0];
@@ -94,10 +103,7 @@ public class Enemy : MonoBehaviour {
 			needNewAttack = false;
 		}
 
-		if (CurrentCooldown == 0) {
-			MarkMapBeforeAttack( );
-			needNewAttack = true;
-		}
+		CurrentCooldown--;
 
 		combatUIManager.UpdateCooldown(this);
 	}

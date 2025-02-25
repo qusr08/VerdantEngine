@@ -70,7 +70,7 @@ public class EnemyAttackSO : ScriptableObject {
 	}
 }
 
-// Not working on my computer for some reason - Frankie
+// Not working on my computer for some reason so I had to comment it out - Frankie
 /*
 #if UNITY_EDITOR
 [CustomEditor(typeof(EnemyAttackSO))]
