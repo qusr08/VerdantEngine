@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class ArtifactInventoryBox : InventoryBox {
-	[Header("Properties - ArtifactInventoryItem")]
+	[Header("ArtifactInventoryBox")]
 	[SerializeField] private ArtifactType _artifactType;
 
 	/// <summary>

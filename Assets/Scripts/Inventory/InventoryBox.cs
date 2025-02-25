@@ -7,15 +7,17 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public abstract class InventoryBox : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
-	[Header("References - InventoryItem")]
+	[Header("InventoryBox")]
 	[SerializeField] protected Inventory inventory;
 	[SerializeField] protected PlayerDataManager playerDataManager;
 	[SerializeField] protected GardenManager gardenManager;
 	[SerializeField] protected TextMeshProUGUI amountText;
 	[SerializeField] protected Image image;
-	[Header("Properties - InventoryItem")]
+	[Space]
 	[SerializeField] private int _amount;
 	[SerializeField] protected GameObject _prefab;
+	[SerializeField] protected CombatManager combatManager;
+	[SerializeField] private PlantHover _UIDisplay;
 
 	/// <summary>
 	/// The prefab associated with this inventory box. Use this to get information about the item stored
@@ -41,10 +43,23 @@ public abstract class InventoryBox : MonoBehaviour, IPointerDownHandler, IPointe
 		}
 	}
 
+	/// <summary>
+	/// Whether or not the current tile is being hovered
+	/// </summary>
+	public PlantHover UIDisplay {
+		get => _UIDisplay;
+		set {
+			_UIDisplay = value;
+		}
+	}
+
 	private void Awake ( ) {
 		inventory = FindObjectOfType<Inventory>( );
 		gardenManager = FindObjectOfType<GardenManager>( );
 		playerDataManager = FindObjectOfType<PlayerDataManager>( );
+		combatManager = FindObjectOfType<CombatManager>( );
+		UIDisplay = FindObjectOfType<PlantHover>( );
+
 	}
 
 	public void OnPointerDown (PointerEventData eventData) {
@@ -54,5 +69,9 @@ public abstract class InventoryBox : MonoBehaviour, IPointerDownHandler, IPointe
 	public virtual void OnPointerUp (PointerEventData eventData) {
 		throw new NotImplementedException( );
 		/// NOTE: This function should be overridden in child classes to implement placeable type specific code
+	}
+
+	public void OnMouseEnter ( ) {
+		UIDisplay.UpdateText(Prefab.GetComponent<GardenPlaceable>( ));
 	}
 }

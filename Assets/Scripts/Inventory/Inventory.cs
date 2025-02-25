@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour {
-	[Header("References - Inventory")]
 	[SerializeField] private List<InventoryBox> _inventoryBoxes;
 	[SerializeField] private Transform itemBoxesContainer;
 	[SerializeField] private GameObject plantInventoryBoxPrefab;
@@ -18,9 +17,17 @@ public class Inventory : MonoBehaviour {
 	private void Start ( ) {
 		/// TESTING
 		AddPlant(PlantType.POWER_FLOWER);
+		AddPlant(PlantType.POWER_FLOWER);
+
+		AddPlant(PlantType.EMPOWEROOT);
+
+		AddPlant(PlantType.SHIELDING_SHRUB);
+		AddPlant(PlantType.SHIELDING_SHRUB);
+
 		AddPlant(PlantType.HARDY_HEDGE);
 		AddPlant(PlantType.HARDY_HEDGE);
-		RemovePlant(PlantType.HARDY_HEDGE);
+		AddPlant(PlantType.HARDY_HEDGE);
+
 	}
 
 	/// <summary>
