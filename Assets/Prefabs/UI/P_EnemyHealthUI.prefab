@@ -449,9 +449,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 2323040500659454667}
-  enemy: {fileID: 0}
+  _enemy: {fileID: 0}
   image: {fileID: 568613237928467622}
-  coolDownText: {fileID: 8913763137480250062}
+  cooldownText: {fileID: 8913763137480250062}
 --- !u!1 &5676466245760832878
 GameObject:
   m_ObjectHideFlags: 0

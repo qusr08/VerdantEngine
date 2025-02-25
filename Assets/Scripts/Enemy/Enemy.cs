@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour {
 	[SerializeField] private int _currentCooldown;
 	[SerializeField] private Sprite _icon;
 	[SerializeField] private List<GardenTile> _finalAim = new List<GardenTile>( );
-	[SerializeField] private EnemyAttackSO _currentAttack;
+	[SerializeField] private List<EnemyAttackSO> attacks;
 
 	public List<GardenTile> FinalAim { get => _finalAim; private set => _finalAim = value; }
 
@@ -49,6 +49,7 @@ public class Enemy : MonoBehaviour {
 	/// The current attack of this enemy
 	/// </summary>
 	public EnemyAttackSO CurrentAttack { get => _currentAttack; private set => _currentAttack = value; }
+	private EnemyAttackSO _currentAttack;
 
 	/// <summary>
 	/// The current cooldown of this enemy
@@ -61,10 +62,10 @@ public class Enemy : MonoBehaviour {
 	private bool isInitialized = false;
 	private bool randomAttackDirection = true;
 	private List<GardenTile> currentAim = new List<GardenTile>( );
-	private List<EnemyAttackSO> attacks;
 
 	private void Awake ( ) {
 		playerCombatManager = FindObjectOfType<PlayerCombatManager>( );
+		playerDataManager = FindObjectOfType<PlayerDataManager>( );
 		combatManager = FindObjectOfType<CombatManager>( );
 		combatUIManager = FindObjectOfType<CombatUIManager>( );
 	}

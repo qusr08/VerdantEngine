@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 993b1dc9d16de4f41ae10add31c0cdfe, type: 3}
-  m_Name: SO_PlayerAttack_1
+  m_Name: SO_PlayerAttack_5
   m_EditorClassIdentifier: 
-  _damage: 1
-  _manaCost: 2
+  _damage: 2
+  _manaCost: 10
   _description: 
-  _name: Player Attack 1
-  _attackType: 2
-  _playerTargetingType: 2
+  _name: Player Attack 5
+  _attackType: 4
+  _playerTargetingType: 3
   _targetNumber: 1
-  _maxCooldown: 0
-  _icon: {fileID: 21300000, guid: 2531cb67b05562e46bc406c84e535298, type: 3}
-  Cooldown: 1
+  _maxCooldown: 1
+  _icon: {fileID: 21300000, guid: 9b46d97a72231a847939ea1ca51e83e6, type: 3}
+  Cooldown: 4

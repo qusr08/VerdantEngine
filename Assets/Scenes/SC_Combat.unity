@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 61612799}
   - component: {fileID: 61612798}
   m_Layer: 5
-  m_Name: You Lose
+  m_Name: Lose Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -782,7 +782,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCombatManager: {fileID: 1198069308}
   combatUIManager: {fileID: 414572767}
-  currentCombatPreset: {fileID: 0}
+  currentCombatPreset: {fileID: 11400000, guid: 421a9601bfb82c344ac580f0caeedce9, type: 2}
   playerDataManager: {fileID: 1707282257}
   gardenManager: {fileID: 228952662}
   winScreen: {fileID: 1459336914}
@@ -3282,7 +3282,7 @@ GameObject:
   - component: {fileID: 1459336917}
   - component: {fileID: 1459336916}
   m_Layer: 5
-  m_Name: You Win
+  m_Name: Win Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
