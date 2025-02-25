@@ -8,8 +8,8 @@ public class PlayerDataManager : MonoBehaviour {
 	[Header("Properties")]
 	[SerializeField] private int _gardenSize;
 	[SerializeField] private int _currentHealth;
-	[SerializeField] public int maxHealth;
-	[SerializeField] public int money;
+	[SerializeField] private int _maxHealth;
+	[SerializeField] private int _money;
 	[Space]
 	[SerializeField] private Image mouseImage;
 	[SerializeField] private RectTransform mouseImageTransform;
@@ -21,6 +21,15 @@ public class PlayerDataManager : MonoBehaviour {
 	[SerializeField] private Slider hpSlider;
 	[SerializeField] private GameObject youLose;
 
+	/// <summary>
+	/// The max health of the player
+	/// </summary>
+	public int MaxHealth => _maxHealth;
+
+	/// <summary>
+	/// The current money that the player has
+	/// </summary>
+	public int Money { get => _money; set => _money = value; }
 
 	/// <summary>
 	/// The size of the garden (both width and height)
@@ -32,7 +41,7 @@ public class PlayerDataManager : MonoBehaviour {
 		set {
 			_currentHealth = value;
 
-			hpSlider.value = (float) _currentHealth / (float) maxHealth;
+			hpSlider.value = (float) _currentHealth / (float) MaxHealth;
 			if (_currentHealth <= 0) {
 				youLose.SetActive(true);
 
@@ -81,8 +90,8 @@ public class PlayerDataManager : MonoBehaviour {
 	private void Awake ( ) {
 		attacks = new List<PlayerAttackSO>( );
 		Garden = new GardenTile[GardenSize, GardenSize];
-		CurrentHealth = maxHealth;
-		hpSlider.value = CurrentHealth / maxHealth;
+		CurrentHealth = MaxHealth;
+		hpSlider.value = CurrentHealth / MaxHealth;
 	}
 
 	private void Update ( ) {

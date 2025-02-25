@@ -59,6 +59,15 @@ public class Enemy : MonoBehaviour {
 		private set {
 			_currentCooldown = value;
 
+			// Just as a note, if you mess with the order of the below if statements, enemies do not properly update their attacked tiles
+			// I am not sure why, just wanted to write this for the future - Frankie
+
+			if (attacks.Count > 0 && needNewAttack) {
+				CurrentAttack = attacks[0];
+				_currentCooldown = CurrentAttack.MaxCooldown;
+				needNewAttack = false;
+			}
+
 			if (_currentCooldown == 0) {
 				MarkMapBeforeAttack( );
 				needNewAttack = true;
@@ -96,15 +105,7 @@ public class Enemy : MonoBehaviour {
 
 	public void StartRound ( ) {
 		isInitialized = false;
-
-		if (attacks.Count > 0 && needNewAttack) {
-			CurrentAttack = attacks[0];
-			CurrentCooldown = CurrentAttack.MaxCooldown;
-			needNewAttack = false;
-		}
-
 		CurrentCooldown--;
-
 		combatUIManager.UpdateCooldown(this);
 	}
 

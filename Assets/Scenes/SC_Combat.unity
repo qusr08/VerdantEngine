@@ -3876,8 +3876,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gardenSize: 6
   _currentHealth: 10
-  maxHealth: 10
-  money: 0
+  _maxHealth: 10
+  _money: 100
   mouseImage: {fileID: 1983731385}
   mouseImageTransform: {fileID: 1983731384}
   guiCanvas: {fileID: 1544708344}

@@ -15,7 +15,6 @@ public enum PlantType {
 public abstract class Plant : GardenPlaceable {
 	[Header("Plant")]
 	[SerializeField] private PlantType _plantType;
-	[SerializeField] public int cost;
 	/// <summary>
 	/// The type of this plant
 	/// </summary>
