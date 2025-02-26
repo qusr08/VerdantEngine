@@ -131,10 +131,11 @@ public class GardenTile : MonoBehaviour {
 			return;
 		}
 
-		// Actually place the garden placeable on the new tile and decrease the action stat counter
-		gardenManager.MovePlant(GardenPlaceable as Plant, gardenManager.SelectedGardenTile);
-		playerDataManager.CurrentActions--;
-		combatManager.UpdateEnemyAttackVisuals();
+		// Actually place the garden placeable on the new tile and decrease the action stat counter ONLY IF the move was successful
+		if (gardenManager.MovePlant(GardenPlaceable as Plant, gardenManager.SelectedGardenTile)) {
+			playerDataManager.CurrentActions--;
+			combatManager.UpdateEnemyAttackVisuals( );
+		}
 	}
 
 	/// <summary>
