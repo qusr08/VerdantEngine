@@ -29,11 +29,12 @@ public class PlayerCombatManager : MonoBehaviour {
 	}
 
 	public IEnumerator PlayerTurn ( ) {
+		energy = gardenManager.CountPlants(new List<PlantType>() { PlantType.POWER_FLOWER }, null);
 		energyText.text = energy.ToString( );
 		foreach (PlayerAttackMenuItem weaponMenuItem in weaponMenuItems) {
 			weaponMenuItem.PlayerAttack.Cooldown--;
 
-			if (weaponMenuItem.PlayerAttack.Cooldown <= 0 && (energy - weaponMenuItem.PlayerAttack.ManaCost) > 0) {
+			if (weaponMenuItem.PlayerAttack.Cooldown <= 0 && (energy - weaponMenuItem.PlayerAttack.ManaCost) >= 0) {
 				energy -= weaponMenuItem.PlayerAttack.ManaCost;
 				energyText.text = energy.ToString( );
 				weaponMenuItem.GetComponent<Image>( ).color = Color.red;
