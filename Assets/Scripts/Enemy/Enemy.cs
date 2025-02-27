@@ -104,6 +104,8 @@ public class Enemy : MonoBehaviour {
 	}
 
 	public void StartRound ( ) {
+		arrowObject.SetActive(false);
+
 		isInitialized = false;
 		CurrentCooldown--;
 		combatUIManager.UpdateCooldown(this);
