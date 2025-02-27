@@ -138,7 +138,8 @@ public class Enemy : MonoBehaviour {
 						currentAim.Add(tile);
 					}
 				}
-			} else {
+			} 
+			else {
 				for (int i = 0; i < playerDataManager.GardenSize; i++) {
 					GardenTile tile = playerDataManager.Garden[randomAim, i];
 					if (tile != null) {
@@ -166,15 +167,26 @@ public class Enemy : MonoBehaviour {
 			arrowObject.transform.SetParent(currentAim[0].transform);
 
 			// What are these rotations for? - Frankie
-			if (CurrentAttack.IsLineAttackHorizontal) {
-				arrowObject.transform.localPosition = Vector3.zero + new Vector3(0, 2, -1);
-				arrowObject.transform.rotation = new Quaternion(0.506545067f, -0.493368179f, 0.493368179f, -0.506545067f);
-			} else {
-				arrowObject.transform.localPosition = Vector3.zero + new Vector3(2, -1, -1);
-				arrowObject.transform.rotation = new Quaternion(0.00228309655f, -0.707103133f, 0.707103133f, -0.00228309655f);
+			if (!CurrentAttack.IsLineAttackHorizontal)
+			{
+					arrowObject.transform.localPosition = Vector3.zero + new Vector3(2, -1, -1);
+					arrowObject.transform.rotation = new Quaternion(0.00228309655f, -0.707103133f, 0.707103133f, -0.00228309655f);
+			}
+			else if (randomAttackDirection)
+			{
+				//right
+				arrowObject.transform.localPosition = Vector3.zero + new Vector3(0.75f, 0f, -1f);
+				arrowObject.transform.localEulerAngles =  new Vector3(0, 180, 270);
+			}
+			else
+			{
+				//left
+				arrowObject.transform.localPosition = Vector3.zero + new Vector3(1, -2, -1);
+				arrowObject.transform.localEulerAngles = new Vector3(0, 0, 90);
+			}
 
 			}
-		} else {
+		else {
 			Debug.LogError("Icon holder is missing!");
 		}
 
