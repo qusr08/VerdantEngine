@@ -24,12 +24,11 @@ public class PlayerCombatManager : MonoBehaviour {
 	}
 
 	public void PlayerStartTurn ( ) {
-		energy = gardenManager.CountPlants(new List<PlantType>( ) { PlantType.POWER_FLOWER }, null);
 		energyText.text = energy.ToString( );
 	}
 
 	public IEnumerator PlayerTurn ( ) {
-		energy = gardenManager.CountPlants(new List<PlantType>() { PlantType.POWER_FLOWER }, null);
+		energy += gardenManager.CountPlants(new List<PlantType>() { PlantType.POWER_FLOWER }, null);
 		energyText.text = energy.ToString( );
 		foreach (PlayerAttackMenuItem weaponMenuItem in weaponMenuItems) {
 			weaponMenuItem.PlayerAttack.Cooldown--;
