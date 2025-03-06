@@ -46,6 +46,13 @@ public class CombatManager : MonoBehaviour {
 
 		AllEnemiesStartRound( );
 	}
+	void ResetGardenHealth()
+	{
+		foreach (var item in gardenManager.Plants)
+        {
+			item.HealthStat.Reset();
+		}
+	}
 
 	public void AllEnemiesStartRound ( ) {
 		foreach (Enemy enemy in enemies) {
