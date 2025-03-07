@@ -109,9 +109,9 @@ ScriptedImporter:
     spriteBone:
     - name: Flower
       guid: 17cf8515294589e4fa0d36af75af442f
-      position: {x: 107.039795, y: 94.62201, z: 0}
-      rotation: {x: 0, y: 0, z: 0.7329751, w: 0.6802555}
-      length: 98.7129
+      position: {x: 107.039825, y: 94.62201, z: 0}
+      rotation: {x: 0, y: 0, z: 0.7329752, w: 0.6802555}
+      length: 98.712906
       parentId: -1
       color:
         serializedVersion: 2
@@ -337,9 +337,9 @@ ScriptedImporter:
     spriteBone:
     - name: Lightning
       guid: 23a182e476c2d9d4e8c837a9824d14b9
-      position: {x: 126.14343, y: 96.58215, z: 0}
-      rotation: {x: 0, y: 0, z: 0.1400168, w: 0.9901492}
-      length: 87.735146
+      position: {x: 112.21539, y: 106.79285, z: 0}
+      rotation: {x: 0, y: 0, z: 0.071304955, w: 0.99745464}
+      length: 99.232254
       parentId: -1
       color:
         serializedVersion: 2
@@ -862,9 +862,9 @@ ScriptedImporter:
     spriteBone:
     - name: Flower
       guid: 17cf8515294589e4fa0d36af75af442f
-      position: {x: 92.039795, y: 173.62201, z: 0}
-      rotation: {x: 0, y: 0, z: 0.7329751, w: 0.6802555}
-      length: 98.7129
+      position: {x: 92.039825, y: 173.62201, z: 0}
+      rotation: {x: 0, y: 0, z: 0.7329752, w: 0.6802555}
+      length: 98.712906
       parentId: -1
       color:
         serializedVersion: 2
@@ -1229,8 +1229,8 @@ ScriptedImporter:
         rgba: 4294967040
     - name: Leaf
       guid: 702592187438ae5468096296f7f61dd1
-      position: {x: 45.529724, y: 218.14362, z: 0}
-      rotation: {x: 0, y: 0, z: 0.84336007, w: -0.53734887}
+      position: {x: 45.529785, y: 218.14362, z: 0}
+      rotation: {x: 0, y: 0, z: 0.84336, w: -0.5373489}
       length: 83.0173
       parentId: -1
       color:
@@ -1699,7 +1699,7 @@ ScriptedImporter:
     spriteBone:
     - name: Stem_3
       guid: edb2f2b7427686b498de1585a99a5942
-      position: {x: 75.27722, y: -0.000016732734, z: 0}
+      position: {x: 75.27722, y: -0.000031984626, z: 0}
       rotation: {x: 0, y: 0, z: -0.061371416, w: 0.99811506}
       length: 73.29542
       parentId: 1
@@ -2383,8 +2383,8 @@ ScriptedImporter:
     spriteBone:
     - name: Leaf
       guid: 702592187438ae5468096296f7f61dd1
-      position: {x: 144.52974, y: 61.143616, z: 0}
-      rotation: {x: 0, y: 0, z: 0.84336007, w: -0.53734887}
+      position: {x: 144.52975, y: 61.143616, z: 0}
+      rotation: {x: 0, y: 0, z: 0.84336, w: -0.5373489}
       length: 83.0173
       parentId: -1
       color:
@@ -2392,18 +2392,18 @@ ScriptedImporter:
         rgba: 4278223103
     - name: Glow
       guid: 2c7cd32f2e6962545bf7a25b1af80e5d
-      position: {x: -7.765448, y: -20.410486, z: 0}
-      rotation: {x: 0, y: 0, z: -0.7445896, w: 0.6675226}
-      length: 49.24852
+      position: {x: -7.7654533, y: -20.410503, z: 0}
+      rotation: {x: 0, y: 0, z: -0.7445897, w: 0.6675226}
+      length: 49.248516
       parentId: 2
       color:
         serializedVersion: 2
         rgba: 4294934528
     - name: Flower
       guid: 17cf8515294589e4fa0d36af75af442f
-      position: {x: 179.03981, y: 155.62201, z: 0}
-      rotation: {x: 0, y: 0, z: 0.7329751, w: 0.6802555}
-      length: 98.7129
+      position: {x: 179.03983, y: 155.62201, z: 0}
+      rotation: {x: 0, y: 0, z: 0.7329752, w: 0.6802555}
+      length: 98.712906
       parentId: -1
       color:
         serializedVersion: 2
@@ -2492,8 +2492,8 @@ ScriptedImporter:
         rgba: 4278255615
     - name: Stem_3
       guid: edb2f2b7427686b498de1585a99a5942
-      position: {x: 75.27727, y: 0.000002146411, z: 0}
-      rotation: {x: 0, y: 0, z: -0.061371416, w: 0.99811506}
+      position: {x: 75.27727, y: -0.000013105479, z: 0}
+      rotation: {x: 0, y: 0, z: -0.06137141, w: 0.99811506}
       length: 73.29542
       parentId: 1
       color:
@@ -2546,9 +2546,9 @@ ScriptedImporter:
         rgba: 4278255488
     - name: Lightning
       guid: 23a182e476c2d9d4e8c837a9824d14b9
-      position: {x: 2.6003213, y: -18.348364, z: 0}
-      rotation: {x: 0, y: 0, z: -0.63050747, w: 0.7761832}
-      length: 87.73512
+      position: {x: 13.82036, y: -5.219761, z: 0}
+      rotation: {x: 0, y: 0, z: -0.68260384, w: 0.7307887}
+      length: 99.23222
       parentId: 7
       color:
         serializedVersion: 2
