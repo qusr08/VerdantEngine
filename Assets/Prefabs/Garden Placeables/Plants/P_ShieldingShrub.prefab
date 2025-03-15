@@ -86,7 +86,8 @@ MonoBehaviour:
   _startingHealth: 2
   _cost: 0
   _name: Shielding Shrub
-  _description: All adjacent plants gain +1 max hitpoint
+  _description: All adjacent plants gain +1 max hitpoint. The shielding effect  can
+    stack if multiple shield shrubs are adjacent.
   _inventorySprite: {fileID: 21300000, guid: 1a6c98af61041d84a93e9bc09e03b506, type: 3}
   _gardenTile: {fileID: 0}
   effectedGardenPlaceables: []
