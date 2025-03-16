@@ -50,7 +50,7 @@ public class PlayerCombatManager : MonoBehaviour {
 
 			weaponMenuItem.UpdateCoolDown( );
 		}
-
+		EndOfTurnEffects(); 
 		combatManager.EnemyTurn( );
 	}
 
@@ -58,6 +58,16 @@ public class PlayerCombatManager : MonoBehaviour {
 		int powerAdded = 0;
 		powerAdded += gardenManager.CountPlants(new List<PlantType>( ) { PlantType.EMPOWEROOT }, null);
 		return powerAdded;
+	}
+	public void EndOfTurnEffects()
+    {
+		//heathichoke & FLYTRAP vempire effects
+		foreach (Plant plant in gardenManager.GetFilteredPlants((new List<PlantType>() { PlantType.HEARTICHOKE,PlantType.FLYTRAP })))
+        {
+			plant.OnTurnEnd();
+        }
+     
+
 	}
 
 	public void ApplyDamageToGarden (Enemy enemy, EnemyAttackSO enemyAttack) {
@@ -79,7 +89,8 @@ public class PlayerCombatManager : MonoBehaviour {
 				indicator.SetDamage(damageDealt);
 
 				// Deal damage to the garden placeable that was hit by the attack
-				tileHit.GardenPlaceable.HealthStat.BaseValue -= damageDealt;
+				tileHit.GardenPlaceable.TakeDamage( damageDealt);
+				tileHit.GardenPlaceable.LastEnemyWhichDamagedPlaceble = enemy;
 			} else {
 				Debug.Log("Taeget got killed before turn");
 			}

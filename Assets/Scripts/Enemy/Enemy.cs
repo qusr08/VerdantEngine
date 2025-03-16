@@ -102,6 +102,12 @@ public class Enemy : MonoBehaviour {
 		CurrentHealth -= totalDamage;
 		Debug.Log($"Ouch, I just took {totalDamage}. Now I have {CurrentHealth} health");
 	}
+	public void Attacked(int totalDamage)
+    {
+
+		CurrentHealth -= totalDamage;
+		Debug.Log($"Ouch, I just took {totalDamage}. Now I have {CurrentHealth} health");
+	}
 
 	public void StartRound ( ) {
 		arrowObject.SetActive(false);
