@@ -12,7 +12,8 @@ public class CombatManager : MonoBehaviour {
 	[SerializeField] private CombatPresetSO currentCombatPreset;
 	[SerializeField] private PlayerDataManager playerDataManager;
 	[SerializeField] private GardenManager gardenManager;
-	[SerializeField] private GameObject winScreen;
+	[SerializeField] private MapPlayer cameraManager;
+    [SerializeField] private GameObject winScreen;
 
 	private List<Enemy> enemies;
 	private bool isPlayerPaused = false;
@@ -164,9 +165,18 @@ public class CombatManager : MonoBehaviour {
 		}
 
 		if (enemies.Count == 0) {
-			winScreen.SetActive(true);
+			Win();
 		}
 	}
+
+	/// <summary>
+	/// What happens when there are no enemies left
+	/// </summary>
+	public void Win()
+	{
+		cameraManager.onMap = true;
+		cameraManager.UpdateCameraPosition();
+    }
 
 	///                ///
 	/// Code Graveyard ///

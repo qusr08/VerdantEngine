@@ -785,6 +785,7 @@ MonoBehaviour:
   currentCombatPreset: {fileID: 11400000, guid: 421a9601bfb82c344ac580f0caeedce9, type: 2}
   playerDataManager: {fileID: 1707282257}
   gardenManager: {fileID: 228952662}
+  cameraManager: {fileID: 1887044206}
   winScreen: {fileID: 1459336914}
 --- !u!4 &261010252
 Transform:
@@ -4111,12 +4112,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyChance: 55
-  shopChance: 1
-  eventChance: 44
+  shopChance: 0
+  eventChance: 0
   enemyRates: 0600000004000000
   eventRates: 0800000002000000
-  spawnIndex: 000000000400000008000000
-  spawnType: 000000000100000001000000
+  spawnIndex: 00000000
+  spawnType: 00000000
   enemyPrefabs:
   - {fileID: 666919218090433101, guid: 9d7edbe9527a2a34ea67cb78ae28284d, type: 3}
   - {fileID: 666919218090433101, guid: b68f0bba874cb9643b8a76ed165441fc, type: 3}
