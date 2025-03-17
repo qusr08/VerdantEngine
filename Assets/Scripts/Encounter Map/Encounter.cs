@@ -19,7 +19,7 @@ public class Encounter : MonoBehaviour
     {
         if(player == null)
         {
-            player = GameObject.Find("Player").GetComponent<MapPlayer>();
+            player = GameObject.Find("CameraManager").GetComponent<MapPlayer>();
         }
 
         if(First)

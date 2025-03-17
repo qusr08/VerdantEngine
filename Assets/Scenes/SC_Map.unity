@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 472876293}
   - component: {fileID: 472876294}
   m_Layer: 0
-  m_Name: Player
+  m_Name: CameraManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -259,7 +259,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f05e801b7420b9408aa593c8c4d1550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onMap: 0
   CurrentEncounter: {fileID: 0}
+  gardenCameraLocation: {fileID: 0}
+  gardenStuff: {fileID: 0}
+  mapStuff: {fileID: 0}
+  camera: {fileID: 0}
 --- !u!1 &762209742
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class MapUI : MonoBehaviour
 {
 
     [SerializeField] private TextMeshProUGUI text;
-    [SerializeField] private string gardenSceneName;
+    [SerializeField] private MapPlayer cameraManager;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +49,7 @@ public class MapUI : MonoBehaviour
 
     public void ToGarden()
     {
-        SceneManager.LoadScene(gardenSceneName);
+        cameraManager.onMap = false;
+        cameraManager.UpdateCameraPosition();
     }
 }
