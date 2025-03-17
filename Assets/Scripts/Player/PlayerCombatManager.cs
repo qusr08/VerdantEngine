@@ -24,16 +24,16 @@ public class PlayerCombatManager : MonoBehaviour {
 	}
 
 	public void PlayerStartTurn ( ) {
-		energy = gardenManager.CountPlants(new List<PlantType>( ) { PlantType.POWER_FLOWER }, null);
 		energyText.text = energy.ToString( );
 	}
 
 	public IEnumerator PlayerTurn ( ) {
+		energy += gardenManager.CountPlants(new List<PlantType>() { PlantType.POWER_FLOWER }, null);
 		energyText.text = energy.ToString( );
 		foreach (PlayerAttackMenuItem weaponMenuItem in weaponMenuItems) {
 			weaponMenuItem.PlayerAttack.Cooldown--;
 
-			if (weaponMenuItem.PlayerAttack.Cooldown <= 0 && (energy - weaponMenuItem.PlayerAttack.ManaCost) > 0) {
+			if (weaponMenuItem.PlayerAttack.Cooldown <= 0 && (energy - weaponMenuItem.PlayerAttack.ManaCost) >= 0) {
 				energy -= weaponMenuItem.PlayerAttack.ManaCost;
 				energyText.text = energy.ToString( );
 				weaponMenuItem.GetComponent<Image>( ).color = Color.red;
@@ -61,7 +61,7 @@ public class PlayerCombatManager : MonoBehaviour {
 	}
 
 	public void ApplyDamageToGarden (Enemy enemy, EnemyAttackSO enemyAttack) {
-		if (!enemyAttack.IsLineAttackHorizontal && enemy.FinalAim.Count == playerDataManager.GardenSize) {
+		if (!enemyAttack.IsLineAttackHorizontal && enemy.FinalAim.Count == playerDataManager.GardenSize && enemy.FinalAim[enemy.FinalAim.Count-1].GardenPlaceable==null) {
 			playerDataManager.CurrentHealth -= enemyAttack.Damage;
 			Debug.Log(enemy.name + " attacked the player using " + enemyAttack.Name + " dealing " + enemyAttack.Damage + " to the player");
 		} else {
