@@ -41,4 +41,15 @@ public class CombatUIManager : MonoBehaviour {
 			}
 		}
 	}
+
+	public void PurgeList()
+	{
+
+		Debug.Log("ListPurged");
+        while(enemyHealthUIObjects.Count > 0)
+        {
+			Destroy(enemyHealthUIObjects[0]);
+			enemyHealthUIObjects.RemoveAt(0);
+        }
+    }
 }

@@ -762,7 +762,7 @@ GameObject:
   - component: {fileID: 261010252}
   - component: {fileID: 261010251}
   m_Layer: 0
-  m_Name: Combat Manager
+  m_Name: CombatManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -782,7 +782,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCombatManager: {fileID: 1198069308}
   combatUIManager: {fileID: 414572767}
-  currentCombatPreset: {fileID: 11400000, guid: 421a9601bfb82c344ac580f0caeedce9, type: 2}
+  currentCombatPreset: {fileID: 0}
   playerDataManager: {fileID: 1707282257}
   gardenManager: {fileID: 228952662}
   cameraManager: {fileID: 1887044206}
@@ -796,11 +796,11 @@ Transform:
   m_GameObject: {fileID: 261010250}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -477.82263, y: 51.330757, z: -2.092642}
+  m_LocalPosition: {x: 182.83636, y: 75.24766, z: -2.092642}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1324710159}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &269203955
 GameObject:
@@ -3866,7 +3866,6 @@ Transform:
   m_Children:
   - {fileID: 320059521}
   - {fileID: 1544708345}
-  - {fileID: 261010252}
   - {fileID: 1198069309}
   - {fileID: 414572768}
   - {fileID: 281454751}
@@ -5476,7 +5475,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 2093305438}
   - {fileID: 252679499}
-  - {fileID: 1887044207}
   - {fileID: 2055421565}
+  - {fileID: 261010252}
   - {fileID: 1324710159}
   - {fileID: 839158713}
+  - {fileID: 1887044207}

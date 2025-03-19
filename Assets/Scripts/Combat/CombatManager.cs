@@ -25,15 +25,38 @@ public class CombatManager : MonoBehaviour {
 	}
 
 	private void Start ( ) {
-		SetUpEnemies( );
+		if(currentCombatPreset != null)
+		{
+            SetUpEnemies();
 
-		playerCombatManager.PlayerStartTurn( );
+            playerCombatManager.PlayerStartTurn();
+        }
+		
 	}
 
-	/// <summary>
-	/// Set Up all starting enemies in an encounter
-	/// </summary>
-	private void SetUpEnemies ( ) {
+	public void NewCombat(CombatPresetSO newCombat)
+	{
+		if (enemies.Count > 0 || currentCombatPreset != null)
+		{
+			return;
+		}
+
+		combatUIManager.PurgeList();
+        currentCombatPreset = newCombat;
+		SetUpEnemies();
+        playerCombatManager.PlayerStartTurn();
+    }
+
+    /// <summary>
+    /// Set Up all starting enemies in an encounter
+    /// </summary>
+    private void SetUpEnemies ( ) {
+
+		if(currentCombatPreset == null)
+		{
+			return;
+		}
+
 		// Spawn enemy prefabs and place them in the backline or front line
 		// Currently the game is limited to 3 enemies each
 		for (int i = 0; i < currentCombatPreset.EnemyPrefabs.Count; i++) {
@@ -165,6 +188,7 @@ public class CombatManager : MonoBehaviour {
 		}
 
 		if (enemies.Count == 0) {
+			combatUIManager.PurgeList();
 			Win();
 		}
 	}
