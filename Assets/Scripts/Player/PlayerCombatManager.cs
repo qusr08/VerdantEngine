@@ -42,7 +42,21 @@ public class PlayerCombatManager : MonoBehaviour {
 				weaponMenuItem.GetComponent<Image>( ).color = Color.red;
 				weaponMenuItem.PlayerAttack.Cooldown = weaponMenuItem.PlayerAttack.MaxCooldown;
 
+				//If attack is targetting enemies, handle it
+				if(weaponMenuItem.PlayerAttack.PlayerTargetingType == PlayerTargetingType.TARGET)
 				yield return combatManager.IUpdateTargetedEnemies(weaponMenuItem.PlayerAttack);
+				//Else, if it tagets the garden, hendle that
+				else if(weaponMenuItem.PlayerAttack.PlayerTargetingType == PlayerTargetingType.GARDEN)
+				{
+					//If the weapon is healing, heal.
+                    if (weaponMenuItem.PlayerAttack.AttackType == AttackType.HEAL)
+					{
+                        foreach (Plant plant in gardenManager.Plants)
+                        {
+							plant.Heal(weaponMenuItem.PlayerAttack.Damage);   
+                        }
+                    }
+				}
 
 				weaponMenuItem.GetComponent<Image>( ).color = Color.white;
 
