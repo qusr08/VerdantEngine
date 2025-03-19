@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Playables;
+using Unity.VisualScripting;
 
 public class PlayerCombatManager : MonoBehaviour {
 	[SerializeField] private GardenManager gardenManager;
@@ -15,6 +17,7 @@ public class PlayerCombatManager : MonoBehaviour {
 	[SerializeField] private GameObject damageIndicatorPrefab;
 	[Space]
 	[SerializeField] private int energy = 0;
+	public EnemySlider enemyAttckSliderAnimation;
 
 	private void Start ( ) {
 		foreach (PlayerAttackSO playerAttack in playerDataManager.PlayerAttacks) {
@@ -70,7 +73,12 @@ public class PlayerCombatManager : MonoBehaviour {
 
 	}
 
-	public void ApplyDamageToGarden (Enemy enemy, EnemyAttackSO enemyAttack) {
+	public IEnumerator ApplyDamageToGarden (Enemy enemy, EnemyAttackSO enemyAttack) {
+
+
+		enemyAttckSliderAnimation.enemyImage.texture = enemy.Icon.texture;
+        enemyAttckSliderAnimation.gameObject.GetComponent<PlayableDirector>().Play();
+        yield return new WaitForSeconds((float)enemyAttckSliderAnimation.gameObject.GetComponent<PlayableDirector>().duration);
 		if (!enemyAttack.IsLineAttackHorizontal && enemy.FinalAim.Count == playerDataManager.GardenSize && enemy.FinalAim[enemy.FinalAim.Count-1].GardenPlaceable==null) {
 			playerDataManager.CurrentHealth -= enemyAttack.Damage;
 			Debug.Log(enemy.name + " attacked the player using " + enemyAttack.Name + " dealing " + enemyAttack.Damage + " to the player");

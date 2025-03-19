@@ -133,7 +133,7 @@ public class CombatManager : MonoBehaviour {
 
 		foreach (Enemy enemy in enemies) {
 			if (enemy.CurrentCooldown == 0) {
-				playerCombatManager.ApplyDamageToGarden(enemy, enemy.CurrentAttack);
+				StartCoroutine( playerCombatManager.ApplyDamageToGarden(enemy, enemy.CurrentAttack));
 			}
 		}
 
