@@ -17,7 +17,6 @@ public class ToolTip : MonoBehaviour
         instance = this;
         backgrounRectTransform = transform.Find("Background").GetComponent<RectTransform>();
         toolTipText = transform.Find("Text").GetComponent<TMP_Text>();
-
         HideToolTip();
         //ShowToolTip("Random text");
     }

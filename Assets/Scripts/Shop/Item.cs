@@ -7,7 +7,7 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public void OnPointerEnter(PointerEventData eventData)
     {
-        ToolTip.ShowToolTip_Static("Cost : " + transform.GetChild(1).GetComponent<Plant>().Cost.ToString());
+        ToolTip.ShowToolTip_Static(transform.GetChild(transform.childCount - 1).GetComponent<Plant>().Description.ToString());
     }
     public void OnPointerExit(PointerEventData eventData)
     {
