@@ -11,6 +11,7 @@ public class ShopManager : MonoBehaviour
     [SerializeField] PlayerDataManager playerDataManager;
     [SerializeField] TMP_Text balanceText;
     [SerializeField] Inventory inventory;
+    public CombatManager combatManager;
 
     // Start is called before the first frame update
     void Start()
@@ -40,11 +41,13 @@ public class ShopManager : MonoBehaviour
             //newPlantItem.GetComponent<MeshRenderer>().enabled = false;
         }
     }
-    public void AddToInventory(int itemIndex)
+    public void AddToInventoryAfterFight(int itemIndex)
     {
         inventory.AddPlant(transform.GetChild(itemIndex - 1).GetComponentInChildren<Plant>().PlantType);
+        combatManager.Win();
         //Debug.Log(transform.GetChild(itemIndex - 1).GetComponentInChildren<Plant>().PlantType);
         gameObject.SetActive(false);
+        
     }
     public void BuyPlant(int itemIndex)
     {
