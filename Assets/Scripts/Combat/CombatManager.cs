@@ -13,6 +13,7 @@ public class CombatManager : MonoBehaviour {
 	[SerializeField] private PlayerDataManager playerDataManager;
 	[SerializeField] private GardenManager gardenManager;
 	[SerializeField] private GameObject winScreen;
+	[SerializeField] private GameObject explosionPrefab;
 
 	private List<Enemy> enemies;
 	private bool isPlayerPaused = false;
@@ -126,17 +127,24 @@ public class CombatManager : MonoBehaviour {
 		}
 	}
 
-	public void EnemyTurn ( ) {
-		foreach (GardenTile gardenTile in playerDataManager.Garden) {
-			gardenTile.IsAttacked = false;
-		}
+	public IEnumerator  EnemyTurn ( ) {
+	
 
 		foreach (Enemy enemy in enemies) {
 			if (enemy.CurrentCooldown == 0) {
 				StartCoroutine( playerCombatManager.ApplyDamageToGarden(enemy, enemy.CurrentAttack));
 			}
 		}
+		yield return new WaitForSeconds((float)playerCombatManager.enemyAttckSliderAnimation.director.duration);
+		foreach (GardenTile gardenTile in playerDataManager.Garden)
+		{
+			if (gardenTile.IsAttacked)
+			{
+				Instantiate(explosionPrefab, gardenTile.gameObject.transform.position, Quaternion.identity);
+			}
 
+			gardenTile.IsAttacked = false;
+		}
 		isPlayerPaused = false;
 
 		playerCombatManager.PlayerStartTurn( );

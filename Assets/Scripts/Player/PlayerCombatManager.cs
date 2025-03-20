@@ -68,7 +68,7 @@ public class PlayerCombatManager : MonoBehaviour {
 			weaponMenuItem.UpdateCoolDown( );
 		}
 		EndOfTurnEffects(); 
-		combatManager.EnemyTurn( );
+		StartCoroutine( combatManager.EnemyTurn( ));
 	}
 
 	public int GetAddedDamage ( ) {
