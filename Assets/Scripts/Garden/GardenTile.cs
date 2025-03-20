@@ -109,7 +109,7 @@ public class GardenTile : MonoBehaviour {
 		}
 
 		playerDataManager.MouseSprite = GardenPlaceable.InventorySprite;
-		GardenPlaceable.GetComponent<MeshRenderer>( ).enabled = false;
+		GardenPlaceable.flowerVisuals.SetActive ( false);
 	}
 
 	private void OnMouseUp ( ) {
@@ -118,7 +118,7 @@ public class GardenTile : MonoBehaviour {
 			return;
 		}
 
-		GardenPlaceable.GetComponent<MeshRenderer>( ).enabled = true;
+		GardenPlaceable.flowerVisuals.SetActive(true);
 		playerDataManager.MouseSprite = null;
 
 		// If there is no selected garden tile, then also return

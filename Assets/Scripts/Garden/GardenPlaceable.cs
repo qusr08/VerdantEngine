@@ -22,6 +22,8 @@ public abstract class GardenPlaceable : MonoBehaviour {
 
 	private GardenPlaceableStat _healthStat;
 	private GardenPlaceableStat _shieldStat;
+
+	public GameObject flowerVisuals;
 	[HideInInspector] public Enemy LastEnemyWhichDamagedPlaceble;
 	/// <summary>
 	/// The starting health of this garden placeable
