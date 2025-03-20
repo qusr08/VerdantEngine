@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerDataManager : MonoBehaviour {
+	[Header("References")]
+	[SerializeField] private CombatUIManager combatUIManager;
 	[Header("Properties")]
 	[SerializeField] private int _gardenSize;
 	[SerializeField] private int _currentHealth;
@@ -72,6 +74,12 @@ public class PlayerDataManager : MonoBehaviour {
 	public int CurrentActions {
 		get => _currentActions;
 		set {
+			// If the current gamestate is IDLE, then do not subtract any actions
+			// Players should have infinite actions when not in combat
+			if (combatUIManager.GameState == GameState.IDLE) {
+				return;
+			}
+
 			_currentActions = value;
 
 			actionsText.text = $"{_currentActions} / {MaxActions}";

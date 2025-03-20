@@ -24,15 +24,14 @@ public class CombatManager : MonoBehaviour {
 	}
 
 	private void Start ( ) {
-		SetUpEnemies( );
-
-		playerCombatManager.PlayerStartTurn( );
+		// SetUpEnemies( );
+		// playerCombatManager.PlayerStartTurn( );
 	}
 
 	/// <summary>
 	/// Set Up all starting enemies in an encounter
 	/// </summary>
-	private void SetUpEnemies ( ) {
+	public void SetUpEnemies ( ) {
 		// Spawn enemy prefabs and place them in the backline or front line
 		// Currently the game is limited to 3 enemies each
 		for (int i = 0; i < currentCombatPreset.EnemyPrefabs.Count; i++) {
@@ -163,9 +162,24 @@ public class CombatManager : MonoBehaviour {
 			}
 		}
 
+		// If the player has killed all of the enemies, then they have won the level
 		if (enemies.Count == 0) {
-			winScreen.SetActive(true);
+			StartCoroutine(WinGame());
 		}
+	}
+
+	private IEnumerator WinGame() {
+		winScreen.SetActive(true);
+
+		// NOTE: This should be replaced with end-screen rewards
+		// Once the reward is chosen, then do the below code
+		yield return new WaitForSeconds(2f);
+
+		// Reset the player actions so the player can update their board in between combats
+		// Also set the game state from COMBAT back to IDLE
+		winScreen.SetActive(false);
+		playerDataManager.CurrentActions = 3;
+		combatUIManager.GameState = GameState.IDLE;
 	}
 
 	///                ///
