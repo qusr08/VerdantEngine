@@ -90,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7082759273504415616, guid: 3154adddb9711cb49a259455e0383d5c, type: 3}
       propertyPath: m_Name
-      value: P_ArtifactInventoryBox Variant
+      value: P_ArtifactInventoryBox
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -118,11 +118,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 0}
+  playerDataManager: {fileID: 0}
   gardenManager: {fileID: 0}
   amountText: {fileID: 5934746420767965540}
   image: {fileID: 8394010873233308867}
   _amount: 0
-  prefab: {fileID: 0}
+  _prefab: {fileID: 0}
+  combatManager: {fileID: 0}
+  _UIDisplay: {fileID: 0}
   _artifactType: 0
 --- !u!114 &5934746420767965540 stripped
 MonoBehaviour:
