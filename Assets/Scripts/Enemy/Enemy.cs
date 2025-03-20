@@ -100,7 +100,7 @@ public class Enemy : MonoBehaviour {
 	public void Attacked (PlayerAttackSO attack) {
 		int totalDamage = attack.Damage + playerCombatManager.GetAddedDamage( );
 		CurrentHealth -= totalDamage;
-		Debug.Log($"Ouch, I just took {totalDamage}. Now I have {CurrentHealth} health");
+		//Debug.Log($"Ouch, I just took {totalDamage}. Now I have {CurrentHealth} health");
 	}
 
 	public void StartRound ( ) {
@@ -196,7 +196,7 @@ public class Enemy : MonoBehaviour {
 		foreach (GardenTile tile in currentAim) {
 			tile.IsAttacked = true;
 			FinalAim.Add(tile);
-			Debug.Log(gameObject.name + " is marking tile as attacked: " + tile.Position);
+			//Debug.Log(gameObject.name + " is marking tile as attacked: " + tile.Position);
 			if (tile.GardenPlaceable != null) {
 				break;
 			}

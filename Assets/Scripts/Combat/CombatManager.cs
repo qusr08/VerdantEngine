@@ -38,8 +38,11 @@ public class CombatManager : MonoBehaviour {
 	{
 		if (enemies.Count > 0 || currentCombatPreset != null)
 		{
+			Debug.Log("New Combat Failed");
 			return;
 		}
+
+		Debug.Log("New Combat");
 
 		combatUIManager.PurgeList();
         currentCombatPreset = newCombat;
@@ -198,6 +201,7 @@ public class CombatManager : MonoBehaviour {
 	/// </summary>
 	public void Win()
 	{
+		currentCombatPreset = null;
 		cameraManager.onMap = true;
 		cameraManager.UpdateCameraPosition();
     }
