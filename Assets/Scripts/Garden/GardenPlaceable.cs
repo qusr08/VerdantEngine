@@ -281,9 +281,14 @@ public abstract class GardenPlaceable : MonoBehaviour {
 				_healthStat.BaseValue = StartingHealth;
 		}
     }
-	public virtual void TakeDamage(int damage)
+	public virtual int TakeDamage(int damage)
     {
-		HealthStat.BaseValue -= damage;
-
+		damage -= ShieldStat.CurrentValue;
+		if (damage > 0)
+		{
+			HealthStat.BaseValue -= damage;
+			return damage;
+		}
+		return 0;
 	}
 }

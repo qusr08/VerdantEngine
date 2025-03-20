@@ -13,9 +13,15 @@ public class Thicket : Plant
         }
 
     }
-    public override void TakeDamage(int damage)
-    {   base.TakeDamage(damage);
-        lastAttack = damage;
+    public override int TakeDamage(int damage)
+    {    damage = base.TakeDamage(damage);
+        if (damage > 0)
+            lastAttack = damage;
+        else
+        {
+            lastAttack = 0;
+        }
+        return damage;
 
     }
 }
