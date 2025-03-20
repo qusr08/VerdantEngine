@@ -858,7 +858,6 @@ MonoBehaviour:
   playerDataManager: {fileID: 1707282257}
   gardenManager: {fileID: 228952662}
   winScreen: {fileID: 1459336914}
-  explosionPrefab: {fileID: 3702977640595687986, guid: 42f7a485d6c636643ae43031cbc79521, type: 3}
 --- !u!4 &261010252
 Transform:
   m_ObjectHideFlags: 0

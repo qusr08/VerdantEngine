@@ -41,4 +41,13 @@ public class CombatUIManager : MonoBehaviour {
 			}
 		}
 	}
+
+    public void ResetEnemyHealth()
+    {
+        foreach (var item in enemyHealthUIObjects)
+        {
+			Destroy(item.gameObject);
+        }
+		enemyHealthUIObjects = new List<EnemyHealthUIObject>();
+	}
 }

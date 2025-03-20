@@ -172,6 +172,7 @@ public class CombatManager : MonoBehaviour {
 
 		if (enemies.Count == 0) {
 			winScreen.SetActive(true);
+			combatUIManager.ResetEnemyHealth();
 		}
 	}
 
