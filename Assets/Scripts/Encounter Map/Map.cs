@@ -40,7 +40,7 @@ public class Map : MonoBehaviour
 
         if (player == null)
         {
-            player = GameObject.Find("Player").GetComponent<MapPlayer>();
+            player = GameObject.Find("CameraManager").GetComponent<MapPlayer>();
         }
 
         encounterNumber = 0;
@@ -49,7 +49,7 @@ public class Map : MonoBehaviour
         encounters = new List<GameObject>();
         prevEncounters = new List<GameObject>();
 
-        encounters.Add(Instantiate(startPrefab, new Vector3(0, 1.5f, 0), transform.rotation));
+        encounters.Add(Instantiate(startPrefab, new Vector3(0, 1.5f, 0), transform.rotation, this.gameObject.transform));
         player.GetComponent<MapPlayer>().MoveTo(encounters[encounters.Count - 1], true);
         EncounterToPrev();
 
@@ -168,16 +168,16 @@ public class Map : MonoBehaviour
         switch (type)
             {
             case Type.Enemy:
-                encounters.Add(Instantiate(enemyPrefabs[GetSubType(enemyRates)], nextPosition, transform.rotation));
+                encounters.Add(Instantiate(enemyPrefabs[GetSubType(enemyRates)], nextPosition, transform.rotation, this.gameObject.transform));
                 break;
             case Type.Shop:
-                encounters.Add(Instantiate(shopPrefabs[0], nextPosition, transform.rotation));
+                encounters.Add(Instantiate(shopPrefabs[0], nextPosition, transform.rotation, this.gameObject.transform));
                 break;
             case Type.Event:
-                encounters.Add(Instantiate(eventPrefabs[GetSubType(eventRates)], nextPosition, transform.rotation));
+                encounters.Add(Instantiate(eventPrefabs[GetSubType(eventRates)], nextPosition, transform.rotation, this.gameObject.transform));
                 break;
             case Type.Boss:
-                encounters.Add(Instantiate(bossPrefabs[0], nextPosition, transform.rotation));
+                encounters.Add(Instantiate(bossPrefabs[0], nextPosition, transform.rotation, this.gameObject.transform));
                 for (int i = 0; i < prevEncounters.Count; i++)
                 {
                     prevEncounters[i].GetComponent<Encounter>().AddConnection(encounters[encounters.Count - 1]);

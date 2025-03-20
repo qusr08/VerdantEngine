@@ -42,12 +42,14 @@ public class CombatUIManager : MonoBehaviour {
 		}
 	}
 
-    public void ResetEnemyHealth()
-    {
-        foreach (var item in enemyHealthUIObjects)
+	public void PurgeList()
+	{
+
+		Debug.Log("ListPurged");
+        while(enemyHealthUIObjects.Count > 0)
         {
-			Destroy(item.gameObject);
+			Destroy(enemyHealthUIObjects[0]);
+			enemyHealthUIObjects.RemoveAt(0);
         }
-		enemyHealthUIObjects = new List<EnemyHealthUIObject>();
-	}
+    }
 }

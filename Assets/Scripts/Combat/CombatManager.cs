@@ -12,8 +12,8 @@ public class CombatManager : MonoBehaviour {
 	[SerializeField] private CombatPresetSO currentCombatPreset;
 	[SerializeField] private PlayerDataManager playerDataManager;
 	[SerializeField] private GardenManager gardenManager;
-	[SerializeField] private GameObject winScreen;
-	[SerializeField] private GameObject explosionPrefab;
+	[SerializeField] private MapPlayer cameraManager;
+    [SerializeField] private GameObject winScreen;
 
 	private List<Enemy> enemies;
 	private bool isPlayerPaused = false;
@@ -25,15 +25,41 @@ public class CombatManager : MonoBehaviour {
 	}
 
 	private void Start ( ) {
-		SetUpEnemies( );
+		if(currentCombatPreset != null)
+		{
+            SetUpEnemies();
 
-		playerCombatManager.PlayerStartTurn( );
+            playerCombatManager.PlayerStartTurn();
+        }
+		
 	}
 
-	/// <summary>
-	/// Set Up all starting enemies in an encounter
-	/// </summary>
-	private void SetUpEnemies ( ) {
+	public void NewCombat(CombatPresetSO newCombat)
+	{
+		if (enemies.Count > 0 || currentCombatPreset != null)
+		{
+			Debug.Log("New Combat Failed");
+			return;
+		}
+
+		Debug.Log("New Combat");
+
+		combatUIManager.PurgeList();
+        currentCombatPreset = newCombat;
+		SetUpEnemies();
+        playerCombatManager.PlayerStartTurn();
+    }
+
+    /// <summary>
+    /// Set Up all starting enemies in an encounter
+    /// </summary>
+    private void SetUpEnemies ( ) {
+
+		if(currentCombatPreset == null)
+		{
+			return;
+		}
+
 		// Spawn enemy prefabs and place them in the backline or front line
 		// Currently the game is limited to 3 enemies each
 		for (int i = 0; i < currentCombatPreset.EnemyPrefabs.Count; i++) {
@@ -46,13 +72,6 @@ public class CombatManager : MonoBehaviour {
 		}
 
 		AllEnemiesStartRound( );
-	}
-	void ResetGardenHealth()
-	{
-		foreach (var item in gardenManager.Plants)
-        {
-			item.HealthStat.Reset();
-		}
 	}
 
 	public void AllEnemiesStartRound ( ) {
@@ -127,24 +146,17 @@ public class CombatManager : MonoBehaviour {
 		}
 	}
 
-	public IEnumerator  EnemyTurn ( ) {
-	
+	public void EnemyTurn ( ) {
+		foreach (GardenTile gardenTile in playerDataManager.Garden) {
+			gardenTile.IsAttacked = false;
+		}
 
 		foreach (Enemy enemy in enemies) {
 			if (enemy.CurrentCooldown == 0) {
-				StartCoroutine( playerCombatManager.ApplyDamageToGarden(enemy, enemy.CurrentAttack));
+				playerCombatManager.ApplyDamageToGarden(enemy, enemy.CurrentAttack);
 			}
 		}
-		yield return new WaitForSeconds((float)playerCombatManager.enemyAttckSliderAnimation.director.duration);
-		foreach (GardenTile gardenTile in playerDataManager.Garden)
-		{
-			if (gardenTile.IsAttacked)
-			{
-				Instantiate(explosionPrefab, gardenTile.gameObject.transform.position, Quaternion.identity);
-			}
 
-			gardenTile.IsAttacked = false;
-		}
 		isPlayerPaused = false;
 
 		playerCombatManager.PlayerStartTurn( );
@@ -179,10 +191,20 @@ public class CombatManager : MonoBehaviour {
 		}
 
 		if (enemies.Count == 0) {
-			winScreen.SetActive(true);
-			combatUIManager.ResetEnemyHealth();
+			combatUIManager.PurgeList();
+			Win();
 		}
 	}
+
+	/// <summary>
+	/// What happens when there are no enemies left
+	/// </summary>
+	public void Win()
+	{
+		currentCombatPreset = null;
+		cameraManager.onMap = true;
+		cameraManager.UpdateCameraPosition();
+    }
 
 	///                ///
 	/// Code Graveyard ///

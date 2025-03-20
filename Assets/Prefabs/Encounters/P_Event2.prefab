@@ -122,6 +122,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   First: 0
   ConnectingNode: []
+  EncounterType: 2
   player: {fileID: 0}
+  mapUI: {fileID: 0}
+  combatEncounter: {fileID: 0}
+  combatManager: {fileID: 0}
   Name: ???2
   Rewards: ??? x?
