@@ -49,9 +49,11 @@ public class CombatManager : MonoBehaviour {
 		currentCombatPreset = newCombat;
 		SetUpEnemies();
 		playerCombatManager.PlayerStartTurn();
+		isPlayerPaused = false;
 
-		
-    }
+
+
+	}
 
     /// <summary>
     /// Set Up all starting enemies in an encounter
@@ -62,6 +64,7 @@ public class CombatManager : MonoBehaviour {
 		{
 			return;
 		}
+		combatUIManager.GameState = GameState.COMBAT;
 
 		// Spawn enemy prefabs and place them in the backline or front line
 		// Currently the game is limited to 3 enemies each
@@ -202,7 +205,7 @@ public class CombatManager : MonoBehaviour {
 
 		if (enemies.Count == 0) {
 			combatUIManager.PurgeList();
-			StartCoroutine(WinGame());
+			WinGame();
 			winScreen.SetActive(true);
 		}
 	}
@@ -217,19 +220,16 @@ public class CombatManager : MonoBehaviour {
 		cameraManager.UpdateCameraPosition();
 
 	}
-	private IEnumerator WinGame()
+	private void WinGame()
 	{
 		winScreen.SetActive(true);
 
 		// NOTE: This should be replaced with end-screen rewards
 		// Once the reward is chosen, then do the below code
-		yield return new WaitForSeconds(2f);
 
 		// Reset the player actions so the player can update their board in between combats
 		// Also set the game state from COMBAT back to IDLE
-		winScreen.SetActive(false);
 		playerDataManager.CurrentActions = 3;
-		combatUIManager.GameState = GameState.IDLE;
 
 	}
 	///                ///

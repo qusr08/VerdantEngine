@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 993b1dc9d16de4f41ae10add31c0cdfe, type: 3}
-  m_Name: SO_PlayerAttack_2
+  m_Name: Small Cannon
   m_EditorClassIdentifier: 
-  _damage: 5
-  _manaCost: 3
-  _description: 
-  _name: Player Attack 2
+  _damage: 1
+  _manaCost: 2
+  _description: Deals 1 damage to the target.
+  _name: 'Small Cannon '
   _attackType: 2
   _playerTargetingType: 2
-  _targetNumber: 3
-  _maxCooldown: 3
-  _icon: {fileID: 21300000, guid: 1973831bb10faa340a44f158b4054087, type: 3}
-  Cooldown: 2
+  _targetNumber: 1
+  _maxCooldown: 0
+  _icon: {fileID: 21300000, guid: 2531cb67b05562e46bc406c84e535298, type: 3}
+  Cooldown: 1

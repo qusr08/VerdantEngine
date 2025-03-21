@@ -2171,9 +2171,9 @@ RectTransform:
   - {fileID: 300998947}
   m_Father: {fileID: 1544708345}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1814, y: -1145}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -91.9, y: 60.3}
   m_SizeDelta: {x: 145, y: 89}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &688685847
@@ -4934,9 +4934,7 @@ MonoBehaviour:
   _money: 100
   _playerAttacks:
   - {fileID: 11400000, guid: 001b5f5f0c0685f489002903a568926f, type: 2}
-  - {fileID: 11400000, guid: ec9aa060115866d479049185b157868c, type: 2}
-  - {fileID: 11400000, guid: a21330f6d35bbb04eabe3cc49ae81bf8, type: 2}
-  - {fileID: 11400000, guid: 914123736d8906e4289b15177523e4c3, type: 2}
+  - {fileID: 11400000, guid: 944ffad48c7ea094db0d9de5a1ec003b, type: 2}
   mouseImage: {fileID: 1983731385}
   mouseImageTransform: {fileID: 1983731384}
   guiCanvas: {fileID: 1544708344}
@@ -5670,7 +5668,7 @@ RectTransform:
   m_GameObject: {fileID: 2091686425}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.69930553, y: 0.69930553, z: 0.69930553}
+  m_LocalScale: {x: 1.7707815, y: 1.7707815, z: 1.7707815}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 858742260}
@@ -5678,7 +5676,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -680.9, y: 122.20001}
+  m_AnchoredPosition: {x: -923, y: 253}
   m_SizeDelta: {x: 145, y: 89}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2091686427
