@@ -14,6 +14,7 @@ public class GardenManager : MonoBehaviour {
 	[SerializeField] public PlayerDataManager playerDataManager;
 	[Space]
 	[SerializeField] private GardenTile _selectedGardenTile;
+	
 
 	/// <summary>
 	/// A list of all the plant prefabs that can be placed on the garden
@@ -45,8 +46,15 @@ public class GardenManager : MonoBehaviour {
 
 		Plants = new List<Plant>( );
 		Artifacts = new List<Artifact>( );
+		CreateGardenTiles();
+
+		/// TEST: Create test plants and move them around
+		PlacePlant(PlantType.POWER_FLOWER, 0, 3);
+		PlacePlant(PlantType.EMPOWEROOT, 0, 2);
+		PlacePlant(PlantType.HARDY_HEDGE, 1, 3);
 	}
 
+	/*
 	private void Start ( ) {
 		CreateGardenTiles( );
 
@@ -62,6 +70,7 @@ public class GardenManager : MonoBehaviour {
 		// Debug.Log("Flower Count: " + CountPlants(exclusivePlantTypes: new List<PlantType>( ) { PlantType.FLOWER }));
 		// Debug.Log("Cactus Count: " + CountPlants(exclusivePlantTypes: new List<PlantType>( ) { PlantType.CACTUS }));
 	}
+	*/
 
 	/// <summary>
 	/// Check to see if a position is within the bounds of the garden
@@ -231,6 +240,7 @@ public class GardenManager : MonoBehaviour {
 	/// Set up the garden and create all of the garden tiles
 	/// </summary>
 	private void CreateGardenTiles ( ) {
+
 		// Create all of the ground tiles for the garden
 		for (int x = 0; x < playerDataManager.GardenSize; x++) {
 			for (int y = 0; y < playerDataManager.GardenSize; y++) {

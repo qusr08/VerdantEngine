@@ -48,7 +48,7 @@ public class CombatUIManager : MonoBehaviour {
 		Debug.Log("ListPurged");
         while(enemyHealthUIObjects.Count > 0)
         {
-			Destroy(enemyHealthUIObjects[0]);
+			Destroy(enemyHealthUIObjects[0].gameObject);
 			enemyHealthUIObjects.RemoveAt(0);
         }
     }
