@@ -108,7 +108,7 @@ public class GardenManager : MonoBehaviour {
 		// Place the plant onto the grid and update its position
 		Plant plant = Instantiate(PlantPrefabs[plantType], playerDataManager.Garden[x, y].transform).GetComponent<Plant>( );
 		plant.Initialize(playerDataManager.Garden[x, y]);
-
+		plant.transform.localRotation = new Quaternion(-0.406074226f, -0.153201237f, 0.318009317f, 0.842913508f);
 		playerDataManager.Garden[x, y].GardenPlaceable = plant;
 		Plants.Add(plant);
 		UpdateGarden( );

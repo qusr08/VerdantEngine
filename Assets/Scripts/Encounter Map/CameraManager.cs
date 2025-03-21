@@ -12,6 +12,7 @@ public class MapPlayer : MonoBehaviour
     [SerializeField] private GameObject gardenStuff;
     [SerializeField] private GameObject mapStuff;
     [SerializeField] private GameObject camera;
+    [SerializeField] private CombatUIManager uiManager;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +25,13 @@ public class MapPlayer : MonoBehaviour
     {
         
     }
-
+    //Used when flipping between garden and map
+    public void FlipScenes()
+    {
+        uiManager.GameState = GameState.IDLE;
+        onMap = !onMap;
+        UpdateCameraPosition();
+    }
     public void UpdateCameraPosition()
     {
         gardenStuff.SetActive(!onMap);

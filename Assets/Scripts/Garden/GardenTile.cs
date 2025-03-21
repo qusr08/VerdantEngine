@@ -127,7 +127,7 @@ public class GardenTile : MonoBehaviour {
 		}
 
 		// If there are no more actions remaining, then do not try to move it
-		if (playerDataManager.CurrentActions <= 0) {
+		if (playerDataManager.CurrentActions <= 0 && combatManager.combatUIManager.GameState != GameState.IDLE) {
 			return;
 		}
 

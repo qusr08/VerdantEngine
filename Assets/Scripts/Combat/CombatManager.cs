@@ -8,7 +8,7 @@ using System;
 
 public class CombatManager : MonoBehaviour {
 	[SerializeField] private PlayerCombatManager playerCombatManager;
-	[SerializeField] private CombatUIManager combatUIManager;
+	[SerializeField] public CombatUIManager combatUIManager;
 	[SerializeField] private CombatPresetSO currentCombatPreset;
 	[SerializeField] private PlayerDataManager playerDataManager;
 	[SerializeField] private GardenManager gardenManager;
@@ -28,7 +28,8 @@ public class CombatManager : MonoBehaviour {
 	private void Start ( ) {
 		if(currentCombatPreset != null)
 		{
-            SetUpEnemies();
+
+			SetUpEnemies();
 
             playerCombatManager.PlayerStartTurn();
         }
@@ -42,10 +43,10 @@ public class CombatManager : MonoBehaviour {
 			Debug.Log("New Combat Failed");
 			return;
 		}
-
+		combatUIManager.GameState = GameState.COMBAT;
+		playerDataManager.CurrentActions = 3;
 		combatUIManager.PurgeList();
 		currentCombatPreset = newCombat;
-
 		SetUpEnemies();
 		playerCombatManager.PlayerStartTurn();
 
@@ -201,6 +202,7 @@ public class CombatManager : MonoBehaviour {
 
 		if (enemies.Count == 0) {
 			combatUIManager.PurgeList();
+			StartCoroutine(WinGame());
 			winScreen.SetActive(true);
 		}
 	}
@@ -213,8 +215,23 @@ public class CombatManager : MonoBehaviour {
 		currentCombatPreset = null;
 		cameraManager.onMap = true;
 		cameraManager.UpdateCameraPosition();
-    }
 
+	}
+	private IEnumerator WinGame()
+	{
+		winScreen.SetActive(true);
+
+		// NOTE: This should be replaced with end-screen rewards
+		// Once the reward is chosen, then do the below code
+		yield return new WaitForSeconds(2f);
+
+		// Reset the player actions so the player can update their board in between combats
+		// Also set the game state from COMBAT back to IDLE
+		winScreen.SetActive(false);
+		playerDataManager.CurrentActions = 3;
+		combatUIManager.GameState = GameState.IDLE;
+
+	}
 	///                ///
 	/// Code Graveyard ///
 	///                ///
