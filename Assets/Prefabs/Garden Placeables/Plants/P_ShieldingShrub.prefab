@@ -64,6 +64,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6724727826808841798, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+      propertyPath: m_SortingOrder
+      value: 98
+      objectReference: {fileID: 0}
+    - target: {fileID: -4392670873006902675, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+      propertyPath: m_SortingOrder
+      value: 97
+      objectReference: {fileID: 0}
+    - target: {fileID: -2813852718770876081, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -1769476780763268507, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+      propertyPath: m_SortingOrder
+      value: 96
+      objectReference: {fileID: 0}
+    - target: {fileID: 333372143346050542, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+      propertyPath: m_SortingOrder
+      value: 95
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494807066750874621, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+      propertyPath: m_SortingOrder
+      value: 99
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -71,6 +95,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5044658786721896359}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7839828029224269706}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
 --- !u!1 &664455259692123256 stripped
 GameObject:
@@ -98,6 +125,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7839828029224269706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664455259692123256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05af1724e594b8540babaf1d01b7aeb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  x: 0
+  y: 0
+  addToSortOrder: 0
 --- !u!4 &1869142679390886939 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}

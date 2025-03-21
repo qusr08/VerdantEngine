@@ -68,6 +68,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7230905532915742830, guid: ddf22fd3a314c9b4da829e160f5b4546, type: 3}
+      propertyPath: m_SortingOrder
+      value: 99
+      objectReference: {fileID: 0}
+    - target: {fileID: 9153539562835860870, guid: ddf22fd3a314c9b4da829e160f5b4546, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -75,6 +83,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: ddf22fd3a314c9b4da829e160f5b4546, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8738474785047906869}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: ddf22fd3a314c9b4da829e160f5b4546, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7909263894804521063}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: ddf22fd3a314c9b4da829e160f5b4546, type: 3}
 --- !u!4 &108034042636463270 stripped
 Transform:
@@ -107,6 +118,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7909263894804521063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276710809253557445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05af1724e594b8540babaf1d01b7aeb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  x: 0
+  y: 0
+  addToSortOrder: 0
 --- !u!1001 &6495334599043760536
 PrefabInstance:
   m_ObjectHideFlags: 0

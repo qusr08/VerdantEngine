@@ -8,4 +8,11 @@ public class PowerFlower : Plant {
 		Debug.Log("Generate 1 Energy");
 		//FindObjectOfType<GardenManager>().PlayerData.Energy += 1;
 	}
+    public override void OnGardenUpdated()
+    {
+        base.OnGardenUpdated();
+
+        GardenTile tile = GetComponentInParent<GardenTile>();
+        gameObject.GetComponentInChildren<SpriteSortingOrder>().SortSprites(tile.Position.x, tile.Position.y);
+    }
 }

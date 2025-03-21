@@ -11,4 +11,11 @@ public class Heartichoke : Plant
             plant.Heal(1);
         } 
 	}
+    public override void OnGardenUpdated()
+    {
+        base.OnGardenUpdated();
+
+        GardenTile tile = GetComponentInParent<GardenTile>();
+        gameObject.GetComponentInChildren<SpriteSortingOrder>().SortSprites(tile.Position.x, tile.Position.y);
+    }
 }

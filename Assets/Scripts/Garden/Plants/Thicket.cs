@@ -24,4 +24,11 @@ public class Thicket : Plant
         return damage;
 
     }
+    public override void OnGardenUpdated()
+    {
+        base.OnGardenUpdated();
+
+        GardenTile tile = GetComponentInParent<GardenTile>();
+        gameObject.GetComponentInChildren<SpriteSortingOrder>().SortSprites(tile.Position.x, tile.Position.y);
+    }
 }
