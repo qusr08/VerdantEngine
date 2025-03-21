@@ -42,12 +42,13 @@ public class CombatManager : MonoBehaviour {
 			return;
 		}
 
-		Debug.Log("New Combat");
-
 		combatUIManager.PurgeList();
-        currentCombatPreset = newCombat;
+		currentCombatPreset = newCombat;
+
 		SetUpEnemies();
-        playerCombatManager.PlayerStartTurn();
+		playerCombatManager.PlayerStartTurn();
+
+		
     }
 
     /// <summary>
