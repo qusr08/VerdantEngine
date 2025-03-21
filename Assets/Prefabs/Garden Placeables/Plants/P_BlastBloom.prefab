@@ -1,5 +1,160 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &459819973798736351
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5306314669448112019}
+    m_Modifications:
+    - target: {fileID: -8653719598885068355, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_Name
+      value: New_BlastBloom
+      objectReference: {fileID: 0}
+    - target: {fileID: -8158773749668215637, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -8518133763028931063, guid: b5d44d2798e356f479b2f544f8f4cfdf, type: 3}
+    - target: {fileID: -8158773749668215637, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_Color.a
+      value: 0.27450982
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.20932621
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.20932621
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.20932621
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.004
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.52108
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.013
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4858647717384208519, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2086905926523202181, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_BoneTransforms.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2086905926523202181, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_BoneTransforms.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -2086905926523202181, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_BoneTransforms.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3584377975856363149}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9088959731495312191}
+  m_SourcePrefab: {fileID: 4843985084834002234, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+--- !u!1 &109867650300612706 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+  m_PrefabInstance: {fileID: 459819973798736351}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &3584377975856363149
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109867650300612706}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 72986cdcc008c414cbbeb040f28b3d04, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &9088959731495312191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109867650300612706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebd5afa6ca8ab5449946fb838fd86ecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gardenManager: {fileID: 0}
+  playerDataManager: {fileID: 0}
+  _startingHealth: 1
+  _cost: 0
+  _name: Blast Bloom
+  _description: When the Blast Bloom is adjacent to three other plants, all weapons
+    deal +1 damage
+  _inventorySprite: {fileID: 21300000, guid: ca95c795063b3134e94b2b240b20aa3d, type: 3}
+  _gardenTile: {fileID: 0}
+  effectedGardenPlaceables: []
+  flowerVisuals: {fileID: 0}
+  LastEnemyWhichDamagedPlaceble: {fileID: 0}
+  _plantType: 4
+--- !u!4 &1247019768761993217 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+  m_PrefabInstance: {fileID: 459819973798736351}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3144631114005290437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12,22 +167,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_BlastBloom
       objectReference: {fileID: 0}
-    - target: {fileID: 6382379415672705492, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
-      propertyPath: m_Size.x
-      value: 5
+    - target: {fileID: 4482992049444851102, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6382379415672705492, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
-      propertyPath: m_Size.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6382379415672705492, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
-      propertyPath: m_Sprite
+    - target: {fileID: 4482992049444851102, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: ca95c795063b3134e94b2b240b20aa3d, type: 3}
-    - target: {fileID: 6382379415672705492, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: d761413eb52018341887006b79d83301, type: 2}
     - target: {fileID: 7061688495639312982, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -70,7 +217,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7061688495639312982, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1247019768761993217}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 164589016474248900, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
       insertIndex: -1
@@ -103,4 +253,11 @@ MonoBehaviour:
   _inventorySprite: {fileID: 21300000, guid: ca95c795063b3134e94b2b240b20aa3d, type: 3}
   _gardenTile: {fileID: 0}
   effectedGardenPlaceables: []
+  flowerVisuals: {fileID: 109867650300612706}
+  LastEnemyWhichDamagedPlaceble: {fileID: 0}
   _plantType: 4
+--- !u!4 &5306314669448112019 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7061688495639312982, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
+  m_PrefabInstance: {fileID: 3144631114005290437}
+  m_PrefabAsset: {fileID: 0}

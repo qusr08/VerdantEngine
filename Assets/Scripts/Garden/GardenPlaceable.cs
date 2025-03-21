@@ -23,6 +23,8 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	private GardenPlaceableStat _healthStat;
 	private GardenPlaceableStat _shieldStat;
 
+	public GameObject flowerVisuals;
+	[HideInInspector] public Enemy LastEnemyWhichDamagedPlaceble;
 	/// <summary>
 	/// The starting health of this garden placeable
 	/// </summary>
@@ -269,5 +271,24 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	public virtual void OnKilled ( ) {
 		// Since this garden placeable was killed, remove all modifiers it was giving out
 		RemoveModifiersFromEffectedGardenPlaceables( );
+	}
+	public virtual void Heal(int heal)
+    {
+		if(_healthStat.CurrentValue<StartingHealth)
+        {
+			_healthStat.BaseValue += heal;
+			if (_healthStat.BaseValue > StartingHealth)
+				_healthStat.BaseValue = StartingHealth;
+		}
+    }
+	public virtual int TakeDamage(int damage)
+    {
+		damage -= ShieldStat.CurrentValue;
+		if (damage > 0)
+		{
+			HealthStat.BaseValue -= damage;
+			return damage;
+		}
+		return 0;
 	}
 }

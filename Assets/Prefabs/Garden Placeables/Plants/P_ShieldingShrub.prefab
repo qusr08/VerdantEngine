@@ -1,5 +1,108 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1071664666172220869
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 9218323910527567288}
+    m_Modifications:
+    - target: {fileID: -8653719598885068355, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+      propertyPath: m_Name
+      value: ShieldingShrub
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.20402873
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.20402873
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.20402873
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.498
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.006
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5044658786721896359}
+  m_SourcePrefab: {fileID: 4843985084834002234, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+--- !u!1 &664455259692123256 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+  m_PrefabInstance: {fileID: 1071664666172220869}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5044658786721896359
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664455259692123256}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5a7d2e88e4f294342ac2b074e555b856, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!4 &1869142679390886939 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+  m_PrefabInstance: {fileID: 1071664666172220869}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2156723414473605102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11,6 +114,10 @@ PrefabInstance:
     - target: {fileID: 164589016474248900, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
       propertyPath: m_Name
       value: P_ShieldingShrub
+      objectReference: {fileID: 0}
+    - target: {fileID: 4482992049444851102, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4482992049444851102, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -74,7 +181,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7061688495639312982, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1869142679390886939}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 164589016474248900, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
       insertIndex: -1
@@ -102,8 +212,16 @@ MonoBehaviour:
   _startingHealth: 2
   _cost: 0
   _name: Shielding Shrub
-  _description: All adjacent plants gain +1 max hitpoint
+  _description: All adjacent plants gain +1 max hitpoint. The shielding effect  can
+    stack if multiple shield shrubs are adjacent.
   _inventorySprite: {fileID: 21300000, guid: 1a6c98af61041d84a93e9bc09e03b506, type: 3}
   _gardenTile: {fileID: 0}
   effectedGardenPlaceables: []
+  flowerVisuals: {fileID: 664455259692123256}
+  LastEnemyWhichDamagedPlaceble: {fileID: 0}
   _plantType: 2
+--- !u!4 &9218323910527567288 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7061688495639312982, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
+  m_PrefabInstance: {fileID: 2156723414473605102}
+  m_PrefabAsset: {fileID: 0}

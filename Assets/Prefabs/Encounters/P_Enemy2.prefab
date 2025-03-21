@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -120,6 +120,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   First: 0
   ConnectingNode: []
+  EncounterType: 0
   player: {fileID: 0}
+  mapUI: {fileID: 0}
+  combatEncounter: {fileID: 11400000, guid: 5852ddd7b5f51c24ab56bc09889ae6f4, type: 2}
+  combatManager: {fileID: 0}
   Name: Enemy2
   Rewards: Doubloon x1

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Playables;
+using Unity.VisualScripting;
 
 public class PlayerCombatManager : MonoBehaviour {
 	[SerializeField] private GardenManager gardenManager;
@@ -15,6 +17,7 @@ public class PlayerCombatManager : MonoBehaviour {
 	[SerializeField] private GameObject damageIndicatorPrefab;
 	[Space]
 	[SerializeField] private int energy = 0;
+	public EnemySlider enemyAttckSliderAnimation;
 
 	private void Start ( ) {
 		foreach (PlayerAttackSO playerAttack in playerDataManager.PlayerAttacks) {
@@ -39,7 +42,21 @@ public class PlayerCombatManager : MonoBehaviour {
 				weaponMenuItem.GetComponent<Image>( ).color = Color.red;
 				weaponMenuItem.PlayerAttack.Cooldown = weaponMenuItem.PlayerAttack.MaxCooldown;
 
+				//If attack is targetting enemies, handle it
+				if(weaponMenuItem.PlayerAttack.PlayerTargetingType == PlayerTargetingType.TARGET)
 				yield return combatManager.IUpdateTargetedEnemies(weaponMenuItem.PlayerAttack);
+				//Else, if it tagets the garden, hendle that
+				else if(weaponMenuItem.PlayerAttack.PlayerTargetingType == PlayerTargetingType.GARDEN)
+				{
+					//If the weapon is healing, heal.
+                    if (weaponMenuItem.PlayerAttack.AttackType == AttackType.HEAL)
+					{
+                        foreach (Plant plant in gardenManager.Plants)
+                        {
+							plant.Heal(weaponMenuItem.PlayerAttack.Damage);   
+                        }
+                    }
+				}
 
 				weaponMenuItem.GetComponent<Image>( ).color = Color.white;
 
@@ -50,8 +67,8 @@ public class PlayerCombatManager : MonoBehaviour {
 
 			weaponMenuItem.UpdateCoolDown( );
 		}
-
-		combatManager.EnemyTurn( );
+		EndOfTurnEffects(); 
+		StartCoroutine( combatManager.EnemyTurn( ));
 	}
 
 	public int GetAddedDamage ( ) {
@@ -59,8 +76,23 @@ public class PlayerCombatManager : MonoBehaviour {
 		powerAdded += gardenManager.CountPlants(new List<PlantType>( ) { PlantType.EMPOWEROOT }, null);
 		return powerAdded;
 	}
+	public void EndOfTurnEffects()
+    {
+		//heathichoke & FLYTRAP vempire effects
+		foreach (Plant plant in gardenManager.GetFilteredPlants((new List<PlantType>() { PlantType.HEARTICHOKE,PlantType.FLYTRAP })))
+        {
+			plant.OnTurnEnd();
+        }
+     
 
-	public void ApplyDamageToGarden (Enemy enemy, EnemyAttackSO enemyAttack) {
+	}
+
+	public IEnumerator ApplyDamageToGarden (Enemy enemy, EnemyAttackSO enemyAttack) {
+
+
+		enemyAttckSliderAnimation.enemyImage.texture = enemy.Icon.texture;
+        enemyAttckSliderAnimation.gameObject.GetComponent<PlayableDirector>().Play();
+        yield return new WaitForSeconds((float)enemyAttckSliderAnimation.gameObject.GetComponent<PlayableDirector>().duration);
 		if (!enemyAttack.IsLineAttackHorizontal && enemy.FinalAim.Count == playerDataManager.GardenSize && enemy.FinalAim[enemy.FinalAim.Count-1].GardenPlaceable==null) {
 			playerDataManager.CurrentHealth -= enemyAttack.Damage;
 			Debug.Log(enemy.name + " attacked the player using " + enemyAttack.Name + " dealing " + enemyAttack.Damage + " to the player");
@@ -74,12 +106,14 @@ public class PlayerCombatManager : MonoBehaviour {
 				// Also make sure that the damage done never goes below 0, as that would add health back to the plant
 				int damageDealt = Mathf.Max(0, enemyAttack.Damage - tileHit.GardenPlaceable.ShieldStat.CurrentValue);
 
+				// Deal damage to the garden placeable that was hit by the attack
+				int damageafterShiled = tileHit.GardenPlaceable.TakeDamage(damageDealt);
+				tileHit.GardenPlaceable.LastEnemyWhichDamagedPlaceble = enemy;
 				// Spawn the damage indicator
 				DamageIndicator indicator = Instantiate(damageIndicatorPrefab, tileHit.transform.position, tileHit.GardenPlaceable.transform.rotation).GetComponent<DamageIndicator>( );
-				indicator.SetDamage(damageDealt);
+				indicator.SetDamage(damageafterShiled);
 
-				// Deal damage to the garden placeable that was hit by the attack
-				tileHit.GardenPlaceable.HealthStat.BaseValue -= damageDealt;
+				
 			} else {
 				Debug.Log("Taeget got killed before turn");
 			}

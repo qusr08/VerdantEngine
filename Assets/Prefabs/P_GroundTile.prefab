@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -120,7 +120,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 448801957063846098}
-  inventory: {fileID: 0}
+  playerDataManager: {fileID: 0}
+  gardenManager: {fileID: 0}
+  combatManager: {fileID: 0}
   basicColors:
   - {r: 0.24003203, g: 0.5849056, b: 0.31046453, a: 1}
   - {r: 0.14035244, g: 0.3584906, b: 0.18497162, a: 1}
@@ -134,4 +136,4 @@ MonoBehaviour:
   _gardenPlaceable: {fileID: 0}
   _isAttacked: 0
   _isSelected: 0
-  _UIDisplay: {fileID: 0}
+  _plantHoverDisplay: {fileID: 0}

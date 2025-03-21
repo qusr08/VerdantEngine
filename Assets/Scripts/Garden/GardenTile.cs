@@ -109,7 +109,7 @@ public class GardenTile : MonoBehaviour {
 		}
 
 		playerDataManager.MouseSprite = GardenPlaceable.InventorySprite;
-		GardenPlaceable.GetComponent<SpriteRenderer>( ).enabled = false;
+		GardenPlaceable.flowerVisuals.SetActive ( false);
 	}
 
 	private void OnMouseUp ( ) {
@@ -118,7 +118,7 @@ public class GardenTile : MonoBehaviour {
 			return;
 		}
 
-		GardenPlaceable.GetComponent<SpriteRenderer>( ).enabled = true;
+		GardenPlaceable.flowerVisuals.SetActive(true);
 		playerDataManager.MouseSprite = null;
 
 		// If there is no selected garden tile, then also return
@@ -127,7 +127,7 @@ public class GardenTile : MonoBehaviour {
 		}
 
 		// If there are no more actions remaining, then do not try to move it
-		if (playerDataManager.CurrentActions <= 0) {
+		if (playerDataManager.CurrentActions <= 0 && combatManager.combatUIManager.GameState != GameState.IDLE) {
 			return;
 		}
 

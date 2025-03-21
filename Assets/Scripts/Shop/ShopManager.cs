@@ -10,6 +10,8 @@ public class ShopManager : MonoBehaviour
     [SerializeField] GameObject[] plantPrefabs;
     [SerializeField] PlayerDataManager playerDataManager;
     [SerializeField] TMP_Text balanceText;
+    [SerializeField] Inventory inventory;
+    public CombatManager combatManager;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +19,7 @@ public class ShopManager : MonoBehaviour
         ShufflePlants();
         FillShop();
 
-        balanceText.text = "Balance : " + playerDataManager.Money.ToString();
+        //balanceText.text = "Balance : " + playerDataManager.Money.ToString();
     }
     void ShufflePlants()
     {
@@ -33,13 +35,24 @@ public class ShopManager : MonoBehaviour
     {
         for(int i = 0; i < items.Length; i++)
         {
-            Instantiate(plantPrefabs[i], items[i].transform);
-            items[i].transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = plantPrefabs[i].name; //Display plant name on buttons
+            GameObject newPlantItem = Instantiate(plantPrefabs[i], items[i].transform);
+            items[i].transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = plantPrefabs[i].name.Substring(2); //Display plant name on buttons
+            items[i].transform.GetChild(1).GetComponent<Image>().sprite = plantPrefabs[i].GetComponent<Plant>().InventorySprite;
+            //newPlantItem.GetComponent<MeshRenderer>().enabled = false;
         }
+    }
+    public void AddToInventoryAfterFight(int itemIndex)
+    {
+        inventory.AddPlant(transform.GetChild(itemIndex - 1).GetComponentInChildren<Plant>().PlantType);
+        combatManager.Win();
+        //Debug.Log(transform.GetChild(itemIndex - 1).GetComponentInChildren<Plant>().PlantType);
+        gameObject.SetActive(false);
+        
     }
     public void BuyPlant(int itemIndex)
     {
-        if (playerDataManager.Money >= transform.GetChild(itemIndex - 1).GetChild(1).GetComponent<Plant>().Cost) {
+        if (playerDataManager.Money >= transform.GetChild(itemIndex - 1).GetChild(1).GetComponent<Plant>().Cost)
+        {
             string itemName = transform.GetChild(itemIndex - 1).GetChild(1).name;
             Debug.Log("Bought Item " + itemIndex + ", Plant Name : " + itemName);
             playerDataManager.Money = playerDataManager.Money - transform.GetChild(itemIndex - 1).GetChild(1).GetComponent<Plant>().Cost;

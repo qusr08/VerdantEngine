@@ -2,13 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EncounterTypes { Enemy, Shop, Event, Start};
+
 public class Encounter : MonoBehaviour
 {
 
     public bool First = false;
 
     public List<GameObject> ConnectingNode;
+    public EncounterTypes EncounterType;
     [SerializeField] private MapPlayer player;
+    [SerializeField] private MapUI mapUI;
+    [SerializeField] private CombatPresetSO combatEncounter;
+    [SerializeField] private CombatManager combatManager;
 
     [Header("Text")]
     [SerializeField] private string Name;
@@ -19,10 +25,21 @@ public class Encounter : MonoBehaviour
     {
         if(player == null)
         {
-            player = GameObject.Find("Player").GetComponent<MapPlayer>();
+            player = GameObject.Find("CameraManager").GetComponent<MapPlayer>();
         }
 
-        if(First)
+        if (combatManager == null)
+        {
+            combatManager = GameObject.Find("CombatManager").GetComponent<CombatManager>();
+        }
+
+        if (mapUI == null)
+        {
+            mapUI = GameObject.Find("Reward Text").GetComponent<MapUI>();
+        }
+
+
+        if (First)
         {
             PlayerReached();
         }
@@ -37,10 +54,16 @@ public class Encounter : MonoBehaviour
     /// <summary>
     /// Runs when the player reaches this encounter
     /// </summary>
-    protected void PlayerReached()
+    public void PlayerReached()
     {
         MapUI text = GameObject.Find("Reward Text").GetComponent<MapUI>();
         text.AtEvent(Name, Rewards);
+
+        if (EncounterType == EncounterTypes.Enemy)
+        {
+            combatManager.NewCombat(combatEncounter);
+            mapUI.ToGarden();
+        }
         //Debug.Log("Player is at " + gameObject.name);
     }
 

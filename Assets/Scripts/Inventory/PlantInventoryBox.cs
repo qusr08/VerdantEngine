@@ -38,7 +38,7 @@ public class PlantInventoryBox : InventoryBox {
 		}
 
 		// If there are no actions remaining, then do not place a new plant
-		if (playerDataManager.CurrentActions <= 0) {
+		if (playerDataManager.CurrentActions <= 0 && combatManager.combatUIManager.GameState != GameState.IDLE) {
 			return;
 		}
 
