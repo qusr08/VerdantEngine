@@ -172,7 +172,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 164589016474248900, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2104607644724900628}
+      addedObject: {fileID: 5167353156304111416}
   m_SourcePrefab: {fileID: 100100000, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
 --- !u!4 &4045420087325621198 stripped
 Transform:
@@ -184,7 +184,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 164589016474248900, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
   m_PrefabInstance: {fileID: 6495334599043760536}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2104607644724900628
+--- !u!114 &5167353156304111416
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,14 +193,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6371657452616558428}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5625de904a91b914d8b771444565e55c, type: 3}
+  m_Script: {fileID: 11500000, guid: 47e0c5759838e00418130fe9e6d43b28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gardenManager: {fileID: 0}
   playerDataManager: {fileID: 0}
   _startingHealth: 3
   _cost: 0
-  _name: 
+  _name: Thorny Thicket
   _description: 'When this plant takes damage, it deals equal damage to the targeted
     enemy.
 
@@ -208,6 +208,7 @@ MonoBehaviour:
   _inventorySprite: {fileID: 21300000, guid: ab2cc85f0678e604396d94e8dba1f0af, type: 3}
   _gardenTile: {fileID: 0}
   effectedGardenPlaceables: []
+  damageIndicatorPrefab: {fileID: 985783835550424020, guid: bf932e9924e884748b9300dabc7007d9, type: 3}
   flowerVisuals: {fileID: 593851459412446416}
   LastEnemyWhichDamagedPlaceble: {fileID: 0}
   _plantType: 7

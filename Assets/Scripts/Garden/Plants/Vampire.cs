@@ -9,7 +9,7 @@ public class Vampire : Plant
         foreach (Plant plant in GetSurroundingPlants(1))
         {
             Heal(1);
-            plant.HealthStat.BaseValue -= 1;
+            plant.TakeDamage( 1);
         }
     }
 }

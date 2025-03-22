@@ -7,10 +7,12 @@ public class Thicket : Plant
     int lastAttack;
     public override void OnTakeDamage()
     {
-        if(LastEnemyWhichDamagedPlaceble)
+        base.OnTakeDamage();
+        if (LastEnemyWhichDamagedPlaceble!=null)
         {
             LastEnemyWhichDamagedPlaceble.Attacked(lastAttack);
         }
+        LastEnemyWhichDamagedPlaceble = null;
 
     }
     public override int TakeDamage(int damage)
@@ -19,6 +21,7 @@ public class Thicket : Plant
             lastAttack = damage;
         else
         {
+            LastEnemyWhichDamagedPlaceble = null;
             lastAttack = 0;
         }
         return damage;

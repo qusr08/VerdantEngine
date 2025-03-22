@@ -107,14 +107,12 @@ public class PlayerCombatManager : MonoBehaviour {
 				int damageDealt = Mathf.Max(0, enemyAttack.Damage - tileHit.GardenPlaceable.ShieldStat.CurrentValue);
 
 				// Deal damage to the garden placeable that was hit by the attack
-				int damageafterShiled = tileHit.GardenPlaceable.TakeDamage(damageDealt);
 				tileHit.GardenPlaceable.LastEnemyWhichDamagedPlaceble = enemy;
-				// Spawn the damage indicator
-				DamageIndicator indicator = Instantiate(damageIndicatorPrefab, tileHit.transform.position, tileHit.GardenPlaceable.transform.rotation).GetComponent<DamageIndicator>( );
-				indicator.SetDamage(damageafterShiled);
+				tileHit.GardenPlaceable.TakeDamage(damageDealt);
 
-				
-			} else {
+
+			}
+			else {
 				Debug.Log("Taeget got killed before turn");
 			}
 		}

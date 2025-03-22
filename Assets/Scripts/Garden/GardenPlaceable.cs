@@ -19,9 +19,10 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	[Space]
 	[SerializeField, Tooltip("The garden tile that this plant is on.")] private GardenTile _gardenTile;
 	[SerializeField, Tooltip("The garden placeables that are currently effected by this garden placeable's stat modifiers.")] protected List<GardenPlaceable> effectedGardenPlaceables;
-
+	[SerializeField, Tooltip("The damage indector pop up.")] protected GameObject damageIndicatorPrefab;
 	private GardenPlaceableStat _healthStat;
 	private GardenPlaceableStat _shieldStat;
+
 
 	public GameObject flowerVisuals;
 	[HideInInspector] public Enemy LastEnemyWhichDamagedPlaceble;
@@ -88,19 +89,20 @@ public abstract class GardenPlaceable : MonoBehaviour {
 			transform.localPosition = new Vector3(0f, 0f, -0.5f);
 		}
 	}
+	
 
-	private void Awake ( ) {
-		gardenManager = FindObjectOfType<GardenManager>( );
-		playerDataManager = FindObjectOfType<PlayerDataManager>( );
+	private void Awake() {
+		gardenManager = FindObjectOfType<GardenManager>();
+		playerDataManager = FindObjectOfType<PlayerDataManager>();
 
-		effectedGardenPlaceables = new List<GardenPlaceable>( );
+		effectedGardenPlaceables = new List<GardenPlaceable>();
 	}
 
 	/// <summary>
 	/// Initialize this plant right after it has been created in the garden. Everything in this function needs to be called before Awake() but after it is instantiated in the garden.
 	/// </summary>
 	/// <param name="gardenTile">The garden tile that this plant is starting on</param>
-	public void Initialize (GardenTile gardenTile) {
+	public void Initialize(GardenTile gardenTile) {
 		GardenTile = gardenTile;
 
 		// Set up stats
@@ -121,8 +123,8 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	/// <param name="exclusivePlantTypes">All plant types within this list will exclusively be added to the final surrounding plants list. If this parameter is left null, all plants of any plant type will be added</param>
 	/// <param name="excludedPlantTypes">All plant types within this list will never be added to the final surrounding plants list. If this parameter is left null, no plant types will be excluded</param>
 	/// <returns>A list of all the surrounding plant objects around this garden placeable that match the exclusive and excluded plant types</returns>
-	public List<Plant> GetSurroundingPlants (int radius, List<PlantType> exclusivePlantTypes = null, List<PlantType> excludedPlantTypes = null) {
-		List<Plant> surroundingPlants = new List<Plant>( );
+	public List<Plant> GetSurroundingPlants(int radius, List<PlantType> exclusivePlantTypes = null, List<PlantType> excludedPlantTypes = null) {
+		List<Plant> surroundingPlants = new List<Plant>();
 
 		// Loop through all plants that are surrounding this garden placeable within a certain radius
 		for (int x = -radius; x <= radius; x++) {
@@ -169,8 +171,8 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	/// <param name="exclusiveArtifactTypes">All artifact types within this list will exclusively be added to the final surrounding artifacts list. If this parameter is left null, all artifacts of any artifact type will be added</param>
 	/// <param name="excludedArtifactTypes">All artifact types within this list will never be added to the final surrounding artifacts list. If this parameter is left null, no artifact types will be excluded</param>
 	/// <returns>A list of all the surrounding artifact objects around this garden placeable that match the exclusive and excluded artifact types</returns>
-	public List<Artifact> GetSurroundingArtifacts (int radius, List<ArtifactType> exclusiveArtifactTypes = null, List<ArtifactType> excludedArtifactTypes = null) {
-		List<Artifact> surroundingArtifacts = new List<Artifact>( );
+	public List<Artifact> GetSurroundingArtifacts(int radius, List<ArtifactType> exclusiveArtifactTypes = null, List<ArtifactType> excludedArtifactTypes = null) {
+		List<Artifact> surroundingArtifacts = new List<Artifact>();
 
 		// Loop through all artifacts that are surrounding this garden placeable within a certain radius
 		for (int x = -radius; x <= radius; x++) {
@@ -215,7 +217,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	/// <param name="exclusivePlantTypes">All plant types within this list will exclusively be added to the final surrounding plants list. If this parameter is left null, all plants of any plant type will be added</param>
 	/// <param name="excludedPlantTypes">All plant types within this list will never be added to the final surrounding plants list. If this parameter is left null, no plant types will be excluded</param>
 	/// <returns>The number of plants around this garden placeable that match the exclusive and excluded plant types</returns>
-	public int CountSurroundingPlants (int radius, List<PlantType> exclusivePlantTypes = null, List<PlantType> excludedPlantTypes = null) {
+	public int CountSurroundingPlants(int radius, List<PlantType> exclusivePlantTypes = null, List<PlantType> excludedPlantTypes = null) {
 		return GetSurroundingPlants(radius, exclusivePlantTypes, excludedPlantTypes).Count;
 	}
 
@@ -226,14 +228,14 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	/// <param name="exclusiveArtifactTypes">All artifact types within this list will exclusively be added to the final surrounding artifacts list. If this parameter is left null, all artifacts of any artifact type will be added</param>
 	/// <param name="excludedArtifactTypes">All artifact types within this list will never be added to the final surrounding artifacts list. If this parameter is left null, no artifact types will be excluded</param>
 	/// <returns>A list of all the surrounding artifact objects around this garden placeable that match the exclusive and excluded artifact types</returns>
-	public int CountSurroundingArtifacts (int radius, List<ArtifactType> exclusiveArtifactTypes = null, List<ArtifactType> excludedArtifactTypes = null) {
+	public int CountSurroundingArtifacts(int radius, List<ArtifactType> exclusiveArtifactTypes = null, List<ArtifactType> excludedArtifactTypes = null) {
 		return GetSurroundingArtifacts(radius, exclusiveArtifactTypes, excludedArtifactTypes).Count;
 	}
 
 	/// <summary>
 	/// Remove all modifiers from all the garden placeables that are effected by this garden placeable. This should be used before recalculating modifiers
 	/// </summary>
-	protected void RemoveModifiersFromEffectedGardenPlaceables ( ) {
+	protected void RemoveModifiersFromEffectedGardenPlaceables() {
 		// Clear all modifiers from the previously effected garden placeables
 		for (int i = effectedGardenPlaceables.Count - 1; i >= 0; i--) {
 			effectedGardenPlaceables[i].HealthStat.RemoveModifiers(this);
@@ -245,50 +247,75 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	/// <summary>
 	/// Called when the garden is update in any way. This means that when a plant is placed or removed on the board, this function is called
 	/// </summary>
-	public virtual void OnGardenUpdated ( ) {
+	public virtual void OnGardenUpdated() {
 		// Since the garden was changed, all modifiers should be updated
-		RemoveModifiersFromEffectedGardenPlaceables( );
+		RemoveModifiersFromEffectedGardenPlaceables();
 	}
 
 	/// <summary>
 	/// Called when the player's turn starts
 	/// </summary>
-	public virtual void OnTurnStart ( ) { }
+	public virtual void OnTurnStart() { }
 
 	/// <summary>
 	/// Called when the player's turn ends
 	/// </summary>
-	public virtual void OnTurnEnd ( ) { }
+	public virtual void OnTurnEnd() { }
 
 	/// <summary>
 	/// Called when this garden placeable takes damage
 	/// </summary>
-	public virtual void OnTakeDamage ( ) { }
+	public virtual void OnTakeDamage() { }
 
 	/// <summary>
 	/// Called when this garden placeable is killed
 	/// </summary>
-	public virtual void OnKilled ( ) {
+	public virtual void OnKilled() {
 		// Since this garden placeable was killed, remove all modifiers it was giving out
-		RemoveModifiersFromEffectedGardenPlaceables( );
+		RemoveModifiersFromEffectedGardenPlaceables();
 	}
 	public virtual void Heal(int heal)
-    {
-		if(_healthStat.CurrentValue<StartingHealth)
-        {
-			_healthStat.BaseValue += heal;
-			if (_healthStat.BaseValue > StartingHealth)
+	{
+		if (_healthStat.CurrentValue < StartingHealth)
+		{
+			if (_healthStat.CurrentValue + heal >= StartingHealth)
+			{
+				HealIndicator(StartingHealth- _healthStat.BaseValue);
 				_healthStat.BaseValue = StartingHealth;
+				HealIndicator(0);
+
+			}
+			else
+            {
+				_healthStat.BaseValue += heal;
+				HealIndicator(heal);
+			}
 		}
-    }
+		HealIndicator(0);
+
+	}
 	public virtual int TakeDamage(int damage)
-    {
+	{
 		damage -= ShieldStat.CurrentValue;
 		if (damage > 0)
 		{
 			HealthStat.BaseValue -= damage;
+			DamageIndicator(damage);
 			return damage;
 		}
+		DamageIndicator(0);
 		return 0;
 	}
+	public virtual void DamageIndicator(int damageafterShiled)
+	{
+		DamageIndicator indicator = Instantiate(damageIndicatorPrefab, this.transform.position, this.transform.rotation).GetComponent<DamageIndicator>();
+		indicator.SetDamage(damageafterShiled);
+	}
+	public virtual void HealIndicator(int heal)
+	{
+		DamageIndicator indicator = Instantiate(damageIndicatorPrefab, this.transform.position, this.transform.rotation).GetComponent<DamageIndicator>();
+		indicator.SetHeal(heal);
+	}
+
+
 }

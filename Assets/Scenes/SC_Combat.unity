@@ -594,12 +594,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _plantPrefabs:
-    m_keys: 01000000020000000300000004000000
+    m_keys: 01000000020000000300000004000000050000000600000007000000
     m_values:
     - {fileID: 6371657452616558428, guid: 495b03ff328772b47bd7462b991d2aa6, type: 3}
     - {fileID: 2280655750686021930, guid: 9c24111afdfa1d64588fa90baa3e96bb, type: 3}
     - {fileID: 3335414605574756413, guid: e07043412d85b934c8a4872024267dc6, type: 3}
     - {fileID: 3020584395285068545, guid: 70f1aa7c24556df418c61c4896ad2fdd, type: 3}
+    - {fileID: 6371657452616558428, guid: edfce0f31e53a484aa8a4c1a0d5ceb4a, type: 3}
+    - {fileID: 6371657452616558428, guid: 03b01ceaa022a2741a184f3f39dc0c7f, type: 3}
+    - {fileID: 6371657452616558428, guid: e79c63a2b6c8d06409d52ce487a02248, type: 3}
   _artifactPrefabs:
     m_keys: 
     m_values: []
@@ -3026,6 +3029,22 @@ PrefabInstance:
       propertyPath: playerDataManager
       value: 
       objectReference: {fileID: 1707282257}
+    - target: {fileID: 5969004172294603720, guid: 19268ea9071e3724c8f927fb551f2077, type: 3}
+      propertyPath: plantPrefabs.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969004172294603720, guid: 19268ea9071e3724c8f927fb551f2077, type: 3}
+      propertyPath: plantPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 6371657452616558428, guid: e79c63a2b6c8d06409d52ce487a02248, type: 3}
+    - target: {fileID: 5969004172294603720, guid: 19268ea9071e3724c8f927fb551f2077, type: 3}
+      propertyPath: plantPrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 6371657452616558428, guid: 03b01ceaa022a2741a184f3f39dc0c7f, type: 3}
+    - target: {fileID: 5969004172294603720, guid: 19268ea9071e3724c8f927fb551f2077, type: 3}
+      propertyPath: plantPrefabs.Array.data[6]
+      value: 
+      objectReference: {fileID: 6371657452616558428, guid: edfce0f31e53a484aa8a4c1a0d5ceb4a, type: 3}
     - target: {fileID: 7477303515834147584, guid: 19268ea9071e3724c8f927fb551f2077, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -4933,8 +4952,8 @@ MonoBehaviour:
   _maxHealth: 10
   _money: 100
   _playerAttacks:
-  - {fileID: 11400000, guid: 001b5f5f0c0685f489002903a568926f, type: 2}
   - {fileID: 11400000, guid: 944ffad48c7ea094db0d9de5a1ec003b, type: 2}
+  - {fileID: 11400000, guid: 001b5f5f0c0685f489002903a568926f, type: 2}
   mouseImage: {fileID: 1983731385}
   mouseImageTransform: {fileID: 1983731384}
   guiCanvas: {fileID: 1544708344}

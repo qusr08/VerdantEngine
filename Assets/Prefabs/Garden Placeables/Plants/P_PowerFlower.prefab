@@ -225,6 +225,7 @@ MonoBehaviour:
   _inventorySprite: {fileID: 21300000, guid: 473c8770fdd40d14a8d28c1f64bc1d0c, type: 3}
   _gardenTile: {fileID: 0}
   effectedGardenPlaceables: []
+  damageIndicatorPrefab: {fileID: 985783835550424020, guid: bf932e9924e884748b9300dabc7007d9, type: 3}
   flowerVisuals: {fileID: 2893310060454793639}
   LastEnemyWhichDamagedPlaceble: {fileID: 0}
   _plantType: 1

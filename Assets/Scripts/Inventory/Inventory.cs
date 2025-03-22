@@ -28,6 +28,12 @@ public class Inventory : MonoBehaviour {
 		AddPlant(PlantType.HARDY_HEDGE);
 		AddPlant(PlantType.HARDY_HEDGE);
 
+		AddPlant(PlantType.HEARTICHOKE);
+
+		AddPlant(PlantType.THICKET);
+
+		AddPlant(PlantType.FLYTRAP);
+
 	}
 
 	/// <summary>

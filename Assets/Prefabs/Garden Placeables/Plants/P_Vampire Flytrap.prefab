@@ -202,9 +202,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gardenManager: {fileID: 0}
   playerDataManager: {fileID: 0}
-  _startingHealth: 2
+  _startingHealth: 4
   _cost: 0
-  _name: 
+  _name: Vampire Flytrap
   _description: 'Deals 1 damage to all adjacent plants at the end of the turn, heals
     itself by the damage dealt.
 
@@ -212,6 +212,7 @@ MonoBehaviour:
   _inventorySprite: {fileID: 21300000, guid: d6b63da94c1c6c74ba4748933704acbc, type: 3}
   _gardenTile: {fileID: 0}
   effectedGardenPlaceables: []
+  damageIndicatorPrefab: {fileID: 985783835550424020, guid: bf932e9924e884748b9300dabc7007d9, type: 3}
   flowerVisuals: {fileID: 1276710809253557445}
   LastEnemyWhichDamagedPlaceble: {fileID: 0}
   _plantType: 6
