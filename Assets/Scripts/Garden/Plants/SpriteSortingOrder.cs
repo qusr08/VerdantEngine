@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Assigning sorting orders to plant sprites based on position on the garden grid.
+/// </summary>
 public class SpriteSortingOrder : MonoBehaviour
 {
     public int x;

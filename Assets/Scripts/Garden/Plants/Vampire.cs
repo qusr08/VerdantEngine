@@ -18,6 +18,6 @@ public class Vampire : Plant
         base.OnGardenUpdated();
 
         GardenTile tile = GetComponentInParent<GardenTile>();
-        gameObject.GetComponentInChildren<SpriteSortingOrder>().SortSprites(tile.Position.x, tile.Position.y);
+        gameObject.GetComponentInChildren<SpriteSortingOrder>().SortSprites(tile.Position.x, tile.Position.y); //Setting the sorting order of each sprite based on tile position
     }
 }
