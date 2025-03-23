@@ -40,7 +40,7 @@ public class MapUI : MonoBehaviour
 
         if (rewards != "")
         {
-            text.text = "" + rewards;
+            text.text = "" + type + ": " + rewards;
             return;
         }
 
