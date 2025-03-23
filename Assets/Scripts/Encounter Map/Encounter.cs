@@ -56,7 +56,7 @@ public class Encounter : MonoBehaviour
     /// </summary>
     public void PlayerReached()
     {
-        this.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+        this.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
 
         MapUI text = GameObject.Find("Reward Text").GetComponent<MapUI>();
         text.AtEvent(Name, Rewards);
@@ -76,6 +76,7 @@ public class Encounter : MonoBehaviour
     {
         //Currently just hide this encounter. Eventually replace it's graphic
         //gameObject.SetActive(false);
+        this.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
     }
 
     public void AddConnection(GameObject connection)

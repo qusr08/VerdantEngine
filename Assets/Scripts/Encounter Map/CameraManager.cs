@@ -66,7 +66,7 @@ public class MapPlayer : MonoBehaviour
                 CurrentEncounter.GetComponent<Encounter>().PlayerLeave();
             }
 
-            transform.position = new Vector3(location.transform.position.x, location.transform.position.y, -10);
+            transform.position = new Vector3(location.transform.position.x, 3, -10);
             UpdateCameraPosition();
             CurrentEncounter = location;
             if (location.GetComponent<Encounter>().EncounterType == EncounterTypes.Enemy)
