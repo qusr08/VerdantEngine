@@ -87,7 +87,7 @@ public class Encounter : MonoBehaviour
         child.transform.SetParent(transform);
         LineRenderer lineRenderer = child.AddComponent<LineRenderer>();
         lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
-        lineRenderer.widthMultiplier = 0.2f;
+        lineRenderer.widthMultiplier = 0.1f;
         lineRenderer.positionCount = 2;
 
         lineRenderer.SetPosition(0, this.transform.position);
