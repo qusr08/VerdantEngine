@@ -88,14 +88,14 @@ public class RewardManager : MonoBehaviour
             GameObject newPlantItem = Instantiate(plantPrefabs[i], items[i].transform);
             items[i].transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = plantPrefabs[i].name.Substring(2); //Display plant name on buttons
             items[i].transform.GetChild(1).GetComponent<Image>().sprite = plantPrefabs[i].GetComponent<Plant>().InventorySprite;
-            //newPlantItem.GetComponent<MeshRenderer>().enabled = false;
+            newPlantItem.GetComponent<MeshRenderer>().enabled = false;
         }
 
 /*        if (includeUncommon)
         {
-            randomSpotUncommon = Random.Range(0, items.Length);
+            randomSpotUncommon = Random.Range(0, plantItems.Length);
 
-            foreach (Transform child in items[randomSpotUncommon].transform)
+            foreach (Transform child in plantItems[randomSpotUncommon].transform)
             {
                 if (child.GetComponent<Plant>() != null)
                 {
@@ -104,19 +104,19 @@ public class RewardManager : MonoBehaviour
             }
 
             Debug.Log("Including uncommon");
-            GameObject newPlantItem = Instantiate(test1, items[randomSpotUncommon].transform);
-            items[randomSpotUncommon].transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = test1.name.Substring(2); //Display plant name on buttons
-            items[randomSpotUncommon].transform.GetChild(1).GetComponent<Image>().sprite = test1.GetComponent<Plant>().InventorySprite;
+            GameObject newPlantItem = Instantiate(test1, plantItems[randomSpotUncommon].transform);
+            plantItems[randomSpotUncommon].transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = test1.name.Substring(2); //Display plant name on buttons
+            plantItems[randomSpotUncommon].transform.GetChild(1).GetComponent<Image>().sprite = test1.GetComponent<Plant>().InventorySprite;
         }
         if (includeRare)
         {
             do
             {
-                randomSpotRare = Random.Range(0, items.Length);
+                randomSpotRare = Random.Range(0, plantItems.Length);
             } while (randomSpotRare == randomSpotUncommon); //Making sure rare and uncommon and rare are not spawned in same item spot
             
 
-            foreach (Transform child in items[randomSpotRare].transform)
+            foreach (Transform child in plantItems[randomSpotRare].transform)
             {
                 if (child.GetComponent<Plant>() != null)
                 {
@@ -125,9 +125,9 @@ public class RewardManager : MonoBehaviour
             }
 
             Debug.Log("Including rare");
-            GameObject newPlantItem = Instantiate(test2, items[randomSpotRare].transform);
-            items[randomSpotRare].transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = test2.name.Substring(2); //Display plant name on buttons
-            items[randomSpotRare].transform.GetChild(1).GetComponent<Image>().sprite = test2.GetComponent<Plant>().InventorySprite;
+            GameObject newPlantItem = Instantiate(test2, plantItems[randomSpotRare].transform);
+            plantItems[randomSpotRare].transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = test2.name.Substring(2); //Display plant name on buttons
+            plantItems[randomSpotRare].transform.GetChild(1).GetComponent<Image>().sprite = test2.GetComponent<Plant>().InventorySprite;
         }*/
 
         moneyRewardText.text = "Money earned from encounter : " + moneyReward;
@@ -139,15 +139,5 @@ public class RewardManager : MonoBehaviour
         //Debug.Log(transform.GetChild(itemIndex - 1).GetComponentInChildren<Plant>().PlantType);
         gameObject.SetActive(false);
         
-    }
-    public void BuyPlant(int itemIndex)
-    {
-        if (playerDataManager.Money >= transform.GetChild(itemIndex - 1).GetChild(1).GetComponent<Plant>().Cost)
-        {
-            string itemName = transform.GetChild(itemIndex - 1).GetChild(1).name;
-            Debug.Log("Bought Item " + itemIndex + ", Plant Name : " + itemName);
-            playerDataManager.Money = playerDataManager.Money - transform.GetChild(itemIndex - 1).GetChild(1).GetComponent<Plant>().Cost;
-           // balanceText.text = "Balance : " + playerDataManager.Money.ToString();
-        }
     }
 }
