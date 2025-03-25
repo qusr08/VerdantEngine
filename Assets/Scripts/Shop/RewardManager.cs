@@ -12,12 +12,18 @@ public class RewardManager : MonoBehaviour
     [SerializeField] TMP_Text moneyRewardText;
     [SerializeField] Inventory inventory;
 
-    [SerializeField] bool mustIncludeUncommon = false;
-    [SerializeField] bool mustIncludeRare = false;
+    [SerializeField] bool includeUncommon = false;
+    [SerializeField] bool includeRare = false;
     [SerializeField] int probablility;
-    [SerializeField] int randomSpot;
+    [SerializeField] int randomSpotUncommon;
+    [SerializeField] int randomSpotRare;
 
     public CombatManager combatManager;
+
+    public bool forcingProbability;
+    public bool mustIncludeUncommon;
+    public bool mustInlcudeRare;
+
     public int moneyReward;
 
     // Start is called before the first frame update
@@ -34,8 +40,8 @@ public class RewardManager : MonoBehaviour
     {
         ClearShop();
 
-        mustIncludeUncommon = false;
-        mustIncludeRare = false;
+        includeUncommon = false;
+        includeRare = false;
 
         for (int i = 0; i < plantPrefabs.Length; i++)
         {
@@ -45,13 +51,13 @@ public class RewardManager : MonoBehaviour
             plantPrefabs[r] = tmp;
         }
         probablility = Random.Range(0, 101);
-        if(probablility >= 50  && probablility <= 90)
+        if(probablility > 50  && probablility <= 90)
         {
-            mustIncludeUncommon = true;
+            includeUncommon = true;
         }
         else if(probablility > 90)
         {
-            mustIncludeRare = true;
+            includeRare = true;
         }
 
         FillShop();
@@ -71,6 +77,12 @@ public class RewardManager : MonoBehaviour
     }
     void FillShop()
     {
+        if (forcingProbability)
+        {
+            includeUncommon = mustIncludeUncommon;
+            includeRare = mustInlcudeRare;
+        }
+
         for(int i = 0; i < items.Length; i++)
         {
             GameObject newPlantItem = Instantiate(plantPrefabs[i], items[i].transform);
@@ -79,40 +91,44 @@ public class RewardManager : MonoBehaviour
             //newPlantItem.GetComponent<MeshRenderer>().enabled = false;
         }
 
-        /*        if (mustIncludeUncommon)
+/*        if (includeUncommon)
+        {
+            randomSpotUncommon = Random.Range(0, items.Length);
+
+            foreach (Transform child in items[randomSpotUncommon].transform)
+            {
+                if (child.GetComponent<Plant>() != null)
                 {
-                    randomSpot = Random.Range(0, items.Length);
-
-                    foreach (Transform child in items[randomSpot].transform)
-                    {
-                        if (child.GetComponent<Plant>() != null)
-                        {
-                            Destroy(child.gameObject);
-                        }
-                    }
-
-                    Debug.Log("Including uncommon");
-                    GameObject newPlantItem = Instantiate(test1, items[randomSpot].transform);
-                    items[randomSpot].transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = test1.name.Substring(2); //Display plant name on buttons
-                    items[randomSpot].transform.GetChild(1).GetComponent<Image>().sprite = test1.GetComponent<Plant>().InventorySprite;
+                    Destroy(child.gameObject);
                 }
-                if (mustIncludeRare)
+            }
+
+            Debug.Log("Including uncommon");
+            GameObject newPlantItem = Instantiate(test1, items[randomSpotUncommon].transform);
+            items[randomSpotUncommon].transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = test1.name.Substring(2); //Display plant name on buttons
+            items[randomSpotUncommon].transform.GetChild(1).GetComponent<Image>().sprite = test1.GetComponent<Plant>().InventorySprite;
+        }
+        if (includeRare)
+        {
+            do
+            {
+                randomSpotRare = Random.Range(0, items.Length);
+            } while (randomSpotRare == randomSpotUncommon); //Making sure rare and uncommon and rare are not spawned in same item spot
+            
+
+            foreach (Transform child in items[randomSpotRare].transform)
+            {
+                if (child.GetComponent<Plant>() != null)
                 {
-                    randomSpot = Random.Range(0, items.Length);
+                    Destroy(child.gameObject);
+                }
+            }
 
-                    foreach (Transform child in items[randomSpot].transform)
-                    {
-                        if (child.GetComponent<Plant>() != null)
-                        {
-                            Destroy(child.gameObject);
-                        }
-                    }
-
-                    Debug.Log("Including rare");
-                    GameObject newPlantItem = Instantiate(test2, items[randomSpot].transform);
-                    items[randomSpot].transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = test2.name.Substring(2); //Display plant name on buttons
-                    items[randomSpot].transform.GetChild(1).GetComponent<Image>().sprite = test2.GetComponent<Plant>().InventorySprite;
-                }*/
+            Debug.Log("Including rare");
+            GameObject newPlantItem = Instantiate(test2, items[randomSpotRare].transform);
+            items[randomSpotRare].transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = test2.name.Substring(2); //Display plant name on buttons
+            items[randomSpotRare].transform.GetChild(1).GetComponent<Image>().sprite = test2.GetComponent<Plant>().InventorySprite;
+        }*/
 
         moneyRewardText.text = "Money earned from encounter : " + moneyReward;
     }
