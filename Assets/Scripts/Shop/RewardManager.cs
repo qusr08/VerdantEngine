@@ -11,30 +11,60 @@ public class RewardManager : MonoBehaviour
     [SerializeField] PlayerDataManager playerDataManager;
     [SerializeField] TMP_Text balanceText;
     [SerializeField] Inventory inventory;
-    public CombatManager combatManager;
 
+    [SerializeField] bool mustIncludeUncommon = false;
+    [SerializeField] bool mustIncludeRare = false;
+    [SerializeField] int probablility;
+    [SerializeField] int randomSpot;
+
+    public CombatManager combatManager;
     // Start is called before the first frame update
     void Start()
     {
         ShufflePlants();
-        FillShop();
-
         //balanceText.text = "Balance : " + playerDataManager.Money.ToString();
     }
     private void OnEnable()
     {
         ShufflePlants();
-        FillShop();
     }
     void ShufflePlants()
     {
-        Debug.Log("shuffled");
+        ClearShop();
+
+        mustIncludeUncommon = false;
+        mustIncludeRare = false;
+
         for (int i = 0; i < plantPrefabs.Length; i++)
         {
             GameObject tmp = plantPrefabs[i];
             int r = Random.Range(i, plantPrefabs.Length);
             plantPrefabs[i] = plantPrefabs[r];
             plantPrefabs[r] = tmp;
+        }
+        probablility = Random.Range(0, 101);
+        if(probablility >= 50  && probablility <= 90)
+        {
+            mustIncludeUncommon = true;
+        }
+        else if(probablility > 90)
+        {
+            mustIncludeRare = true;
+        }
+
+        FillShop();
+    }
+    void ClearShop()
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            foreach(Transform child in items[i].transform)
+            {
+                if(child.GetComponent<Plant>() != null)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
         }
     }
     void FillShop()
@@ -46,6 +76,41 @@ public class RewardManager : MonoBehaviour
             items[i].transform.GetChild(1).GetComponent<Image>().sprite = plantPrefabs[i].GetComponent<Plant>().InventorySprite;
             //newPlantItem.GetComponent<MeshRenderer>().enabled = false;
         }
+
+/*        if (mustIncludeUncommon)
+        {
+            randomSpot = Random.Range(0, items.Length);
+
+            foreach (Transform child in items[randomSpot].transform)
+            {
+                if (child.GetComponent<Plant>() != null)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+
+            Debug.Log("Including uncommon");
+            GameObject newPlantItem = Instantiate(test1, items[randomSpot].transform);
+            items[randomSpot].transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = test1.name.Substring(2); //Display plant name on buttons
+            items[randomSpot].transform.GetChild(1).GetComponent<Image>().sprite = test1.GetComponent<Plant>().InventorySprite;
+        }
+        if (mustIncludeRare)
+        {
+            randomSpot = Random.Range(0, items.Length);
+
+            foreach (Transform child in items[randomSpot].transform)
+            {
+                if (child.GetComponent<Plant>() != null)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+
+            Debug.Log("Including rare");
+            GameObject newPlantItem = Instantiate(test2, items[randomSpot].transform);
+            items[randomSpot].transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = test2.name.Substring(2); //Display plant name on buttons
+            items[randomSpot].transform.GetChild(1).GetComponent<Image>().sprite = test2.GetComponent<Plant>().InventorySprite;
+        }*/
     }
     public void AddToInventoryAfterFight(int itemIndex)
     {

@@ -3015,6 +3015,14 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5969004172294603720, guid: 19268ea9071e3724c8f927fb551f2077, type: 3}
+      propertyPath: test1
+      value: 
+      objectReference: {fileID: 6371657452616558428, guid: ed8c70b78769cc048ab0f53ca8d4b3f0, type: 3}
+    - target: {fileID: 5969004172294603720, guid: 19268ea9071e3724c8f927fb551f2077, type: 3}
+      propertyPath: test2
+      value: 
+      objectReference: {fileID: 6371657452616558428, guid: 47d1c7af24ffc5d4097a57df713af5ea, type: 3}
+    - target: {fileID: 5969004172294603720, guid: 19268ea9071e3724c8f927fb551f2077, type: 3}
       propertyPath: inventory
       value: 
       objectReference: {fileID: 1030742011}
