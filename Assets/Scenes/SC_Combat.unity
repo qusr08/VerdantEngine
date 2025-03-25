@@ -3026,6 +3026,22 @@ PrefabInstance:
       propertyPath: playerDataManager
       value: 
       objectReference: {fileID: 1707282257}
+    - target: {fileID: 5969004172294603720, guid: 19268ea9071e3724c8f927fb551f2077, type: 3}
+      propertyPath: plantPrefabs.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969004172294603720, guid: 19268ea9071e3724c8f927fb551f2077, type: 3}
+      propertyPath: plantPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 6371657452616558428, guid: edfce0f31e53a484aa8a4c1a0d5ceb4a, type: 3}
+    - target: {fileID: 5969004172294603720, guid: 19268ea9071e3724c8f927fb551f2077, type: 3}
+      propertyPath: plantPrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 6371657452616558428, guid: 03b01ceaa022a2741a184f3f39dc0c7f, type: 3}
+    - target: {fileID: 5969004172294603720, guid: 19268ea9071e3724c8f927fb551f2077, type: 3}
+      propertyPath: plantPrefabs.Array.data[6]
+      value: 
+      objectReference: {fileID: 6371657452616558428, guid: e79c63a2b6c8d06409d52ce487a02248, type: 3}
     - target: {fileID: 7477303515834147584, guid: 19268ea9071e3724c8f927fb551f2077, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1

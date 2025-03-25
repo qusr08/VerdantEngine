@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class ShopManager : MonoBehaviour
+public class RewardManager : MonoBehaviour
 {
     [SerializeField] GameObject[] items;
     [SerializeField] GameObject[] plantPrefabs;
@@ -21,8 +21,14 @@ public class ShopManager : MonoBehaviour
 
         //balanceText.text = "Balance : " + playerDataManager.Money.ToString();
     }
+    private void OnEnable()
+    {
+        ShufflePlants();
+        FillShop();
+    }
     void ShufflePlants()
     {
+        Debug.Log("shuffled");
         for (int i = 0; i < plantPrefabs.Length; i++)
         {
             GameObject tmp = plantPrefabs[i];
