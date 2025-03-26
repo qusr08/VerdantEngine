@@ -8,12 +8,12 @@ using UnityEngine.UI;
 
 public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] TMP_Text itemName;
-    [SerializeField] TMP_Text cost;
-    [SerializeField] Image displayImage;
-    [SerializeField] TMP_Text description;
+    public TMP_Text itemName;
+    public TMP_Text cost;
+    public Image displayImage;
+    public TMP_Text description;
 
-    [SerializeField] bool needTooltip;
+    public bool needTooltip;
 
     public void OnPointerEnter(PointerEventData eventData)
     {

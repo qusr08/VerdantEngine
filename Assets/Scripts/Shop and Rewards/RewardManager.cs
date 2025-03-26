@@ -72,7 +72,8 @@ public class RewardManager : MonoBehaviour
 
         for (int i = 0; i < probablility.Length; i++)
         {
-            probablility[i] = Random.Range(0, 101);
+           // probablility[i] = Random.Range(0, 101); //uncomment when we have rare plants
+           probablility[i] = Random.Range(0, 81); //temporary, until we implement rare plants
         }
 
         for (int i = 0; i < commonPlants.Length; i++)
@@ -119,7 +120,7 @@ public class RewardManager : MonoBehaviour
         commonIndex = 0;
         uncommonIndex = 0;
         rareIndex = 0;
-        for(int i = 0; i < items.Length; i++)
+        for(int i = 0; i < probablility.Length; i++)
         {
             if (probablility[i] <= 50)
             {
@@ -164,47 +165,6 @@ public class RewardManager : MonoBehaviour
                 }
             }
         }
-
-
-        //also add the uncokmmon/rare plant in random spot on the prefabs and items array
-/*        if (includeUncommon)
-        {
-            randomSpotUncommon = Random.Range(0, plantItems.Length);
-
-            foreach (Transform child in plantItems[randomSpotUncommon].transform)
-            {
-                if (child.GetComponent<Plant>() != null)
-                {
-                    Destroy(child.gameObject);
-                }
-            }
-
-            Debug.Log("Including uncommon");
-            GameObject newPlantItem = Instantiate(test1, plantItems[randomSpotUncommon].transform);
-            plantItems[randomSpotUncommon].transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = test1.name.Substring(2); //Display plant name on buttons
-            plantItems[randomSpotUncommon].transform.GetChild(1).GetComponent<Image>().sprite = test1.GetComponent<Plant>().InventorySprite;
-        }
-        if (includeRare)
-        {
-            do
-            {
-                randomSpotRare = Random.Range(0, plantItems.Length);
-            } while (randomSpotRare == randomSpotUncommon); //Making sure rare and uncommon and rare are not spawned in same item spot
-            
-
-            foreach (Transform child in plantItems[randomSpotRare].transform)
-            {
-                if (child.GetComponent<Plant>() != null)
-                {
-                    Destroy(child.gameObject);
-                }
-            }
-
-            Debug.Log("Including rare");
-            GameObject newPlantItem = Instantiate(test2, plantItems[randomSpotRare].transform);
-            plantItems[randomSpotRare].transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = test2.name.Substring(2); //Display plant name on buttons
-            plantItems[randomSpotRare].transform.GetChild(1).GetComponent<Image>().sprite = test2.GetComponent<Plant>().InventorySprite;
-        }*/
 
         moneyRewardText.text = "Money earned from encounter : " + moneyReward.ToString();
     }
