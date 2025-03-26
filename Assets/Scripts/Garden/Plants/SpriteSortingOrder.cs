@@ -38,8 +38,6 @@ public class SpriteSortingOrder : MonoBehaviour
                 sprite.sortingOrder = sprite.sortingOrder * addToSortOrder;
 
                 spriteID = sprite.name + " " + x + y + " order : " + sprite.sortingOrder;
-
-                Debug.Log(spriteID);
                 spriteIDs.Add(spriteID);
             }
             
