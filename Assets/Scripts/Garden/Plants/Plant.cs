@@ -22,6 +22,7 @@ public abstract class Plant : GardenPlaceable {
 	/// The type of this plant
 	/// </summary>
 	public PlantType PlantType => _plantType;
+	public Rarity Rarity => _rarity;
 
 	public override void OnKilled ( ) {
 		base.OnKilled( );

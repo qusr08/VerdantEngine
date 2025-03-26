@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Linq;
 
 public class RewardManager : MonoBehaviour
 {
@@ -11,53 +12,91 @@ public class RewardManager : MonoBehaviour
   
     [SerializeField] TMP_Text moneyRewardText;
 
-    [SerializeField] bool includeUncommon = false;
-    [SerializeField] bool includeRare = false;
-    [SerializeField] int probablility;
-    [SerializeField] int randomSpotUncommon;
-    [SerializeField] int randomSpotRare;
+    [SerializeField] int[] probablility;
 
     [SerializeField] PlayerDataManager playerDataManager;
     public CombatManager combatManager;
-    [SerializeField] Inventory inventory;
-
-    public bool forcingProbability;
-    public bool mustIncludeUncommon;
-    public bool mustInlcudeRare;
+    [SerializeField] Inventory inventory;   
 
     public int moneyReward;
+
+    public List<GameObject> commonPlantsList;
+    public List<GameObject> uncommonPlantsList;
+    public List<GameObject> rarePlantsList;
+
+    public GameObject[] commonPlants;
+    public GameObject[] uncommonPlants;
+    public GameObject[] rarePlants;
+
+    public int commonIndex;
+    public int uncommonIndex;
+    public int rareIndex;
     // Start is called before the first frame update
     void Start()
     {
+        probablility = new int[items.Length];
+        ArrangeByRarity();
         ShufflePlants();
-        //balanceText.text = "Balance : " + playerDataManager.Money.ToString();
     }
     private void OnEnable()
     {
         ShufflePlants();
     }
+
+    private void ArrangeByRarity()
+    {
+        foreach(GameObject plant in plantPrefabs)
+        {
+            if(plant.GetComponent<Plant>().Rarity == Rarity.UNCOMMON)
+            {
+                uncommonPlantsList.Add(plant);
+            }
+            else if(plant.GetComponent<Plant>().Rarity == Rarity.COMMON)
+            {
+                commonPlantsList.Add(plant);
+            }
+            else
+            {
+                rarePlantsList.Add(plant);
+            }
+        }
+
+        commonPlants = commonPlantsList.ToArray();
+        uncommonPlants = uncommonPlantsList.ToArray();
+        rarePlants = rarePlantsList.ToArray();
+    }
+
     void ShufflePlants()
     {
         ClearShop();
 
-        includeUncommon = false;
-        includeRare = false;
+        for (int i = 0; i < probablility.Length; i++)
+        {
+            probablility[i] = Random.Range(0, 101);
+        }
 
-        for (int i = 0; i < plantPrefabs.Length; i++)
+        for (int i = 0; i < commonPlants.Length; i++)
         {
-            GameObject tmp = plantPrefabs[i];
-            int r = Random.Range(i, plantPrefabs.Length);
-            plantPrefabs[i] = plantPrefabs[r];
-            plantPrefabs[r] = tmp;
+            GameObject tmp = commonPlants[i];
+            int r = Random.Range(i, commonPlants.Length);
+            commonPlants[i] = commonPlants[r];
+            commonPlants[r] = tmp;
         }
-        probablility = Random.Range(0, 101);
-        if(probablility > 50  && probablility <= 90)
+
+        for (int i = 0; i < uncommonPlants.Length; i++)
         {
-            includeUncommon = true;
+            GameObject tmp = uncommonPlants[i];
+            int r = Random.Range(i, uncommonPlants.Length);
+            uncommonPlants[i] = uncommonPlants[r];
+            uncommonPlants[r] = tmp;
         }
-        else if(probablility > 90)
+
+        for (int i = 0; i < rarePlants.Length; i++)
         {
-            includeRare = true;
+            GameObject tmp = rarePlants[i];
+            int r = Random.Range(i, rarePlants.Length);
+            rarePlants[i] = rarePlants[r];
+            rarePlants[r] = tmp;
         }
 
         FillShop();
@@ -77,17 +116,53 @@ public class RewardManager : MonoBehaviour
     }
     void FillShop()
     {
-        if (forcingProbability)
-        {
-            includeUncommon = mustIncludeUncommon;
-            includeRare = mustInlcudeRare;
-        }
-
+        commonIndex = 0;
+        uncommonIndex = 0;
+        rareIndex = 0;
         for(int i = 0; i < items.Length; i++)
         {
-            items[i].GetComponentInChildren<Item>().FillRewardItemDetails(plantPrefabs[i].name.Substring(2), plantPrefabs[i].GetComponent<Plant>().InventorySprite);
-            GameObject newPlantItem = Instantiate(plantPrefabs[i], items[i].transform);
-            newPlantItem.GetComponent<MeshRenderer>().enabled = false;
+            if (probablility[i] <= 50)
+            {
+                items[i].GetComponentInChildren<Item>().FillRewardItemDetails(commonPlants[commonIndex].name.Substring(2), commonPlants[commonIndex].GetComponent<Plant>().InventorySprite);
+                GameObject newPlantItem = Instantiate(commonPlants[commonIndex], items[i].transform);
+                newPlantItem.GetComponent<MeshRenderer>().enabled = false;
+                if(commonIndex < commonPlants.Length - 1)
+                {
+                    commonIndex++;
+                }
+                else
+                {
+                    commonIndex = 0;
+                }
+            }
+            else if (probablility[i] > 50 && probablility[i] <= 80)
+            {
+                items[i].GetComponentInChildren<Item>().FillRewardItemDetails(uncommonPlants[uncommonIndex].name.Substring(2), uncommonPlants[uncommonIndex].GetComponent<Plant>().InventorySprite);
+                GameObject newPlantItem = Instantiate(uncommonPlants[uncommonIndex], items[i].transform);
+                newPlantItem.GetComponent<MeshRenderer>().enabled = false;
+                if(uncommonIndex < uncommonPlants.Length - 1)
+                {
+                    uncommonIndex++;
+                }
+                else
+                {
+                    uncommonIndex = 0;
+                }
+            }
+            else
+            {
+                items[i].GetComponentInChildren<Item>().FillRewardItemDetails(rarePlants[rareIndex].name.Substring(2), rarePlants[rareIndex].GetComponent<Plant>().InventorySprite);
+                GameObject newPlantItem = Instantiate(rarePlants[rareIndex], items[i].transform);
+                newPlantItem.GetComponent<MeshRenderer>().enabled = false;
+                if(rareIndex <  rarePlants.Length - 1)
+                {
+                    rareIndex++;
+                }
+                else
+                {
+                    rareIndex = 0;
+                }
+            }
         }
 
 
