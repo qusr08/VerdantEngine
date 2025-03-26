@@ -3450,6 +3450,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1002676992}
   m_CullTransparentMesh: 1
+--- !u!1 &1019472281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1019472282}
+  m_Layer: 0
+  m_Name: ShopStuff
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1019472282
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019472281}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.9743245, y: -6.559574, z: -3.1971605}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1030742006
 GameObject:
   m_ObjectHideFlags: 0
@@ -4486,6 +4517,10 @@ PrefabInstance:
       propertyPath: mapStuff
       value: 
       objectReference: {fileID: 1981116647}
+    - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
+      propertyPath: shopStuff
+      value: 
+      objectReference: {fileID: 1019472281}
     - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
       propertyPath: uiManager
       value: 
@@ -5869,4 +5904,5 @@ SceneRoots:
   - {fileID: 1473837541}
   - {fileID: 731470318}
   - {fileID: 1777532274}
+  - {fileID: 1019472282}
   - {fileID: 261010252}

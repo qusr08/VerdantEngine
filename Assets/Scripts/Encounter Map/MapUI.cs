@@ -49,7 +49,13 @@ public class MapUI : MonoBehaviour
 
     public void ToGarden()
     {
-        cameraManager.onMap = false;
+        cameraManager.scene = ActiveScene.Garden;
+        cameraManager.UpdateCameraPosition();
+    }
+
+    public void ToShop()
+    {
+        cameraManager.scene = ActiveScene.Shop;
         cameraManager.UpdateCameraPosition();
     }
 }

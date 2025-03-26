@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ActiveScene { Map, Garden, Shop};
+
 public class MapPlayer : MonoBehaviour
 {
 
-    public bool onMap; //True for on map, false for on garden
+    public ActiveScene scene; //True for on map, false for on garden
     public GameObject CurrentEncounter;
 
     [SerializeField] private Transform gardenCameraLocation;
     [SerializeField] private GameObject gardenStuff;
     [SerializeField] private GameObject mapStuff;
+    [SerializeField] private GameObject shopStuff;
     [SerializeField] private GameObject camera;
     [SerializeField] private CombatUIManager uiManager;
 
@@ -26,28 +29,42 @@ public class MapPlayer : MonoBehaviour
         
     }
     //Used when flipping between garden and map
-    public void FlipScenes()
+    public void ChangeScenes(ActiveScene nextScene)
     {
         uiManager.GameState = GameState.IDLE;
-        onMap = !onMap;
+        scene = nextScene;
         UpdateCameraPosition();
     }
     public void UpdateCameraPosition()
     {
-        gardenStuff.SetActive(!onMap);
-        mapStuff.SetActive(onMap);
-
-        if (onMap)
+        switch (scene)
         {
-            camera.transform.position = this.transform.position;
-            camera.transform.rotation = this.transform.rotation;
+            case ActiveScene.Map:
+                gardenStuff.SetActive(false);
+                shopStuff.SetActive(false);
+                mapStuff.SetActive(true);
 
+                camera.transform.position = this.transform.position;
+                camera.transform.rotation = this.transform.rotation;
+                break;
+            case ActiveScene.Garden:
+                gardenStuff.SetActive(true);
+                shopStuff.SetActive(false);
+                mapStuff.SetActive(false);
+
+                camera.transform.position = gardenCameraLocation.transform.position;
+                camera.transform.rotation = gardenCameraLocation.transform.rotation;
+                break;
+            case ActiveScene.Shop:
+                gardenStuff.SetActive(false);
+                shopStuff.SetActive(true);
+                mapStuff.SetActive(false);
+
+                camera.transform.position = this.transform.position;
+                camera.transform.rotation = this.transform.rotation;
+                break;
         }
-        else
-        {
-            camera.transform.position = gardenCameraLocation.transform.position;
-            camera.transform.rotation = gardenCameraLocation.transform.rotation;
-        }
+
     }
 
 

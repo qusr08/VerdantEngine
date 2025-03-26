@@ -56,6 +56,7 @@ public class Encounter : MonoBehaviour
     /// </summary>
     public void PlayerReached()
     {
+
         this.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
 
         MapUI text = GameObject.Find("Reward Text").GetComponent<MapUI>();
@@ -65,6 +66,10 @@ public class Encounter : MonoBehaviour
         {
             combatManager.NewCombat(combatEncounter);
             mapUI.ToGarden();
+        }
+        else if(EncounterType == EncounterTypes.Shop)
+        {
+            mapUI.ToShop();
         }
         //Debug.Log("Player is at " + gameObject.name);
     }

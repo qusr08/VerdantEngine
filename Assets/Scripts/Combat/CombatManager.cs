@@ -216,7 +216,7 @@ public class CombatManager : MonoBehaviour {
 	public void Win()
 	{
 		currentCombatPreset = null;
-		cameraManager.onMap = true;
+		cameraManager.scene = ActiveScene.Map;
 		cameraManager.UpdateCameraPosition();
 
 	}
