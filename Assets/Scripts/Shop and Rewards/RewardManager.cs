@@ -8,9 +8,8 @@ public class RewardManager : MonoBehaviour
 {
     [SerializeField] GameObject[] items;
     [SerializeField] GameObject[] plantPrefabs;
-    [SerializeField] PlayerDataManager playerDataManager;
+  
     [SerializeField] TMP_Text moneyRewardText;
-    [SerializeField] Inventory inventory;
 
     [SerializeField] bool includeUncommon = false;
     [SerializeField] bool includeRare = false;
@@ -18,14 +17,15 @@ public class RewardManager : MonoBehaviour
     [SerializeField] int randomSpotUncommon;
     [SerializeField] int randomSpotRare;
 
+    [SerializeField] PlayerDataManager playerDataManager;
     public CombatManager combatManager;
+    [SerializeField] Inventory inventory;
 
     public bool forcingProbability;
     public bool mustIncludeUncommon;
     public bool mustInlcudeRare;
 
     public int moneyReward;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -85,12 +85,13 @@ public class RewardManager : MonoBehaviour
 
         for(int i = 0; i < items.Length; i++)
         {
+            items[i].GetComponentInChildren<Item>().FillRewardItemDetails(plantPrefabs[i].name.Substring(2), plantPrefabs[i].GetComponent<Plant>().InventorySprite);
             GameObject newPlantItem = Instantiate(plantPrefabs[i], items[i].transform);
-            items[i].transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = plantPrefabs[i].name.Substring(2); //Display plant name on buttons
-            items[i].transform.GetChild(1).GetComponent<Image>().sprite = plantPrefabs[i].GetComponent<Plant>().InventorySprite;
             newPlantItem.GetComponent<MeshRenderer>().enabled = false;
         }
 
+
+        //also add the uncokmmon/rare plant in random spot on the prefabs and items array
 /*        if (includeUncommon)
         {
             randomSpotUncommon = Random.Range(0, plantItems.Length);
@@ -130,13 +131,12 @@ public class RewardManager : MonoBehaviour
             plantItems[randomSpotRare].transform.GetChild(1).GetComponent<Image>().sprite = test2.GetComponent<Plant>().InventorySprite;
         }*/
 
-        moneyRewardText.text = "Money earned from encounter : " + moneyReward;
+        moneyRewardText.text = "Money earned from encounter : " + moneyReward.ToString();
     }
     public void AddToInventoryAfterFight(int itemIndex)
     {
-        inventory.AddPlant(transform.GetChild(itemIndex - 1).GetComponentInChildren<Plant>().PlantType);
+        inventory.AddPlant(items[itemIndex - 1].GetComponentInChildren<Plant>().PlantType);
         combatManager.Win();
-        //Debug.Log(transform.GetChild(itemIndex - 1).GetComponentInChildren<Plant>().PlantType);
         gameObject.SetActive(false);
         
     }

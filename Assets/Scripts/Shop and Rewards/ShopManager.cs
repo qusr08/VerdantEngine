@@ -8,11 +8,17 @@ public class ShopManager : MonoBehaviour
 {
     [SerializeField] GameObject[] plantItems;
     [SerializeField] GameObject[] artifactItems;
+    [SerializeField] GameObject[] partItems;
+
     [SerializeField] GameObject[] plantPrefabs;
     [SerializeField] GameObject[] artifactPrefabs;
-    [SerializeField] TMP_Text balanceText;
-    [SerializeField] TMP_Text healText;
+    [SerializeField] GameObject[] partPrefabs;
 
+    [SerializeField] TMP_Text healthText;
+
+    [SerializeField] TMP_Text balanceText;
+
+    [SerializeField] TMP_Text healCost;
     [SerializeField] int costToHeal;
 
     [SerializeField] PlayerDataManager playerDataManager;
@@ -22,14 +28,14 @@ public class ShopManager : MonoBehaviour
     void Start()
     {
         Shuffle();
-        balanceText.text = "Balance !!: " + playerDataManager.Money.ToString();
-        healText.text = "Heal for cost : " + costToHeal.ToString();
+        balanceText.text = "Balance : " + playerDataManager.Money.ToString();
+        healCost.text = costToHeal.ToString();
     }
     private void OnEnable()
     {
         Shuffle();
-        balanceText.text = "Balance !!: " + playerDataManager.Money.ToString();
-        healText.text = "Heal for cost : " + costToHeal.ToString();
+        balanceText.text = "Balance : " + playerDataManager.Money.ToString();
+        healCost.text = "Heal for cost : " + costToHeal.ToString();
     }
     void Shuffle()
     {
@@ -51,6 +57,13 @@ public class ShopManager : MonoBehaviour
             artifactPrefabs[r] = tmp;
         }
 
+        for (int i = 0; i < partPrefabs.Length; i++)
+        {
+            GameObject tmp = partPrefabs[i];
+            int r = Random.Range(i, partPrefabs.Length);
+            partPrefabs[i] = partPrefabs[r];
+            partPrefabs[r] = tmp;
+        }
 
         FillShop();
     }
@@ -67,7 +80,7 @@ public class ShopManager : MonoBehaviour
             }
         }
 
-        for(int i = 0; i < artifactPrefabs.Length; i++)
+/*        for(int i = 0; i < artifactItems.Length; i++)
         {
             foreach(Transform artifact in artifactItems[i].transform)
             {
@@ -76,49 +89,69 @@ public class ShopManager : MonoBehaviour
                     Destroy(artifact.gameObject);
                 }
             }
-        }
+        }*/
+
+/*        for (int i = 0; i < partItems.Length; i++)
+        {
+            foreach (Transform part in partItems[i].transform)
+            {
+                if (part.GetComponent<Part>() != null)
+                {
+                    Destroy(part.gameObject);
+                }
+            }
+        }*/
     }
     void FillShop()
     {
         for(int i = 0; i < plantItems.Length; i++)
         {
+            plantItems[i].GetComponentInChildren<Item>().FillShopItemDetails(plantPrefabs[i].name.Substring(2), plantPrefabs[i].GetComponent<Plant>().Cost, plantPrefabs[i].GetComponent<Plant>().InventorySprite,
+                plantPrefabs[i].GetComponent<Plant>().Description);
             GameObject newPlantItem = Instantiate(plantPrefabs[i], plantItems[i].transform);
-            plantItems[i].transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = plantPrefabs[i].name.Substring(2); //Display plant name on buttons
-            plantItems[i].transform.GetChild(1).GetComponent<Image>().sprite = plantPrefabs[i].GetComponent<Plant>().InventorySprite;
             newPlantItem.GetComponent<MeshRenderer>().enabled = false;
         }
-
 /*        for (int i = 0; i < artifactItems.Length; i++)
         {
-            GameObject newArtifactItem = Instantiate(artifactPrefabs[i], artifactItems[i].transform);
-            artifactItems[i].transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = artifactPrefabs[i].name.Substring(2); //Display plant name on buttons
-            artifactItems[i].transform.GetChild(1).GetComponent<Image>().sprite = artifactPrefabs[i].GetComponent<Artifact>().InventorySprite;
-            newArtifactItem.GetComponent<MeshRenderer>().enabled = false;
+            artifactItems[i].GetComponentInChildren<Item>().FillShopItemDetails(artifactPrefabs[i].name.Substring(2), artifactPrefabs[i].GetComponent<Artifact>().Cost, artifactPrefabs[i].GetComponent<Artifact>().InventorySprite,
+                artifactPrefabs[i].GetComponent<Artifact>().Description);
+        }*/
+/*        for (int i = 0; i < partItems.Length; i++)
+        {
+            partItems[i].GetComponentInChildren<Item>().FillShopItemDetails(partPrefabs[i].name.Substring(2), partPrefabs[i].GetComponent<Part>().Cost, partPrefabs[i].GetComponent<Part>().InventorySprite,
+                partPrefabs[i].GetComponent<Part>().Description);
         }*/
 
+        healthText.text = "Health : " + playerDataManager.CurrentHealth.ToString() + "/" + playerDataManager.MaxHealth.ToString();
     }
     public void BuyPlant(int itemIndex)
     {
-        if (playerDataManager.Money >= plantPrefabs[itemIndex - 1].GetComponent<Plant>().Cost) //maybe makes more sense to use trancfom.getchild(itemIndex - 1)? are plantPrefabs always corresponding correctly to iteam slot?? Must check
+        if (playerDataManager.Money >= plantItems[itemIndex - 1].GetComponentInChildren<Plant>().Cost) //maybe makes more sense to use trancfom.getchild(itemIndex - 1)? are plantPrefabs always corresponding correctly to iteam slot?? Must check
         {
-            //string itemName = transform.GetChild(itemIndex - 1).GetChild(1).name;
-           // Debug.Log("Bought Item " + itemIndex + ", Plant Name : " + itemName);
-            playerDataManager.Money = playerDataManager.Money - plantPrefabs[itemIndex - 1].GetComponent<Plant>().Cost;
+            playerDataManager.Money = playerDataManager.Money - plantItems[itemIndex - 1].GetComponentInChildren<Plant>().Cost;
             balanceText.text = "Balance : " + playerDataManager.Money.ToString();
-            inventory.AddPlant(plantPrefabs[itemIndex - 1].GetComponent<Plant>().PlantType);
+            inventory.AddPlant(plantItems[itemIndex - 1].GetComponentInChildren<Plant>().PlantType);
         }
     }
     public void BuyArtifact(int itemIndex)
     {
-        if (playerDataManager.Money >= transform.GetChild(itemIndex - 1).GetChild(1).GetComponent<Artifact>().Cost)
+        if (playerDataManager.Money >= artifactItems[itemIndex - 1].GetComponentInChildren<Artifact>().Cost)
         {
-            string itemName = transform.GetChild(itemIndex - 1).GetChild(1).name;
-            Debug.Log("Bought Item " + itemIndex + ", Artifact Name : " + itemName);
-            playerDataManager.Money = playerDataManager.Money - transform.GetChild(itemIndex - 1).GetChild(1).GetComponent<Artifact>().Cost;
+            playerDataManager.Money = playerDataManager.Money - artifactItems[itemIndex - 1].GetComponentInChildren<Artifact>().Cost;
             balanceText.text = "Balance : " + playerDataManager.Money.ToString();
-            inventory.AddArtifact(transform.GetChild(itemIndex - 1).GetComponentInChildren<Artifact>().ArtifactType);
+            inventory.AddArtifact(artifactItems[itemIndex - 1].GetComponentInChildren<Artifact>().ArtifactType);
         }
     }
+
+/*    public void BuyPart(int itemIndex)
+    {
+        if (playerDataManager.Money >= partItems[itemIndex - 1].GetComponentInChildren<Part>().Cost)
+        {
+            playerDataManager.Money = playerDataManager.Money - partItems[itemIndex - 1].GetComponentInChildren<Part>().Cost;
+            balanceText.text = "Balance : " + playerDataManager.Money.ToString();
+            inventory.AddArtifact(partItems[itemIndex - 1].GetComponentInChildren<Part>().PartType);
+        }
+    }*/
     public void Heal()
     {
         if(playerDataManager.Money >= costToHeal && playerDataManager.CurrentHealth < playerDataManager.MaxHealth)
@@ -128,5 +161,10 @@ public class ShopManager : MonoBehaviour
 
             playerDataManager.CurrentHealth = playerDataManager.MaxHealth;
         }
+    }
+
+    public void CloseShopScreen()
+    {
+        gameObject.SetActive(false);
     }
 }
