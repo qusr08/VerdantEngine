@@ -9,12 +9,15 @@ public enum PlantType {
 	NONE, POWER_FLOWER, SHIELDING_SHRUB, HARDY_HEDGE, EMPOWEROOT, HEARTICHOKE, FLYTRAP, THICKET
 }
 
+public enum Rarity { COMMON, UNCOMMON, RARE}
+
 /// <summary>
 /// This class holds all data for each plant that is placed in the garden
 /// </summary>
 public abstract class Plant : GardenPlaceable {
 	[Header("Plant")]
 	[SerializeField] private PlantType _plantType;
+	[SerializeField] private Rarity _rarity;
 	/// <summary>
 	/// The type of this plant
 	/// </summary>

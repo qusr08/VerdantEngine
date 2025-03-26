@@ -215,3 +215,4 @@ MonoBehaviour:
   flowerVisuals: {fileID: 1276710809253557445}
   LastEnemyWhichDamagedPlaceble: {fileID: 0}
   _plantType: 6
+  _rarity: 1
