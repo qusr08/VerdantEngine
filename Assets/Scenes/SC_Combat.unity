@@ -2503,6 +2503,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: M_Walker
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5855e77f5cc36ce44a2a73a6e82ed1aa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 65702495048144492, guid: 5855e77f5cc36ce44a2a73a6e82ed1aa, type: 3}
