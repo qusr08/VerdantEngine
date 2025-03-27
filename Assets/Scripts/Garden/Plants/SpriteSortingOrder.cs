@@ -21,7 +21,7 @@ public class SpriteSortingOrder : MonoBehaviour
         this.y = y;
 
         prevAddToSortOrder = addToSortOrder;
-        addToSortOrder = x + (5 - y);
+        addToSortOrder = x + (5 - y) + 1;
 
         foreach(SpriteRenderer sprite in gameObject.GetComponentsInChildren<SpriteRenderer>())
         {
