@@ -604,11 +604,15 @@ MonoBehaviour:
     - {fileID: 6371657452616558428, guid: 03b01ceaa022a2741a184f3f39dc0c7f, type: 3}
     - {fileID: 6371657452616558428, guid: e79c63a2b6c8d06409d52ce487a02248, type: 3}
   _artifactPrefabs:
-    m_keys: 
-    m_values: []
+    m_keys: 000000000100000002000000
+    m_values:
+    - {fileID: 3020584395285068545, guid: 61d52a537df66c642a83f0d770767607, type: 3}
+    - {fileID: 3020584395285068545, guid: c8a06eb4dcaec7b449c19662c430cc88, type: 3}
+    - {fileID: 3020584395285068545, guid: 2b35725d391b29f49a858f0d006bcebd, type: 3}
   groundTilePrefab: {fileID: 6778073468744122207, guid: e849fdfe6785c8844ae36b546a419676, type: 3}
   playerDataManager: {fileID: 1707282257}
   _selectedGardenTile: {fileID: 0}
+  combatManager: {fileID: 261010251}
 --- !u!4 &228952663
 Transform:
   m_ObjectHideFlags: 0
@@ -3815,6 +3819,7 @@ MonoBehaviour:
   energyText: {fileID: 548699481}
   damageIndicatorPrefab: {fileID: 985783835550424020, guid: bf932e9924e884748b9300dabc7007d9, type: 3}
   energy: 0
+  energyModifier: 0
   enemyAttckSliderAnimation: {fileID: 738094045}
 --- !u!4 &1198069309
 Transform:
@@ -4962,6 +4967,7 @@ MonoBehaviour:
   actionsText: {fileID: 701897918}
   hpSlider: {fileID: 1635992152}
   youLose: {fileID: 61612796}
+  actionCountModifier: 0
 --- !u!1 &1739724147
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,7 +21,7 @@ public class PlayerDataManager : MonoBehaviour {
 	[SerializeField] private TextMeshProUGUI actionsText;
 	[SerializeField] private Slider hpSlider;
 	[SerializeField] private GameObject youLose;
-
+	[HideInInspector] public int actionCountModifier = 0;
 	/// <summary>
 	/// The max health of the player
 	/// </summary>
@@ -64,7 +64,7 @@ public class PlayerDataManager : MonoBehaviour {
 	/// <summary>
 	/// The maximum actions that a player can take during their turn
 	/// </summary>
-	public int MaxActions => _maxActions;
+	public int MaxActions => _maxActions+actionCountModifier;
 
 	/// <summary>
 	/// The current remaining actions for the player during their turn

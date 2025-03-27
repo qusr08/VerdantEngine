@@ -5,10 +5,11 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Playables;
 using Unity.VisualScripting;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class PlayerCombatManager : MonoBehaviour {
 	[SerializeField] private GardenManager gardenManager;
-	[SerializeField] private CombatManager combatManager;
+	[SerializeField] public CombatManager combatManager;
 	[SerializeField] private PlayerDataManager playerDataManager;
 	[SerializeField] private Transform weaponMenuContainer;
 	[SerializeField] private List<PlayerAttackMenuItem> weaponMenuItems = new List<PlayerAttackMenuItem>( );
@@ -17,7 +18,8 @@ public class PlayerCombatManager : MonoBehaviour {
 	[SerializeField] private GameObject damageIndicatorPrefab;
 	[Space]
 	[SerializeField] private int energy = 0;
-	public EnemySlider enemyAttckSliderAnimation;
+    [HideInInspector] public int energyModifier;
+    public EnemySlider enemyAttckSliderAnimation;
 
 	private void Start ( ) {
 		foreach (PlayerAttackSO playerAttack in playerDataManager.PlayerAttacks) {
@@ -26,13 +28,16 @@ public class PlayerCombatManager : MonoBehaviour {
 		}
 	}
 
-	public void PlayerStartTurn ( ) {
-		energyText.text = energy.ToString( );
-	}
+    public void PlayerStartTurn()
+    {
+        energyText.text = energy.ToString();
+    }
 
-	public IEnumerator PlayerTurn ( ) {
+    public IEnumerator PlayerTurn ( ) {
 		energy += gardenManager.CountPlants(new List<PlantType>() { PlantType.POWER_FLOWER }, null);
-		energyText.text = energy.ToString( );
+		energy += energyModifier;
+		energyModifier = 0;
+        energyText.text = energy.ToString( );
 		foreach (PlayerAttackMenuItem weaponMenuItem in weaponMenuItems) {
 			weaponMenuItem.PlayerAttack.Cooldown--;
 

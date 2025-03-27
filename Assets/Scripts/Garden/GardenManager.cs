@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Experimental;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.Events;
 
 /// <summary>
 /// This class is used for all functions relating to the garden. This does not store the data of the garden, that is done within the PlayerData scriptable object
@@ -14,7 +15,7 @@ public class GardenManager : MonoBehaviour {
 	[SerializeField] public PlayerDataManager playerDataManager;
 	[Space]
 	[SerializeField] private GardenTile _selectedGardenTile;
-	
+	public CombatManager combatManager;
 
 	/// <summary>
 	/// A list of all the plant prefabs that can be placed on the garden
@@ -142,11 +143,16 @@ public class GardenManager : MonoBehaviour {
 		// Place the artifact onto the grid and update its position
 		Artifact artifact = Instantiate(ArtifactPrefabs[artifactType], playerDataManager.Garden[x, y].transform).GetComponent<Artifact>( );
 		artifact.Initialize(playerDataManager.Garden[x, y]);
-
+		
 		playerDataManager.Garden[x, y].GardenPlaceable = artifact;
 		Artifacts.Add(artifact);
-		UpdateGarden( );
 
+		if(artifact.ArtifactAbilityType == ArtifactAbilityType.Passive)
+		{
+			artifact.ActivateAction();
+		}
+		UpdateGarden( );
+	
 		return true;
 	}
 
@@ -363,4 +369,37 @@ public class GardenManager : MonoBehaviour {
 	public int CountArtifacts (List<ArtifactType> exclusiveArtifactTypes = null, List<ArtifactType> excludedArtifactTypes = null) {
 		return GetFilteredArtifacts(exclusiveArtifactTypes, excludedArtifactTypes).Count;
 	}
+
+	///
+	///Artifiacts require new function which trigger when ever anything in the game is damaged/up rooted/etc.... 
+	///Alll function under this segment are used to trigget them
+	///
+
+	/// <summary>
+	/// Used to trigger artifact which are damaged activated 
+	/// </summary>
+	/// <param name="damagedPlacble"></param>
+	/// <param name="damage"></param>
+	public void GlobalOnHealedTrigger(GardenPlaceable damagedPlacble, int heal )
+	{
+		foreach (Artifact item in Artifacts)
+		{
+			if (item.ArtifactAbilityType == ArtifactAbilityType.OnHeal )
+			{
+				item.ActivateAction(heal);
+
+            }
+		}
+	}	
+	public void GlobalOnPlantDestoyed(GardenPlaceable damagedPlacble)
+	{
+        foreach (Artifact item in Artifacts)
+        {
+            if (item.ArtifactAbilityType == ArtifactAbilityType.OnDestroy)
+            {
+                item.ActivateAction();
+
+            }
+        }
+    }
 }

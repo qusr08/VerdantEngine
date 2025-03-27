@@ -273,14 +273,18 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	public virtual void OnKilled() {
 		// Since this garden placeable was killed, remove all modifiers it was giving out
 		RemoveModifiersFromEffectedGardenPlaceables();
-	}
+		gardenManager.GlobalOnPlantDestoyed(this);
+
+    }
 	public virtual void Heal(int heal)
 	{
 		if (_healthStat.CurrentValue < StartingHealth)
 		{
 			if (_healthStat.CurrentValue + heal >= StartingHealth)
 			{
-				HealIndicator(StartingHealth- _healthStat.BaseValue);
+				heal = StartingHealth - _healthStat.BaseValue;
+
+                HealIndicator(StartingHealth- _healthStat.BaseValue);
 				_healthStat.BaseValue = StartingHealth;
 				HealIndicator(0);
 
@@ -292,6 +296,8 @@ public abstract class GardenPlaceable : MonoBehaviour {
 			}
 		}
 		HealIndicator(0);
+		//triggered global on heal triggers for all garden placbles. used by artifacts
+		gardenManager.GlobalOnHealedTrigger(this, heal);
 
 	}
 	public virtual int TakeDamage(int damage)
