@@ -28,13 +28,31 @@ public class MapPlayer : MonoBehaviour
     {
         
     }
-    //Used when flipping between garden and map
+
+    //Used when flipping between garden, map, and shop
     public void ChangeScenes(ActiveScene nextScene)
     {
         uiManager.GameState = GameState.IDLE;
         scene = nextScene;
         UpdateCameraPosition();
     }
+
+    /// <summary>
+    /// For some reason buttons can't call the ChangeScenes() function so these functions are used to change scenes
+    /// </summary>
+    public void GoToGarden()
+    {
+        ChangeScenes(ActiveScene.Garden);
+    }
+    public void GoToMap()
+    {
+        ChangeScenes(ActiveScene.Map);
+    }
+    public void GoToShop()
+    {
+        ChangeScenes(ActiveScene.Shop);
+    }
+
     public void UpdateCameraPosition()
     {
         switch (scene)
