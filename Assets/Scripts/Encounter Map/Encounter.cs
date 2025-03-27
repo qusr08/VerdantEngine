@@ -57,7 +57,7 @@ public class Encounter : MonoBehaviour
     public void PlayerReached()
     {
 
-        this.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+        //this.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
 
         MapUI text = GameObject.Find("Reward Text").GetComponent<MapUI>();
         text.AtEvent(Name, Rewards);
@@ -93,8 +93,11 @@ public class Encounter : MonoBehaviour
         child.transform.SetParent(transform);
         LineRenderer lineRenderer = child.AddComponent<LineRenderer>();
         lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
-        lineRenderer.widthMultiplier = 0.1f;
+        lineRenderer.widthMultiplier = 0.05f;
         lineRenderer.positionCount = 2;
+        lineRenderer.startColor = new Color (.88f, .89f, .73f);
+        lineRenderer.endColor = new Color(.88f, .89f, .73f);
+
 
         lineRenderer.SetPosition(0, this.transform.position);
         lineRenderer.SetPosition(1, connection.transform.position);

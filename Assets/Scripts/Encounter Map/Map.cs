@@ -49,7 +49,7 @@ public class Map : MonoBehaviour
         encounters = new List<GameObject>();
         prevEncounters = new List<GameObject>();
 
-        encounters.Add(Instantiate(startPrefab, new Vector3(0, 1.5f, 0), transform.rotation, this.gameObject.transform));
+        encounters.Add(Instantiate(startPrefab, new Vector3(0, 0, 0), transform.rotation, this.gameObject.transform));
         player.GetComponent<MapPlayer>().MoveTo(encounters[encounters.Count - 1], true);
         EncounterToPrev();
 
@@ -153,17 +153,19 @@ public class Map : MonoBehaviour
     /// <param name="i">prefab to spawn. -1 or lower to spawn boss</param>
     private void SpawnEncounter(Type type)
     {
-        Vector3 nextPosition = new Vector3(2f * (encounterNumber + 1), 2f * (encounterOptions - 1), 0);
+        Vector3 nextPosition = new Vector3(6f * (encounterOptions - 2), 2f * (encounterNumber) + 2, 0);
 
-        if(encounterNumber%2 == 0)
-        {
-            nextPosition.y += .75f;
-        }
+        //nextPosition.x += 1.5f;
 
-        if(nextPosition.y < 0)
+        if(type == Type.Boss)
         {
-            nextPosition.y = 1.5f;
+            nextPosition.x = 0;
         }
+        else if(encounterNumber%2 == 0)
+        {
+            nextPosition.x += 3f;
+        }
+        
 
         switch (type)
             {
