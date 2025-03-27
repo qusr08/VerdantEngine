@@ -20,6 +20,10 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0.27450982
       objectReference: {fileID: 0}
+    - target: {fileID: -8158773749668215637, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 98
+      objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.20932621
@@ -76,6 +80,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -4392670873006902675, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 94
+      objectReference: {fileID: 0}
+    - target: {fileID: -3745702431091949236, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: -2086905926523202181, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
       propertyPath: m_BoneTransforms.Array.size
       value: 0
@@ -88,6 +100,26 @@ PrefabInstance:
       propertyPath: m_BoneTransforms.Array.data[1]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: -534119450907131783, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 96
+      objectReference: {fileID: 0}
+    - target: {fileID: -209772772989444090, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 95
+      objectReference: {fileID: 0}
+    - target: {fileID: 182411258440852980, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 93
+      objectReference: {fileID: 0}
+    - target: {fileID: 5431070418351192713, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 97
+      objectReference: {fileID: 0}
+    - target: {fileID: 8370827947731866198, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 99
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -98,6 +130,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9088959731495312191}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 160645989206367687}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
 --- !u!1 &109867650300612706 stripped
 GameObject:
@@ -147,9 +182,25 @@ MonoBehaviour:
   _inventorySprite: {fileID: 21300000, guid: ca95c795063b3134e94b2b240b20aa3d, type: 3}
   _gardenTile: {fileID: 0}
   effectedGardenPlaceables: []
+  damageIndicatorPrefab: {fileID: 0}
   flowerVisuals: {fileID: 0}
   LastEnemyWhichDamagedPlaceble: {fileID: 0}
   _plantType: 4
+--- !u!114 &160645989206367687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109867650300612706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05af1724e594b8540babaf1d01b7aeb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  x: 0
+  y: 0
+  addToSortOrder: 0
 --- !u!4 &1247019768761993217 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
@@ -246,13 +297,14 @@ MonoBehaviour:
   gardenManager: {fileID: 0}
   playerDataManager: {fileID: 0}
   _startingHealth: 1
-  _cost: 0
+  _cost: 10
   _name: Blast Bloom
   _description: When the Blast Bloom is adjacent to three other plants, all weapons
     deal +1 damage
   _inventorySprite: {fileID: 21300000, guid: ca95c795063b3134e94b2b240b20aa3d, type: 3}
   _gardenTile: {fileID: 0}
   effectedGardenPlaceables: []
+  damageIndicatorPrefab: {fileID: 985783835550424020, guid: bf932e9924e884748b9300dabc7007d9, type: 3}
   flowerVisuals: {fileID: 109867650300612706}
   LastEnemyWhichDamagedPlaceble: {fileID: 0}
   _plantType: 4

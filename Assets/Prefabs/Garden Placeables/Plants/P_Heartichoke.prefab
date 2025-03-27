@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6487252052487937491, guid: f5576ef290494eb49bbc7c8c52d31202, type: 3}
+      propertyPath: m_SortingOrder
+      value: 99
+      objectReference: {fileID: 0}
     - target: {fileID: -3728562666063435183, guid: f5576ef290494eb49bbc7c8c52d31202, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -76,9 +80,21 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -3728562666063435183, guid: f5576ef290494eb49bbc7c8c52d31202, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: -1662403793939678151, guid: f5576ef290494eb49bbc7c8c52d31202, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.04499984
+      objectReference: {fileID: 0}
+    - target: {fileID: -1099740168048910820, guid: f5576ef290494eb49bbc7c8c52d31202, type: 3}
+      propertyPath: m_SortingOrder
+      value: 98
+      objectReference: {fileID: 0}
+    - target: {fileID: -209772772989444090, guid: f5576ef290494eb49bbc7c8c52d31202, type: 3}
+      propertyPath: m_SortingOrder
+      value: 97
       objectReference: {fileID: 0}
     - target: {fileID: 7328222824825056511, guid: f5576ef290494eb49bbc7c8c52d31202, type: 3}
       propertyPath: m_BoneTransforms.Array.size
@@ -91,6 +107,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: f5576ef290494eb49bbc7c8c52d31202, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6938758164732989809}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: f5576ef290494eb49bbc7c8c52d31202, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7305686529122144399}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: f5576ef290494eb49bbc7c8c52d31202, type: 3}
 --- !u!1 &3398441640994872683 stripped
 GameObject:
@@ -118,6 +137,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7305686529122144399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3398441640994872683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05af1724e594b8540babaf1d01b7aeb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  x: 0
+  y: 0
+  addToSortOrder: 0
 --- !u!4 &4603146654490445064 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: f5576ef290494eb49bbc7c8c52d31202, type: 3}
@@ -225,6 +259,7 @@ MonoBehaviour:
   _inventorySprite: {fileID: 21300000, guid: b0eb09079e1c0a84e84c94319f249a4a, type: 3}
   _gardenTile: {fileID: 0}
   effectedGardenPlaceables: []
+  damageIndicatorPrefab: {fileID: 985783835550424020, guid: bf932e9924e884748b9300dabc7007d9, type: 3}
   flowerVisuals: {fileID: 3398441640994872683}
   LastEnemyWhichDamagedPlaceble: {fileID: 0}
   _plantType: 5

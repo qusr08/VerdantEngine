@@ -17,13 +17,13 @@ public class GardenTile : MonoBehaviour {
 	[SerializeField] private bool _isSelected;
 	[Space]
 	[SerializeField] private PlantHover _plantHoverDisplay;
-
 	/// <summary>
 	/// Whether or not the current tile is being attacked
 	/// </summary>
 	public bool IsAttacked {
 		get => _isAttacked;
 		set {
+			
 			_isAttacked = value;
 
 			UpdateMaterial( );

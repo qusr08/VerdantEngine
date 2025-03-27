@@ -28,6 +28,12 @@ public class Inventory : MonoBehaviour {
 		AddPlant(PlantType.HARDY_HEDGE);
 		AddPlant(PlantType.HARDY_HEDGE);
 
+		AddPlant(PlantType.HEARTICHOKE);
+
+		AddPlant(PlantType.THICKET);
+
+		AddPlant(PlantType.FLYTRAP);
+
 	}
 
 	/// <summary>
@@ -35,7 +41,7 @@ public class Inventory : MonoBehaviour {
 	/// </summary>
 	/// <param name="plantType">The plant type to add</param>
 	public void AddPlant (PlantType plantType) {
-		// Loop through all items in the inventory currently
+		// Loop through all plantItems in the inventory currently
 		foreach (InventoryBox box in InventoryBoxes) {
 			if (box is not PlantInventoryBox) {
 				continue;
@@ -60,7 +66,7 @@ public class Inventory : MonoBehaviour {
 	/// </summary>
 	/// <param name="artifactType">The artifact type to add</param>
 	public void AddArtifact (ArtifactType artifactType) {
-		// Loop through all items in the inventory currently
+		// Loop through all plantItems in the inventory currently
 		foreach (InventoryBox box in InventoryBoxes) {
 			if (box is not ArtifactInventoryBox) {
 				continue;
@@ -86,7 +92,7 @@ public class Inventory : MonoBehaviour {
 	/// <param name="plantType">The plant type to remove 1 from</param>
 	/// <returns>Whether or not the removal was successfull</returns>
 	public bool RemovePlant (PlantType plantType) {
-		// Loop through all items in the inventory currently
+		// Loop through all plantItems in the inventory currently
 		foreach (InventoryBox box in InventoryBoxes) {
 			if (box is not PlantInventoryBox) {
 				continue;
@@ -108,7 +114,7 @@ public class Inventory : MonoBehaviour {
 	/// <param name="artifactType">The artifact type to remove 1 from</param>
 	/// <returns>Whether or not the removal was successfull</returns>
 	public bool RemoveArtifact (ArtifactType artifactType) {
-		// Loop through all items in the inventory currently
+		// Loop through all plantItems in the inventory currently
 		foreach (InventoryBox box in InventoryBoxes) {
 			if (box is not ArtifactInventoryBox) {
 				continue;

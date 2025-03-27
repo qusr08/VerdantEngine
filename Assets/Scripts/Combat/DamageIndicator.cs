@@ -9,7 +9,15 @@ public class DamageIndicator : MonoBehaviour {
 	private float elapsedTime = 0f;
 
 	public void SetDamage (float damage) {
+		numberText.color = Color.red;
 		numberText.text = damage.ToString( );
+		Destroy(gameObject, duration); // Destroy after `lifetime` seconds
+	}
+	public void SetHeal(float heal)
+	{
+		numberText.color = Color.green;
+
+		numberText.text = heal.ToString();
 		Destroy(gameObject, duration); // Destroy after `lifetime` seconds
 	}
 

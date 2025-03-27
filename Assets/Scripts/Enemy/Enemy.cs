@@ -100,13 +100,13 @@ public class Enemy : MonoBehaviour {
 	public void Attacked (PlayerAttackSO attack) {
 		int totalDamage = attack.Damage + playerCombatManager.GetAddedDamage( );
 		CurrentHealth -= totalDamage;
-		//Debug.Log($"Ouch, I just took {totalDamage}. Now I have {CurrentHealth} health");
+		Debug.Log($"Ouch, I just took {totalDamage} from {attack.name}. Now I have {CurrentHealth} health");
 	}
 	public void Attacked(int totalDamage)
     {
 
 		CurrentHealth -= totalDamage;
-		Debug.Log($"Ouch, I just took {totalDamage}. Now I have {CurrentHealth} health");
+		Debug.Log($"Ouch, I just took {totalDamage} from a plant/artifact. Now I have {CurrentHealth} health");
 	}
 
 	public void StartRound ( ) {
