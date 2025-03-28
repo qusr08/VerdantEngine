@@ -223,10 +223,38 @@ public class GardenManager : MonoBehaviour {
 		return true;
 	}
 
-	/// <summary>
-	/// Update all garden placeables currently on the garden
-	/// </summary>
-	private void UpdateGarden ( ) {
+    /// <summary>
+    /// Move an artifact from its current position to another one
+    /// </summary>
+    /// <param name="artifact">The artifact that will be moved</param>
+    /// <param name="x">The x coordinate to move the plant to</param>
+    /// <param name="y">The y coordinate to move the plant to</param>
+    /// <returns>true if the plant was successfully moved, false otherwise. Also returns false if the position that the plant was going to move to is out of the bounds of the garden or there was already a plant at that position</returns>
+    public bool MoveArtifact(Artifact artifact, GardenTile gardenTile)
+    {
+        // If the plant that was going to be moved is null, then return false
+        if (artifact == null || gardenTile == null)
+        {
+            return false;
+        }
+
+        // If there is a plant at the garden tile already, do not try to move this garden placeable to that tile
+        if (gardenTile.GardenPlaceable != null)
+        {
+            return false;
+        }
+
+        // Remove the reference to the plant from its current position and add it to the position it is being moved to
+        artifact.GardenTile = gardenTile;
+        UpdateGarden();
+
+        return true;
+    }
+
+    /// <summary>
+    /// Update all garden placeables currently on the garden
+    /// </summary>
+    private void UpdateGarden ( ) {
 		// Loop through all garden placeables and call their on garden update function
 		for (int i = Plants.Count - 1; i >= 0; i--) {
 			Plants[i].OnGardenUpdated( );

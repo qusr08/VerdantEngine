@@ -452,6 +452,7 @@ MonoBehaviour:
   _enemy: {fileID: 0}
   image: {fileID: 568613237928467622}
   cooldownText: {fileID: 8913763137480250062}
+  hover: {fileID: 0}
 --- !u!1 &5676466245760832878
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,3 +19,5 @@ MonoBehaviour:
   _isLineAttackHorizental: 0
   _maxCooldown: 2
   _attackWidth: 2
+  info: Targets a 2x2 set of tiles anywhere in the garden, hitting every targeted
+    tile.

@@ -19,3 +19,5 @@ MonoBehaviour:
   _isLineAttackHorizental: 0
   _maxCooldown: 0
   _attackWidth: 1
+  info: 'Shoots a bullet in a straight line, hitting the first plant it comes into
+    contact with. '

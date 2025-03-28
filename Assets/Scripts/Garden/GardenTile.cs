@@ -11,11 +11,15 @@ public class GardenTile : MonoBehaviour {
 	[SerializeField] private Color[ ] basicColors;
 	[SerializeField] private Color[ ] attackedColors;
 	[SerializeField] private Color[ ] selectedColors;
-	[SerializeField] private Vector2Int _position;
+    [SerializeField] private Color[] highLightColors;
+
+    [SerializeField] private Vector2Int _position;
 	[SerializeField] private GardenPlaceable _gardenPlaceable;
 	[SerializeField] private bool _isAttacked;
 	[SerializeField] private bool _isSelected;
-	[Space]
+    [SerializeField] private bool _isHighlighted;
+
+    [Space]
 	[SerializeField] private PlantHover _plantHoverDisplay;
 	/// <summary>
 	/// Whether or not the current tile is being attacked
@@ -25,6 +29,15 @@ public class GardenTile : MonoBehaviour {
 		set {
 			
 			_isAttacked = value;
+
+			UpdateMaterial( );
+		}
+	}
+	public bool IsHighlighted {
+		get => _isHighlighted;
+		set {
+
+            _isHighlighted = value;
 
 			UpdateMaterial( );
 		}
@@ -136,7 +149,13 @@ public class GardenTile : MonoBehaviour {
 			playerDataManager.CurrentActions--;
 			combatManager.UpdateEnemyAttackVisuals( );
 		}
-	}
+		else if (gardenManager.MoveArtifact(GardenPlaceable as Artifact, gardenManager.SelectedGardenTile))
+		{
+            playerDataManager.CurrentActions--;
+            combatManager.UpdateEnemyAttackVisuals();
+        }
+
+    }
 
 	/// <summary>
 	/// Update this garden tile's material based on if it is attacked or not
@@ -145,7 +164,9 @@ public class GardenTile : MonoBehaviour {
 		// Set the material color of the ground tile
 		Material tempMaterial = new Material(meshRenderer.material);
 		// Make the colors of the ground tiles a checkerboard pattern
-		if (IsSelected) {
+		if (IsHighlighted)  {    
+			tempMaterial.color = ((_position.x + _position.y) % 2 == 0 ? highLightColors[0] : highLightColors[1]);        }
+        else if (IsSelected) {
 			tempMaterial.color = ((_position.x + _position.y) % 2 == 0 ? selectedColors[0] : selectedColors[1]);
 		} else if (IsAttacked) {
 			tempMaterial.color = ((_position.x + _position.y) % 2 == 0 ? attackedColors[0] : attackedColors[1]);

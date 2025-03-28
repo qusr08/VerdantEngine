@@ -19,3 +19,4 @@ MonoBehaviour:
   _isLineAttackHorizental: 1
   _maxCooldown: 1
   _attackWidth: 1
+  info: 'Shoots from the flanks, hitting the first plant it comes into contact with. '

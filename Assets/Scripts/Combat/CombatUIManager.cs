@@ -22,7 +22,11 @@ public class CombatUIManager : MonoBehaviour
 	[SerializeField] private GameObject resetTurnButton;
 	[SerializeField] private GameObject endTurnButton;
 	[SerializeField] private GameObject viewMapButton;
-	[Space]
+    [SerializeField] private GameObject enemyUIPanal;
+    [SerializeField] private GameObject plantUIPanal;
+
+
+    [Space]
 	[SerializeField] private GameState _gameState;
 
 	/// <summary>
@@ -70,7 +74,9 @@ public class CombatUIManager : MonoBehaviour
 	public void AddEnemyHealth (Enemy enemy) {
 		EnemyHealthUIObject enemyHealthUIObject = Instantiate(enemyHealthUIPrefab, healthUIContainer).GetComponent<EnemyHealthUIObject>( );
 		enemyHealthUIObject.Enemy = enemy;
-		enemyHealthUIObjects.Add(enemyHealthUIObject);
+		enemyHealthUIObject.Hover = enemyUIPanal.GetComponent<EnemyHover>();
+		enemyHealthUIObject.PHover = plantUIPanal.GetComponent<PlantHover>();
+        enemyHealthUIObjects.Add(enemyHealthUIObject);
 	}
 
 	public void UpdateHealth (Enemy enemy) {
