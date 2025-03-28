@@ -18,3 +18,4 @@ MonoBehaviour:
   _damage: 2
   _isLineAttackHorizental: 1
   _maxCooldown: 1
+  _attackWidth: 1

@@ -175,7 +175,7 @@ public class CombatManager : MonoBehaviour {
 		{
 			if (enemy.CurrentCooldown == 0)
 			{
-				StartCoroutine(playerCombatManager.ApplyDamageToGarden(enemy, enemy.CurrentAttack));
+				playerCombatManager.ApplyDamageToGarden(enemy, enemy.CurrentAttack);
 			}
 		}
 		yield return new WaitForSeconds((float)playerCombatManager.enemyAttckSliderAnimation.director.duration);
@@ -204,7 +204,7 @@ public class CombatManager : MonoBehaviour {
 			// Reset the current actions for the player
 			playerDataManager.CurrentActions = playerDataManager.MaxActions;
 
-			StartCoroutine(playerCombatManager.PlayerTurn( ));
+			StartCoroutine( playerCombatManager.PlayerTurn( ));
 		}
 	}
 

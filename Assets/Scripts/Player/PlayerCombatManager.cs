@@ -92,34 +92,44 @@ public class PlayerCombatManager : MonoBehaviour {
 
 	}
 
-	public IEnumerator ApplyDamageToGarden (Enemy enemy, EnemyAttackSO enemyAttack) {
+    public void ApplyDamageToGarden(Enemy enemy, EnemyAttackSO enemyAttack)
+    {
+        if (enemyAttack.EnemyTargetingType == EnemyTargetingType.SHAPE)
+        {
+            foreach (GardenTile tile in enemy.FinalAim)
+            {
 
+            }
+        }
+        else if (!enemyAttack.IsLineAttackHorizontal && enemy.FinalAim.Count == playerDataManager.GardenSize && enemy.FinalAim[enemy.FinalAim.Count - 1].GardenPlaceable == null)
+        {
+            playerDataManager.CurrentHealth -= enemyAttack.Damage;
+            Debug.Log(enemy.name + " attacked the player using " + enemyAttack.Name + " dealing " + enemyAttack.Damage + " to the player");
+        }
+        else
+        {
+            GardenTile tileHit = enemy.FinalAim[enemy.FinalAim.Count - 1];
+            if (tileHit != null && tileHit.GardenPlaceable != null)
+            {
+                Debug.Log(enemy.name + " attacked the player using " + enemyAttack.Name + " dealing " + enemyAttack.Damage + " to the " + tileHit.GardenPlaceable.name);
 
-		enemyAttckSliderAnimation.enemyImage.texture = enemy.Icon.texture;
-        enemyAttckSliderAnimation.gameObject.GetComponent<PlayableDirector>().Play();
-        yield return new WaitForSeconds((float)enemyAttckSliderAnimation.gameObject.GetComponent<PlayableDirector>().duration);
-		if (!enemyAttack.IsLineAttackHorizontal && enemy.FinalAim.Count == playerDataManager.GardenSize && enemy.FinalAim[enemy.FinalAim.Count-1].GardenPlaceable==null) {
-			playerDataManager.CurrentHealth -= enemyAttack.Damage;
-			Debug.Log(enemy.name + " attacked the player using " + enemyAttack.Name + " dealing " + enemyAttack.Damage + " to the player");
-		} else {
-			GardenTile tileHit = enemy.FinalAim[enemy.FinalAim.Count - 1];
-			if (tileHit != null && tileHit.GardenPlaceable != null) {
-				Debug.Log(enemy.name + " attacked the player using " + enemyAttack.Name + " dealing " + enemyAttack.Damage + " to the " + tileHit.GardenPlaceable.name);
+                // Calculate the amount of damage that the enemy will deal to the plant
+                // Make sure to factor in the shield that the plant has as well
+                // Also make sure that the damage done never goes below 0, as that would add health back to the plant
+                int damageDealt = Mathf.Max(0, enemyAttack.Damage - tileHit.GardenPlaceable.ShieldStat.CurrentValue);
 
-				// Calculate the amount of damage that the enemy will deal to the plant
-				// Make sure to factor in the shield that the plant has as well
-				// Also make sure that the damage done never goes below 0, as that would add health back to the plant
-				int damageDealt = Mathf.Max(0, enemyAttack.Damage - tileHit.GardenPlaceable.ShieldStat.CurrentValue);
+                // Spawn the damage indicator
+                DamageIndicator indicator = Instantiate(damageIndicatorPrefab, tileHit.transform.position, tileHit.GardenPlaceable.transform.rotation).GetComponent<DamageIndicator>();
+                indicator.SetDamage(damageDealt);
 
-				// Deal damage to the garden placeable that was hit by the attack
-				tileHit.GardenPlaceable.LastEnemyWhichDamagedPlaceble = enemy;
-				tileHit.GardenPlaceable.TakeDamage(damageDealt);
+                // Deal damage to the garden placeable that was hit by the attack
+                tileHit.GardenPlaceable.HealthStat.BaseValue -= damageDealt;
+            }
+            else
+            {
+                Debug.Log("Taeget got killed before turn");
+            }
+        }
+    }
 
-
-			}
-			else {
-				Debug.Log("Taeget got killed before turn");
-			}
-		}
-	}
 }
