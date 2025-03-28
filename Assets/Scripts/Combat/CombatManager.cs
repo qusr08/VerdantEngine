@@ -239,7 +239,9 @@ public class CombatManager : MonoBehaviour {
 	}
 	private void WinGame()
 	{
-		winScreen.SetActive(true);
+		playerDataManager.Money += currentCombatPreset.rewardMoeny;
+
+        winScreen.SetActive(true);
 
 		// NOTE: This should be replaced with end-screen rewards
 		// Once the reward is chosen, then do the below code

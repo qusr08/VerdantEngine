@@ -287,13 +287,15 @@ public abstract class GardenPlaceable : MonoBehaviour {
                 HealIndicator(StartingHealth- _healthStat.BaseValue);
 				_healthStat.BaseValue = StartingHealth;
 				HealIndicator(0);
-
+				return;
 			}
 			else
             {
 				_healthStat.BaseValue += heal;
 				HealIndicator(heal);
-			}
+				return;
+
+            }
 		}
 		HealIndicator(0);
 		//triggered global on heal triggers for all garden placbles. used by artifacts

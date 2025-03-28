@@ -18,3 +18,4 @@ MonoBehaviour:
   - {fileID: 7051596728495582928, guid: 1ffae97745094e64cbf10eda26c90eaf, type: 3}
   - {fileID: 7051596728495582928, guid: 1ffae97745094e64cbf10eda26c90eaf, type: 3}
   _isEliteRewards: 1
+  rewardMoeny: 10
