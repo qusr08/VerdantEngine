@@ -15,6 +15,6 @@ MonoBehaviour:
   _name: Enemy Attack 5
   _enemyTargetingType: 0
   _attackType: 0
-  _damage: 3
+  _damage: 4
   _isLineAttackHorizental: 0
   _maxCooldown: 2
