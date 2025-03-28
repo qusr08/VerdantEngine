@@ -114,6 +114,8 @@ public class GardenManager : MonoBehaviour {
 		Plants.Add(plant);
 		UpdateGarden( );
 
+		//gameObject.GetComponentInChildren<SpriteSortingOrder>().SortSprites(x, y);
+
 		return true;
 	}
 

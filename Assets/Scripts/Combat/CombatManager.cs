@@ -224,7 +224,6 @@ public class CombatManager : MonoBehaviour {
 		if (enemies.Count == 0) {
 			combatUIManager.PurgeList();
 			WinGame();
-			winScreen.SetActive(true);
 		}
 	}
 
