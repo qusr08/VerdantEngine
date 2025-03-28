@@ -34,13 +34,18 @@ public class Inventory : MonoBehaviour {
 
 		AddPlant(PlantType.FLYTRAP);
 
-	}
+		AddArtifact(ArtifactType.Compost);
+        AddArtifact(ArtifactType.Flamingo);
+        AddArtifact(ArtifactType.Wheelbarrow);
 
-	/// <summary>
-	/// Add a plant type to the inventory
-	/// </summary>
-	/// <param name="plantType">The plant type to add</param>
-	public void AddPlant (PlantType plantType) {
+
+    }
+
+    /// <summary>
+    /// Add a plant type to the inventory
+    /// </summary>
+    /// <param name="plantType">The plant type to add</param>
+    public void AddPlant (PlantType plantType) {
 		// Loop through all items in the inventory currently
 		foreach (InventoryBox box in InventoryBoxes) {
 			if (box is not PlantInventoryBox) {
