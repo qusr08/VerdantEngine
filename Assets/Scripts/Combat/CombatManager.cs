@@ -175,7 +175,7 @@ public class CombatManager : MonoBehaviour {
 		{
 			if (enemy.CurrentCooldown == 0)
 			{
-				playerCombatManager.ApplyDamageToGarden(enemy, enemy.CurrentAttack);
+				StartCoroutine( playerCombatManager.ApplyDamageToGarden(enemy, enemy.CurrentAttack));
 			}
 		}
 		yield return new WaitForSeconds((float)playerCombatManager.enemyAttckSliderAnimation.director.duration);
