@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Enemy : MonoBehaviour {
 	[SerializeField] private PlayerCombatManager playerCombatManager;
@@ -77,7 +78,8 @@ public class Enemy : MonoBehaviour {
 
 	// private bool attacksAreRandom;
 	private bool needNewAttack = true;
-	private int randomAim;
+	private int main_randomAim;
+	private int secondery_randomAim;
 	private bool isInitialized = false;
 	private bool randomAttackDirection = true;
 	private List<GardenTile> currentAim = new List<GardenTile>( );
@@ -122,41 +124,83 @@ public class Enemy : MonoBehaviour {
 			CurrentAttack = attacks[0];
 		}
 
-		// Clear previous markings
-		//   UnmarkTiles();
+		
+		//// I need to add the width logic here, limiting the enemies from aiming at the edges in case the width is bigger then 1
+		if (CurrentAttack.EnemyTargetingType != EnemyTargetingType.LINE)
+		{
+			//choose the aim of the enemy, is done only once per turn to prevent the game from changing the aim every map update
+            if (!isInitialized)
+            {
+                main_randomAim = UnityEngine.Random.Range(0, playerDataManager.GardenSize);
+                randomAttackDirection = (UnityEngine.Random.value <= 0.5f);
+                isInitialized = true;
+            }
 
-		if (!isInitialized) {
-			randomAim = UnityEngine.Random.Range(0, playerDataManager.GardenSize);
-			randomAttackDirection = (UnityEngine.Random.value <= 0.5f);
-			isInitialized = true;
-		}
+            if (CurrentAttack.IsLineAttackHorizontal)
+			{
+				if (randomAttackDirection)
+				{
+					for (int i = playerDataManager.GardenSize - 1; i >= 0; i--)
+					{
+						GardenTile tile = playerDataManager.Garden[main_randomAim, i];
 
-		if (CurrentAttack.IsLineAttackHorizontal) {
-			if (randomAttackDirection) {
-				for (int i = playerDataManager.GardenSize - 1; i >= 0; i--) {
-					GardenTile tile = playerDataManager.Garden[randomAim, i];
-
-					if (tile != null) {
-						currentAim.Add(tile);
+						if (tile != null)
+						{
+							currentAim.Add(tile);
+						}
 					}
 				}
-			} 
-			else {
-				for (int i = 0; i < playerDataManager.GardenSize; i++) {
-					GardenTile tile = playerDataManager.Garden[randomAim, i];
-					if (tile != null) {
+				else
+				{
+					for (int i = 0; i < playerDataManager.GardenSize; i++)
+					{
+						GardenTile tile = playerDataManager.Garden[main_randomAim, i];
+						if (tile != null)
+						{
+							currentAim.Add(tile);
+						}
+					}
+				}
+			}
+			else
+			{
+				for (int i = playerDataManager.GardenSize - 1; i >= 0; i--)
+				{
+					GardenTile tile = playerDataManager.Garden[i, main_randomAim];
+					if (tile != null)
+					{
 						currentAim.Add(tile);
 					}
 				}
 			}
-		} else {
-			for (int i = playerDataManager.GardenSize - 1; i >= 0; i--) {
-				GardenTile tile = playerDataManager.Garden[i, randomAim];
-				if (tile != null) {
-					currentAim.Add(tile);
-				}
-			}
 		}
+		//attack a square
+		else if(CurrentAttack.EnemyTargetingType == EnemyTargetingType.SHAPE)
+		{
+			int range = CurrentAttack.AttackWidth-1;
+            if (!isInitialized)
+            {
+                main_randomAim = UnityEngine.Random.Range(0, playerDataManager.GardenSize - range);
+                secondery_randomAim = UnityEngine.Random.Range(0, playerDataManager.GardenSize - range);
+                randomAttackDirection = (UnityEngine.Random.value <= 0.5f);
+                isInitialized = true;
+            }
+			//choose start point
+			GardenTile startTile = playerDataManager.Garden[main_randomAim, secondery_randomAim];
+            for (int x = 0; x < range; x++)
+            {
+				for (int y = 0; y < range; y++)
+				{
+
+				}
+                GardenTile tile = playerDataManager.Garden[main_randomAim, secondery_randomAim];
+                if (tile != null)
+                {
+                    currentAim.Add(tile);
+                }
+            }
+
+        }
 
 		if (currentAim.Count == 0) {
 			Debug.LogError("No valid tiles found for marking.");

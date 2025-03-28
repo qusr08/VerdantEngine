@@ -20,11 +20,12 @@ public class EnemyAttackSO : ScriptableObject {
 
 	[SerializeField] private string _name;
 	[SerializeField] private EnemyTargetingType _enemyTargetingType;
-	[SerializeField] private AttackType _attackType;
+    [SerializeField] private int _attackWidth;
+
+    [SerializeField] private AttackType _attackType;
 	[SerializeField] private int _damage;
 	[SerializeField] private bool _isLineAttackHorizental;
 	[SerializeField] private int _maxCooldown;
-
 	/// <summary>
 	/// The name of this enemy attack
 	/// </summary>
@@ -54,6 +55,11 @@ public class EnemyAttackSO : ScriptableObject {
 	/// The max cooldown of this enemy attack
 	/// </summary>
 	public int MaxCooldown => _maxCooldown;
+
+	/// <summary>
+	/// The width of the attack
+	/// </summary>
+	public int AttackWidth => _attackWidth;
 
 	private void OnEnable ( ) {
 		if (attackGrid == null || attackGrid.Length != attackSize) {
