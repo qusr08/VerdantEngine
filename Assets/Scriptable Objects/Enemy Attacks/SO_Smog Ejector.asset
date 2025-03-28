@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f9c5844ef65fe245b77ebd8c93399cc, type: 3}
-  m_Name: SO_EnemyAttack_2
+  m_Name: SO_Smog Ejector
   m_EditorClassIdentifier: 
-  _name: Enemy Attack 2
-  _enemyTargetingType: 0
-  _attackType: 3
+  _name: Smog Ejector
+  _enemyTargetingType: 1
+  _attackWidth: 2
+  _attackType: 2
   _damage: 1
-  _isLineAttackHorizental: 1
-  _maxCooldown: 1
+  _isLineAttackHorizental: 0
+  _maxCooldown: 2

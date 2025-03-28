@@ -186,18 +186,17 @@ public class Enemy : MonoBehaviour {
                 isInitialized = true;
             }
 			//choose start point
-			GardenTile startTile = playerDataManager.Garden[main_randomAim, secondery_randomAim];
-            for (int x = 0; x < range; x++)
+            for (int x = 0; x < CurrentAttack.AttackWidth; x++)
             {
-				for (int y = 0; y < range; y++)
+				for (int y = 0; y < CurrentAttack.AttackWidth; y++)
 				{
-
-				}
-                GardenTile tile = playerDataManager.Garden[main_randomAim, secondery_randomAim];
-                if (tile != null)
-                {
-                    currentAim.Add(tile);
+                    GardenTile tile = playerDataManager.Garden[main_randomAim+x, secondery_randomAim+y];
+                    if (tile != null)
+                    {
+                        currentAim.Add(tile);
+                    }
                 }
+
             }
 
         }
@@ -208,21 +207,22 @@ public class Enemy : MonoBehaviour {
 		}
 
 		// Set Icon for map
-		if (arrowObject != null) {
+		if (CurrentAttack.EnemyTargetingType == EnemyTargetingType.LINE && arrowObject != null)
+		{
 			arrowObject.SetActive(true);
 			arrowObject.transform.SetParent(currentAim[0].transform);
 
 			// What are these rotations for? - Frankie
 			if (!CurrentAttack.IsLineAttackHorizontal)
 			{
-					arrowObject.transform.localPosition = Vector3.zero + new Vector3(2, -1, -1);
-					arrowObject.transform.rotation = new Quaternion(0.00228309655f, -0.707103133f, 0.707103133f, -0.00228309655f);
+				arrowObject.transform.localPosition = Vector3.zero + new Vector3(2, -1, -1);
+				arrowObject.transform.rotation = new Quaternion(0.00228309655f, -0.707103133f, 0.707103133f, -0.00228309655f);
 			}
 			else if (randomAttackDirection)
 			{
 				//right
 				arrowObject.transform.localPosition = Vector3.zero + new Vector3(0.75f, 0f, -1f);
-				arrowObject.transform.localEulerAngles =  new Vector3(0, 180, 270);
+				arrowObject.transform.localEulerAngles = new Vector3(0, 180, 270);
 			}
 			else
 			{
@@ -231,17 +231,24 @@ public class Enemy : MonoBehaviour {
 				arrowObject.transform.localEulerAngles = new Vector3(0, 0, 90);
 			}
 
-			}
-		else {
+		}
+		else if (arrowObject == null)
+		{
 			Debug.LogError("Icon holder is missing!");
 		}
+		else
+		{
+            arrowObject.SetActive(false);
+        }
 
 		// Set up the final aim for marking, stopping if there is a collision
+		
 		foreach (GardenTile tile in currentAim) {
 			tile.IsAttacked = true;
 			FinalAim.Add(tile);
 			Debug.Log(gameObject.name + " is marking tile as attacked: " + tile.Position);
-			if (tile.GardenPlaceable != null) {
+			if (tile.GardenPlaceable != null && CurrentAttack.EnemyTargetingType == EnemyTargetingType.LINE)
+			{
 				break;
 			}
 		}

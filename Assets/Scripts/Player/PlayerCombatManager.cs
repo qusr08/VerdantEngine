@@ -61,7 +61,14 @@ public class PlayerCombatManager : MonoBehaviour {
 	}
 
 	public void ApplyDamageToGarden (Enemy enemy, EnemyAttackSO enemyAttack) {
-		if (!enemyAttack.IsLineAttackHorizontal && enemy.FinalAim.Count == playerDataManager.GardenSize && enemy.FinalAim[enemy.FinalAim.Count-1].GardenPlaceable==null) {
+		if(enemyAttack.EnemyTargetingType == EnemyTargetingType.SHAPE)
+		{
+			foreach (GardenTile tile in enemy.FinalAim)
+			{
+
+			}
+		}
+		else if (!enemyAttack.IsLineAttackHorizontal && enemy.FinalAim.Count == playerDataManager.GardenSize && enemy.FinalAim[enemy.FinalAim.Count-1].GardenPlaceable==null) {
 			playerDataManager.CurrentHealth -= enemyAttack.Damage;
 			Debug.Log(enemy.name + " attacked the player using " + enemyAttack.Name + " dealing " + enemyAttack.Damage + " to the player");
 		} else {
