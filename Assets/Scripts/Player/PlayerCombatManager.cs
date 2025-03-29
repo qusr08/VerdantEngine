@@ -5,10 +5,11 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Playables;
 using Unity.VisualScripting;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class PlayerCombatManager : MonoBehaviour {
 	[SerializeField] private GardenManager gardenManager;
-	[SerializeField] private CombatManager combatManager;
+	[SerializeField] public CombatManager combatManager;
 	[SerializeField] private PlayerDataManager playerDataManager;
 	[SerializeField] private Transform weaponMenuContainer;
 	[SerializeField] private List<PlayerAttackMenuItem> weaponMenuItems = new List<PlayerAttackMenuItem>( );
@@ -17,7 +18,8 @@ public class PlayerCombatManager : MonoBehaviour {
 	[SerializeField] private GameObject damageIndicatorPrefab;
 	[Space]
 	[SerializeField] private int energy = 0;
-	public EnemySlider enemyAttckSliderAnimation;
+    [HideInInspector] public int energyModifier;
+    public EnemySlider enemyAttckSliderAnimation;
 
 	private void Start ( ) {
 		foreach (PlayerAttackSO playerAttack in playerDataManager.PlayerAttacks) {
@@ -26,13 +28,17 @@ public class PlayerCombatManager : MonoBehaviour {
 		}
 	}
 
-	public void PlayerStartTurn ( ) {
-		energyText.text = energy.ToString( );
-	}
+    public void PlayerStartTurn()
+    {
+        energyText.text = energy.ToString();
+        energy += gardenManager.CountPlants(new List<PlantType>() { PlantType.POWER_FLOWER }, null);
+        energy += energyModifier;
+        energyModifier = 0;
+        energyText.text = energy.ToString();
+    }
 
-	public IEnumerator PlayerTurn ( ) {
-		energy += gardenManager.CountPlants(new List<PlantType>() { PlantType.POWER_FLOWER }, null);
-		energyText.text = energy.ToString( );
+    public IEnumerator PlayerTurn ( ) {
+		
 		foreach (PlayerAttackMenuItem weaponMenuItem in weaponMenuItems) {
 			weaponMenuItem.PlayerAttack.Cooldown--;
 
@@ -61,7 +67,8 @@ public class PlayerCombatManager : MonoBehaviour {
 				weaponMenuItem.GetComponent<Image>( ).color = Color.white;
 
 				// Fire the part after targeting is complete (or immediately if no targeting needed)
-			} else {
+			} else if(weaponMenuItem.PlayerAttack.Cooldown <= 0 && (energy - weaponMenuItem.PlayerAttack.ManaCost) < 0)
+            {
 				weaponMenuItem.PlayerAttack.Cooldown = 1;
 			}
 
@@ -87,34 +94,46 @@ public class PlayerCombatManager : MonoBehaviour {
 
 	}
 
-	public IEnumerator ApplyDamageToGarden (Enemy enemy, EnemyAttackSO enemyAttack) {
-
-
-		enemyAttckSliderAnimation.enemyImage.texture = enemy.Icon.texture;
+    public IEnumerator ApplyDamageToGarden(Enemy enemy, EnemyAttackSO enemyAttack)
+    {
+        enemyAttckSliderAnimation.enemyImage.texture = enemy.Icon.texture;
         enemyAttckSliderAnimation.gameObject.GetComponent<PlayableDirector>().Play();
         yield return new WaitForSeconds((float)enemyAttckSliderAnimation.gameObject.GetComponent<PlayableDirector>().duration);
-		if (!enemyAttack.IsLineAttackHorizontal && enemy.FinalAim.Count == playerDataManager.GardenSize && enemy.FinalAim[enemy.FinalAim.Count-1].GardenPlaceable==null) {
-			playerDataManager.CurrentHealth -= enemyAttack.Damage;
-			Debug.Log(enemy.name + " attacked the player using " + enemyAttack.Name + " dealing " + enemyAttack.Damage + " to the player");
-		} else {
-			GardenTile tileHit = enemy.FinalAim[enemy.FinalAim.Count - 1];
-			if (tileHit != null && tileHit.GardenPlaceable != null) {
-				Debug.Log(enemy.name + " attacked the player using " + enemyAttack.Name + " dealing " + enemyAttack.Damage + " to the " + tileHit.GardenPlaceable.name);
+        if (enemyAttack.EnemyTargetingType == EnemyTargetingType.SHAPE)
+        {
+            foreach (GardenTile tile in enemy.FinalAim)
+            {
+				if (tile.GardenPlaceable != null)
+				{
+					int damageDealt = Mathf.Max(0, enemyAttack.Damage - tile.GardenPlaceable.ShieldStat.CurrentValue);
 
-				// Calculate the amount of damage that the enemy will deal to the plant
-				// Make sure to factor in the shield that the plant has as well
-				// Also make sure that the damage done never goes below 0, as that would add health back to the plant
-				int damageDealt = Mathf.Max(0, enemyAttack.Damage - tileHit.GardenPlaceable.ShieldStat.CurrentValue);
+					// Deal damage to the garden placeable that was hit by the attack
+					tile.GardenPlaceable.LastEnemyWhichDamagedPlaceble = enemy;
+					tile.GardenPlaceable.TakeDamage(damageDealt);
+				}
+            }
+        }
+        else if (!enemyAttack.IsLineAttackHorizontal && enemy.FinalAim.Count == playerDataManager.GardenSize && enemy.FinalAim[enemy.FinalAim.Count - 1].GardenPlaceable == null)
+        {
+            playerDataManager.CurrentHealth -= enemyAttack.Damage;
+            Debug.Log(enemy.name + " attacked the player using " + enemyAttack.Name + " dealing " + enemyAttack.Damage + " to the player");
+        }
+        else
+        {
+            GardenTile tileHit = enemy.FinalAim[enemy.FinalAim.Count - 1];
+            if (tileHit != null && tileHit.GardenPlaceable != null)
+            {
+                int damageDealt = Mathf.Max(0, enemyAttack.Damage - tileHit.GardenPlaceable.ShieldStat.CurrentValue);
 
-				// Deal damage to the garden placeable that was hit by the attack
-				tileHit.GardenPlaceable.LastEnemyWhichDamagedPlaceble = enemy;
-				tileHit.GardenPlaceable.TakeDamage(damageDealt);
+                // Deal damage to the garden placeable that was hit by the attack
+                tileHit.GardenPlaceable.LastEnemyWhichDamagedPlaceble = enemy;
+                tileHit.GardenPlaceable.TakeDamage(damageDealt);
+            }
+            else
+            {
+                Debug.Log("Taeget got killed before turn");
+            }
+        }
+    }
 
-
-			}
-			else {
-				Debug.Log("Taeget got killed before turn");
-			}
-		}
-	}
 }

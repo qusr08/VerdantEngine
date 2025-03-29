@@ -273,39 +273,62 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	public virtual void OnKilled() {
 		// Since this garden placeable was killed, remove all modifiers it was giving out
 		RemoveModifiersFromEffectedGardenPlaceables();
-	}
+		gardenManager.GlobalOnPlantDestoyed(this);
+
+    }
 	public virtual void Heal(int heal)
 	{
-		if (_healthStat.CurrentValue < StartingHealth)
-		{
-			if (_healthStat.CurrentValue + heal >= StartingHealth)
-			{
-				HealIndicator(StartingHealth- _healthStat.BaseValue);
-				_healthStat.BaseValue = StartingHealth;
-				HealIndicator(0);
+		Debug.Log("Name:" + Name + "\n" +
+            "CurrentValue:" + _healthStat.CurrentValue + "\n" +
+               "TotalModifier:" + _healthStat.TotalModifier + "\n" +
+               "BaseValue:" + _healthStat.BaseValue + "\n");
 
+        if (_healthStat.CurrentValue < StartingHealth + _healthStat.TotalModifier)
+		{
+			if (_healthStat.BaseValue + heal >= StartingHealth + _healthStat.TotalModifier)
+			{
+				heal = StartingHealth + _healthStat.TotalModifier - _healthStat.BaseValue;
+
+				_healthStat.BaseValue = StartingHealth;
 			}
-			else
+			else if (_healthStat.CurrentValue<StartingHealth)
             {
 				_healthStat.BaseValue += heal;
-				HealIndicator(heal);
-			}
+
+            }
+			
 		}
-		HealIndicator(0);
+        else
+        {
+            heal = 0;
+
+        }
+        HealIndicator(heal);
+		//triggered global on heal triggers for all garden placbles. used by artifacts
+		if(heal>0)
+		gardenManager.GlobalOnHealedTrigger(this, heal);
 
 	}
 	public virtual int TakeDamage(int damage)
 	{
-		damage -= ShieldStat.CurrentValue;
+       
+        damage -= ShieldStat.CurrentValue;
 		if (damage > 0)
 		{
 			HealthStat.BaseValue -= damage;
 			DamageIndicator(damage);
-			return damage;
+            Debug.Log("Name:" + Name + "\n" +
+       "CurrentValue:" + _healthStat.CurrentValue + "\n" +
+          "TotalModifier:" + _healthStat.TotalModifier + "\n" +
+          "BaseValue:" + _healthStat.BaseValue + "\n");
+            return damage;
 		}
 		DamageIndicator(0);
-		return 0;
-	}
+      
+
+        return 0;
+
+    }
 	public virtual void DamageIndicator(int damageafterShiled)
 	{
 		DamageIndicator indicator = Instantiate(damageIndicatorPrefab, this.transform.position, this.transform.rotation).GetComponent<DamageIndicator>();

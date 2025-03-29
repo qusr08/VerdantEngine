@@ -19,7 +19,7 @@ public class Encounter : MonoBehaviour
     [Header("Text")]
     [SerializeField] private string Name;
     [SerializeField] private string Rewards;
-
+    [SerializeField] public int rewardsMoney;
     // Start is called before the first frame update
     void Start()
     {

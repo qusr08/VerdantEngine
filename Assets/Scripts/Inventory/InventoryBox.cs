@@ -72,6 +72,7 @@ public abstract class InventoryBox : MonoBehaviour, IPointerDownHandler, IPointe
 	}
 
 	public void OnMouseEnter ( ) {
+		Debug.Log(Prefab.GetComponent<GardenPlaceable>().Name);
 		UIDisplay.UpdateText(Prefab.GetComponent<GardenPlaceable>( ));
 	}
 }
