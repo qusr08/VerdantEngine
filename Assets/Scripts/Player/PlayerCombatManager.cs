@@ -31,13 +31,14 @@ public class PlayerCombatManager : MonoBehaviour {
     public void PlayerStartTurn()
     {
         energyText.text = energy.ToString();
+        energy += gardenManager.CountPlants(new List<PlantType>() { PlantType.POWER_FLOWER }, null);
+        energy += energyModifier;
+        energyModifier = 0;
+        energyText.text = energy.ToString();
     }
 
     public IEnumerator PlayerTurn ( ) {
-		energy += gardenManager.CountPlants(new List<PlantType>() { PlantType.POWER_FLOWER }, null);
-		energy += energyModifier;
-		energyModifier = 0;
-        energyText.text = energy.ToString( );
+		
 		foreach (PlayerAttackMenuItem weaponMenuItem in weaponMenuItems) {
 			weaponMenuItem.PlayerAttack.Cooldown--;
 
@@ -66,7 +67,8 @@ public class PlayerCombatManager : MonoBehaviour {
 				weaponMenuItem.GetComponent<Image>( ).color = Color.white;
 
 				// Fire the part after targeting is complete (or immediately if no targeting needed)
-			} else {
+			} else if(weaponMenuItem.PlayerAttack.Cooldown <= 0 && (energy - weaponMenuItem.PlayerAttack.ManaCost) < 0)
+            {
 				weaponMenuItem.PlayerAttack.Cooldown = 1;
 			}
 

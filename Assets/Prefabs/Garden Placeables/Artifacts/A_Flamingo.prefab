@@ -151,7 +151,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2ccfc0ce20570074e8b895f3426c450d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f9b15d55f014d254fbbff47de4f28497, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -264,7 +264,7 @@ MonoBehaviour:
     healed.
 
 '
-  _inventorySprite: {fileID: 21300000, guid: 2ccfc0ce20570074e8b895f3426c450d, type: 3}
+  _inventorySprite: {fileID: 21300000, guid: f9b15d55f014d254fbbff47de4f28497, type: 3}
   _gardenTile: {fileID: 0}
   effectedGardenPlaceables: []
   damageIndicatorPrefab: {fileID: 985783835550424020, guid: bf932e9924e884748b9300dabc7007d9, type: 3}

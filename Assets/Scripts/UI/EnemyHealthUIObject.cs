@@ -65,7 +65,7 @@ public class EnemyHealthUIObject : MonoBehaviour, IPointerEnterHandler, IPointer
         phover.gameObject.SetActive(false);
         hover.gameObject.SetActive(true);
 		hover.UpdateText(_enemy);
-		if(Enemy.FinalAim!=null && Enemy.FinalAim.Count != 0)
+		if(Enemy.FinalAim!=null && Enemy.FinalAim.Count != 0 && Enemy.CurrentCooldown ==0)
 		{
 			HighlightAttack();
 
