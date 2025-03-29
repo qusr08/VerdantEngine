@@ -243,6 +243,7 @@ public class CombatManager : MonoBehaviour {
 	{
 		playerDataManager.Money += currentCombatPreset.rewardMoeny;
 
+		winScreen.GetComponent<RewardManager>().moneyReward = currentCombatPreset.rewardMoeny;
         winScreen.SetActive(true);
 
 		// NOTE: This should be replaced with end-screen rewards
