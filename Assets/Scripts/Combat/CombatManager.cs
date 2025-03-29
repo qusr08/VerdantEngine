@@ -112,6 +112,8 @@ public class CombatManager : MonoBehaviour {
 	//Used to damage the first enemy
     public void damageEnemy(int damage)
     {
+		if (enemies.Count == 0)
+			return;
         // Get the targeted enemies based on the mech part
         Enemy targetEnemies = enemies[0];
 
