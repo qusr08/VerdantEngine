@@ -235,7 +235,8 @@ public class CombatManager : MonoBehaviour {
 	public void Win()
 	{
 		currentCombatPreset = null;
-		cameraManager.scene = ActiveScene.Map;
+        combatUIManager.GameState = GameState.IDLE;
+        cameraManager.scene = ActiveScene.Map;
 		cameraManager.UpdateCameraPosition();
 
 	}

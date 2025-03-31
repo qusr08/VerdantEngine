@@ -53,8 +53,10 @@ MonoBehaviour:
   mapUI: {fileID: 0}
   combatEncounter: {fileID: 11400000, guid: edcc0a46834458345b19682fe06fb00f, type: 2}
   combatManager: {fileID: 0}
+  clearedSprite: {fileID: 21300000, guid: b3d0587e3b1d6a648984ccd3570d72bf, type: 3}
   Name: Enemy
   Rewards: Random Plant
+  rewardsMoney: 0
 --- !u!61 &-8459921645421565627
 BoxCollider2D:
   m_ObjectHideFlags: 0

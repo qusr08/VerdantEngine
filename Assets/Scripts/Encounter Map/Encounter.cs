@@ -15,6 +15,7 @@ public class Encounter : MonoBehaviour
     [SerializeField] private MapUI mapUI;
     [SerializeField] private CombatPresetSO combatEncounter;
     [SerializeField] private CombatManager combatManager;
+    [SerializeField] private Sprite clearedSprite;
 
     [Header("Text")]
     [SerializeField] private string Name;
@@ -58,6 +59,7 @@ public class Encounter : MonoBehaviour
     {
 
         //this.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = clearedSprite;
 
         MapUI text = GameObject.Find("Reward Text").GetComponent<MapUI>();
         text.AtEvent(Name, Rewards);
@@ -81,7 +83,6 @@ public class Encounter : MonoBehaviour
     {
         //Currently just hide this encounter. Eventually replace it's graphic
         //gameObject.SetActive(false);
-        this.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
     }
 
     public void AddConnection(GameObject connection)

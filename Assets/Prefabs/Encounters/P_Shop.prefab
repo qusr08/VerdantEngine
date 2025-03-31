@@ -53,8 +53,10 @@ MonoBehaviour:
   mapUI: {fileID: 0}
   combatEncounter: {fileID: 0}
   combatManager: {fileID: 0}
+  clearedSprite: {fileID: 21300000, guid: b3d0587e3b1d6a648984ccd3570d72bf, type: 3}
   Name: Shop
   Rewards: 
+  rewardsMoney: 0
 --- !u!212 &-8702426768691860645
 SpriteRenderer:
   m_ObjectHideFlags: 0
