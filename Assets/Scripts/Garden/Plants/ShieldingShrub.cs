@@ -17,8 +17,5 @@ public class ShieldingShrub : Plant {
             effectedGardenPlaceables.Add(artifact);
             artifact.ShieldStat.AddModifier(1, this);
         }
-
-        GardenTile tile = GetComponentInParent<GardenTile>();
-        gameObject.GetComponentInChildren<SpriteSortingOrder>().SortSprites(tile.Position.x, tile.Position.y); //Setting the sorting order of each sprite based on tile position
 	}
 }

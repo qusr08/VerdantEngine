@@ -109,7 +109,7 @@ public class PlayerCombatManager : MonoBehaviour {
 
 					// Deal damage to the garden placeable that was hit by the attack
 					tile.GardenPlaceable.LastEnemyWhichDamagedPlaceble = enemy;
-					tile.GardenPlaceable.TakeDamage(damageDealt);
+					tile.GardenPlaceable.TakeDamage(enemy, damageDealt);
 				}
             }
         }
@@ -127,7 +127,7 @@ public class PlayerCombatManager : MonoBehaviour {
 
                 // Deal damage to the garden placeable that was hit by the attack
                 tileHit.GardenPlaceable.LastEnemyWhichDamagedPlaceble = enemy;
-                tileHit.GardenPlaceable.TakeDamage(damageDealt);
+                tileHit.GardenPlaceable.TakeDamage(enemy, damageDealt);
             }
             else
             {

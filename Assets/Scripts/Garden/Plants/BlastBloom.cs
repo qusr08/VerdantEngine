@@ -19,8 +19,5 @@ public class BlastBloom : Plant {
 			}
 			damageAdded = false;
 		}
-
-        GardenTile tile = GetComponentInParent<GardenTile>();
-        gameObject.GetComponentInChildren<SpriteSortingOrder>().SortSprites(tile.Position.x, tile.Position.y); //Setting the sorting order of each sprite based on tile position
 	}
 }
