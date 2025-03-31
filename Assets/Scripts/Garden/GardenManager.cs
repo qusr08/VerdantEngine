@@ -269,8 +269,8 @@ public class GardenManager : MonoBehaviour {
 		if (SelectedGardenTile != null && SelectedGardenTile.GardenPlaceable != null) {
 			/// TO DO: Need to update the plant hover display for when the selected tile is not null but the garden placeable was destroyed (as in just show nothing on the plant display)
 			/// Should be able to pass "null" into the UpdateText() function to clear all data
-            SelectedGardenTile.InfoPopUp.gameObject.SetActive(true);
-            SelectedGardenTile.InfoPopUp.SetUpPlant(SelectedGardenTile.GardenPlaceable);
+            SelectedGardenTile.PopUpDisplay.gameObject.SetActive(true);
+            SelectedGardenTile.PopUpDisplay.SetUpPlant(SelectedGardenTile.GardenPlaceable);
         }
 	}
 
