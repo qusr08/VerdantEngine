@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Vampire : Plant
+public class VampireFlytrap : Plant
 {
     public override void OnTurnEnd()
     {

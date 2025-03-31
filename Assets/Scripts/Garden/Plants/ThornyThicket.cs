@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Thicket : Plant {
+public class ThornyThicket : Plant {
     public override int TakeDamage(Enemy enemy, int damage) {   
         // Get the acutal damage dealt to this plant
         int actualDamage = base.TakeDamage(enemy, damage);

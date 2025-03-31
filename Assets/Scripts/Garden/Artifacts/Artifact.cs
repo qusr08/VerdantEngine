@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.WSA;
 
 public enum ArtifactType {
-    Wheelbarrow,
-    Compost,
-    Flamingo,
+    WHEELBARROW,
+    COMPOST,
+    FLAMINGO,
     NONE
 }
 public enum ArtifactAbilityType
