@@ -12,7 +12,7 @@ public class ShopManager : MonoBehaviour
 
     [SerializeField] GameObject[] plantPrefabs;
     [SerializeField] GameObject[] artifactPrefabs;
-    [SerializeField] GameObject[] partPrefabs;
+    [SerializeField] PlayerAttackSO[] partPrefabs;
 
     [SerializeField] int[] plantProbablility;
     [SerializeField] TMP_Text healthText;
@@ -117,7 +117,7 @@ public class ShopManager : MonoBehaviour
 
         for (int i = 0; i < partPrefabs.Length; i++)
         {
-            GameObject tmp = partPrefabs[i];
+            PlayerAttackSO tmp = partPrefabs[i];
             int r = Random.Range(i, partPrefabs.Length);
             partPrefabs[i] = partPrefabs[r];
             partPrefabs[r] = tmp;
@@ -140,22 +140,22 @@ public class ShopManager : MonoBehaviour
             }
         }
 
-/*        for(int i = 0; i < artifactItems.Length; i++)
+        for (int i = 0; i < artifactItems.Length; i++)
         {
-            foreach(Transform artifact in artifactItems[i].transform)
+            foreach (Transform artifact in artifactItems[i].transform)
             {
-                if(artifact.GetComponent<Artifact>() != null)
+                if (artifact.GetComponent<Artifact>() != null)
                 {
                     Destroy(artifact.gameObject);
                 }
             }
-        }*/
+        }
 
 /*        for (int i = 0; i < partItems.Length; i++)
         {
             foreach (Transform part in partItems[i].transform)
             {
-                if (part.GetComponent<Part>() != null)
+                if (part.GetComponent<PlayerAttackSO>() != null)
                 {
                     Destroy(part.gameObject);
                 }
@@ -212,16 +212,19 @@ public class ShopManager : MonoBehaviour
                 }
             }
         }
-/*        for (int i = 0; i < artifactItems.Length; i++)
+        for (int i = 0; i < artifactItems.Length; i++)
         {
             artifactItems[i].GetComponentInChildren<Item>().FillShopItemDetails(artifactPrefabs[i].name.Substring(2), artifactPrefabs[i].GetComponent<Artifact>().Cost, artifactPrefabs[i].GetComponent<Artifact>().InventorySprite,
                 artifactPrefabs[i].GetComponent<Artifact>().Description);
-        }*/
-/*        for (int i = 0; i < partItems.Length; i++)
+            GameObject newArtifactItem = Instantiate(artifactPrefabs[i], artifactItems[i].transform);
+            newArtifactItem.GetComponent<MeshRenderer>().enabled = false;
+        }
+        for (int i = 0; i < partItems.Length; i++)
         {
-            partItems[i].GetComponentInChildren<Item>().FillShopItemDetails(partPrefabs[i].name.Substring(2), partPrefabs[i].GetComponent<Part>().Cost, partPrefabs[i].GetComponent<Part>().InventorySprite,
-                partPrefabs[i].GetComponent<Part>().Description);
-        }*/
+            partItems[i].GetComponentInChildren<Item>().FillShopItemDetails(partPrefabs[i].name, partPrefabs[i].ManaCost, partPrefabs[i].Icon,
+                partPrefabs[i].Description);
+            PlayerAttackSO newPartItem = Instantiate(partPrefabs[i], partItems[i].transform);
+        }
 
         healthText.text = "Health : " + playerDataManager.CurrentHealth.ToString() + "/" + playerDataManager.MaxHealth.ToString();
     }
@@ -256,15 +259,21 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-/*    public void BuyPart(int itemIndex)
+    public void BuyPart(int itemIndex)
     {
-        if (playerDataManager.Money >= partItems[itemIndex - 1].GetComponentInChildren<Part>().Cost)
+        if (playerDataManager.Money >= partPrefabs[itemIndex - 1].ManaCost)
         {
-            playerDataManager.Money = playerDataManager.Money - partItems[itemIndex - 1].GetComponentInChildren<Part>().Cost;
+            playerDataManager.Money = playerDataManager.Money - partPrefabs[itemIndex - 1].ManaCost;
             balanceText.text = "Balance : " + playerDataManager.Money.ToString();
-            inventory.AddArtifact(partItems[itemIndex - 1].GetComponentInChildren<Part>().PartType);
+            //inventory.AddArtifact(partItems[itemIndex - 1].GetComponentInChildren<PlayerAttackSO>());
+
+            purchaseText.text = "Purchased " + partItems[itemIndex - 1].GetComponent<Item>().itemName.text;
         }
-    }*/
+        else
+        {
+            purchaseText.text = "Not enough money to buy " + partItems[itemIndex - 1].GetComponent<Item>().itemName.text;
+        }
+    }
     public void Heal()
     {
         if(playerDataManager.Money >= costToHeal)
