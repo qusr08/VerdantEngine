@@ -74,12 +74,12 @@ public class MapPlayer : MonoBehaviour
                 camera.transform.rotation = gardenCameraLocation.transform.rotation;
                 break;
             case ActiveScene.Shop:
-                gardenStuff.SetActive(false);
+                gardenStuff.SetActive(true);
                 shopStuff.SetActive(true);
                 mapStuff.SetActive(false);
 
-                camera.transform.position = this.transform.position;
-                camera.transform.rotation = this.transform.rotation;
+                camera.transform.position = gardenCameraLocation.transform.position;
+                camera.transform.rotation = gardenCameraLocation.transform.rotation;
                 break;
         }
 

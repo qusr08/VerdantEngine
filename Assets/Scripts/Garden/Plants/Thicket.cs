@@ -2,36 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Thicket : Plant
-{
-    int lastAttack;
-    public override void OnTakeDamage()
-    {
-        base.OnTakeDamage();
-        if (LastEnemyWhichDamagedPlaceble!=null)
-        {
-            LastEnemyWhichDamagedPlaceble.Attacked(lastAttack);
-        }
-        LastEnemyWhichDamagedPlaceble = null;
+public class Thicket : Plant {
+    public override int TakeDamage(Enemy enemy, int damage) {   
+        // Get the acutal damage dealt to this plant
+        int actualDamage = base.TakeDamage(enemy, damage);
 
-    }
-    public override int TakeDamage(int damage)
-    {    damage = base.TakeDamage(damage);
-        if (damage > 0)
-            lastAttack = damage;
-        else
-        {
-            LastEnemyWhichDamagedPlaceble = null;
-            lastAttack = 0;
-        }
-        return damage;
+        // If the actual damage is still greater than 0, then attack the enemy with equal damage
+        if (actualDamage > 0) {
+            enemy.Attacked(actualDamage);
+		}
 
-    }
-    public override void OnGardenUpdated()
-    {
-        base.OnGardenUpdated();
-
-        GardenTile tile = GetComponentInParent<GardenTile>();
-        gameObject.GetComponentInChildren<SpriteSortingOrder>().SortSprites(tile.Position.x, tile.Position.y); //Setting the sorting order of each sprite based on tile position
+        return actualDamage;
     }
 }

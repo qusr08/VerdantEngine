@@ -98,6 +98,11 @@ public abstract class GardenPlaceable : MonoBehaviour {
 		effectedGardenPlaceables = new List<GardenPlaceable>();
 	}
 
+	private void Update ( ) {
+		// Make sure the plants are always facing towards the camera
+		transform.LookAt(-Camera.main.transform.position + transform.position);
+	}
+
 	/// <summary>
 	/// Initialize this plant right after it has been created in the garden. Everything in this function needs to be called before Awake() but after it is instantiated in the garden.
 	/// </summary>
@@ -112,7 +117,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 		ShieldStat = new GardenPlaceableStat(0);
 
 		// Make sure the plants are always facing towards the camera
-		transform.LookAt(-Camera.main.transform.position + transform.position);
+		// transform.LookAt(-Camera.main.transform.position + transform.position);
 		// transform.localEulerAngles = new Vector3(0f, transform.localEulerAngles.y, 0f);
 	}
 
@@ -250,6 +255,9 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	public virtual void OnGardenUpdated() {
 		// Since the garden was changed, all modifiers should be updated
 		RemoveModifiersFromEffectedGardenPlaceables();
+
+		// Sort all of the sprites based on their position
+		gameObject.GetComponentInChildren<SpriteSortingOrder>( ).SortSprites(GardenTile.Position.x, GardenTile.Position.y);
 	}
 
 	/// <summary>
@@ -309,26 +317,34 @@ public abstract class GardenPlaceable : MonoBehaviour {
 		gardenManager.GlobalOnHealedTrigger(this, heal);
 
 	}
-	public virtual int TakeDamage(int damage)
-	{
-       
+
+	/// <summary>
+	/// Have this garden placeable take damage from a specific enemy
+	/// </summary>
+	/// <param name="enemy">The enemy that is dealing the damage. Can be null if the plant is taking damage from a source that is not an enemy</param>
+	/// <param name="damage">The damage that is being dealt</param>
+	/// <returns>The actual damage that was dealt to the health of the plant. This takes into account the shield that the plant has</returns>
+	public virtual int TakeDamage(Enemy enemy, int damage) {
+		// Subtract the current shield of this garden placeable from the damage that is trying to be dealt
         damage -= ShieldStat.CurrentValue;
-		if (damage > 0)
-		{
+
+		// If the damage is still greater than 0, then decrease the placeable's health
+		if (damage > 0) {
 			HealthStat.BaseValue -= damage;
 			DamageIndicator(damage);
-            Debug.Log("Name:" + Name + "\n" +
-       "CurrentValue:" + _healthStat.CurrentValue + "\n" +
-          "TotalModifier:" + _healthStat.TotalModifier + "\n" +
-          "BaseValue:" + _healthStat.BaseValue + "\n");
-            return damage;
+            
+			Debug.Log("Name:" + Name + "\n" +
+			"CurrentValue:" + _healthStat.CurrentValue + "\n" +
+			"TotalModifier:" + _healthStat.TotalModifier + "\n" +
+			"BaseValue:" + _healthStat.BaseValue + "\n");
+            
+			return damage;
 		}
+
 		DamageIndicator(0);
-      
-
         return 0;
-
     }
+
 	public virtual void DamageIndicator(int damageafterShiled)
 	{
 		DamageIndicator indicator = Instantiate(damageIndicatorPrefab, this.transform.position, this.transform.rotation).GetComponent<DamageIndicator>();

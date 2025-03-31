@@ -163,7 +163,7 @@ public class CombatManager : MonoBehaviour {
 	public void UpdateEnemyAttackVisuals ( ) {
 		// Reset all of the garden tiles to not be attacked
 		foreach (GardenTile gardenTile in playerDataManager.Garden) {
-			gardenTile.IsAttacked = false;
+			gardenTile.AttackedDamage = 0;
 		}
 
 		// Select only the garden tiles that the enemy is going to attack
@@ -183,12 +183,12 @@ public class CombatManager : MonoBehaviour {
 		yield return new WaitForSeconds((float)playerCombatManager.enemyAttckSliderAnimation.director.duration);
 		foreach (GardenTile gardenTile in playerDataManager.Garden)
 		{
-			if (gardenTile.IsAttacked)
+			if (gardenTile.AttackedDamage > 0)
 			{
 				Instantiate(explosionPrefab, gardenTile.gameObject.transform.position, Quaternion.identity);
 			}
 
-			gardenTile.IsAttacked = false;
+			gardenTile.AttackedDamage = 0;
 		}
 		isPlayerPaused = false;
 
@@ -235,7 +235,8 @@ public class CombatManager : MonoBehaviour {
 	public void Win()
 	{
 		currentCombatPreset = null;
-		cameraManager.scene = ActiveScene.Map;
+        combatUIManager.GameState = GameState.IDLE;
+        cameraManager.scene = ActiveScene.Map;
 		cameraManager.UpdateCameraPosition();
 
 	}

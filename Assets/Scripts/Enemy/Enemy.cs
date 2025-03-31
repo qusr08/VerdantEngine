@@ -262,7 +262,7 @@ public class Enemy : MonoBehaviour {
 
         foreach (GardenTile tile in currentAim)
         {
-            tile.IsAttacked = true;
+            tile.AttackedDamage += CurrentAttack.Damage;
             FinalAim.Add(tile);
             Debug.Log(gameObject.name + " is marking tile as attacked: " + tile.Position);
             if (tile.GardenPlaceable != null && CurrentAttack.EnemyTargetingType == EnemyTargetingType.LINE)
@@ -275,7 +275,7 @@ public class Enemy : MonoBehaviour {
     public void UnmarkGardenTiles ( ) {
 		Debug.LogWarning(gameObject.name + " Unmarked his targets");
 		foreach (GardenTile gardenTile in FinalAim) {
-			gardenTile.IsAttacked = false;
+			gardenTile.AttackedDamage = 0;
 		}
 
 		FinalAim.Clear( );
