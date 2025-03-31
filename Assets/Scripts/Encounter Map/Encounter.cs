@@ -15,6 +15,7 @@ public class Encounter : MonoBehaviour
     [SerializeField] private MapUI mapUI;
     [SerializeField] private CombatPresetSO combatEncounter;
     [SerializeField] private CombatManager combatManager;
+    [SerializeField] private Sprite clearedSprite;
 
     [Header("Text")]
     [SerializeField] private string Name;
@@ -56,6 +57,10 @@ public class Encounter : MonoBehaviour
     /// </summary>
     public void PlayerReached()
     {
+
+        //this.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = clearedSprite;
+
         MapUI text = GameObject.Find("Reward Text").GetComponent<MapUI>();
         text.AtEvent(Name, Rewards);
 
@@ -63,6 +68,10 @@ public class Encounter : MonoBehaviour
         {
             combatManager.NewCombat(combatEncounter);
             mapUI.ToGarden();
+        }
+        else if(EncounterType == EncounterTypes.Shop)
+        {
+            mapUI.ToShop();
         }
         //Debug.Log("Player is at " + gameObject.name);
     }
@@ -73,7 +82,7 @@ public class Encounter : MonoBehaviour
     public void PlayerLeave()
     {
         //Currently just hide this encounter. Eventually replace it's graphic
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     public void AddConnection(GameObject connection)
@@ -85,8 +94,11 @@ public class Encounter : MonoBehaviour
         child.transform.SetParent(transform);
         LineRenderer lineRenderer = child.AddComponent<LineRenderer>();
         lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
-        lineRenderer.widthMultiplier = 0.2f;
+        lineRenderer.widthMultiplier = 0.05f;
         lineRenderer.positionCount = 2;
+        lineRenderer.startColor = new Color (.88f, .89f, .73f);
+        lineRenderer.endColor = new Color(.88f, .89f, .73f);
+
 
         lineRenderer.SetPosition(0, this.transform.position);
         lineRenderer.SetPosition(1, connection.transform.position);

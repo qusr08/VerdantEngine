@@ -40,7 +40,7 @@ public class MapUI : MonoBehaviour
 
         if (rewards != "")
         {
-            text.text = "" + rewards;
+            text.text = "" + type + ": " + rewards;
             return;
         }
 
@@ -49,7 +49,13 @@ public class MapUI : MonoBehaviour
 
     public void ToGarden()
     {
-        cameraManager.onMap = false;
+        cameraManager.scene = ActiveScene.Garden;
+        cameraManager.UpdateCameraPosition();
+    }
+
+    public void ToShop()
+    {
+        cameraManager.scene = ActiveScene.Shop;
         cameraManager.UpdateCameraPosition();
     }
 }

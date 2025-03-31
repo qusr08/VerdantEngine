@@ -112,6 +112,8 @@ public class CombatManager : MonoBehaviour {
 	//Used to damage the first enemy
     public void damageEnemy(int damage)
     {
+		if (enemies.Count == 0)
+			return;
         // Get the targeted enemies based on the mech part
         Enemy targetEnemies = enemies[0];
 
@@ -233,7 +235,8 @@ public class CombatManager : MonoBehaviour {
 	public void Win()
 	{
 		currentCombatPreset = null;
-		cameraManager.onMap = true;
+        combatUIManager.GameState = GameState.IDLE;
+        cameraManager.scene = ActiveScene.Map;
 		cameraManager.UpdateCameraPosition();
 
 	}
@@ -241,6 +244,7 @@ public class CombatManager : MonoBehaviour {
 	{
 		playerDataManager.Money += currentCombatPreset.rewardMoeny;
 
+		winScreen.GetComponent<RewardManager>().moneyReward = currentCombatPreset.rewardMoeny;
         winScreen.SetActive(true);
 
 		// NOTE: This should be replaced with end-screen rewards
