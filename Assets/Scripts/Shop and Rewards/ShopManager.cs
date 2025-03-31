@@ -171,7 +171,7 @@ public class ShopManager : MonoBehaviour
         {
             if (plantProbablility[i] <= 50)
             {
-                plantItems[i].GetComponentInChildren<Item>().FillRewardItemDetails(commonPlants[commonIndex].name.Substring(2), commonPlants[commonIndex].GetComponent<Plant>().InventorySprite);
+                plantItems[i].GetComponentInChildren<Item>().FillShopItemDetails(commonPlants[commonIndex].name.Substring(2), commonPlants[commonIndex].GetComponent<Plant>().Cost, commonPlants[commonIndex].GetComponent<Plant>().InventorySprite, commonPlants[commonIndex].GetComponent<Plant>().Description);
                 GameObject newPlantItem = Instantiate(commonPlants[commonIndex], plantItems[i].transform);
                 newPlantItem.GetComponent<MeshRenderer>().enabled = false;
                 if (commonIndex < commonPlants.Length - 1)
@@ -185,7 +185,7 @@ public class ShopManager : MonoBehaviour
             }
             else if (plantProbablility[i] > 50 && plantProbablility[i] <= 80)
             {
-                plantItems[i].GetComponentInChildren<Item>().FillRewardItemDetails(uncommonPlants[uncommonIndex].name.Substring(2), uncommonPlants[uncommonIndex].GetComponent<Plant>().InventorySprite);
+                plantItems[i].GetComponentInChildren<Item>().FillShopItemDetails(uncommonPlants[uncommonIndex].name.Substring(2), uncommonPlants[uncommonIndex].GetComponent<Plant>().Cost, uncommonPlants[uncommonIndex].GetComponent<Plant>().InventorySprite, uncommonPlants[uncommonIndex].GetComponent<Plant>().Description);
                 GameObject newPlantItem = Instantiate(uncommonPlants[uncommonIndex], plantItems[i].transform);
                 newPlantItem.GetComponent<MeshRenderer>().enabled = false;
                 if (uncommonIndex < uncommonPlants.Length - 1)
@@ -199,7 +199,7 @@ public class ShopManager : MonoBehaviour
             }
             else
             {
-                plantItems[i].GetComponentInChildren<Item>().FillRewardItemDetails(rarePlants[rareIndex].name.Substring(2), rarePlants[rareIndex].GetComponent<Plant>().InventorySprite);
+                plantItems[i].GetComponentInChildren<Item>().FillShopItemDetails(rarePlants[rareIndex].name.Substring(2), rarePlants[rareIndex].GetComponent<Plant>().Cost, rarePlants[rareIndex].GetComponent<Plant>().InventorySprite, rarePlants[rareIndex].GetComponent<Plant>().Description);
                 GameObject newPlantItem = Instantiate(rarePlants[rareIndex], plantItems[i].transform);
                 newPlantItem.GetComponent<MeshRenderer>().enabled = false;
                 if (rareIndex < rarePlants.Length - 1)
