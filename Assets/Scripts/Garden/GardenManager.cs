@@ -54,6 +54,7 @@ public class GardenManager : MonoBehaviour {
 		PlacePlant(PlantType.EMPOWEROOT, 0, 2);
 		PlacePlant(PlantType.HARDY_HEDGE, 1, 3);
 		PlacePlant(PlantType.THICKET, 3, 3);
+		PlacePlant(PlantType.HEARTICHOKE, 4, 3);
 	}
 
 	/*

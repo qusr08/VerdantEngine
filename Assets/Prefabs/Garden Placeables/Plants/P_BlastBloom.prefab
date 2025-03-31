@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8653719598885068355, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
       propertyPath: m_Name
-      value: New_BlastBloom
+      value: M_BlastBloom
       objectReference: {fileID: 0}
     - target: {fileID: -8158773749668215637, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
       propertyPath: m_Sprite
@@ -85,6 +85,10 @@ PrefabInstance:
       value: 94
       objectReference: {fileID: 0}
     - target: {fileID: -3745702431091949236, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3745702431091949236, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
       propertyPath: m_SortingOrder
       value: 100
       objectReference: {fileID: 0}
@@ -129,9 +133,6 @@ PrefabInstance:
       addedObject: {fileID: 3584377975856363149}
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9088959731495312191}
-    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 160645989206367687}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
 --- !u!1 &109867650300612706 stripped
@@ -160,32 +161,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &9088959731495312191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 109867650300612706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebd5afa6ca8ab5449946fb838fd86ecd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gardenManager: {fileID: 0}
-  playerDataManager: {fileID: 0}
-  _startingHealth: 1
-  _cost: 0
-  _name: Blast Bloom
-  _description: When the Blast Bloom is adjacent to three other plants, all weapons
-    deal +1 damage
-  _inventorySprite: {fileID: 21300000, guid: ca95c795063b3134e94b2b240b20aa3d, type: 3}
-  _gardenTile: {fileID: 0}
-  effectedGardenPlaceables: []
-  damageIndicatorPrefab: {fileID: 0}
-  flowerVisuals: {fileID: 0}
-  LastEnemyWhichDamagedPlaceble: {fileID: 0}
-  _plantType: 4
 --- !u!114 &160645989206367687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +176,7 @@ MonoBehaviour:
   x: 0
   y: 0
   addToSortOrder: 0
+  prevAddToSortOrder: 0
 --- !u!4 &1247019768761993217 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
@@ -296,6 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gardenManager: {fileID: 0}
   playerDataManager: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   _startingHealth: 1
   _cost: 10
   _name: Blast Bloom
@@ -306,8 +283,8 @@ MonoBehaviour:
   effectedGardenPlaceables: []
   damageIndicatorPrefab: {fileID: 985783835550424020, guid: bf932e9924e884748b9300dabc7007d9, type: 3}
   flowerVisuals: {fileID: 109867650300612706}
-  LastEnemyWhichDamagedPlaceble: {fileID: 0}
   _plantType: 4
+  _rarity: 0
 --- !u!4 &5306314669448112019 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7061688495639312982, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}

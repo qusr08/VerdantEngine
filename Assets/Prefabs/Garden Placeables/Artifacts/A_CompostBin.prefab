@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8653719598885068355, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
       propertyPath: m_Name
-      value: New_BlastBloom
+      value: M_CompostBin
       objectReference: {fileID: 0}
     - target: {fileID: -8158773749668215637, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
       propertyPath: m_Sprite
@@ -177,7 +177,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 164589016474248900, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
       propertyPath: m_Name
-      value: A_Compost Bin
+      value: A_CompostBin
       objectReference: {fileID: 0}
     - target: {fileID: 4482992049444851102, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
       propertyPath: m_Enabled
@@ -257,6 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gardenManager: {fileID: 0}
   playerDataManager: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   _startingHealth: 4
   _cost: 0
   _name: Compost Bin
@@ -266,7 +267,6 @@ MonoBehaviour:
   effectedGardenPlaceables: []
   damageIndicatorPrefab: {fileID: 985783835550424020, guid: bf932e9924e884748b9300dabc7007d9, type: 3}
   flowerVisuals: {fileID: 109867650300612706}
-  LastEnemyWhichDamagedPlaceble: {fileID: 0}
   _artifactType: 1
   _artifactAbilityType: 2
 --- !u!4 &5306314669448112019 stripped

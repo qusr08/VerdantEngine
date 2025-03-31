@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8653719598885068355, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
       propertyPath: m_Name
-      value: ShieldingShrub
+      value: M_ShieldingShrub
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
       propertyPath: m_LocalScale.x
@@ -140,6 +140,7 @@ MonoBehaviour:
   x: 0
   y: 0
   addToSortOrder: 0
+  prevAddToSortOrder: 0
 --- !u!4 &1869142679390886939 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
@@ -251,6 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gardenManager: {fileID: 0}
   playerDataManager: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   _startingHealth: 2
   _cost: 0
   _name: Shielding Shrub
@@ -261,7 +263,6 @@ MonoBehaviour:
   effectedGardenPlaceables: []
   damageIndicatorPrefab: {fileID: 985783835550424020, guid: bf932e9924e884748b9300dabc7007d9, type: 3}
   flowerVisuals: {fileID: 664455259692123256}
-  LastEnemyWhichDamagedPlaceble: {fileID: 0}
   _plantType: 2
   _rarity: 1
 --- !u!4 &9218323910527567288 stripped
