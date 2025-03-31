@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Experimental;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.Events;
 
 /// <summary>
 /// This class is used for all functions relating to the garden. This does not store the data of the garden, that is done within the PlayerData scriptable object
@@ -14,7 +15,7 @@ public class GardenManager : MonoBehaviour {
 	[SerializeField] public PlayerDataManager playerDataManager;
 	[Space]
 	[SerializeField] private GardenTile _selectedGardenTile;
-	
+	public CombatManager combatManager;
 
 	/// <summary>
 	/// A list of all the plant prefabs that can be placed on the garden
@@ -144,11 +145,16 @@ public class GardenManager : MonoBehaviour {
 		// Place the artifact onto the grid and update its position
 		Artifact artifact = Instantiate(ArtifactPrefabs[artifactType], playerDataManager.Garden[x, y].transform).GetComponent<Artifact>( );
 		artifact.Initialize(playerDataManager.Garden[x, y]);
-
+		
 		playerDataManager.Garden[x, y].GardenPlaceable = artifact;
 		Artifacts.Add(artifact);
-		UpdateGarden( );
 
+		if(artifact.ArtifactAbilityType == ArtifactAbilityType.Passive)
+		{
+			artifact.ActivateAction();
+		}
+		UpdateGarden( );
+	
 		return true;
 	}
 
@@ -217,10 +223,38 @@ public class GardenManager : MonoBehaviour {
 		return true;
 	}
 
-	/// <summary>
-	/// Update all garden placeables currently on the garden
-	/// </summary>
-	private void UpdateGarden ( ) {
+    /// <summary>
+    /// Move an artifact from its current position to another one
+    /// </summary>
+    /// <param name="artifact">The artifact that will be moved</param>
+    /// <param name="x">The x coordinate to move the plant to</param>
+    /// <param name="y">The y coordinate to move the plant to</param>
+    /// <returns>true if the plant was successfully moved, false otherwise. Also returns false if the position that the plant was going to move to is out of the bounds of the garden or there was already a plant at that position</returns>
+    public bool MoveArtifact(Artifact artifact, GardenTile gardenTile)
+    {
+        // If the plant that was going to be moved is null, then return false
+        if (artifact == null || gardenTile == null)
+        {
+            return false;
+        }
+
+        // If there is a plant at the garden tile already, do not try to move this garden placeable to that tile
+        if (gardenTile.GardenPlaceable != null)
+        {
+            return false;
+        }
+
+        // Remove the reference to the plant from its current position and add it to the position it is being moved to
+        artifact.GardenTile = gardenTile;
+        UpdateGarden();
+
+        return true;
+    }
+
+    /// <summary>
+    /// Update all garden placeables currently on the garden
+    /// </summary>
+    private void UpdateGarden ( ) {
 		// Loop through all garden placeables and call their on garden update function
 		for (int i = Plants.Count - 1; i >= 0; i--) {
 			Plants[i].OnGardenUpdated( );
@@ -365,4 +399,37 @@ public class GardenManager : MonoBehaviour {
 	public int CountArtifacts (List<ArtifactType> exclusiveArtifactTypes = null, List<ArtifactType> excludedArtifactTypes = null) {
 		return GetFilteredArtifacts(exclusiveArtifactTypes, excludedArtifactTypes).Count;
 	}
+
+	///
+	///Artifiacts require new function which trigger when ever anything in the game is damaged/up rooted/etc.... 
+	///Alll function under this segment are used to trigget them
+	///
+
+	/// <summary>
+	/// Used to trigger artifact which are damaged activated 
+	/// </summary>
+	/// <param name="damagedPlacble"></param>
+	/// <param name="damage"></param>
+	public void GlobalOnHealedTrigger(GardenPlaceable damagedPlacble, int heal )
+	{
+		foreach (Artifact item in Artifacts)
+		{
+			if (item.ArtifactAbilityType == ArtifactAbilityType.OnHeal )
+			{
+				item.ActivateAction(heal);
+
+            }
+		}
+	}	
+	public void GlobalOnPlantDestoyed(GardenPlaceable damagedPlacble)
+	{
+        foreach (Artifact item in Artifacts)
+        {
+            if (item.ArtifactAbilityType == ArtifactAbilityType.OnDestroy)
+            {
+                item.ActivateAction();
+
+            }
+        }
+    }
 }

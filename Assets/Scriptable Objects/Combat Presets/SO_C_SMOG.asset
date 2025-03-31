@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cf40a5b777aa5c4d8c312620b0373a4, type: 3}
+  m_Name: SO_C_SMOG
+  m_EditorClassIdentifier: 
+  _enemyPrefabs:
+  - {fileID: 2017004346278228227, guid: 67c9c44a9bcb5f149b07f721d371a8f4, type: 3}
+  - {fileID: 7786875835180863173, guid: 0e4fcfec4a0aea94fbcfd9b301d82a52, type: 3}
+  - {fileID: 7051596728495582928, guid: 1ffae97745094e64cbf10eda26c90eaf, type: 3}
+  - {fileID: 7051596728495582928, guid: 1ffae97745094e64cbf10eda26c90eaf, type: 3}
+  _isEliteRewards: 1
+  rewardMoeny: 10

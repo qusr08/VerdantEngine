@@ -21,6 +21,10 @@ PrefabInstance:
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 210805236550136860, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+      propertyPath: enemyName
+      value: Side Shooter
+      objectReference: {fileID: 0}
+    - target: {fileID: 210805236550136860, guid: b95126a70dec6f54f82474ca31982657, type: 3}
       propertyPath: maxHealth
       value: 12
       objectReference: {fileID: 0}

@@ -24,11 +24,13 @@ public class EnemyAttackSO : ScriptableObject {
 	[SerializeField] private int _damage;
 	[SerializeField] private bool _isLineAttackHorizental;
 	[SerializeField] private int _maxCooldown;
+    [SerializeField] private int _attackWidth;
+	public string info;
 
-	/// <summary>
-	/// The name of this enemy attack
-	/// </summary>
-	public string Name => _name;
+    /// <summary>
+    /// The name of this enemy attack
+    /// </summary>
+    public string Name => _name;
 
 	/// <summary>
 	/// The targeting type of this enemy attack
@@ -60,6 +62,8 @@ public class EnemyAttackSO : ScriptableObject {
 			ResetGrid( );
 		}
 	}
+
+	public int AttackWidth => _attackWidth;
 
 	public void ResetGrid ( ) {
 		attackGrid = new Wrapper<bool>[attackSize];

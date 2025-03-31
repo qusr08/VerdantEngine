@@ -132,8 +132,12 @@ MonoBehaviour:
   selectedColors:
   - {r: 0.9056604, g: 0.9056604, b: 0.089711644, a: 1}
   - {r: 0.5754717, g: 0.5754717, b: 0.13843894, a: 1}
+  highLightColors:
+  - {r: 0.9529412, g: 0.53616977, b: 0.2666429, a: 0}
+  - {r: 0.59119487, g: 0.37611252, b: 0.23610607, a: 0}
   _position: {x: 0, y: 0}
   _gardenPlaceable: {fileID: 0}
   _isAttacked: 0
   _isSelected: 0
+  _isHighlighted: 0
   _plantHoverDisplay: {fileID: 0}

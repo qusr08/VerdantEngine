@@ -51,7 +51,7 @@ MonoBehaviour:
   EncounterType: 0
   player: {fileID: 0}
   mapUI: {fileID: 0}
-  combatEncounter: {fileID: 11400000, guid: 5852ddd7b5f51c24ab56bc09889ae6f4, type: 2}
+  combatEncounter: {fileID: 11400000, guid: edcc0a46834458345b19682fe06fb00f, type: 2}
   combatManager: {fileID: 0}
   Name: Enemy
   Rewards: Random Plant

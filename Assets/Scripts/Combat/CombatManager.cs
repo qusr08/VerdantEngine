@@ -7,7 +7,7 @@ using System.Linq;
 using System;
 
 public class CombatManager : MonoBehaviour {
-	[SerializeField] private PlayerCombatManager playerCombatManager;
+	[SerializeField] public PlayerCombatManager playerCombatManager;
 	[SerializeField] public CombatUIManager combatUIManager;
 	[SerializeField] private CombatPresetSO currentCombatPreset;
 	[SerializeField] private PlayerDataManager playerDataManager;
@@ -44,7 +44,7 @@ public class CombatManager : MonoBehaviour {
 			return;
 		}
 		combatUIManager.GameState = GameState.COMBAT;
-		playerDataManager.CurrentActions = 3;
+		playerDataManager.CurrentActions = playerDataManager.MaxActions;
 		combatUIManager.PurgeList();
 		currentCombatPreset = newCombat;
 		SetUpEnemies();
@@ -109,12 +109,32 @@ public class CombatManager : MonoBehaviour {
 		//isTrageting = false;
 	}
 
-	/// <summary>
-	/// Get a list of targeted enemies based on the mech part
-	/// </summary>
-	/// <param name="mechPart">The mech part to calculate the targeted enemies of</param>
-	/// <returns>A list of all the targeted enemies</returns>
-	public List<Enemy> GetTargets (PlayerAttackSO mechPart) {
+	//Used to damage the first enemy
+    public void damageEnemy(int damage)
+    {
+		if (enemies.Count == 0)
+			return;
+        // Get the targeted enemies based on the mech part
+        Enemy targetEnemies = enemies[0];
+
+        // Deselect all enemies
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.GetComponent<SpriteRenderer>().color = Color.white;
+        }
+
+        // Select targeted enemies
+        targetEnemies.GetComponent<SpriteRenderer>().color = Color.red;
+        targetEnemies.Attacked(damage);
+       
+    }
+
+    /// <summary>
+    /// Get a list of targeted enemies based on the mech part
+    /// </summary>
+    /// <param name="mechPart">The mech part to calculate the targeted enemies of</param>
+    /// <returns>A list of all the targeted enemies</returns>
+    public List<Enemy> GetTargets (PlayerAttackSO mechPart) {
 		List<Enemy> targetEnemies = new List<Enemy>( );
 
 		switch (mechPart.PlayerTargetingType) {
@@ -157,7 +177,7 @@ public class CombatManager : MonoBehaviour {
 		{
 			if (enemy.CurrentCooldown == 0)
 			{
-				StartCoroutine(playerCombatManager.ApplyDamageToGarden(enemy, enemy.CurrentAttack));
+				StartCoroutine( playerCombatManager.ApplyDamageToGarden(enemy, enemy.CurrentAttack));
 			}
 		}
 		yield return new WaitForSeconds((float)playerCombatManager.enemyAttckSliderAnimation.director.duration);
@@ -186,7 +206,7 @@ public class CombatManager : MonoBehaviour {
 			// Reset the current actions for the player
 			playerDataManager.CurrentActions = playerDataManager.MaxActions;
 
-			StartCoroutine(playerCombatManager.PlayerTurn( ));
+			StartCoroutine( playerCombatManager.PlayerTurn( ));
 		}
 	}
 
@@ -221,14 +241,17 @@ public class CombatManager : MonoBehaviour {
 	}
 	private void WinGame()
 	{
-		winScreen.SetActive(true);
+		playerDataManager.Money += currentCombatPreset.rewardMoeny;
+
+		winScreen.GetComponent<RewardManager>().moneyReward = currentCombatPreset.rewardMoeny;
+        winScreen.SetActive(true);
 
 		// NOTE: This should be replaced with end-screen rewards
 		// Once the reward is chosen, then do the below code
 
 		// Reset the player actions so the player can update their board in between combats
 		// Also set the game state from COMBAT back to IDLE
-		playerDataManager.CurrentActions = 3;
+		playerDataManager.CurrentActions = playerDataManager.MaxActions;
 
 	}
 	///                ///
