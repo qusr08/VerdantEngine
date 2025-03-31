@@ -96,10 +96,12 @@ public class MapPlayer : MonoBehaviour
         //Debug.Log(location);
         if (force || CurrentEncounter.GetComponent<Encounter>().ConnectingNode.Contains(location))
         {
+            /* - Calls a function telling it that the player left, currently that function does nothing so I commented this out
+             
             if(CurrentEncounter != null)
             {
                 CurrentEncounter.GetComponent<Encounter>().PlayerLeave();
-            }
+            }*/
 
             transform.position = new Vector3(0, location.transform.position.y + 3, -10);
             UpdateCameraPosition();
