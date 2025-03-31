@@ -6,7 +6,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public abstract class InventoryBox : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
+public abstract class InventoryBox : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+{
 	[Header("InventoryBox")]
 	[SerializeField] protected Inventory inventory;
 	[SerializeField] protected PlayerDataManager playerDataManager;
@@ -17,7 +18,7 @@ public abstract class InventoryBox : MonoBehaviour, IPointerDownHandler, IPointe
 	[SerializeField] private int _amount;
 	[SerializeField] protected GameObject _prefab;
 	[SerializeField] protected CombatManager combatManager;
-	[SerializeField] private PlantHover _UIDisplay;
+	[SerializeField] private InfoPopUp _UIDisplay;
 
 	/// <summary>
 	/// The prefab associated with this inventory box. Use this to get information about the item stored
@@ -27,52 +28,72 @@ public abstract class InventoryBox : MonoBehaviour, IPointerDownHandler, IPointe
 	/// <summary>
 	/// The amount of this item in the inventory
 	/// </summary>
-	public int Amount {
+	public int Amount
+	{
 		get => _amount;
-		set {
+		set
+		{
 			_amount = value;
 
 			// If the amount is now 0, then remove this inventory item from the inventory
-			if (_amount <= 0) {
+			if (_amount <= 0)
+			{
 				inventory.InventoryBoxes.Remove(this);
 				Destroy(gameObject);
 			}
 
 			// Update the UI element for the text
-			amountText.text = _amount.ToString( );
+			amountText.text = _amount.ToString();
 		}
 	}
 
 	/// <summary>
 	/// Whether or not the current tile is being hovered
 	/// </summary>
-	public PlantHover UIDisplay {
+	public InfoPopUp UIDisplay
+	{
 		get => _UIDisplay;
-		set {
+		set
+		{
 			_UIDisplay = value;
 		}
 	}
 
-	private void Awake ( ) {
-		inventory = FindObjectOfType<Inventory>( );
-		gardenManager = FindObjectOfType<GardenManager>( );
-		playerDataManager = FindObjectOfType<PlayerDataManager>( );
-		combatManager = FindObjectOfType<CombatManager>( );
-		UIDisplay = FindObjectOfType<PlantHover>( );
+	private void Awake()
+	{
+		inventory = FindObjectOfType<Inventory>();
+		gardenManager = FindObjectOfType<GardenManager>();
+		playerDataManager = FindObjectOfType<PlayerDataManager>();
+		combatManager = FindObjectOfType<CombatManager>();
+		UIDisplay = FindObjectOfType<InfoPopUp>();
 
 	}
 
-	public void OnPointerDown (PointerEventData eventData) {
-		playerDataManager.MouseSprite = Prefab.GetComponent<GardenPlaceable>( ).InventorySprite;
+	public void OnPointerDown(PointerEventData eventData)
+	{
+		playerDataManager.MouseSprite = Prefab.GetComponent<GardenPlaceable>().InventorySprite;
 	}
 
-	public virtual void OnPointerUp (PointerEventData eventData) {
-		throw new NotImplementedException( );
+	public virtual void OnPointerUp(PointerEventData eventData)
+	{
+		throw new NotImplementedException();
 		/// NOTE: This function should be overridden in child classes to implement placeable type specific code
 	}
 
-	public void OnMouseEnter ( ) {
+    private void OnMouseEnter()
+	{
 		Debug.Log(Prefab.GetComponent<GardenPlaceable>().Name);
-		UIDisplay.UpdateText(Prefab.GetComponent<GardenPlaceable>( ));
+		UIDisplay.gameObject.SetActive(true);
+		UIDisplay.SetUpPlant(Prefab.GetComponent<GardenPlaceable>());
 	}
+
+	public void OnMouseExit()
+	{
+        Debug.Log(Prefab.GetComponent<GardenPlaceable>().Name + "");
+
+        UIDisplay.gameObject.SetActive(false);
+
+
+    }
+ 
 }

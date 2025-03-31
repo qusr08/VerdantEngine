@@ -169,7 +169,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -1.3, y: 4.7}
+  m_AnchoredPosition: {x: -1.300003, y: 4.700001}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9073560261059781567
@@ -453,6 +453,7 @@ MonoBehaviour:
   image: {fileID: 568613237928467622}
   cooldownText: {fileID: 8913763137480250062}
   hover: {fileID: 0}
+  phover: {fileID: 0}
 --- !u!1 &5676466245760832878
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,7 +489,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -101.5}
+  m_AnchoredPosition: {x: 86.5, y: -138.3}
   m_SizeDelta: {x: 110, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2323040500659454667
@@ -612,7 +613,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -39}
+  m_AnchoredPosition: {x: 86.50026, y: -75.79991}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &408940118044367087

@@ -21,10 +21,12 @@ public class GardenTile : MonoBehaviour {
 
     [Space]
 	[SerializeField] private PlantHover _plantHoverDisplay;
-	/// <summary>
-	/// Whether or not the current tile is being attacked
-	/// </summary>
-	public bool IsAttacked {
+    [SerializeField] private InfoPopUp _PopUpDisplay;
+
+    /// <summary>
+    /// Whether or not the current tile is being attacked
+    /// </summary>
+    public bool IsAttacked {
 		get => _isAttacked;
 		set {
 			
@@ -77,10 +79,19 @@ public class GardenTile : MonoBehaviour {
 		}
 	}
 
-	/// <summary>
-	/// The garden placeable that is on this garden tile
-	/// </summary>
-	public GardenPlaceable GardenPlaceable { get => _gardenPlaceable; set => _gardenPlaceable = value; }
+    public InfoPopUp InfoPopUp
+    {
+        get => _PopUpDisplay;
+        set
+        {
+            _PopUpDisplay = value;
+        }
+    }
+
+    /// <summary>
+    /// The garden placeable that is on this garden tile
+    /// </summary>
+    public GardenPlaceable GardenPlaceable { get => _gardenPlaceable; set => _gardenPlaceable = value; }
 
 	/// <summary>
 	/// The position of this garden tile within the garden
@@ -100,11 +111,13 @@ public class GardenTile : MonoBehaviour {
 		gardenManager = FindObjectOfType<GardenManager>( );
 		combatManager = FindObjectOfType<CombatManager>();
 		PlantHoverDisplay = FindObjectOfType<PlantHover>( );
-	}
+		_PopUpDisplay = FindObjectOfType<InfoPopUp>();
+    }
 
 	private void OnMouseEnter ( ) {
 		if (GardenPlaceable != null) {
-			PlantHoverDisplay.UpdateText(GardenPlaceable);
+			_PopUpDisplay.gameObject.SetActive(true);
+            _PopUpDisplay.SetUpPlant(GardenPlaceable);
 			//Debug.Log(GardenPlaceable.gameObject.name);
 		}
 
@@ -113,9 +126,11 @@ public class GardenTile : MonoBehaviour {
 
 	private void OnMouseExit ( ) {
 		IsSelected = false;
-	}
+        _PopUpDisplay.gameObject.SetActive(false);
 
-	private void OnMouseDown ( ) {
+    }
+
+    private void OnMouseDown ( ) {
 		// If this tile has no garden placeable, then do not try to move it
 		if (GardenPlaceable == null) {
 			return;
