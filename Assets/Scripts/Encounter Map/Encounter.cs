@@ -81,8 +81,7 @@ public class Encounter : MonoBehaviour
     /// </summary>
     public void PlayerLeave()
     {
-        //Currently just hide this encounter. Eventually replace it's graphic
-        //gameObject.SetActive(false);
+        //Currently this doesn't do anything.
     }
 
     public void AddConnection(GameObject connection)
