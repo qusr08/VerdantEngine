@@ -20,7 +20,7 @@ public class PlayerCombatManager : MonoBehaviour {
 	[SerializeField] private int energy = 0;
     [HideInInspector] public int energyModifier;
     public EnemySlider enemyAttckSliderAnimation;
-
+	public GameObject cannonFlashAsset;
 	private void Start ( ) {
 		foreach (PlayerAttackSO playerAttack in playerDataManager.PlayerAttacks) {
 			weaponMenuItems.Add(Instantiate(weaponMenuItemPrefab, weaponMenuContainer).GetComponent<PlayerAttackMenuItem>( ));
@@ -49,19 +49,25 @@ public class PlayerCombatManager : MonoBehaviour {
 				weaponMenuItem.PlayerAttack.Cooldown = weaponMenuItem.PlayerAttack.MaxCooldown;
 
 				//If attack is targetting enemies, handle it
-				if(weaponMenuItem.PlayerAttack.PlayerTargetingType == PlayerTargetingType.TARGET)
-				yield return combatManager.IUpdateTargetedEnemies(weaponMenuItem.PlayerAttack);
-				//Else, if it tagets the garden, hendle that
-				else if(weaponMenuItem.PlayerAttack.PlayerTargetingType == PlayerTargetingType.GARDEN)
+				if (weaponMenuItem.PlayerAttack.PlayerTargetingType == PlayerTargetingType.TARGET)
+				{
+					cannonFlashAsset.SetActive(true);
+					yield return new WaitForSeconds(1f);
+                 yield return combatManager.IUpdateTargetedEnemies(weaponMenuItem.PlayerAttack);
+                    cannonFlashAsset.SetActive(false);
+
+                }
+                //Else, if it tagets the garden, hendle that
+                else if (weaponMenuItem.PlayerAttack.PlayerTargetingType == PlayerTargetingType.GARDEN)
 				{
 					//If the weapon is healing, heal.
-                    if (weaponMenuItem.PlayerAttack.AttackType == AttackType.HEAL)
+					if (weaponMenuItem.PlayerAttack.AttackType == AttackType.HEAL)
 					{
-                        foreach (Plant plant in gardenManager.Plants)
-                        {
-							plant.Heal(weaponMenuItem.PlayerAttack.Damage);   
-                        }
-                    }
+						foreach (Plant plant in gardenManager.Plants)
+						{
+							plant.Heal(weaponMenuItem.PlayerAttack.Damage);
+						}
+					}
 				}
 
 				weaponMenuItem.GetComponent<Image>( ).color = Color.white;
