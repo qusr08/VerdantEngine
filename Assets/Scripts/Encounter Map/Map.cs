@@ -176,9 +176,15 @@ public class Map : MonoBehaviour
         switch (type)
             {
             case Type.Enemy:
-                int enemyDifficulty = GetSubType(enemyRates);
-                encounters.Add(Instantiate(enemyPrefabs[enemyDifficulty], nextPosition, transform.rotation, this.gameObject.transform));
+                int enemyDifficulty = 0;
 
+                //Forces easy for the first 3 encounters
+                if(encounterNumber > 3)
+                {
+                    enemyDifficulty = GetSubType(enemyRates);
+                }
+
+                encounters.Add(Instantiate(enemyPrefabs[enemyDifficulty], nextPosition, transform.rotation, this.gameObject.transform));
                 UpdateCombatEncounter(enemyDifficulty);
                 break;
             case Type.Shop:

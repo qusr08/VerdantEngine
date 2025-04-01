@@ -2673,11 +2673,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: enemyRates.Array.data[0]
-      value: 3
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: enemyRates.Array.data[1]
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: enemyRates.Array.data[2]
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: mediumEnemies.Array.size
