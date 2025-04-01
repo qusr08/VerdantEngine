@@ -21,6 +21,7 @@ public class PlayerCombatManager : MonoBehaviour {
     [HideInInspector] public int energyModifier;
     public EnemySlider enemyAttckSliderAnimation;
 	public GameObject cannonFlashAsset;
+	public float tempAnimTimer;
 	private void Start ( ) {
 		foreach (PlayerAttackSO playerAttack in playerDataManager.PlayerAttacks) {
 			weaponMenuItems.Add(Instantiate(weaponMenuItemPrefab, weaponMenuContainer).GetComponent<PlayerAttackMenuItem>( ));
@@ -35,6 +36,12 @@ public class PlayerCombatManager : MonoBehaviour {
         energy += energyModifier;
         energyModifier = 0;
         energyText.text = energy.ToString();
+    }
+    public void UpdateEnrgy(int value)
+    {
+		energy += value;
+        energyText.text = energy.ToString();
+
     }
 
     public IEnumerator PlayerTurn ( ) {
@@ -52,7 +59,7 @@ public class PlayerCombatManager : MonoBehaviour {
 				if (weaponMenuItem.PlayerAttack.PlayerTargetingType == PlayerTargetingType.TARGET)
 				{
 					cannonFlashAsset.SetActive(true);
-					yield return new WaitForSeconds(1f);
+				//	yield return new WaitForSeconds(tempAnimTimer);
                  yield return combatManager.IUpdateTargetedEnemies(weaponMenuItem.PlayerAttack);
                     cannonFlashAsset.SetActive(false);
 

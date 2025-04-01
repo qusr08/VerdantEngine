@@ -2064,6 +2064,7 @@ MonoBehaviour:
   cameraManager: {fileID: 155304117}
   winScreen: {fileID: 1654844570}
   explosionPrefab: {fileID: 3702977640595687986, guid: 42f7a485d6c636643ae43031cbc79521, type: 3}
+  endOfTurnWaitTime: 0.3
 --- !u!4 &261010252
 Transform:
   m_ObjectHideFlags: 0
@@ -8830,6 +8831,7 @@ MonoBehaviour:
   energyModifier: 0
   enemyAttckSliderAnimation: {fileID: 738094045}
   cannonFlashAsset: {fileID: 1632057261}
+  tempAnimTimer: 0.2
 --- !u!4 &1198069309
 Transform:
   m_ObjectHideFlags: 0

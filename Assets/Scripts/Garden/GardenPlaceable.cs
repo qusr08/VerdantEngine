@@ -102,8 +102,11 @@ public abstract class GardenPlaceable : MonoBehaviour {
 		playerDataManager = FindObjectOfType<PlayerDataManager>( );
 		spriteRenderers = GetComponentsInChildren<SpriteRenderer>( ).ToList();
 
-		effectedGardenPlaceables = new List<GardenPlaceable>( );
-	}
+		effectedGardenPlaceables = new List<GardenPlaceable>();
+
+
+
+    }
 
 	private void Update ( ) {
 		// Make sure the plants are always facing towards the camera
@@ -295,6 +298,15 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	/// Called when this garden placeable takes damage
 	/// </summary>
 	public virtual void OnTakeDamage ( ) { }
+
+	/// <summary>
+	/// Called on the first drop of a garden Placeble
+	/// </summary
+	bool isFirst = true;
+    public virtual void OnFirstPlanted()
+	{
+      
+    }
 
 	/// <summary>
 	/// Called when this garden placeable is killed

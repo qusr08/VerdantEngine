@@ -15,7 +15,7 @@ public class CombatManager : MonoBehaviour {
 	[SerializeField] private MapPlayer cameraManager;
     [SerializeField] private GameObject winScreen;
 	[SerializeField] private GameObject explosionPrefab;
-
+	public float endOfTurnWaitTime;
 	private List<Enemy> enemies;
 	private bool isPlayerPaused = false;
 	// private int maxTargets; // Number of enemies to select
@@ -101,7 +101,7 @@ public class CombatManager : MonoBehaviour {
 			enemy.Attacked(mechPart);
 		}
 
-		yield return new WaitForSeconds(1);
+		yield return new WaitForSeconds(endOfTurnWaitTime);
 
 		// current_Attack = part;
 		//attack_CostBox.text = current_Attack.manaCost.ToString();
