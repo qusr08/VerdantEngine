@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour {
@@ -144,77 +145,12 @@ public class Enemy : MonoBehaviour {
         //// I need to add the width logic here, limiting the enemies from aiming at the edges in case the width is bigger then 1
         if (CurrentAttack.EnemyTargetingType == EnemyTargetingType.LINE)
         {
-            //choose the aim of the enemy, is done only once per turn to prevent the game from changing the aim every map update
-            if (!isInitialized)
-            {
-                main_randomAim = UnityEngine.Random.Range(0, playerDataManager.GardenSize);
-                randomAttackDirection = (UnityEngine.Random.value <= 0.5f);
-                isInitialized = true;
-            }
-
-            if (CurrentAttack.IsLineAttackHorizontal)
-            {
-                if (randomAttackDirection)
-                {
-                    for (int i = playerDataManager.GardenSize - 1; i >= 0; i--)
-                    {
-                        GardenTile tile = playerDataManager.Garden[main_randomAim, i];
-
-                        if (tile != null)
-                        {
-                            currentAim.Add(tile);
-                        }
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < playerDataManager.GardenSize; i++)
-                    {
-                        GardenTile tile = playerDataManager.Garden[main_randomAim, i];
-                        if (tile != null)
-                        {
-                            currentAim.Add(tile);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                for (int i = playerDataManager.GardenSize - 1; i >= 0; i--)
-                {
-                    GardenTile tile = playerDataManager.Garden[i, main_randomAim];
-                    if (tile != null)
-                    {
-                        currentAim.Add(tile);
-                    }
-                }
-            }
+            LineAim();
         }
         //attack a square
         else if (CurrentAttack.EnemyTargetingType == EnemyTargetingType.SHAPE)
         {
-            //choose start point
-            int range = CurrentAttack.AttackWidth - 1;
-            if (!isInitialized)
-            {
-                main_randomAim = UnityEngine.Random.Range(0, playerDataManager.GardenSize - range);
-                secondery_randomAim = UnityEngine.Random.Range(0, playerDataManager.GardenSize - range);
-                randomAttackDirection = (UnityEngine.Random.value <= 0.5f);
-                isInitialized = true;
-            }
-            for (int x = 0; x < CurrentAttack.AttackWidth; x++)
-            {
-                for (int y = 0; y < CurrentAttack.AttackWidth; y++)
-                {
-                    GardenTile tile = playerDataManager.Garden[main_randomAim + x, secondery_randomAim + y];
-                    if (tile != null)
-                    {
-                        currentAim.Add(tile);
-                    }
-                }
-
-            }
-
+            AreaAim();
         }
 
         if (currentAim.Count == 0)
@@ -282,4 +218,136 @@ public class Enemy : MonoBehaviour {
 		currentAim.Clear( );
 		arrowObject.SetActive(false);
 	}
+
+    private void LineAim()
+    {
+        if (!isInitialized)
+        {
+            isInitialized = true;
+            randomAttackDirection = (UnityEngine.Random.value <= 0.5f);
+
+            if (CurrentAttack.IsLineAttackHorizontal)
+            {
+                // Randomly choose a row with at least one GardenPlacable
+                main_randomAim = GetRandomRowWithGardenPlacable();
+            }
+            else
+            {
+                // Randomly choose a column with no GardenPlacables
+                main_randomAim = GetRandomColumnWithoutGardenPlacable();
+            }
+        }
+
+        if (CurrentAttack.IsLineAttackHorizontal)
+        {
+            int start = randomAttackDirection ? playerDataManager.GardenSize - 1 : 0;
+            int end = randomAttackDirection ? -1 : playerDataManager.GardenSize;
+            int step = randomAttackDirection ? -1 : 1;
+
+            for (int i = start; i != end; i += step)
+            {
+                GardenTile tile = playerDataManager.Garden[main_randomAim, i];
+                if (tile != null)
+                {
+                    currentAim.Add(tile);
+                }
+            }
+        }
+        else
+        {
+            for (int i = playerDataManager.GardenSize - 1; i >= 0; i--)
+            {
+                GardenTile tile = playerDataManager.Garden[i, main_randomAim];
+                if (tile != null)
+                {
+                    currentAim.Add(tile);
+                }
+            }
+        }
+    }
+
+    private int GetRandomRowWithGardenPlacable()
+    {
+        List<int> validRows = new List<int>();
+        for (int row = 0; row < playerDataManager.GardenSize; row++)
+        {
+            for (int col = 0; col < playerDataManager.GardenSize; col++)
+            {
+                if (playerDataManager.Garden[row, col] != null && playerDataManager.Garden[row, col].GardenPlaceable != null)
+                {
+                    validRows.Add(row);
+                    break;
+                }
+                else
+                {
+                    int randomNumber = UnityEngine.Random.Range(1, 6); // Generates a number from 1 to 5
+                    if (randomNumber == 5)
+                    {
+                        validRows.Add(col);
+                    }
+                }
+
+            }
+        }
+        return validRows.Count > 0 ? validRows[UnityEngine.Random.Range(0, validRows.Count)] : UnityEngine.Random.Range(0, playerDataManager.GardenSize);
+    }
+
+    private int GetRandomColumnWithoutGardenPlacable()
+    {
+        List<int> validColumns = new List<int>();
+        for (int col = 0; col < playerDataManager.GardenSize; col++)
+        {
+            bool hasPlacable = false;
+            for (int row = 0; row < playerDataManager.GardenSize; row++)
+            {
+                if (playerDataManager.Garden[row, col] != null && playerDataManager.Garden[row, col].GardenPlaceable!=null)
+                {
+                    hasPlacable = true;
+                    break;
+                }
+              
+            }
+            if (!hasPlacable)
+            {
+                validColumns.Add(col);
+            }
+            else
+            {
+                int randomNumber = UnityEngine.Random.Range(1, 6); // Generates a number from 1 to 5
+                if (randomNumber == 5)
+                {
+                    validColumns.Add(col);
+                }
+            }
+        }
+        return validColumns.Count > 0 ? validColumns[UnityEngine.Random.Range(0, validColumns.Count)] : UnityEngine.Random.Range(0, playerDataManager.GardenSize);
+    }
+
+
+    private void AreaAim()
+    {
+        //choose start point
+        int range = CurrentAttack.AttackWidth - 1;
+        if (!isInitialized)
+        {
+            main_randomAim = UnityEngine.Random.Range(0, playerDataManager.GardenSize - range);
+            secondery_randomAim = UnityEngine.Random.Range(0, playerDataManager.GardenSize - range);
+            randomAttackDirection = (UnityEngine.Random.value <= 0.5f);
+            isInitialized = true;
+        }
+        for (int x = 0; x < CurrentAttack.AttackWidth; x++)
+        {
+            for (int y = 0; y < CurrentAttack.AttackWidth; y++)
+            {
+                GardenTile tile = playerDataManager.Garden[main_randomAim + x, secondery_randomAim + y];
+                if (tile != null)
+                {
+                    currentAim.Add(tile);
+               }
+
+            }
+
+        }
+    }
+
 }
