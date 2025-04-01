@@ -52,6 +52,11 @@ public class Encounter : MonoBehaviour
         
     }
 
+    public void SetCombat(CombatPresetSO newCombat)
+    {
+        combatEncounter = newCombat;
+    }
+
     /// <summary>
     /// Runs when the player reaches this encounter
     /// </summary>

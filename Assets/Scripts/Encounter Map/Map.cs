@@ -22,6 +22,12 @@ public class Map : MonoBehaviour
     [SerializeField] private GameObject[] bossPrefabs;
     [SerializeField] private GameObject startPrefab;
 
+    [Header("SOs")]
+    [SerializeField] private CombatPresetSO[] easyEnemies;
+    [SerializeField] private CombatPresetSO[] mediumEnemies;
+    [SerializeField] private CombatPresetSO[] hardEnemies;
+
+
     [Header("Debug")]
     [SerializeField] private byte encountersBeforeBoss;
     [SerializeField] private MapPlayer player;
@@ -170,7 +176,10 @@ public class Map : MonoBehaviour
         switch (type)
             {
             case Type.Enemy:
-                encounters.Add(Instantiate(enemyPrefabs[GetSubType(enemyRates)], nextPosition, transform.rotation, this.gameObject.transform));
+                int enemyDifficulty = GetSubType(enemyRates);
+                encounters.Add(Instantiate(enemyPrefabs[enemyDifficulty], nextPosition, transform.rotation, this.gameObject.transform));
+
+                UpdateCombatEncounter(enemyDifficulty);
                 break;
             case Type.Shop:
                 encounters.Add(Instantiate(shopPrefabs[0], nextPosition, transform.rotation, this.gameObject.transform));
@@ -258,6 +267,26 @@ public class Map : MonoBehaviour
         }
 
         return 0; //This should never call
+    }
+
+    private void UpdateCombatEncounter(int i)
+    {
+        CombatPresetSO newCombat = easyEnemies[0];
+
+        switch (i)
+        {
+            case 0: //Easy enemy
+                newCombat = easyEnemies[Random.Range(0, easyEnemies.Length)];
+                break;
+            case 1: //Medium enemy
+                newCombat = mediumEnemies[Random.Range(0, mediumEnemies.Length)];
+                break;
+            case 2: //Hard enemy
+                newCombat = hardEnemies[Random.Range(0, hardEnemies.Length)];
+                break;
+        }
+
+        encounters[encounters.Count - 1].GetComponent<Encounter>().SetCombat(newCombat);
     }
 
     /// <summary>
