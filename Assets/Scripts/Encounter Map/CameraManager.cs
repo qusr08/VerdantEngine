@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum ActiveScene { Map, Garden, Shop};
@@ -16,6 +17,7 @@ public class MapPlayer : MonoBehaviour
     [SerializeField] private GameObject shopStuff;
     [SerializeField] private GameObject camera;
     [SerializeField] private CombatUIManager uiManager;
+    [SerializeField] private GameObject playerSprite;
 
     // Start is called before the first frame update
     void Start()
@@ -61,6 +63,8 @@ public class MapPlayer : MonoBehaviour
                 gardenStuff.SetActive(false);
                 shopStuff.SetActive(false);
                 mapStuff.SetActive(true);
+                playerSprite.SetActive(true);
+
 
                 camera.transform.position = this.transform.position;
                 camera.transform.rotation = this.transform.rotation;
@@ -69,6 +73,7 @@ public class MapPlayer : MonoBehaviour
                 gardenStuff.SetActive(true);
                 shopStuff.SetActive(false);
                 mapStuff.SetActive(false);
+                playerSprite.SetActive(false);
 
                 camera.transform.position = gardenCameraLocation.transform.position;
                 camera.transform.rotation = gardenCameraLocation.transform.rotation;
@@ -77,6 +82,8 @@ public class MapPlayer : MonoBehaviour
                 gardenStuff.SetActive(true);
                 shopStuff.SetActive(true);
                 mapStuff.SetActive(false);
+                playerSprite.SetActive(false);
+
 
                 camera.transform.position = gardenCameraLocation.transform.position;
                 camera.transform.rotation = gardenCameraLocation.transform.rotation;
@@ -104,6 +111,7 @@ public class MapPlayer : MonoBehaviour
             }*/
 
             transform.position = new Vector3(0, location.transform.position.y + 3, -10);
+            playerSprite.transform.position = new Vector3(location.transform.position.x, playerSprite.transform.position.y, playerSprite.transform.position.z);
             UpdateCameraPosition();
             CurrentEncounter = location;
             if (location.GetComponent<Encounter>().EncounterType == EncounterTypes.Enemy)

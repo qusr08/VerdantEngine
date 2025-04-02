@@ -11,6 +11,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	[Header("GardenPlaceable")]
 	[SerializeField] protected GardenManager gardenManager;
 	[SerializeField] protected PlayerDataManager playerDataManager;
+	[SerializeField] protected CombatManager combatManager;
 	[SerializeField] protected List<SpriteRenderer> spriteRenderers;
 	[Space]
 	[SerializeField, Min(0), Tooltip("The starting health of this garden placeable.")] private int _startingHealth;
@@ -100,7 +101,8 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	private void Awake ( ) {
 		gardenManager = FindObjectOfType<GardenManager>( );
 		playerDataManager = FindObjectOfType<PlayerDataManager>( );
-		spriteRenderers = GetComponentsInChildren<SpriteRenderer>( ).ToList();
+        combatManager = FindObjectOfType<CombatManager>( );
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>( ).ToList();
 
 		effectedGardenPlaceables = new List<GardenPlaceable>();
 

@@ -46,5 +46,6 @@ public class ArtifactInventoryBox : InventoryBox {
 		gardenManager.PlaceArtifact(ArtifactType, gardenManager.SelectedGardenTile.Position.x, gardenManager.SelectedGardenTile.Position.y);
 		playerDataManager.CurrentActions--;
 		Amount--;
-	}
+        combatManager.UpdateEnemyAttackVisuals();
+    }
 }

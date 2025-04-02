@@ -16,13 +16,13 @@ public class CombatManager : MonoBehaviour {
     [SerializeField] private GameObject winScreen;
 	[SerializeField] private GameObject explosionPrefab;
 	public float endOfTurnWaitTime;
-	private List<Enemy> enemies;
+	public List<Enemy> Enemies { get; private set; }
 	private bool isPlayerPaused = false;
 	// private int maxTargets; // Number of enemies to select
 	// private bool isTargeting = false;
 
 	private void Awake ( ) {
-		enemies = new List<Enemy>( );
+		Enemies = new List<Enemy>( );
 	}
 
 	private void Start ( ) {
@@ -38,7 +38,7 @@ public class CombatManager : MonoBehaviour {
 
 	public void NewCombat(CombatPresetSO newCombat)
 	{
-		if (enemies.Count > 0 || currentCombatPreset != null)
+		if (Enemies.Count > 0 || currentCombatPreset != null)
 		{
 			Debug.Log("New Combat Failed");
 			return;
@@ -69,19 +69,19 @@ public class CombatManager : MonoBehaviour {
 		// Spawn enemy prefabs and place them in the backline or front line
 		// Currently the game is limited to 3 enemies each
 		for (int i = 0; i < currentCombatPreset.EnemyPrefabs.Count; i++) {
-			enemies.Add(Instantiate(currentCombatPreset.EnemyPrefabs[i]).GetComponent<Enemy>( ));
-			enemies[i].combatManager = this;
-			enemies[i].EnemyID = i;
-			enemies[i].gameObject.name = "Enemy " + i;
-			combatUIManager.AddEnemyHealth(enemies[i]);
-			combatUIManager.UpdateHealth(enemies[i]);
+			Enemies.Add(Instantiate(currentCombatPreset.EnemyPrefabs[i]).GetComponent<Enemy>( ));
+			Enemies[i].combatManager = this;
+			Enemies[i].EnemyID = i;
+			Enemies[i].gameObject.name = "Enemy " + i;
+			combatUIManager.AddEnemyHealth(Enemies[i]);
+			combatUIManager.UpdateHealth(Enemies[i]);
 		}
 
 		AllEnemiesStartRound( );
 	}
 
 	public void AllEnemiesStartRound ( ) {
-		foreach (Enemy enemy in enemies) {
+		foreach (Enemy enemy in Enemies) {
 			enemy.StartRound( );
 		}
 	}
@@ -91,7 +91,7 @@ public class CombatManager : MonoBehaviour {
 		List<Enemy> targetEnemies = GetTargets(mechPart);
 		
 		// Deselect all enemies
-		foreach (Enemy enemy in enemies) {
+		foreach (Enemy enemy in Enemies) {
 			enemy.GetComponent<SpriteRenderer>( ).color = Color.white;
 		}
 
@@ -112,13 +112,13 @@ public class CombatManager : MonoBehaviour {
 	//Used to damage the first enemy
     public void damageEnemy(int damage)
     {
-		if (enemies.Count == 0)
+		if (Enemies.Count == 0)
 			return;
         // Get the targeted enemies based on the mech part
-        Enemy targetEnemies = enemies[0];
+        Enemy targetEnemies = Enemies[0];
 
         // Deselect all enemies
-        foreach (Enemy enemy in enemies)
+        foreach (Enemy enemy in Enemies)
         {
             enemy.GetComponent<SpriteRenderer>().color = Color.white;
         }
@@ -140,14 +140,14 @@ public class CombatManager : MonoBehaviour {
 		switch (mechPart.PlayerTargetingType) {
 			case PlayerTargetingType.TARGET:
 				for (int i = 0; i < mechPart.TargetNumber; i++) {
-					if (enemies.Count > i) {
-						targetEnemies.Add(enemies[i]);
+					if (Enemies.Count > i) {
+						targetEnemies.Add(Enemies[i]);
 					}
 				}
 
 				break;
 			case PlayerTargetingType.ALL:
-				foreach (Enemy item in enemies) {
+				foreach (Enemy item in Enemies) {
 					targetEnemies.Add(item);
 				}
 
@@ -167,13 +167,13 @@ public class CombatManager : MonoBehaviour {
 		}
 
 		// Select only the garden tiles that the enemy is going to attack
-		foreach (Enemy enemy in enemies) {
+		foreach (Enemy enemy in Enemies) {
 			enemy.MarkMapBeforeAttack( );
 		}
 	}
 
 	public IEnumerator EnemyTurn ( ) {
-		foreach (Enemy enemy in enemies)
+		foreach (Enemy enemy in Enemies)
 		{
 			if (enemy.CurrentCooldown == 0)
 			{
@@ -215,15 +215,15 @@ public class CombatManager : MonoBehaviour {
 	/// </summary>
 	/// <param name="enemy">The enemy to kill</param>
 	public void KillEnemy (Enemy enemy) {
-		for (int i = enemies.Count - 1; i >= 0; i--) {
-			if (enemies[i] == enemy) {
+		for (int i = Enemies.Count - 1; i >= 0; i--) {
+			if (Enemies[i] == enemy) {
 				combatUIManager.KillEnemy(enemy);
-				enemies.Remove(enemy);
+				Enemies.Remove(enemy);
 				Destroy(enemy.gameObject);
 			}
 		}
 
-		if (enemies.Count == 0) {
+		if (Enemies.Count == 0) {
 			combatUIManager.PurgeList();
 			WinGame();
 		}
