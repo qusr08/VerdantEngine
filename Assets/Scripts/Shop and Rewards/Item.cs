@@ -15,6 +15,10 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public bool needTooltip;
 
+    public Plant plant;
+    public Artifact artifact;
+    public PlayerAttackSO part;
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (needTooltip)

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 10
   _manaCost: 0
+  _cost: 30
   _description: Test only
   _name: Nuke
   _attackType: 2
