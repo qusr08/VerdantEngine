@@ -15,7 +15,7 @@ public class CombatManager : MonoBehaviour {
 	[SerializeField] private MapPlayer cameraManager;
     [SerializeField] private GameObject winScreen;
 	[SerializeField] private GameObject explosionPrefab;
-
+	public float endOfTurnWaitTime;
 	private List<Enemy> enemies;
 	private bool isPlayerPaused = false;
 	// private int maxTargets; // Number of enemies to select
@@ -101,7 +101,7 @@ public class CombatManager : MonoBehaviour {
 			enemy.Attacked(mechPart);
 		}
 
-		yield return new WaitForSeconds(1);
+		yield return new WaitForSeconds(endOfTurnWaitTime);
 
 		// current_Attack = part;
 		//attack_CostBox.text = current_Attack.manaCost.ToString();
@@ -163,7 +163,7 @@ public class CombatManager : MonoBehaviour {
 	public void UpdateEnemyAttackVisuals ( ) {
 		// Reset all of the garden tiles to not be attacked
 		foreach (GardenTile gardenTile in playerDataManager.Garden) {
-			gardenTile.IsAttacked = false;
+			gardenTile.AttackedDamage = 0;
 		}
 
 		// Select only the garden tiles that the enemy is going to attack
@@ -183,12 +183,12 @@ public class CombatManager : MonoBehaviour {
 		yield return new WaitForSeconds((float)playerCombatManager.enemyAttckSliderAnimation.director.duration);
 		foreach (GardenTile gardenTile in playerDataManager.Garden)
 		{
-			if (gardenTile.IsAttacked)
+			if (gardenTile.AttackedDamage > 0)
 			{
 				Instantiate(explosionPrefab, gardenTile.gameObject.transform.position, Quaternion.identity);
 			}
 
-			gardenTile.IsAttacked = false;
+			gardenTile.AttackedDamage = 0;
 		}
 		isPlayerPaused = false;
 

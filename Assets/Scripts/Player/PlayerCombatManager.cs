@@ -20,7 +20,8 @@ public class PlayerCombatManager : MonoBehaviour {
 	[SerializeField] private int energy = 0;
     [HideInInspector] public int energyModifier;
     public EnemySlider enemyAttckSliderAnimation;
-
+	public GameObject cannonFlashAsset;
+	public float tempAnimTimer;
 	private void Start ( ) {
 		foreach (PlayerAttackSO playerAttack in playerDataManager.PlayerAttacks) {
 			weaponMenuItems.Add(Instantiate(weaponMenuItemPrefab, weaponMenuContainer).GetComponent<PlayerAttackMenuItem>( ));
@@ -36,6 +37,12 @@ public class PlayerCombatManager : MonoBehaviour {
         energyModifier = 0;
         energyText.text = energy.ToString();
     }
+    public void UpdateEnrgy(int value)
+    {
+		energy += value;
+        energyText.text = energy.ToString();
+
+    }
 
     public IEnumerator PlayerTurn ( ) {
 		
@@ -49,19 +56,25 @@ public class PlayerCombatManager : MonoBehaviour {
 				weaponMenuItem.PlayerAttack.Cooldown = weaponMenuItem.PlayerAttack.MaxCooldown;
 
 				//If attack is targetting enemies, handle it
-				if(weaponMenuItem.PlayerAttack.PlayerTargetingType == PlayerTargetingType.TARGET)
-				yield return combatManager.IUpdateTargetedEnemies(weaponMenuItem.PlayerAttack);
-				//Else, if it tagets the garden, hendle that
-				else if(weaponMenuItem.PlayerAttack.PlayerTargetingType == PlayerTargetingType.GARDEN)
+				if (weaponMenuItem.PlayerAttack.PlayerTargetingType == PlayerTargetingType.TARGET)
+				{
+					cannonFlashAsset.SetActive(true);
+				//	yield return new WaitForSeconds(tempAnimTimer);
+                 yield return combatManager.IUpdateTargetedEnemies(weaponMenuItem.PlayerAttack);
+                    cannonFlashAsset.SetActive(false);
+
+                }
+                //Else, if it tagets the garden, hendle that
+                else if (weaponMenuItem.PlayerAttack.PlayerTargetingType == PlayerTargetingType.GARDEN)
 				{
 					//If the weapon is healing, heal.
-                    if (weaponMenuItem.PlayerAttack.AttackType == AttackType.HEAL)
+					if (weaponMenuItem.PlayerAttack.AttackType == AttackType.HEAL)
 					{
-                        foreach (Plant plant in gardenManager.Plants)
-                        {
-							plant.Heal(weaponMenuItem.PlayerAttack.Damage);   
-                        }
-                    }
+						foreach (Plant plant in gardenManager.Plants)
+						{
+							plant.Heal(weaponMenuItem.PlayerAttack.Damage);
+						}
+					}
 				}
 
 				weaponMenuItem.GetComponent<Image>( ).color = Color.white;
@@ -80,13 +93,13 @@ public class PlayerCombatManager : MonoBehaviour {
 
 	public int GetAddedDamage ( ) {
 		int powerAdded = 0;
-		powerAdded += gardenManager.CountPlants(new List<PlantType>( ) { PlantType.EMPOWEROOT }, null);
+		powerAdded += gardenManager.CountPlants(new List<PlantType>( ) { PlantType.BLAST_BLOOM }, null);
 		return powerAdded;
 	}
 	public void EndOfTurnEffects()
     {
 		//heathichoke & FLYTRAP vempire effects
-		foreach (Plant plant in gardenManager.GetFilteredPlants((new List<PlantType>() { PlantType.HEARTICHOKE,PlantType.FLYTRAP })))
+		foreach (Plant plant in gardenManager.GetFilteredPlants((new List<PlantType>() { PlantType.HEARTICHOKE,PlantType.VAMPIRE_FLYTRAP })))
         {
 			plant.OnTurnEnd();
         }
@@ -108,8 +121,7 @@ public class PlayerCombatManager : MonoBehaviour {
 					int damageDealt = Mathf.Max(0, enemyAttack.Damage - tile.GardenPlaceable.ShieldStat.CurrentValue);
 
 					// Deal damage to the garden placeable that was hit by the attack
-					tile.GardenPlaceable.LastEnemyWhichDamagedPlaceble = enemy;
-					tile.GardenPlaceable.TakeDamage(damageDealt);
+					tile.GardenPlaceable.TakeDamage(enemy, damageDealt);
 				}
             }
         }
@@ -126,8 +138,7 @@ public class PlayerCombatManager : MonoBehaviour {
                 int damageDealt = Mathf.Max(0, enemyAttack.Damage - tileHit.GardenPlaceable.ShieldStat.CurrentValue);
 
                 // Deal damage to the garden placeable that was hit by the attack
-                tileHit.GardenPlaceable.LastEnemyWhichDamagedPlaceble = enemy;
-                tileHit.GardenPlaceable.TakeDamage(damageDealt);
+                tileHit.GardenPlaceable.TakeDamage(enemy, damageDealt);
             }
             else
             {

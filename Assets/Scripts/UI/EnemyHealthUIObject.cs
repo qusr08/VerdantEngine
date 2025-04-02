@@ -12,8 +12,7 @@ public class EnemyHealthUIObject : MonoBehaviour, IPointerEnterHandler, IPointer
 	[SerializeField] private Enemy _enemy;
 	[SerializeField] private Image image;
 	[SerializeField] TextMeshProUGUI cooldownText;
-	[SerializeField] EnemyHover hover;
-    [SerializeField] PlantHover phover;
+	[SerializeField] InfoPopUp hover;
 
     public Enemy Enemy {
 		get => _enemy;
@@ -25,7 +24,7 @@ public class EnemyHealthUIObject : MonoBehaviour, IPointerEnterHandler, IPointer
 			image.sprite = _enemy.Icon;
 		}
 	}
-    public EnemyHover Hover
+    public InfoPopUp Hover
     {
         get => hover;
         set
@@ -33,14 +32,7 @@ public class EnemyHealthUIObject : MonoBehaviour, IPointerEnterHandler, IPointer
 			hover = value;
         }
     }
-    public PlantHover PHover
-    {
-        get => phover;
-        set
-        {
-            phover = value;
-        }
-    }
+
     public void UpdateHealth ( ) {
 		healthSlider.value = Enemy.CurrentHealth;
 	}
@@ -62,9 +54,8 @@ public class EnemyHealthUIObject : MonoBehaviour, IPointerEnterHandler, IPointer
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        phover.gameObject.SetActive(false);
         hover.gameObject.SetActive(true);
-		hover.UpdateText(_enemy);
+		hover.SetUpEnemey(Enemy);
 		if(Enemy.FinalAim!=null && Enemy.FinalAim.Count != 0 && Enemy.CurrentCooldown ==0)
 		{
 			HighlightAttack();
@@ -79,7 +70,6 @@ public class EnemyHealthUIObject : MonoBehaviour, IPointerEnterHandler, IPointer
             UnHighlight();
 
         }
-        phover.gameObject.SetActive(true);
         hover.gameObject.SetActive(false);
 
         Debug.Log("Mouse exit");

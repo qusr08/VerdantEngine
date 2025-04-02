@@ -19,7 +19,7 @@ public class Inventory : MonoBehaviour {
 		AddPlant(PlantType.POWER_FLOWER);
 		AddPlant(PlantType.POWER_FLOWER);
 
-		AddPlant(PlantType.EMPOWEROOT);
+		AddPlant(PlantType.BLAST_BLOOM);
 
 		AddPlant(PlantType.SHIELDING_SHRUB);
 		AddPlant(PlantType.SHIELDING_SHRUB);
@@ -30,21 +30,39 @@ public class Inventory : MonoBehaviour {
 
 		AddPlant(PlantType.HEARTICHOKE);
 
-		AddPlant(PlantType.THICKET);
+		AddPlant(PlantType.THORNY_THICKET);
 
-		AddPlant(PlantType.FLYTRAP);
+		AddPlant(PlantType.VAMPIRE_FLYTRAP);
 
-		AddArtifact(ArtifactType.Wheelbarrow);
-        AddArtifact(ArtifactType.Flamingo);
-        AddArtifact(ArtifactType.Compost);
+		AddArtifact(ArtifactType.WHEELBARROW);
+        AddArtifact(ArtifactType.FLAMINGO);
+        AddArtifact(ArtifactType.COMPOST);
 
     }
 
-    /// <summary>
-    /// Add a plant type to the inventory
-    /// </summary>
-    /// <param name="plantType">The plant type to add</param>
-    public void AddPlant (PlantType plantType) {
+	private void Update ( ) {
+		// NOTE: DEBUG USE ONLY
+		// Add one of everything to your inventory if you press left shift + D at the same time
+		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.D)) {
+			AddPlant(PlantType.POWER_FLOWER);
+			AddPlant(PlantType.SHIELDING_SHRUB);
+			AddPlant(PlantType.HARDY_HEDGE);
+			AddPlant(PlantType.VAMPIRE_FLYTRAP);
+			AddPlant(PlantType.THORNY_THICKET);
+			AddPlant(PlantType.HEARTICHOKE);
+			AddPlant(PlantType.BLAST_BLOOM);
+
+			AddArtifact(ArtifactType.WHEELBARROW);
+			AddArtifact(ArtifactType.COMPOST);
+			AddArtifact(ArtifactType.FLAMINGO);
+		}
+	}
+
+	/// <summary>
+	/// Add a plant type to the inventory
+	/// </summary>
+	/// <param name="plantType">The plant type to add</param>
+	public void AddPlant (PlantType plantType) {
 		// Loop through all plantItems in the inventory currently
 		foreach (InventoryBox box in InventoryBoxes) {
 			if (box is not PlantInventoryBox) {

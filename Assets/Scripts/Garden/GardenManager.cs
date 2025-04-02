@@ -51,8 +51,10 @@ public class GardenManager : MonoBehaviour {
 
 		/// TEST: Create test plants and move them around
 		PlacePlant(PlantType.POWER_FLOWER, 0, 3);
-		PlacePlant(PlantType.EMPOWEROOT, 0, 2);
+		PlacePlant(PlantType.BLAST_BLOOM, 0, 2);
 		PlacePlant(PlantType.HARDY_HEDGE, 1, 3);
+		PlacePlant(PlantType.THORNY_THICKET, 3, 3);
+		PlacePlant(PlantType.HEARTICHOKE, 4, 3);
 	}
 
 	/*
@@ -109,7 +111,7 @@ public class GardenManager : MonoBehaviour {
 		// Place the plant onto the grid and update its position
 		Plant plant = Instantiate(PlantPrefabs[plantType], playerDataManager.Garden[x, y].transform).GetComponent<Plant>( );
 		plant.Initialize(playerDataManager.Garden[x, y]);
-		plant.transform.localRotation = new Quaternion(-0.406074226f, -0.153201237f, 0.318009317f, 0.842913508f);
+		// plant.transform.localRotation = new Quaternion(-0.406074226f, -0.153201237f, 0.318009317f, 0.842913508f);
 		playerDataManager.Garden[x, y].GardenPlaceable = plant;
 		Plants.Add(plant);
 		UpdateGarden( );
@@ -268,8 +270,9 @@ public class GardenManager : MonoBehaviour {
 		if (SelectedGardenTile != null && SelectedGardenTile.GardenPlaceable != null) {
 			/// TO DO: Need to update the plant hover display for when the selected tile is not null but the garden placeable was destroyed (as in just show nothing on the plant display)
 			/// Should be able to pass "null" into the UpdateText() function to clear all data
-			SelectedGardenTile.PlantHoverDisplay.UpdateText(SelectedGardenTile.GardenPlaceable);
-		}
+            SelectedGardenTile.PopUpDisplay.gameObject.SetActive(true);
+            SelectedGardenTile.PopUpDisplay.SetUpPlant(SelectedGardenTile.GardenPlaceable);
+        }
 	}
 
 	/// <summary>

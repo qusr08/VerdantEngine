@@ -22,7 +22,7 @@ public class CombatUIManager : MonoBehaviour
 	[SerializeField] private GameObject resetTurnButton;
 	[SerializeField] private GameObject endTurnButton;
 	[SerializeField] private GameObject viewMapButton;
-    [SerializeField] private GameObject enemyUIPanal;
+    [SerializeField] private GameObject popUp;
     [SerializeField] private GameObject plantUIPanal;
 
 
@@ -45,7 +45,7 @@ public class CombatUIManager : MonoBehaviour
 					lowerPanel.anchoredPosition = new Vector3(383, 0f, 0f); // Should probably be changed later with a variable
 
 					moveCounter.SetActive(false);
-					resetTurnButton.SetActive(false);
+			//resetTurnButton.SetActive(false);
 					endTurnButton.SetActive(false);
 					viewMapButton.SetActive(true);
 
@@ -54,7 +54,7 @@ public class CombatUIManager : MonoBehaviour
 					lowerPanel.anchoredPosition = Vector3.zero;
 
 					moveCounter.SetActive(true);
-					resetTurnButton.SetActive(true);
+//esetTurnButton.SetActive(true);
 					endTurnButton.SetActive(true);
 					viewMapButton.SetActive(false);
 
@@ -74,8 +74,7 @@ public class CombatUIManager : MonoBehaviour
 	public void AddEnemyHealth (Enemy enemy) {
 		EnemyHealthUIObject enemyHealthUIObject = Instantiate(enemyHealthUIPrefab, healthUIContainer).GetComponent<EnemyHealthUIObject>( );
 		enemyHealthUIObject.Enemy = enemy;
-		enemyHealthUIObject.Hover = enemyUIPanal.GetComponent<EnemyHover>();
-		enemyHealthUIObject.PHover = plantUIPanal.GetComponent<PlantHover>();
+		enemyHealthUIObject.Hover = popUp.GetComponent<InfoPopUp>();
         enemyHealthUIObjects.Add(enemyHealthUIObject);
 	}
 

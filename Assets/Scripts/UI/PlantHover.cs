@@ -10,6 +10,7 @@ public class PlantHover : MonoBehaviour {
 	[SerializeField] private TMP_Text plantHealthText;
 	[SerializeField] private TMP_Text plantShieldText;
 	[SerializeField] private Image plantImage;
+	
 
 	public void UpdateText (GardenPlaceable gardenPlaceable) {
 		plantNameText.text = gardenPlaceable.Name;
