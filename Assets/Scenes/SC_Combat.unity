@@ -18038,7 +18038,6 @@ MonoBehaviour:
   - {fileID: 3020584395285068545, guid: 61d52a537df66c642a83f0d770767607, type: 3}
   partPrefabs:
   - {fileID: 11400000, guid: 001b5f5f0c0685f489002903a568926f, type: 2}
-  - {fileID: 11400000, guid: ec9aa060115866d479049185b157868c, type: 2}
   - {fileID: 11400000, guid: 944ffad48c7ea094db0d9de5a1ec003b, type: 2}
   plantProbablility: 000000000000000000000000000000000000000000000000
   healthText: {fileID: 624050706}
