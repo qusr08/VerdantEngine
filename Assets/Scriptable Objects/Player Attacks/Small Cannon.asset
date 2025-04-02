@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 1
   _manaCost: 2
+  _cost: 10
   _description: Deals 1 damage to the target.
   _name: 'Small Cannon '
   _attackType: 2

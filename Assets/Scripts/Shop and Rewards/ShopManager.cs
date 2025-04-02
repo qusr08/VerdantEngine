@@ -171,9 +171,8 @@ public class ShopManager : MonoBehaviour
         {
             if (plantProbablility[i] <= 50)
             {
-                plantItems[i].GetComponentInChildren<Item>().FillShopItemDetails(commonPlants[commonIndex].name.Substring(2), commonPlants[commonIndex].GetComponent<Plant>().Cost, commonPlants[commonIndex].GetComponent<Plant>().InventorySprite, commonPlants[commonIndex].GetComponent<Plant>().Description);
-                GameObject newPlantItem = Instantiate(commonPlants[commonIndex], plantItems[i].transform);
-                newPlantItem.GetComponent<MeshRenderer>().enabled = false;
+                plantItems[i].GetComponent<Item>().FillShopItemDetails(commonPlants[commonIndex].name.Substring(2), commonPlants[commonIndex].GetComponent<Plant>().Cost, commonPlants[commonIndex].GetComponent<Plant>().InventorySprite, commonPlants[commonIndex].GetComponent<Plant>().Description);
+                plantItems[i].GetComponent<Item>().plant = commonPlants[commonIndex].GetComponent<Plant>();
                 if (commonIndex < commonPlants.Length - 1)
                 {
                     commonIndex++;
@@ -185,9 +184,8 @@ public class ShopManager : MonoBehaviour
             }
             else if (plantProbablility[i] > 50 && plantProbablility[i] <= 80)
             {
-                plantItems[i].GetComponentInChildren<Item>().FillShopItemDetails(uncommonPlants[uncommonIndex].name.Substring(2), uncommonPlants[uncommonIndex].GetComponent<Plant>().Cost, uncommonPlants[uncommonIndex].GetComponent<Plant>().InventorySprite, uncommonPlants[uncommonIndex].GetComponent<Plant>().Description);
-                GameObject newPlantItem = Instantiate(uncommonPlants[uncommonIndex], plantItems[i].transform);
-                newPlantItem.GetComponent<MeshRenderer>().enabled = false;
+                plantItems[i].GetComponent<Item>().FillShopItemDetails(uncommonPlants[uncommonIndex].name.Substring(2), uncommonPlants[uncommonIndex].GetComponent<Plant>().Cost, uncommonPlants[uncommonIndex].GetComponent<Plant>().InventorySprite, uncommonPlants[uncommonIndex].GetComponent<Plant>().Description);
+                plantItems[i].GetComponent<Item>().plant = uncommonPlants[uncommonIndex].GetComponent<Plant>();
                 if (uncommonIndex < uncommonPlants.Length - 1)
                 {
                     uncommonIndex++;
@@ -199,9 +197,8 @@ public class ShopManager : MonoBehaviour
             }
             else
             {
-                plantItems[i].GetComponentInChildren<Item>().FillShopItemDetails(rarePlants[rareIndex].name.Substring(2), rarePlants[rareIndex].GetComponent<Plant>().Cost, rarePlants[rareIndex].GetComponent<Plant>().InventorySprite, rarePlants[rareIndex].GetComponent<Plant>().Description);
-                GameObject newPlantItem = Instantiate(rarePlants[rareIndex], plantItems[i].transform);
-                newPlantItem.GetComponent<MeshRenderer>().enabled = false;
+                plantItems[i].GetComponent<Item>().FillShopItemDetails(rarePlants[rareIndex].name.Substring(2), rarePlants[rareIndex].GetComponent<Plant>().Cost, rarePlants[rareIndex].GetComponent<Plant>().InventorySprite, rarePlants[rareIndex].GetComponent<Plant>().Description);
+                plantItems[i].GetComponent<Item>().plant = rarePlants[rareIndex].GetComponent<Plant>();
                 if (rareIndex < rarePlants.Length - 1)
                 {
                     rareIndex++;
@@ -214,27 +211,26 @@ public class ShopManager : MonoBehaviour
         }
         for (int i = 0; i < artifactItems.Length; i++)
         {
-            artifactItems[i].GetComponentInChildren<Item>().FillShopItemDetails(artifactPrefabs[i].name.Substring(2), artifactPrefabs[i].GetComponent<Artifact>().Cost, artifactPrefabs[i].GetComponent<Artifact>().InventorySprite,
+            artifactItems[i].GetComponent<Item>().FillShopItemDetails(artifactPrefabs[i].name.Substring(2), artifactPrefabs[i].GetComponent<Artifact>().Cost, artifactPrefabs[i].GetComponent<Artifact>().InventorySprite,
                 artifactPrefabs[i].GetComponent<Artifact>().Description);
-            GameObject newArtifactItem = Instantiate(artifactPrefabs[i], artifactItems[i].transform);
-            newArtifactItem.GetComponent<MeshRenderer>().enabled = false;
+            artifactItems[i].GetComponent<Item>().artifact = artifactPrefabs[i].GetComponent<Artifact>();
         }
         for (int i = 0; i < partItems.Length; i++)
         {
-            partItems[i].GetComponentInChildren<Item>().FillShopItemDetails(partPrefabs[i].name, partPrefabs[i].ManaCost, partPrefabs[i].Icon,
+            partItems[i].GetComponent<Item>().FillShopItemDetails(partPrefabs[i].name, partPrefabs[i].Cost, partPrefabs[i].Icon,
                 partPrefabs[i].Description);
-            PlayerAttackSO newPartItem = Instantiate(partPrefabs[i], partItems[i].transform);
+            partItems[i].GetComponent<Item>().part = partPrefabs[i];
         }
 
         healthText.text = "Health : " + playerDataManager.CurrentHealth.ToString() + "/" + playerDataManager.MaxHealth.ToString();
     }
     public void BuyPlant(int itemIndex)
     {
-        if (playerDataManager.Money >= plantItems[itemIndex - 1].GetComponentInChildren<Plant>().Cost) 
+        if (playerDataManager.Money >= plantItems[itemIndex - 1].GetComponent<Item>().plant.Cost) 
         {
-            playerDataManager.Money = playerDataManager.Money - plantItems[itemIndex - 1].GetComponentInChildren<Plant>().Cost;
+            playerDataManager.Money = playerDataManager.Money - plantItems[itemIndex - 1].GetComponentInChildren<Item>().plant.Cost;
             balanceText.text = "Balance : " + playerDataManager.Money.ToString();
-            inventory.AddPlant(plantItems[itemIndex - 1].GetComponentInChildren<Plant>().PlantType);
+            inventory.AddPlant(plantItems[itemIndex - 1].GetComponent<Item>().plant.PlantType);
 
             purchaseText.text = "Purchased " + plantItems[itemIndex - 1].GetComponent<Item>().itemName.text;
         }
@@ -245,11 +241,11 @@ public class ShopManager : MonoBehaviour
     }
     public void BuyArtifact(int itemIndex)
     {
-        if (playerDataManager.Money >= artifactItems[itemIndex - 1].GetComponentInChildren<Artifact>().Cost)
+        if (playerDataManager.Money >= artifactItems[itemIndex - 1].GetComponent<Item>().artifact.Cost)
         {
-            playerDataManager.Money = playerDataManager.Money - artifactItems[itemIndex - 1].GetComponentInChildren<Artifact>().Cost;
+            playerDataManager.Money = playerDataManager.Money - artifactItems[itemIndex - 1].GetComponent<Item>().artifact.Cost;
             balanceText.text = "Balance : " + playerDataManager.Money.ToString();
-            inventory.AddArtifact(artifactItems[itemIndex - 1].GetComponentInChildren<Artifact>().ArtifactType);
+            inventory.AddArtifact(artifactItems[itemIndex - 1].GetComponent<Item>().artifact.ArtifactType);
 
             purchaseText.text = "Purchased " + artifactItems[itemIndex - 1].GetComponent<Item>().itemName.text;
         }
@@ -261,9 +257,9 @@ public class ShopManager : MonoBehaviour
 
     public void BuyPart(int itemIndex)
     {
-        if (playerDataManager.Money >= partPrefabs[itemIndex - 1].ManaCost)
+        if (playerDataManager.Money >= partItems[itemIndex - 1].GetComponent<Item>().part.Cost)
         {
-            playerDataManager.Money = playerDataManager.Money - partPrefabs[itemIndex - 1].ManaCost;
+            playerDataManager.Money = playerDataManager.Money - partItems[itemIndex - 1].GetComponent<Item>().part.Cost;
             balanceText.text = "Balance : " + playerDataManager.Money.ToString();
             //inventory.AddArtifact(partItems[itemIndex - 1].GetComponentInChildren<PlayerAttackSO>());
 

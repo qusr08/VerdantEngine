@@ -125,9 +125,8 @@ public class RewardManager : MonoBehaviour
             if (probablility[i] <= 50)
             {
                 items[i].GetComponentInChildren<Item>().FillRewardItemDetails(commonPlants[commonIndex].name.Substring(2), commonPlants[commonIndex].GetComponent<Plant>().InventorySprite);
-                GameObject newPlantItem = Instantiate(commonPlants[commonIndex], items[i].transform);
-                newPlantItem.GetComponent<MeshRenderer>().enabled = false;
-                if(commonIndex < commonPlants.Length - 1)
+                items[i].GetComponent<Item>().plant = commonPlants[commonIndex].GetComponent<Plant>();
+                if (commonIndex < commonPlants.Length - 1)
                 {
                     commonIndex++;
                 }
@@ -139,9 +138,8 @@ public class RewardManager : MonoBehaviour
             else if (probablility[i] > 50 && probablility[i] <= 80)
             {
                 items[i].GetComponentInChildren<Item>().FillRewardItemDetails(uncommonPlants[uncommonIndex].name.Substring(2), uncommonPlants[uncommonIndex].GetComponent<Plant>().InventorySprite);
-                GameObject newPlantItem = Instantiate(uncommonPlants[uncommonIndex], items[i].transform);
-                newPlantItem.GetComponent<MeshRenderer>().enabled = false;
-                if(uncommonIndex < uncommonPlants.Length - 1)
+                items[i].GetComponent<Item>().plant = uncommonPlants[uncommonIndex].GetComponent<Plant>();
+                if (uncommonIndex < uncommonPlants.Length - 1)
                 {
                     uncommonIndex++;
                 }
@@ -153,9 +151,8 @@ public class RewardManager : MonoBehaviour
             else
             {
                 items[i].GetComponentInChildren<Item>().FillRewardItemDetails(rarePlants[rareIndex].name.Substring(2), rarePlants[rareIndex].GetComponent<Plant>().InventorySprite);
-                GameObject newPlantItem = Instantiate(rarePlants[rareIndex], items[i].transform);
-                newPlantItem.GetComponent<MeshRenderer>().enabled = false;
-                if(rareIndex <  rarePlants.Length - 1)
+                items[i].GetComponent<Item>().plant = rarePlants[rareIndex].GetComponent<Plant>();
+                if (rareIndex <  rarePlants.Length - 1)
                 {
                     rareIndex++;
                 }
@@ -170,7 +167,7 @@ public class RewardManager : MonoBehaviour
     }
     public void AddToInventoryAfterFight(int itemIndex)
     {
-        inventory.AddPlant(items[itemIndex - 1].GetComponentInChildren<Plant>().PlantType);
+        inventory.AddPlant(items[itemIndex - 1].GetComponent<Item>().plant.PlantType);
         combatManager.Win();
         gameObject.SetActive(false);
         
