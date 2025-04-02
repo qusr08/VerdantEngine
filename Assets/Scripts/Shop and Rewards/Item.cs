@@ -23,7 +23,7 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         if (needTooltip)
         {
-            ToolTip.ShowToolTip_Static(transform.GetChild(transform.childCount - 1).GetComponent<Plant>().Description.ToString());
+            ToolTip.ShowToolTip_Static(plant.Description);
         }
     }
     public void OnPointerExit(PointerEventData eventData)

@@ -68,8 +68,6 @@ public class RewardManager : MonoBehaviour
 
     void ShufflePlants()
     {
-        ClearShop();
-
         for (int i = 0; i < probablility.Length; i++)
         {
            // probablility[i] = Random.Range(0, 101); //uncomment when we have rare plants
@@ -102,19 +100,7 @@ public class RewardManager : MonoBehaviour
 
         FillShop();
     }
-    void ClearShop()
-    {
-        for (int i = 0; i < items.Length; i++)
-        {
-            foreach(Transform child in items[i].transform)
-            {
-                if(child.GetComponent<Plant>() != null)
-                {
-                    Destroy(child.gameObject);
-                }
-            }
-        }
-    }
+
     void FillShop()
     {
         commonIndex = 0;
@@ -124,7 +110,7 @@ public class RewardManager : MonoBehaviour
         {
             if (probablility[i] <= 50)
             {
-                items[i].GetComponentInChildren<Item>().FillRewardItemDetails(commonPlants[commonIndex].name.Substring(2), commonPlants[commonIndex].GetComponent<Plant>().InventorySprite);
+                items[i].GetComponentInChildren<Item>().FillRewardItemDetails(commonPlants[commonIndex].GetComponent<Plant>().Name, commonPlants[commonIndex].GetComponent<Plant>().InventorySprite);
                 items[i].GetComponent<Item>().plant = commonPlants[commonIndex].GetComponent<Plant>();
                 if (commonIndex < commonPlants.Length - 1)
                 {
@@ -137,7 +123,7 @@ public class RewardManager : MonoBehaviour
             }
             else if (probablility[i] > 50 && probablility[i] <= 80)
             {
-                items[i].GetComponentInChildren<Item>().FillRewardItemDetails(uncommonPlants[uncommonIndex].name.Substring(2), uncommonPlants[uncommonIndex].GetComponent<Plant>().InventorySprite);
+                items[i].GetComponentInChildren<Item>().FillRewardItemDetails(uncommonPlants[uncommonIndex].GetComponent<Plant>().Name, uncommonPlants[uncommonIndex].GetComponent<Plant>().InventorySprite);
                 items[i].GetComponent<Item>().plant = uncommonPlants[uncommonIndex].GetComponent<Plant>();
                 if (uncommonIndex < uncommonPlants.Length - 1)
                 {
@@ -150,7 +136,7 @@ public class RewardManager : MonoBehaviour
             }
             else
             {
-                items[i].GetComponentInChildren<Item>().FillRewardItemDetails(rarePlants[rareIndex].name.Substring(2), rarePlants[rareIndex].GetComponent<Plant>().InventorySprite);
+                items[i].GetComponentInChildren<Item>().FillRewardItemDetails(rarePlants[rareIndex].GetComponent<Plant>().Name, rarePlants[rareIndex].GetComponent<Plant>().InventorySprite);
                 items[i].GetComponent<Item>().plant = rarePlants[rareIndex].GetComponent<Plant>();
                 if (rareIndex <  rarePlants.Length - 1)
                 {

@@ -77,8 +77,6 @@ public class ShopManager : MonoBehaviour
     }
     void Shuffle()
     {
-        ClearShop();
-
         for (int i = 0; i < plantProbablility.Length; i++)
         {
             // plantProbablility[i] = Random.Range(0, 101); //uncomment when we have rare plants
@@ -125,43 +123,7 @@ public class ShopManager : MonoBehaviour
 
         FillShop();
     }
-    void ClearShop()
-    {
-        purchaseText.text = "";
 
-        for (int i = 0; i < plantItems.Length; i++)
-        {
-            foreach(Transform plant in plantItems[i].transform)
-            {
-                if(plant.GetComponent<Plant>() != null)
-                {
-                    Destroy(plant.gameObject);
-                }
-            }
-        }
-
-        for (int i = 0; i < artifactItems.Length; i++)
-        {
-            foreach (Transform artifact in artifactItems[i].transform)
-            {
-                if (artifact.GetComponent<Artifact>() != null)
-                {
-                    Destroy(artifact.gameObject);
-                }
-            }
-        }
-
-/*        for (int i = 0; i < partItems.Length; i++)
-        {
-            foreach (Transform part in partItems[i].transform)
-            {
-                if (part.GetComponent<PlayerAttackSO>() != null)
-                {
-                    Destroy(part.gameObject);
-                }
-            }
-        }*/
-    }
     void FillShop()
     {
         commonIndex = 0;
@@ -171,7 +133,7 @@ public class ShopManager : MonoBehaviour
         {
             if (plantProbablility[i] <= 50)
             {
-                plantItems[i].GetComponent<Item>().FillShopItemDetails(commonPlants[commonIndex].name.Substring(2), commonPlants[commonIndex].GetComponent<Plant>().Cost, commonPlants[commonIndex].GetComponent<Plant>().InventorySprite, commonPlants[commonIndex].GetComponent<Plant>().Description);
+                plantItems[i].GetComponent<Item>().FillShopItemDetails(commonPlants[commonIndex].GetComponent<Plant>().Name, commonPlants[commonIndex].GetComponent<Plant>().Cost, commonPlants[commonIndex].GetComponent<Plant>().InventorySprite, commonPlants[commonIndex].GetComponent<Plant>().Description);
                 plantItems[i].GetComponent<Item>().plant = commonPlants[commonIndex].GetComponent<Plant>();
                 if (commonIndex < commonPlants.Length - 1)
                 {
@@ -184,7 +146,7 @@ public class ShopManager : MonoBehaviour
             }
             else if (plantProbablility[i] > 50 && plantProbablility[i] <= 80)
             {
-                plantItems[i].GetComponent<Item>().FillShopItemDetails(uncommonPlants[uncommonIndex].name.Substring(2), uncommonPlants[uncommonIndex].GetComponent<Plant>().Cost, uncommonPlants[uncommonIndex].GetComponent<Plant>().InventorySprite, uncommonPlants[uncommonIndex].GetComponent<Plant>().Description);
+                plantItems[i].GetComponent<Item>().FillShopItemDetails(uncommonPlants[uncommonIndex].GetComponent<Plant>().Name, uncommonPlants[uncommonIndex].GetComponent<Plant>().Cost, uncommonPlants[uncommonIndex].GetComponent<Plant>().InventorySprite, uncommonPlants[uncommonIndex].GetComponent<Plant>().Description);
                 plantItems[i].GetComponent<Item>().plant = uncommonPlants[uncommonIndex].GetComponent<Plant>();
                 if (uncommonIndex < uncommonPlants.Length - 1)
                 {
@@ -197,7 +159,7 @@ public class ShopManager : MonoBehaviour
             }
             else
             {
-                plantItems[i].GetComponent<Item>().FillShopItemDetails(rarePlants[rareIndex].name.Substring(2), rarePlants[rareIndex].GetComponent<Plant>().Cost, rarePlants[rareIndex].GetComponent<Plant>().InventorySprite, rarePlants[rareIndex].GetComponent<Plant>().Description);
+                plantItems[i].GetComponent<Item>().FillShopItemDetails(rarePlants[rareIndex].GetComponent<Plant>().Name, rarePlants[rareIndex].GetComponent<Plant>().Cost, rarePlants[rareIndex].GetComponent<Plant>().InventorySprite, rarePlants[rareIndex].GetComponent<Plant>().Description);
                 plantItems[i].GetComponent<Item>().plant = rarePlants[rareIndex].GetComponent<Plant>();
                 if (rareIndex < rarePlants.Length - 1)
                 {
@@ -211,13 +173,13 @@ public class ShopManager : MonoBehaviour
         }
         for (int i = 0; i < artifactItems.Length; i++)
         {
-            artifactItems[i].GetComponent<Item>().FillShopItemDetails(artifactPrefabs[i].name.Substring(2), artifactPrefabs[i].GetComponent<Artifact>().Cost, artifactPrefabs[i].GetComponent<Artifact>().InventorySprite,
+            artifactItems[i].GetComponent<Item>().FillShopItemDetails(artifactPrefabs[i].GetComponent<Artifact>().Name, artifactPrefabs[i].GetComponent<Artifact>().Cost, artifactPrefabs[i].GetComponent<Artifact>().InventorySprite,
                 artifactPrefabs[i].GetComponent<Artifact>().Description);
             artifactItems[i].GetComponent<Item>().artifact = artifactPrefabs[i].GetComponent<Artifact>();
         }
         for (int i = 0; i < partItems.Length; i++)
         {
-            partItems[i].GetComponent<Item>().FillShopItemDetails(partPrefabs[i].name, partPrefabs[i].Cost, partPrefabs[i].Icon,
+            partItems[i].GetComponent<Item>().FillShopItemDetails(partPrefabs[i].Name, partPrefabs[i].Cost, partPrefabs[i].Icon,
                 partPrefabs[i].Description);
             partItems[i].GetComponent<Item>().part = partPrefabs[i];
         }
