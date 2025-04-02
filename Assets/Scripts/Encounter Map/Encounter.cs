@@ -21,7 +21,6 @@ public class Encounter : MonoBehaviour
     [SerializeField] private string Name;
     [SerializeField] private string Rewards;
     [SerializeField] private string Description;
-    [SerializeField] public int rewardsMoney;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +55,7 @@ public class Encounter : MonoBehaviour
     public void SetCombat(CombatPresetSO newCombat)
     {
         combatEncounter = newCombat;
+        Rewards = Rewards + " + $" + newCombat.rewardMoeny;
     }
 
     /// <summary>
