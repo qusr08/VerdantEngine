@@ -259,11 +259,18 @@ public class ShopManager : MonoBehaviour
     {
         if (playerDataManager.Money >= partItems[itemIndex - 1].GetComponent<Item>().part.Cost)
         {
-            playerDataManager.Money = playerDataManager.Money - partItems[itemIndex - 1].GetComponent<Item>().part.Cost;
-            balanceText.text = "Balance : " + playerDataManager.Money.ToString();
-            //inventory.AddArtifact(partItems[itemIndex - 1].GetComponentInChildren<PlayerAttackSO>());
+            if(playerDataManager.PlayerAttacks.Count < 4)
+            {
+                playerDataManager.Money = playerDataManager.Money - partItems[itemIndex - 1].GetComponent<Item>().part.Cost;
+                balanceText.text = "Balance : " + playerDataManager.Money.ToString();
+                playerDataManager.PlayerAttacks.Add(partItems[itemIndex - 1].GetComponent<Item>().part);
 
-            purchaseText.text = "Purchased " + partItems[itemIndex - 1].GetComponent<Item>().itemName.text;
+                purchaseText.text = "Purchased " + partItems[itemIndex - 1].GetComponent<Item>().itemName.text;
+            }
+            else
+            {
+                purchaseText.text = "Cannot add any more parts";
+            }
         }
         else
         {
