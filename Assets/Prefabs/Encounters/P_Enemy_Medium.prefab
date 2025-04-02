@@ -54,8 +54,9 @@ MonoBehaviour:
   combatEncounter: {fileID: 11400000, guid: edcc0a46834458345b19682fe06fb00f, type: 2}
   combatManager: {fileID: 0}
   clearedSprite: {fileID: 21300000, guid: b3d0587e3b1d6a648984ccd3570d72bf, type: 3}
-  Name: Enemy
+  Name: Hard Enemy
   Rewards: Random Plant
+  Description: Battle a hard enemy formation
   rewardsMoney: 0
 --- !u!61 &-8459921645421565627
 BoxCollider2D:
@@ -100,7 +101,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3, y: 3}
   m_EdgeRadius: 0
 --- !u!212 &6371755960219414088
 SpriteRenderer:
