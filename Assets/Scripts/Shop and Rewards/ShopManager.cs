@@ -51,7 +51,7 @@ public class ShopManager : MonoBehaviour
     {
         Shuffle();
         balanceText.text = "Balance : " + playerDataManager.Money.ToString();
-        healCost.text = "Heal for cost : " + costToHeal.ToString();
+        healCost.text = costToHeal.ToString();
     }
     private void ArrangeByRarity()
     {
