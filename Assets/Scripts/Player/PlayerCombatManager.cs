@@ -118,7 +118,7 @@ public class PlayerCombatManager : MonoBehaviour {
             {
 				if (tile.GardenPlaceable != null)
 				{
-					int damageDealt = Mathf.Max(0, enemyAttack.Damage - tile.GardenPlaceable.ShieldStat.CurrentValue);
+					int damageDealt = enemyAttack.Damage;
 
 					// Deal damage to the garden placeable that was hit by the attack
 					tile.GardenPlaceable.TakeDamage(enemy, damageDealt);
@@ -135,7 +135,7 @@ public class PlayerCombatManager : MonoBehaviour {
             GardenTile tileHit = enemy.FinalAim[enemy.FinalAim.Count - 1];
             if (tileHit != null && tileHit.GardenPlaceable != null)
             {
-                int damageDealt = Mathf.Max(0, enemyAttack.Damage - tileHit.GardenPlaceable.ShieldStat.CurrentValue);
+                int damageDealt = Mathf.Max(0, enemyAttack.Damage);
 
                 // Deal damage to the garden placeable that was hit by the attack
                 tileHit.GardenPlaceable.TakeDamage(enemy, damageDealt);
