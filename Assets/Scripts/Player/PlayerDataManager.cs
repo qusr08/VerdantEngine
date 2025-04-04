@@ -22,6 +22,8 @@ public class PlayerDataManager : MonoBehaviour {
 	[SerializeField] private Slider hpSlider;
 	[SerializeField] private GameObject youLose;
 	[HideInInspector] public int actionCountModifier = 0;
+
+	
 	/// <summary>
 	/// The max health of the player
 	/// </summary>

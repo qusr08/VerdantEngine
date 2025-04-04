@@ -160,7 +160,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 935bc15fbab2fe0419f2f7b6f46bac4e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 419d52bed1d891b47a11463e077de1a9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -193,7 +193,7 @@ MonoBehaviour:
   _maxHealth: 12
   _currentHealth: 12
   _currentCooldown: 2
-  _icon: {fileID: 21300000, guid: 7c3389aa8c4eb30409c8b19295d86ef0, type: 3}
+  _icon: {fileID: 21300000, guid: 419d52bed1d891b47a11463e077de1a9, type: 3}
   _finalAim: []
   attacks:
   - {fileID: 11400000, guid: e0d6cb5411ccb18418957ad33b74fc76, type: 2}
