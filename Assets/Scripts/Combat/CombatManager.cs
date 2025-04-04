@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 using System;
+using Unity.Mathematics;
 
 public class CombatManager : MonoBehaviour {
 	[SerializeField] public PlayerCombatManager playerCombatManager;
@@ -22,7 +23,11 @@ public class CombatManager : MonoBehaviour {
 	// private int maxTargets; // Number of enemies to select
 	// private bool isTargeting = false;
 
-	private void Awake ( ) {
+	public Material greenSky;
+    public Material redSky;
+
+
+    private void Awake ( ) {
 		Enemies = new List<Enemy>( );
 	}
 
@@ -52,6 +57,9 @@ public class CombatManager : MonoBehaviour {
 		playerCombatManager.PlayerStartTurn();
 		isPlayerPaused = false;
         soundManager.Playcomabt();
+
+        RenderSettings.skybox = redSky ;
+        DynamicGI.UpdateEnvironment();
 
 
 
@@ -183,7 +191,7 @@ public class CombatManager : MonoBehaviour {
 				StartCoroutine( playerCombatManager.ApplyDamageToGarden(enemy, enemy.CurrentAttack));
 			}
 		}
-		yield return new WaitForSeconds((float)playerCombatManager.enemyAttckSliderAnimation.director.duration);
+	//	yield return new WaitForSeconds((float)playerCombatManager.enemyAttckSliderAnimation.director.duration);
 		foreach (GardenTile gardenTile in playerDataManager.Garden)
 		{
 			if (gardenTile.AttackedDamage > 0)
@@ -193,6 +201,7 @@ public class CombatManager : MonoBehaviour {
 
 			gardenTile.AttackedDamage = 0;
 		}
+		yield return new WaitForSeconds(0.2f);
 		isPlayerPaused = false;
 
 		playerCombatManager.PlayerStartTurn();
@@ -242,10 +251,12 @@ public class CombatManager : MonoBehaviour {
         cameraManager.scene = ActiveScene.Map;
 		cameraManager.UpdateCameraPosition();
 		soundManager.PlayGarden();
+        RenderSettings.skybox = greenSky;
+        DynamicGI.UpdateEnvironment();
 
 
     }
-	private void WinGame()
+    private void WinGame()
 	{
 		playerDataManager.Money += currentCombatPreset.rewardMoeny;
 

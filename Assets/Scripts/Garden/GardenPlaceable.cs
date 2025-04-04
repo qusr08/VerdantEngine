@@ -337,7 +337,8 @@ public abstract class GardenPlaceable : MonoBehaviour {
 			heal = 0;
 		}
 
-		SpawnHealIndicator(heal);
+        if (heal > 0)
+            SpawnHealIndicator(heal);
 		FlashColor(Color.green, healColorTime / 4f, healColorTime, 1);
 
 		//triggered global on heal triggers for all garden placbles. used by artifacts

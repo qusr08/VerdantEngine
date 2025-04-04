@@ -124,9 +124,9 @@ public class PlayerCombatManager : MonoBehaviour {
 
     public IEnumerator ApplyDamageToGarden(Enemy enemy, EnemyAttackSO enemyAttack)
     {
-        enemyAttckSliderAnimation.enemyImage.texture = enemy.Icon.texture;
-        enemyAttckSliderAnimation.gameObject.GetComponent<PlayableDirector>().Play();
-        yield return new WaitForSeconds((float)enemyAttckSliderAnimation.gameObject.GetComponent<PlayableDirector>().duration);
+      //  enemyAttckSliderAnimation.enemyImage.texture = enemy.Icon.texture;
+      //  enemyAttckSliderAnimation.gameObject.GetComponent<PlayableDirector>().Play();
+      //  yield return new WaitForSeconds((float)enemyAttckSliderAnimation.gameObject.GetComponent<PlayableDirector>().duration);
         if (enemyAttack.EnemyTargetingType == EnemyTargetingType.SHAPE)
         {
             foreach (GardenTile tile in enemy.FinalAim)
