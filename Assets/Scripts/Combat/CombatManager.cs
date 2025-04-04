@@ -18,6 +18,7 @@ public class CombatManager : MonoBehaviour {
 	public float endOfTurnWaitTime;
 	public List<Enemy> Enemies { get; private set; }
 	private bool isPlayerPaused = false;
+	public BG_Music_Manager soundManager;
 	// private int maxTargets; // Number of enemies to select
 	// private bool isTargeting = false;
 
@@ -50,10 +51,12 @@ public class CombatManager : MonoBehaviour {
 		SetUpEnemies();
 		playerCombatManager.PlayerStartTurn();
 		isPlayerPaused = false;
+        soundManager.Playcomabt();
 
 
 
-	}
+
+    }
 
     /// <summary>
     /// Set Up all starting enemies in an encounter
@@ -238,8 +241,10 @@ public class CombatManager : MonoBehaviour {
         combatUIManager.GameState = GameState.IDLE;
         cameraManager.scene = ActiveScene.Map;
 		cameraManager.UpdateCameraPosition();
+		soundManager.PlayGarden();
 
-	}
+
+    }
 	private void WinGame()
 	{
 		playerDataManager.Money += currentCombatPreset.rewardMoeny;

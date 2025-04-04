@@ -24,6 +24,8 @@ public class MapPlayer : MonoBehaviour
     private GameObject nextLocation = null;
     private float movingPercent = 0.0f;
 
+    public BG_Music_Manager soundManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -95,6 +97,7 @@ public class MapPlayer : MonoBehaviour
     public void GoToGarden()
     {
         ChangeScenes(ActiveScene.Garden);
+
     }
     public void GoToMap()
     {
