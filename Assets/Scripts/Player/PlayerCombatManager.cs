@@ -29,6 +29,20 @@ public class PlayerCombatManager : MonoBehaviour {
 			weaponMenuItems[weaponMenuItems.Count - 1].PlayerAttack = playerAttack;
 		}
 	}
+	public void SetUpWeapons()
+	{
+
+		foreach (var item in weaponMenuItems)
+		{
+			Destroy(item.gameObject);
+		}
+		weaponMenuItems.Clear();
+        foreach (PlayerAttackSO playerAttack in playerDataManager.PlayerAttacks)
+        {
+            weaponMenuItems.Add(Instantiate(weaponMenuItemPrefab, weaponMenuContainer).GetComponent<PlayerAttackMenuItem>());
+            weaponMenuItems[weaponMenuItems.Count - 1].PlayerAttack = playerAttack;
+        }
+    }
 
     public void PlayerStartTurn()
     {
