@@ -2050,6 +2050,7 @@ MonoBehaviour:
   winScreen: {fileID: 1654844570}
   explosionPrefab: {fileID: 3702977640595687986, guid: 42f7a485d6c636643ae43031cbc79521, type: 3}
   endOfTurnWaitTime: 0.3
+  soundManager: {fileID: 567520254}
 --- !u!4 &261010252
 Transform:
   m_ObjectHideFlags: 0
@@ -15688,9 +15689,9 @@ MonoBehaviour:
   reward: {fileID: 182211471}
   description: {fileID: 1124040860}
   cameraManager: {fileID: 155304117}
-  healthText: {fileID: 1502954837}
-  balanceText: {fileID: 1096758308}
-  playerDataManager: {fileID: 1707282257}
+  healthText: {fileID: 0}
+  balanceText: {fileID: 0}
+  playerDataManager: {fileID: 0}
   offset: {x: -80, y: -80}
 --- !u!1 &1825975240
 GameObject:
@@ -19614,6 +19615,7 @@ MonoBehaviour:
   costToHeal: 10
   playerDataManager: {fileID: 1707282257}
   inventory: {fileID: 1030742011}
+  playerCombatManager: {fileID: 1198069308}
   commonPlantsList: []
   uncommonPlantsList: []
   rarePlantsList: []
