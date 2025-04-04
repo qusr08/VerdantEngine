@@ -25,6 +25,12 @@ public class CombatManager : MonoBehaviour {
 
 	public Material greenSky;
     public Material redSky;
+	
+	
+	//Need to be removed after edge
+	private bool isBoss = false;
+	public GameObject ThanksForPlayingScreen;
+
 
 
     private void Awake ( ) {
@@ -61,6 +67,7 @@ public class CombatManager : MonoBehaviour {
         RenderSettings.skybox = redSky ;
         DynamicGI.UpdateEnvironment();
 
+			isBoss = newCombat.isBoss;
 
 
 
@@ -253,11 +260,17 @@ public class CombatManager : MonoBehaviour {
 		soundManager.PlayGarden();
         RenderSettings.skybox = greenSky;
         DynamicGI.UpdateEnvironment();
-
+		
 
     }
     private void WinGame()
 	{
+		if(isBoss)
+		{
+			ThanksForPlayingScreen.SetActive(true);
+
+        }
+
 		playerDataManager.Money += currentCombatPreset.rewardMoeny;
 
 		winScreen.GetComponent<RewardManager>().moneyReward = currentCombatPreset.rewardMoeny;

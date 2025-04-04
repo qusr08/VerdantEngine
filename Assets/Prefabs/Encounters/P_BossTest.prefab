@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -687664823255271156}
   - component: {fileID: -745546923034545154}
   m_Layer: 0
-  m_Name: P_Boss
+  m_Name: P_BossTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +57,6 @@ MonoBehaviour:
   Name: Boss
   Rewards: Friend x1
   Description: 
-  isBoss: 1
 --- !u!70 &-687664823255271156
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
