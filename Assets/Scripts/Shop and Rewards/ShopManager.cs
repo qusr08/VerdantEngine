@@ -25,6 +25,7 @@ public class ShopManager : MonoBehaviour
 
     [SerializeField] PlayerDataManager playerDataManager;
     [SerializeField] Inventory inventory;
+    [SerializeField] PlayerCombatManager playerCombatManager;
 
     public List<GameObject> commonPlantsList;
     public List<GameObject> uncommonPlantsList;
@@ -228,6 +229,7 @@ public class ShopManager : MonoBehaviour
                 playerDataManager.PlayerAttacks.Add(partItems[itemIndex - 1].GetComponent<Item>().part);
 
                 purchaseText.text = "Purchased " + partItems[itemIndex - 1].GetComponent<Item>().itemName.text;
+                playerCombatManager.SetUpWeapons();
             }
             else
             {

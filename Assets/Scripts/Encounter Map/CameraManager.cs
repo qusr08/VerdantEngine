@@ -96,6 +96,7 @@ public class MapPlayer : MonoBehaviour
     /// </summary>
     public void GoToGarden()
     {
+       
         ChangeScenes(ActiveScene.Garden);
 
     }

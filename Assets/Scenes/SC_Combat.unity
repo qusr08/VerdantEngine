@@ -8064,7 +8064,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &985348246
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19583,6 +19583,7 @@ MonoBehaviour:
   costToHeal: 10
   playerDataManager: {fileID: 1707282257}
   inventory: {fileID: 1030742011}
+  playerCombatManager: {fileID: 1198069308}
   commonPlantsList: []
   uncommonPlantsList: []
   rarePlantsList: []
