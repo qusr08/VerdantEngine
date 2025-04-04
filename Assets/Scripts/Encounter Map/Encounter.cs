@@ -20,6 +20,7 @@ public class Encounter : MonoBehaviour
     [Header("Text")]
     [SerializeField] private string Name;
     [SerializeField] private string Rewards;
+    [SerializeField] private string Description;
     [SerializeField] public int rewardsMoney;
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,7 @@ public class Encounter : MonoBehaviour
 
         if (mapUI == null)
         {
-            mapUI = GameObject.Find("Reward Text").GetComponent<MapUI>();
+            mapUI = GameObject.Find("Hover Text").GetComponent<MapUI>();
         }
 
 
@@ -52,6 +53,11 @@ public class Encounter : MonoBehaviour
         
     }
 
+    public void SetCombat(CombatPresetSO newCombat)
+    {
+        combatEncounter = newCombat;
+    }
+
     /// <summary>
     /// Runs when the player reaches this encounter
     /// </summary>
@@ -60,9 +66,6 @@ public class Encounter : MonoBehaviour
 
         //this.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
         this.gameObject.GetComponent<SpriteRenderer>().sprite = clearedSprite;
-
-        MapUI text = GameObject.Find("Reward Text").GetComponent<MapUI>();
-        text.AtEvent(Name, Rewards);
 
         if (EncounterType == EncounterTypes.Enemy)
         {
@@ -81,8 +84,7 @@ public class Encounter : MonoBehaviour
     /// </summary>
     public void PlayerLeave()
     {
-        //Currently just hide this encounter. Eventually replace it's graphic
-        //gameObject.SetActive(false);
+        //Currently this doesn't do anything.
     }
 
     public void AddConnection(GameObject connection)
@@ -117,9 +119,19 @@ public class Encounter : MonoBehaviour
         Debug.Log("Not connecting encounter");
     }
 
-    void OnMouseOver()
+    private void OnMouseEnter()
     {
-        MapUI text = GameObject.Find("Reward Text").GetComponent<MapUI>();
-        text.HoverEvent(Name, Rewards);
+
+        mapUI.StartHover(Name, Rewards, Description);
+        //_PopUpDisplay.gameObject.SetActive(true);
+
     }
+
+    private void OnMouseExit()
+    {
+        mapUI.EndHover();
+        //_PopUpDisplay.gameObject.SetActive(false);
+
+    }
+
 }

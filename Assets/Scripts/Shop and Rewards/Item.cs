@@ -15,11 +15,15 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public bool needTooltip;
 
+    public Plant plant;
+    public Artifact artifact;
+    public PlayerAttackSO part;
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (needTooltip)
         {
-            ToolTip.ShowToolTip_Static(transform.GetChild(transform.childCount - 1).GetComponent<Plant>().Description.ToString());
+            ToolTip.ShowToolTip_Static(plant.Description);
         }
     }
     public void OnPointerExit(PointerEventData eventData)

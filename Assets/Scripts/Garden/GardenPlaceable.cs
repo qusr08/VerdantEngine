@@ -11,6 +11,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	[Header("GardenPlaceable")]
 	[SerializeField] protected GardenManager gardenManager;
 	[SerializeField] protected PlayerDataManager playerDataManager;
+	[SerializeField] protected CombatManager combatManager;
 	[SerializeField] protected List<SpriteRenderer> spriteRenderers;
 	[Space]
 	[SerializeField, Min(0), Tooltip("The starting health of this garden placeable.")] private int _startingHealth;
@@ -100,10 +101,14 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	private void Awake ( ) {
 		gardenManager = FindObjectOfType<GardenManager>( );
 		playerDataManager = FindObjectOfType<PlayerDataManager>( );
-		spriteRenderers = GetComponentsInChildren<SpriteRenderer>( ).ToList();
+        combatManager = FindObjectOfType<CombatManager>( );
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>( ).ToList();
 
-		effectedGardenPlaceables = new List<GardenPlaceable>( );
-	}
+		effectedGardenPlaceables = new List<GardenPlaceable>();
+
+
+
+    }
 
 	private void Update ( ) {
 		// Make sure the plants are always facing towards the camera
@@ -295,6 +300,15 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	/// Called when this garden placeable takes damage
 	/// </summary>
 	public virtual void OnTakeDamage ( ) { }
+
+	/// <summary>
+	/// Called on the first drop of a garden Placeble
+	/// </summary
+	bool isFirst = true;
+    public virtual void OnFirstPlanted()
+	{
+      
+    }
 
 	/// <summary>
 	/// Called when this garden placeable is killed

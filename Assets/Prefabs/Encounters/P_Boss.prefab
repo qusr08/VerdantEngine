@@ -53,8 +53,11 @@ MonoBehaviour:
   mapUI: {fileID: 0}
   combatEncounter: {fileID: 0}
   combatManager: {fileID: 0}
+  clearedSprite: {fileID: 0}
   Name: Boss
   Rewards: Friend x1
+  Description: 
+  rewardsMoney: 0
 --- !u!70 &-687664823255271156
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -88,7 +91,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Size: {x: 4, y: 5}
   m_Direction: 0
 --- !u!212 &-745546923034545154
 SpriteRenderer:

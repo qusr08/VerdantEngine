@@ -24,6 +24,7 @@ public enum PlayerTargetingType {
 public class PlayerAttackSO : ScriptableObject {
 	[SerializeField] private int _damage;
 	[SerializeField] private int _manaCost;
+	[SerializeField] private int _cost;
 	[SerializeField] private string _description;
 	[SerializeField] private string _name;
 	[SerializeField] private AttackType _attackType;
@@ -42,6 +43,10 @@ public class PlayerAttackSO : ScriptableObject {
 	/// </summary>
 	public int ManaCost => _manaCost;
 
+	/// <summary>
+	/// The monetary cost of this mech part's attack
+	/// </summary>
+	public int Cost => _cost;
 	/// <summary>
 	/// This mech part's description text
 	/// </summary>
