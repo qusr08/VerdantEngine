@@ -19,6 +19,7 @@ public class PlayerCombatManager : MonoBehaviour {
 	[Space]
 	[SerializeField] private int energy = 0;
     [HideInInspector] public int energyModifier;
+	 public SpriteRenderer [] tree;
     public EnemySlider enemyAttckSliderAnimation;
 	public GameObject cannonFlashAsset;
 	public float tempAnimTimer;
@@ -128,6 +129,15 @@ public class PlayerCombatManager : MonoBehaviour {
         else if (!enemyAttack.IsLineAttackHorizontal && enemy.FinalAim.Count == playerDataManager.GardenSize && enemy.FinalAim[enemy.FinalAim.Count - 1].GardenPlaceable == null)
         {
             playerDataManager.CurrentHealth -= enemyAttack.Damage;
+			foreach (SpriteRenderer mesh in tree)
+			{
+                mesh.color = Color.red;
+            }
+			yield return new WaitForSeconds(0.2f);
+            foreach (SpriteRenderer mesh in tree)
+            {
+                mesh.color = Color.white;
+            }
             Debug.Log(enemy.name + " attacked the player using " + enemyAttack.Name + " dealing " + enemyAttack.Damage + " to the player");
         }
         else

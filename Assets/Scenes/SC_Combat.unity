@@ -6240,6 +6240,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 799685777}
   m_CullTransparentMesh: 1
+--- !u!212 &817460585 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6093619895553216561, guid: 031491cbbffdd5544a479561b05c383d, type: 3}
+  m_PrefabInstance: {fileID: 1754716232}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &870644727
 GameObject:
   m_ObjectHideFlags: 0
@@ -9072,6 +9077,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1071881194}
   m_CullTransparentMesh: 1
+--- !u!212 &1072867184 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1069321398794498329, guid: 031491cbbffdd5544a479561b05c383d, type: 3}
+  m_PrefabInstance: {fileID: 1754716232}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1100697563 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3885462458587342447, guid: 19268ea9071e3724c8f927fb551f2077, type: 3}
@@ -9486,6 +9496,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1124040858}
   m_CullTransparentMesh: 1
+--- !u!212 &1142679760 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2603749475710366876, guid: 031491cbbffdd5544a479561b05c383d, type: 3}
+  m_PrefabInstance: {fileID: 1754716232}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1146609779
 GameObject:
   m_ObjectHideFlags: 0
@@ -9991,6 +10006,12 @@ MonoBehaviour:
   damageIndicatorPrefab: {fileID: 985783835550424020, guid: bf932e9924e884748b9300dabc7007d9, type: 3}
   energy: 0
   energyModifier: 0
+  tree:
+  - {fileID: 1072867184}
+  - {fileID: 1142679760}
+  - {fileID: 1269612051}
+  - {fileID: 1689730081}
+  - {fileID: 817460585}
   enemyAttckSliderAnimation: {fileID: 738094045}
   cannonFlashAsset: {fileID: 1632057261}
   tempAnimTimer: 0.2
@@ -10219,6 +10240,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267253280}
   m_CullTransparentMesh: 1
+--- !u!212 &1269612051 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 128446581893195299, guid: 031491cbbffdd5544a479561b05c383d, type: 3}
+  m_PrefabInstance: {fileID: 1754716232}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1274605802
 GameObject:
   m_ObjectHideFlags: 0
@@ -11161,7 +11187,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f9b15d55f014d254fbbff47de4f28497, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 545121df18083184db5c4c604e5d623f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14243,6 +14269,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1665424955}
   m_CullTransparentMesh: 1
+--- !u!212 &1689730081 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6608988694035979983, guid: 031491cbbffdd5544a479561b05c383d, type: 3}
+  m_PrefabInstance: {fileID: 1754716232}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1698920730
 GameObject:
   m_ObjectHideFlags: 0
@@ -14638,6 +14669,10 @@ PrefabInstance:
     - target: {fileID: 1188164979658490849, guid: 031491cbbffdd5544a479561b05c383d, type: 3}
       propertyPath: m_Name
       value: Tree
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188164979658490849, guid: 031491cbbffdd5544a479561b05c383d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

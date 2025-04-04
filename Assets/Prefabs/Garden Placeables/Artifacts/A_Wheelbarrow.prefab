@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.20932621
+      value: 0.23
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
       propertyPath: m_LocalScale.y
@@ -154,7 +154,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6464316b5de54dc48b040d28e1e120b6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e5c6f54554881dd45bf64d06ac6edf58, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -276,12 +276,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gardenManager: {fileID: 0}
   playerDataManager: {fileID: 0}
+  combatManager: {fileID: 0}
   spriteRenderers: []
   _startingHealth: 3
   _cost: 3
   _name: 'Wheelbarrow '
   _description: Gains +1 action point.
-  _inventorySprite: {fileID: 21300000, guid: 6464316b5de54dc48b040d28e1e120b6, type: 3}
+  _inventorySprite: {fileID: 21300000, guid: e5c6f54554881dd45bf64d06ac6edf58, type: 3}
   _gardenTile: {fileID: 0}
   effectedGardenPlaceables: []
   damageIndicatorPrefab: {fileID: 985783835550424020, guid: bf932e9924e884748b9300dabc7007d9, type: 3}
