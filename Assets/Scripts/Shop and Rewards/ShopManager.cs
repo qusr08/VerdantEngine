@@ -171,17 +171,28 @@ public class ShopManager : MonoBehaviour
                 }
             }
         }
+        for(int i = 0; i < plantItems.Length; i++)
+        {
+            plantItems[i].GetComponentInChildren<Button>().GetComponentInChildren<TMP_Text>().text = "Purchase";
+            plantItems[i].GetComponentInChildren<Button>().interactable = true;
+        }
         for (int i = 0; i < artifactItems.Length; i++)
         {
             artifactItems[i].GetComponent<Item>().FillShopItemDetails(artifactPrefabs[i].GetComponent<Artifact>().Name, artifactPrefabs[i].GetComponent<Artifact>().Cost, artifactPrefabs[i].GetComponent<Artifact>().InventorySprite,
                 artifactPrefabs[i].GetComponent<Artifact>().Description);
             artifactItems[i].GetComponent<Item>().artifact = artifactPrefabs[i].GetComponent<Artifact>();
+
+            artifactItems[i].GetComponentInChildren<Button>().GetComponentInChildren<TMP_Text>().text = "Purchase";
+            artifactItems[i].GetComponentInChildren<Button>().interactable = true;
         }
         for (int i = 0; i < partItems.Length; i++)
         {
             partItems[i].GetComponent<Item>().FillShopItemDetails(partPrefabs[i].Name, partPrefabs[i].Cost, partPrefabs[i].Icon,
                 partPrefabs[i].Description);
             partItems[i].GetComponent<Item>().part = partPrefabs[i];
+
+            partItems[i].GetComponentInChildren<Button>().GetComponentInChildren<TMP_Text>().text = "Purchase";
+            partItems[i].GetComponentInChildren<Button>().interactable = true;
         }
 
         healthText.text = "Health : " + playerDataManager.CurrentHealth.ToString() + "/" + playerDataManager.MaxHealth.ToString();
