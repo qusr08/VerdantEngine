@@ -43,6 +43,14 @@ public class MapPlayer : MonoBehaviour
             Vector3 nextLocationEdited = nextLocation.transform.position;
             nextLocationEdited.y += .5f;
 
+            if (nextLocationEdited.x < currentLocation.x)
+            {
+                playerSprite.GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else
+            {
+                playerSprite.GetComponent<SpriteRenderer>().flipX = false;
+            }
 
             playerSprite.transform.position = Vector3.Lerp(currentLocation, nextLocationEdited, movingPercent);
 
