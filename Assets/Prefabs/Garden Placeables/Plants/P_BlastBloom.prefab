@@ -21,6 +21,10 @@ PrefabInstance:
       value: 0.27450982
       objectReference: {fileID: 0}
     - target: {fileID: -8158773749668215637, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8158773749668215637, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
       propertyPath: m_SortingOrder
       value: 98
       objectReference: {fileID: 0}
@@ -272,7 +276,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gardenManager: {fileID: 0}
   playerDataManager: {fileID: 0}
-  spriteRenderer: {fileID: 0}
+  combatManager: {fileID: 0}
+  spriteRenderers: []
   _startingHealth: 1
   _cost: 10
   _name: Blast Bloom
@@ -282,6 +287,9 @@ MonoBehaviour:
   _gardenTile: {fileID: 0}
   effectedGardenPlaceables: []
   damageIndicatorPrefab: {fileID: 985783835550424020, guid: bf932e9924e884748b9300dabc7007d9, type: 3}
+  lowHealthColorFlashTime: 0.5
+  healColorTime: 1.5
+  damageColorFlashTime: 0.1
   flowerVisuals: {fileID: 109867650300612706}
   _plantType: 4
   _rarity: 0

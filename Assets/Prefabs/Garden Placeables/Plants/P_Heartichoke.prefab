@@ -78,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3728562666063435183, guid: f5576ef290494eb49bbc7c8c52d31202, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -3728562666063435183, guid: f5576ef290494eb49bbc7c8c52d31202, type: 3}
       propertyPath: m_SortingOrder
@@ -253,7 +253,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gardenManager: {fileID: 0}
   playerDataManager: {fileID: 0}
-  spriteRenderer: {fileID: 0}
+  combatManager: {fileID: 0}
+  spriteRenderers: []
   _startingHealth: 2
   _cost: 0
   _name: 'Heartichoke '
@@ -262,6 +263,9 @@ MonoBehaviour:
   _gardenTile: {fileID: 0}
   effectedGardenPlaceables: []
   damageIndicatorPrefab: {fileID: 985783835550424020, guid: bf932e9924e884748b9300dabc7007d9, type: 3}
+  lowHealthColorFlashTime: 0.5
+  healColorTime: 1.5
+  damageColorFlashTime: 0.1
   flowerVisuals: {fileID: 3398441640994872683}
   _plantType: 5
   _rarity: 0

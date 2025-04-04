@@ -73,6 +73,10 @@ PrefabInstance:
       value: 0.21960784
       objectReference: {fileID: 0}
     - target: {fileID: -3728562666063435183, guid: 84a326c6de12c1e47bb769bc9e5b1a22, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3728562666063435183, guid: 84a326c6de12c1e47bb769bc9e5b1a22, type: 3}
       propertyPath: m_SortingOrder
       value: 100
       objectReference: {fileID: 0}
@@ -277,7 +281,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gardenManager: {fileID: 0}
   playerDataManager: {fileID: 0}
-  spriteRenderer: {fileID: 0}
+  combatManager: {fileID: 0}
+  spriteRenderers: []
   _startingHealth: 1
   _cost: 0
   _name: Power Flower
@@ -286,6 +291,9 @@ MonoBehaviour:
   _gardenTile: {fileID: 0}
   effectedGardenPlaceables: []
   damageIndicatorPrefab: {fileID: 985783835550424020, guid: bf932e9924e884748b9300dabc7007d9, type: 3}
+  lowHealthColorFlashTime: 0.5
+  healColorTime: 1.5
+  damageColorFlashTime: 0.1
   flowerVisuals: {fileID: 2893310060454793639}
   _plantType: 1
   _rarity: 0
