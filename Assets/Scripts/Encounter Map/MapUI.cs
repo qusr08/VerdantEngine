@@ -13,6 +13,10 @@ public class MapUI : MonoBehaviour
 
     [SerializeField] private MapPlayer cameraManager;
 
+    [SerializeField] TMP_Text healthText;
+    [SerializeField] TMP_Text balanceText;
+    [SerializeField] PlayerDataManager playerDataManager;
+
     private bool hovering;
     public Vector2 offset = new Vector2(-80f, -80f); // Optional offset to position the UI element next to the cursor.
 
@@ -20,6 +24,18 @@ public class MapUI : MonoBehaviour
     void Start()
     {
         hovering = false;
+
+        if (playerDataManager == null)
+        {
+            playerDataManager = GameObject.Find("Player Data Manager").GetComponent<PlayerDataManager>();
+        }
+    }
+
+    private void OnEnable()
+    {
+        balanceText.text = "Balance : " + playerDataManager.Money.ToString();
+        healthText.text = "Health : " + playerDataManager.CurrentHealth.ToString() + "/" + playerDataManager.MaxHealth.ToString();
+
     }
 
     // Update is called once per frame
@@ -29,6 +45,7 @@ public class MapUI : MonoBehaviour
         {
             UpdateUIElementPosition();
         }
+
     }
 
     //Currently not called
