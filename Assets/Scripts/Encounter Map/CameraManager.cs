@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.FilePathAttribute;
 
 public enum ActiveScene { Map, Garden, Shop};
 
@@ -18,7 +19,11 @@ public class MapPlayer : MonoBehaviour
     [SerializeField] private GameObject camera;
     [SerializeField] private CombatUIManager uiManager;
     [SerializeField] private GameObject playerSprite;
-    public BG_Music_Manager soundManager;
+
+    private bool moving = false;
+    private GameObject nextLocation = null;
+    private float movingPercent = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +33,52 @@ public class MapPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(moving)
+        {
+            movingPercent += Time.deltaTime;
+
+            Vector3 currentLocation = CurrentEncounter.transform.position;
+            currentLocation.y += .5f;
+
+            Vector3 nextLocationEdited = nextLocation.transform.position;
+            nextLocationEdited.y += .5f;
+
+            if (nextLocationEdited.x < currentLocation.x)
+            {
+                playerSprite.GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else
+            {
+                playerSprite.GetComponent<SpriteRenderer>().flipX = false;
+            }
+
+            playerSprite.transform.position = Vector3.Lerp(currentLocation, nextLocationEdited, movingPercent);
+
+            
+
+            //This is needed to load the garden before the combat loads in. If this isn't here combat will break
+            
+
+            if(movingPercent >= 1)
+            {
+                movingPercent = 0.0f;
+                moving = false;
+
+                if (nextLocation.GetComponent<Encounter>().EncounterType == EncounterTypes.Enemy)
+                {
+                    gardenStuff.SetActive(true);
+                }
+                nextLocation.GetComponent<Encounter>().PlayerReached();
+
+                CurrentEncounter = nextLocation;
+
+                transform.position = new Vector3(0, nextLocation.transform.position.y + 3, -10);
+                playerSprite.transform.position = new Vector3(nextLocation.transform.position.x, transform.position.y - 2.5f, playerSprite.transform.position.z);
+
+                UpdateCameraPosition();
+
+            }
+        }
     }
 
     //Used when flipping between garden, map, and shop
@@ -45,7 +95,6 @@ public class MapPlayer : MonoBehaviour
     public void GoToGarden()
     {
         ChangeScenes(ActiveScene.Garden);
-        soundManager.PlayGarden();
     }
     public void GoToMap()
     {
@@ -102,7 +151,15 @@ public class MapPlayer : MonoBehaviour
     public bool MoveTo(GameObject location, bool force = false)
     {
         //Debug.Log(location);
-        if (force || CurrentEncounter.GetComponent<Encounter>().ConnectingNode.Contains(location))
+        if(force)
+        {
+            CurrentEncounter = location;
+            transform.position = new Vector3(0, location.transform.position.y + 3, -10);
+            playerSprite.transform.position = new Vector3(location.transform.position.x, playerSprite.transform.position.y, playerSprite.transform.position.z);
+
+            return true;
+        }
+        if (CurrentEncounter.GetComponent<Encounter>().ConnectingNode.Contains(location))
         {
             /* - Calls a function telling it that the player left, currently that function does nothing so I commented this out
              
@@ -111,18 +168,15 @@ public class MapPlayer : MonoBehaviour
                 CurrentEncounter.GetComponent<Encounter>().PlayerLeave();
             }*/
 
-            transform.position = new Vector3(0, location.transform.position.y + 3, -10);
-            playerSprite.transform.position = new Vector3(location.transform.position.x, playerSprite.transform.position.y, playerSprite.transform.position.z);
-            UpdateCameraPosition();
-            CurrentEncounter = location;
-            if (location.GetComponent<Encounter>().EncounterType == EncounterTypes.Enemy)
-            {
-                gardenStuff.SetActive(true);
-            }
-            location.GetComponent<Encounter>().PlayerReached();
-            return true;
+            nextLocation = location;
+            moving = true;
+
+        }
+        else
+        {
+            moving = false;
         }
 
-        return false;
+        return moving;
     }
 }
