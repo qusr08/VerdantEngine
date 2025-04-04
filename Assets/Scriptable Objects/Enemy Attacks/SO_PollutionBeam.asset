@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f9c5844ef65fe245b77ebd8c93399cc, type: 3}
-  m_Name: SO_SideShooter
+  m_Name: SO_PollutionBeam
   m_EditorClassIdentifier: 
-  _name: Side Shooter
+  _name: Pollution Beam
   _enemyTargetingType: 0
-  _attackType: 3
-  _damage: 1
-  _isLineAttackHorizental: 1
-  _maxCooldown: 1
-  _attackWidth: 1
-  info: 'Shoots from the flanks, hitting the first plant it comes into contact with. '
+  _attackType: 0
+  _damage: 2
+  _isLineAttackHorizental: 0
+  _maxCooldown: 0
+  _attackWidth: 2
+  info: 'Shoots a bullet in a straight line, hitting the first plant it comes into
+    contact with. '

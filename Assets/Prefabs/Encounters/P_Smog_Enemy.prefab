@@ -127,3 +127,4 @@ MonoBehaviour:
   combatManager: {fileID: 0}
   Name: Enemy
   Rewards: Doubloon x4
+  rewardsMoney: 0

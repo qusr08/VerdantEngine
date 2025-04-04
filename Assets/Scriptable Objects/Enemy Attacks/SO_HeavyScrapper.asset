@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f9c5844ef65fe245b77ebd8c93399cc, type: 3}
   m_Name: SO_HeavyScrapper
   m_EditorClassIdentifier: 
-  _name: Scrap Cannon
+  _name: Heavy Scrapper
   _enemyTargetingType: 0
   _attackType: 0
-  _damage: 1
+  _damage: 2
   _isLineAttackHorizental: 0
   _maxCooldown: 0
-  _attackWidth: 3
+  _attackWidth: 1
   info: 'Shoots a bullet in a straight line, hitting the first plant it comes into
     contact with. '
