@@ -25,7 +25,6 @@ public class ShopManager : MonoBehaviour
 
     [SerializeField] PlayerDataManager playerDataManager;
     [SerializeField] Inventory inventory;
-    [SerializeField] PlayerCombatManager playerCombatManager;
 
     public List<GameObject> commonPlantsList;
     public List<GameObject> uncommonPlantsList;
@@ -172,17 +171,28 @@ public class ShopManager : MonoBehaviour
                 }
             }
         }
+        for(int i = 0; i < plantItems.Length; i++)
+        {
+            plantItems[i].GetComponentInChildren<Button>().GetComponentInChildren<TMP_Text>().text = "Purchase";
+            plantItems[i].GetComponentInChildren<Button>().interactable = true;
+        }
         for (int i = 0; i < artifactItems.Length; i++)
         {
             artifactItems[i].GetComponent<Item>().FillShopItemDetails(artifactPrefabs[i].GetComponent<Artifact>().Name, artifactPrefabs[i].GetComponent<Artifact>().Cost, artifactPrefabs[i].GetComponent<Artifact>().InventorySprite,
                 artifactPrefabs[i].GetComponent<Artifact>().Description);
             artifactItems[i].GetComponent<Item>().artifact = artifactPrefabs[i].GetComponent<Artifact>();
+
+            artifactItems[i].GetComponentInChildren<Button>().GetComponentInChildren<TMP_Text>().text = "Purchase";
+            artifactItems[i].GetComponentInChildren<Button>().interactable = true;
         }
         for (int i = 0; i < partItems.Length; i++)
         {
             partItems[i].GetComponent<Item>().FillShopItemDetails(partPrefabs[i].Name, partPrefabs[i].Cost, partPrefabs[i].Icon,
                 partPrefabs[i].Description);
             partItems[i].GetComponent<Item>().part = partPrefabs[i];
+
+            partItems[i].GetComponentInChildren<Button>().GetComponentInChildren<TMP_Text>().text = "Purchase";
+            partItems[i].GetComponentInChildren<Button>().interactable = true;
         }
 
         healthText.text = "Health : " + playerDataManager.CurrentHealth.ToString() + "/" + playerDataManager.MaxHealth.ToString();
@@ -196,6 +206,9 @@ public class ShopManager : MonoBehaviour
             inventory.AddPlant(plantItems[itemIndex - 1].GetComponent<Item>().plant.PlantType);
 
             purchaseText.text = "Purchased " + plantItems[itemIndex - 1].GetComponent<Item>().itemName.text;
+
+            plantItems[itemIndex - 1].GetComponentInChildren<Button>().GetComponentInChildren<TMP_Text>().text = "Sold Out!";
+            plantItems[itemIndex - 1].GetComponentInChildren<Button>().interactable = false;
         }
         else
         {
@@ -211,6 +224,9 @@ public class ShopManager : MonoBehaviour
             inventory.AddArtifact(artifactItems[itemIndex - 1].GetComponent<Item>().artifact.ArtifactType);
 
             purchaseText.text = "Purchased " + artifactItems[itemIndex - 1].GetComponent<Item>().itemName.text;
+
+            artifactItems[itemIndex - 1].GetComponentInChildren<Button>().GetComponentInChildren<TMP_Text>().text = "Sold Out!";
+            artifactItems[itemIndex - 1].GetComponentInChildren<Button>().interactable = false;
         }
         else
         {
@@ -229,7 +245,9 @@ public class ShopManager : MonoBehaviour
                 playerDataManager.PlayerAttacks.Add(partItems[itemIndex - 1].GetComponent<Item>().part);
 
                 purchaseText.text = "Purchased " + partItems[itemIndex - 1].GetComponent<Item>().itemName.text;
-                playerCombatManager.SetUpWeapons();
+
+                partItems[itemIndex - 1].GetComponentInChildren<Button>().GetComponentInChildren<TMP_Text>().text = "Sold Out!";
+                partItems[itemIndex - 1].GetComponentInChildren<Button>().interactable = false;
             }
             else
             {
