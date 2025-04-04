@@ -37,22 +37,36 @@ public class MapPlayer : MonoBehaviour
         {
             movingPercent += Time.deltaTime;
 
-            transform.position = Vector3.Lerp(CurrentEncounter.transform.position, nextLocation.transform.position, movingPercent);
+            Vector3 currentLocation = CurrentEncounter.transform.position;
+            currentLocation.y += .5f;
 
-            //transform.position = new Vector3(0, nextLocation.transform.position.y + 3, -10);
-            //playerSprite.transform.position = new Vector3(nextLocation.transform.position.x, playerSprite.transform.position.y, playerSprite.transform.position.z);
+            Vector3 nextLocationEdited = nextLocation.transform.position;
+            nextLocationEdited.y += .5f;
+
+
+            playerSprite.transform.position = Vector3.Lerp(currentLocation, nextLocationEdited, movingPercent);
+
+            
 
             //This is needed to load the garden before the combat loads in. If this isn't here combat will break
-            if (nextLocation.GetComponent<Encounter>().EncounterType == EncounterTypes.Enemy)
-            {
-                gardenStuff.SetActive(true);
-            }
-            nextLocation.GetComponent<Encounter>().PlayerReached();
+            
 
             if(movingPercent >= 1)
             {
                 movingPercent = 0.0f;
                 moving = false;
+
+                if (nextLocation.GetComponent<Encounter>().EncounterType == EncounterTypes.Enemy)
+                {
+                    gardenStuff.SetActive(true);
+                }
+                nextLocation.GetComponent<Encounter>().PlayerReached();
+
+                CurrentEncounter = nextLocation;
+
+                transform.position = new Vector3(0, nextLocation.transform.position.y + 3, -10);
+                playerSprite.transform.position = new Vector3(nextLocation.transform.position.x, transform.position.y - 2.5f, playerSprite.transform.position.z);
+
                 UpdateCameraPosition();
 
             }
@@ -132,8 +146,10 @@ public class MapPlayer : MonoBehaviour
         if(force)
         {
             CurrentEncounter = location;
-            transform.position = new Vector3(0, nextLocation.transform.position.y + 3, -10);
-            playerSprite.transform.position = new Vector3(nextLocation.transform.position.x, playerSprite.transform.position.y, playerSprite.transform.position.z);
+            transform.position = new Vector3(0, location.transform.position.y + 3, -10);
+            playerSprite.transform.position = new Vector3(location.transform.position.x, playerSprite.transform.position.y, playerSprite.transform.position.z);
+
+            return true;
         }
         if (CurrentEncounter.GetComponent<Encounter>().ConnectingNode.Contains(location))
         {
