@@ -14393,7 +14393,7 @@ MonoBehaviour:
   _maxHealth: 10
   _money: 100
   _playerAttacks:
-  - {fileID: 11400000, guid: a26505c909cfb76419bd43a9ec21ae20, type: 2}
+  - {fileID: 11400000, guid: 001b5f5f0c0685f489002903a568926f, type: 2}
   - {fileID: 11400000, guid: 944ffad48c7ea094db0d9de5a1ec003b, type: 2}
   mouseImage: {fileID: 1983731385}
   mouseImageTransform: {fileID: 1983731384}
