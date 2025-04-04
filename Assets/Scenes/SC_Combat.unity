@@ -12885,9 +12885,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1994835567}
     - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
+      propertyPath: flowerTrailPrefab
+      value: 
+      objectReference: {fileID: 2533840000157061721, guid: d2aa478bfd47e0e4899baf0045eaebeb, type: 3}
+    - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
       propertyPath: gardenCameraLocation
       value: 
       objectReference: {fileID: 643021303}
+    - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
+      propertyPath: flowerTrailSprites.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
+      propertyPath: flowerTrailSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 638de94725986af44b145d65ed0b6fd7, type: 3}
+    - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
+      propertyPath: flowerTrailSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5ecf77accb0414440a20c6ae3b25019e, type: 3}
+    - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
+      propertyPath: flowerTrailSprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 846b170cee569834786517228c58d2d6, type: 3}
+    - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
+      propertyPath: flowerTrailSprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: b78bc26f961e43447a833d162ce58227, type: 3}
+    - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
+      propertyPath: flowerTrailSprites.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3b9dd1f36f4e100428847f3594bcb7c3, type: 3}
+    - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
+      propertyPath: flowerTrailSprites.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5ce040ea8be71c647865b7ea1cdd790a, type: 3}
     - target: {fileID: 5569340684059904175, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
       propertyPath: m_Name
       value: CameraManager
