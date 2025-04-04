@@ -18,7 +18,7 @@ public class MapPlayer : MonoBehaviour
     [SerializeField] private GameObject camera;
     [SerializeField] private CombatUIManager uiManager;
     [SerializeField] private GameObject playerSprite;
-
+    public BG_Music_Manager soundManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +45,7 @@ public class MapPlayer : MonoBehaviour
     public void GoToGarden()
     {
         ChangeScenes(ActiveScene.Garden);
+        soundManager.PlayGarden();
     }
     public void GoToMap()
     {
