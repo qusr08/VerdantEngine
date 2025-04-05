@@ -16,6 +16,7 @@ public class Inventory : MonoBehaviour {
 
 	private void Start ( ) {
 		/// TESTING
+		/*
 		AddPlant(PlantType.POWER_FLOWER);
 		AddPlant(PlantType.POWER_FLOWER);
 
@@ -37,6 +38,7 @@ public class Inventory : MonoBehaviour {
 		AddArtifact(ArtifactType.WHEELBARROW);
         AddArtifact(ArtifactType.FLAMINGO);
         AddArtifact(ArtifactType.COMPOST);
+		*/
 
     }
 

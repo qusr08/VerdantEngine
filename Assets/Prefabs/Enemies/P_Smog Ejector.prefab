@@ -190,8 +190,8 @@ MonoBehaviour:
   arrowObject: {fileID: 5387549191876080225}
   enemyName: Smog Ejector
   EnemyID: 0
-  _maxHealth: 12
-  _currentHealth: 12
+  _maxHealth: 4
+  _currentHealth: 4
   _currentCooldown: 2
   _icon: {fileID: 21300000, guid: 419d52bed1d891b47a11463e077de1a9, type: 3}
   _finalAim: []

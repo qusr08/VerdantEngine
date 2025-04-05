@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sprinklers_SO
   m_EditorClassIdentifier: 
   _damage: 1
-  _manaCost: 1
+  _manaCost: 3
   _cost: 20
   _description: Heal 1 all plants
   _name: Sprinklers

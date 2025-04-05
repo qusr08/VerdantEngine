@@ -50,11 +50,17 @@ public class GardenManager : MonoBehaviour {
 		CreateGardenTiles();
 
 		/// TEST: Create test plants and move them around
+		PlacePlant(PlantType.POWER_FLOWER, 0, 2);
 		PlacePlant(PlantType.POWER_FLOWER, 0, 3);
+		PlacePlant(PlantType.HEARTICHOKE, 1, 2);
+		PlacePlant(PlantType.HARDY_HEDGE, 1, 3);
+
+		/*
 		PlacePlant(PlantType.BLAST_BLOOM, 0, 2);
 		PlacePlant(PlantType.HARDY_HEDGE, 1, 3);
 		PlacePlant(PlantType.THORNY_THICKET, 3, 3);
 		PlacePlant(PlantType.HEARTICHOKE, 4, 3);
+		*/
 	}
 
 	/*
