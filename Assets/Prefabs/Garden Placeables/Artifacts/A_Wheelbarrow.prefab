@@ -104,9 +104,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8315290979037757665}
-    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 9219641144220145138}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
 --- !u!1 &109867650300612706 stripped
 GameObject:
@@ -153,7 +150,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: e5c6f54554881dd45bf64d06ac6edf58, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -165,22 +162,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &9219641144220145138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 109867650300612706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05af1724e594b8540babaf1d01b7aeb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  x: 0
-  y: 0
-  addToSortOrder: 0
-  prevAddToSortOrder: 0
 --- !u!4 &1247019768761993217 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
@@ -256,6 +237,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 164589016474248900, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7026284614776917842}
+    - targetCorrespondingSourceObject: {fileID: 164589016474248900, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4490389264933152813}
   m_SourcePrefab: {fileID: 100100000, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
 --- !u!1 &3020584395285068545 stripped
 GameObject:
@@ -292,6 +276,22 @@ MonoBehaviour:
   flowerVisuals: {fileID: 109867650300612706}
   _artifactType: 0
   _artifactAbilityType: 5
+--- !u!114 &4490389264933152813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3020584395285068545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05af1724e594b8540babaf1d01b7aeb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  x: 0
+  y: 0
+  addToSortOrder: 0
+  prevAddToSortOrder: 0
 --- !u!4 &5306314669448112019 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7061688495639312982, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}

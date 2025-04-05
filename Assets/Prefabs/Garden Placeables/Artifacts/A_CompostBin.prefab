@@ -70,6 +70,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 164589016474248900, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
       insertIndex: -1
       addedObject: {fileID: -3736770982140907972}
+    - targetCorrespondingSourceObject: {fileID: 164589016474248900, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3726424221814118706}
   m_SourcePrefab: {fileID: 100100000, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
 --- !u!1 &3020584395285068545 stripped
 GameObject:
@@ -106,6 +109,22 @@ MonoBehaviour:
   flowerVisuals: {fileID: 0}
   _artifactType: 1
   _artifactAbilityType: 2
+--- !u!114 &3726424221814118706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3020584395285068545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05af1724e594b8540babaf1d01b7aeb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  x: 0
+  y: 0
+  addToSortOrder: 0
+  prevAddToSortOrder: 0
 --- !u!4 &5306314669448112019 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7061688495639312982, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
@@ -178,6 +197,22 @@ PrefabInstance:
     - target: {fileID: -7552582706839291426, guid: 3763d66c561f92e48ac45c31c1fb978e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2663941863664443129, guid: 3763d66c561f92e48ac45c31c1fb978e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 98
+      objectReference: {fileID: 0}
+    - target: {fileID: -330777134753055741, guid: 3763d66c561f92e48ac45c31c1fb978e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 99
+      objectReference: {fileID: 0}
+    - target: {fileID: 683650805199822136, guid: 3763d66c561f92e48ac45c31c1fb978e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 97
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154200607421567265, guid: 3763d66c561f92e48ac45c31c1fb978e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
