@@ -3437,10 +3437,10 @@ PrefabInstance:
       addedObject: {fileID: 892162716}
     - targetCorrespondingSourceObject: {fileID: 3792805984168831317, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 621441219}
+      addedObject: {fileID: 1454483273}
     - targetCorrespondingSourceObject: {fileID: 3792805984168831317, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1454483273}
+      addedObject: {fileID: 621441219}
     - targetCorrespondingSourceObject: {fileID: 3792805984168831317, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1825975241}
@@ -7230,8 +7230,8 @@ Transform:
   m_GameObject: {fileID: 892162715}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.9, y: 5.7, z: 10}
-  m_LocalScale: {x: 2.4182086, y: 2.9558008, z: 0.29558006}
+  m_LocalPosition: {x: -2.9, y: 6.9, z: 10}
+  m_LocalScale: {x: 2.5678957, y: 3.1387649, z: 0.31387648}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 357858569}
