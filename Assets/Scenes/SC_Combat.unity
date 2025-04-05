@@ -3321,11 +3321,11 @@ PrefabInstance:
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: hardEnemies.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: edcc0a46834458345b19682fe06fb00f, type: 2}
+      objectReference: {fileID: 11400000, guid: e712bd32eca8b584195387c3fa99063f, type: 2}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: hardEnemies.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 5852ddd7b5f51c24ab56bc09889ae6f4, type: 2}
+      objectReference: {fileID: 11400000, guid: 967351198fa1f464596e77502d0e6217, type: 2}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: enemyPrefabs.Array.data[2]
       value: 
