@@ -67,7 +67,7 @@ Material:
     - _AnimationSpeed: {r: 0.05, g: 0.1, b: 0, a: 0}
     - _CloudColor: {r: 1, g: 1, b: 1, a: 0.05490196}
     - _CloudScale: {r: 0.5, g: 0.5, b: 0, a: 0}
-    - _Horizon: {r: 0.4433962, g: 0, b: 0, a: 0}
-    - _Nadir: {r: 0, g: 0, b: 0, a: 0}
-    - _Zenith: {r: 1, g: 0, b: 0, a: 0}
+    - _Horizon: {r: 0.026699863, g: 0.18867922, b: 0.13441694, a: 0}
+    - _Nadir: {r: 0.021359893, g: 0.050314426, b: 0.02759212, a: 0}
+    - _Zenith: {r: 0.44120085, g: 0.8301887, b: 0.7917174, a: 0}
   m_BuildTextureStacks: []

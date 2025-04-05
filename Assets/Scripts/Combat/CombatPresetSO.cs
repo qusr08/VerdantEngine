@@ -6,7 +6,9 @@ using UnityEngine;
 public class CombatPresetSO : ScriptableObject {
 	[SerializeField] private List<GameObject> _enemyPrefabs;
 	[SerializeField] private bool _isEliteRewards;
-	public int rewardMoeny;
+    public bool isBoss;
+
+    public int rewardMoeny;
 	/// <summary>
 	/// A list of all the enemies that will be spawned in this combat
 	/// </summary>

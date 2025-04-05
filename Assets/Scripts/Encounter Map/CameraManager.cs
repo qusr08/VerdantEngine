@@ -20,9 +20,13 @@ public class MapPlayer : MonoBehaviour
     [SerializeField] private CombatUIManager uiManager;
     [SerializeField] private GameObject playerSprite;
 
+    [SerializeField] private GameObject flowerTrailPrefab;
+    [SerializeField] private Sprite[] flowerTrailSprites;
+
     private bool moving = false;
     private GameObject nextLocation = null;
     private float movingPercent = 0.0f;
+    private float timeSinceFlowerSpawn = 0.0f;
 
     public BG_Music_Manager soundManager;
 
@@ -38,6 +42,7 @@ public class MapPlayer : MonoBehaviour
         if(moving)
         {
             movingPercent += Time.deltaTime;
+            timeSinceFlowerSpawn += Time.deltaTime;
 
             Vector3 currentLocation = CurrentEncounter.transform.position;
             currentLocation.y += .5f;
@@ -56,9 +61,14 @@ public class MapPlayer : MonoBehaviour
 
             playerSprite.transform.position = Vector3.Lerp(currentLocation, nextLocationEdited, movingPercent);
 
-            
-
-            //This is needed to load the garden before the combat loads in. If this isn't here combat will break
+            if (timeSinceFlowerSpawn >= .1f)
+            {
+                GameObject flowerTrail = Instantiate(flowerTrailPrefab, mapStuff.transform);
+                flowerTrail.transform.position = playerSprite.transform.position;
+                flowerTrailPrefab.GetComponent<SpriteRenderer>().sprite = flowerTrailSprites[Random.Range(0, flowerTrailSprites.Length)];
+                flowerTrail.transform.position = new Vector3(flowerTrail.transform.position.x, flowerTrail.transform.position.y - Random.Range(.2f, .8f), flowerTrail.transform.position.z);
+                timeSinceFlowerSpawn = 0;
+            }
             
 
             if(movingPercent >= 1)
@@ -66,6 +76,7 @@ public class MapPlayer : MonoBehaviour
                 movingPercent = 0.0f;
                 moving = false;
 
+                //Combat will break if this doesn't pre-load garden
                 if (nextLocation.GetComponent<Encounter>().EncounterType == EncounterTypes.Enemy)
                 {
                     gardenStuff.SetActive(true);

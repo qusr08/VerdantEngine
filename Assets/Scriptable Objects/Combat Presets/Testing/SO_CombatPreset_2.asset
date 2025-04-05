@@ -18,3 +18,5 @@ MonoBehaviour:
   - {fileID: 2017004346278228227, guid: 67c9c44a9bcb5f149b07f721d371a8f4, type: 3}
   - {fileID: 2017004346278228227, guid: 2548157c74d36bf41accae1f3492187a, type: 3}
   _isEliteRewards: 1
+  isBoss: 0
+  rewardMoeny: 0

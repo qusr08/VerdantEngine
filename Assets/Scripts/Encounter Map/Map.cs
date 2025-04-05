@@ -178,10 +178,14 @@ public class Map : MonoBehaviour
             case Type.Enemy:
                 int enemyDifficulty = 0;
 
-                //Forces easy for the first 3 encounters
-                if(encounterNumber > 3)
+                //Forces the first few encounters. I don't like this but it needs to be hard coded
+                if(encounterNumber > 1)
                 {
                     enemyDifficulty = GetSubType(enemyRates);
+                }
+                if(encounterNumber == 1 && encounterOptions == 2)
+                {
+                    enemyDifficulty = 1;
                 }
 
                 encounters.Add(Instantiate(enemyPrefabs[enemyDifficulty], nextPosition, transform.rotation, this.gameObject.transform));
