@@ -64,12 +64,12 @@ public class TutorialManager : MonoBehaviour
 
     }
 
-    private void EndTutorial() {
+    public  void EndTutorial() {
 
         DeactivateAllTutorialSteps();
         CloseStepSelectorMenu();
         tutorialIsActive = false;
-
+        currentStep = 0;
     }
 
     private List<GameObject> GetTutorialSteps(TutorialType tutorialType) {
