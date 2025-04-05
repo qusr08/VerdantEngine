@@ -55,9 +55,8 @@ MonoBehaviour:
   combatManager: {fileID: 0}
   clearedSprite: {fileID: 0}
   Name: Boss
-  Rewards: Friend x1
-  Description: 
-  isBoss: 1
+  Rewards: Victory
+  Description: Fight in your strongest battle yet
 --- !u!70 &-687664823255271156
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

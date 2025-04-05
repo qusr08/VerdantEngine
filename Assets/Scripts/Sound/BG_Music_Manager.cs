@@ -23,7 +23,7 @@ public class BG_Music_Manager : MonoBehaviour
         }
         isGarden = false;
         audioSource.Stop();
-        audioSource.clip = gardenBG;
+        audioSource.clip = combatBG;
 
         if (!audioSource.isPlaying)
         {
