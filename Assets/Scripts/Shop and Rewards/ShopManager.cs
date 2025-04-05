@@ -24,6 +24,7 @@ public class ShopManager : MonoBehaviour
     [SerializeField] int costToHeal;
 
     [SerializeField] PlayerDataManager playerDataManager;
+    [SerializeField] PlayerCombatManager playerCombatManager;
     [SerializeField] Inventory inventory;
 
     public List<GameObject> commonPlantsList;
@@ -243,7 +244,7 @@ public class ShopManager : MonoBehaviour
                 playerDataManager.Money = playerDataManager.Money - partItems[itemIndex - 1].GetComponent<Item>().part.Cost;
                 balanceText.text = "Balance : " + playerDataManager.Money.ToString();
                 playerDataManager.PlayerAttacks.Add(partItems[itemIndex - 1].GetComponent<Item>().part);
-
+                playerCombatManager.SetUpWeapons();
                 purchaseText.text = "Purchased " + partItems[itemIndex - 1].GetComponent<Item>().itemName.text;
 
                 partItems[itemIndex - 1].GetComponentInChildren<Button>().GetComponentInChildren<TMP_Text>().text = "Sold Out!";

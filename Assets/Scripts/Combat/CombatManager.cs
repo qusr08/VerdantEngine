@@ -191,13 +191,15 @@ public class CombatManager : MonoBehaviour {
 	}
 
 	public IEnumerator EnemyTurn ( ) {
-		foreach (Enemy enemy in Enemies)
-		{
-			if (enemy.CurrentCooldown == 0)
-			{
-				StartCoroutine( playerCombatManager.ApplyDamageToGarden(enemy, enemy.CurrentAttack));
-			}
-		}
+
+        for (int i = Enemies.Count - 1; i >= 0; i--)
+        {
+            if (Enemies[i].CurrentCooldown == 0)
+            {
+                StartCoroutine(playerCombatManager.ApplyDamageToGarden(Enemies[i], Enemies[i].CurrentAttack));
+            }
+        }
+       
 	//	yield return new WaitForSeconds((float)playerCombatManager.enemyAttckSliderAnimation.director.duration);
 		foreach (GardenTile gardenTile in playerDataManager.Garden)
 		{

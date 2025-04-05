@@ -15,7 +15,7 @@ MonoBehaviour:
   _damage: 4
   _manaCost: 4
   _cost: 10
-  _description: Deals 1 damage to the target.
+  _description: Deals 4 damage to the target.
   _name: Heavy Cannon
   _attackType: 2
   _playerTargetingType: 2

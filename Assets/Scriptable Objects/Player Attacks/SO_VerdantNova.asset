@@ -15,7 +15,7 @@ MonoBehaviour:
   _damage: 5
   _manaCost: 10
   _cost: 10
-  _description: Deals 1 damage to the target.
+  _description: Deals 5 damage to ALL enemies.
   _name: Verdant Nova
   _attackType: 2
   _playerTargetingType: 2

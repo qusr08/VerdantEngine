@@ -15,9 +15,9 @@ public class Inventory : MonoBehaviour {
 	public List<InventoryBox> InventoryBoxes { get => _inventoryBoxes; private set => _inventoryBoxes = value; }
 
 	private void Start ( ) {
-		/// TESTING
+		
+		AddPlant(PlantType.POWER_FLOWER);/// TESTING
 		/*
-		AddPlant(PlantType.POWER_FLOWER);
 		AddPlant(PlantType.POWER_FLOWER);
 
 		AddPlant(PlantType.BLAST_BLOOM);

@@ -20705,6 +20705,10 @@ MonoBehaviour:
   partPrefabs:
   - {fileID: 11400000, guid: 001b5f5f0c0685f489002903a568926f, type: 2}
   - {fileID: 11400000, guid: 944ffad48c7ea094db0d9de5a1ec003b, type: 2}
+  - {fileID: 11400000, guid: a42c7ed78f085d9429cc2f7e4ac67fb2, type: 2}
+  - {fileID: 11400000, guid: a26505c909cfb76419bd43a9ec21ae20, type: 2}
+  - {fileID: 11400000, guid: 4109704180e381d48a28e2d826627006, type: 2}
+  - {fileID: 11400000, guid: da36dcbf0e37f034792cf611edaf7bad, type: 2}
   plantProbablility: 000000000000000000000000000000000000000000000000
   healthText: {fileID: 624050706}
   balanceText: {fileID: 1940228930}
@@ -20712,6 +20716,7 @@ MonoBehaviour:
   healCost: {fileID: 1451884963}
   costToHeal: 10
   playerDataManager: {fileID: 1707282257}
+  playerCombatManager: {fileID: 1198069308}
   inventory: {fileID: 1030742011}
   commonPlantsList: []
   uncommonPlantsList: []

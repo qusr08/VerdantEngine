@@ -50,7 +50,9 @@ public class PlayerCombatManager : MonoBehaviour {
         energy += gardenManager.CountPlants(new List<PlantType>() { PlantType.POWER_FLOWER }, null);
         energy += energyModifier;
         energyModifier = 0;
-        energyText.text = energy.ToString();
+		energyText.text = energy.ToString();
+
+
     }
     public void UpdateEnrgy(int value)
     {

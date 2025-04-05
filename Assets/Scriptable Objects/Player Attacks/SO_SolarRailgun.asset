@@ -15,7 +15,7 @@ MonoBehaviour:
   _damage: 5
   _manaCost: 6
   _cost: 10
-  _description: Deals 1 damage to the target.
+  _description: Deal 5 damage to the front 2 enemies
   _name: Solar Railgun
   _attackType: 2
   _playerTargetingType: 2
