@@ -279,7 +279,7 @@ MonoBehaviour:
   combatManager: {fileID: 0}
   spriteRenderers: []
   _startingHealth: 3
-  _cost: 3
+  _cost: 26
   _name: 'Wheelbarrow '
   _description: Gains +1 action point.
   _inventorySprite: {fileID: 21300000, guid: e5c6f54554881dd45bf64d06ac6edf58, type: 3}

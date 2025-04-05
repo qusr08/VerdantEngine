@@ -260,9 +260,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gardenManager: {fileID: 0}
   playerDataManager: {fileID: 0}
+  combatManager: {fileID: 0}
   spriteRenderers: []
   _startingHealth: 3
-  _cost: 2
+  _cost: 26
   _name: DR. Flamingo
   _description: 'When a plant is healed, damage the front enemy equal to the amount
     healed.

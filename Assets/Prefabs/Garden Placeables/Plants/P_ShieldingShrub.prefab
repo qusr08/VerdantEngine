@@ -252,9 +252,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gardenManager: {fileID: 0}
   playerDataManager: {fileID: 0}
-  spriteRenderer: {fileID: 0}
+  combatManager: {fileID: 0}
+  spriteRenderers: []
   _startingHealth: 2
-  _cost: 0
+  _cost: 24
   _name: Shielding Shrub
   _description: All adjacent plants gain +1 max hitpoint. The shielding effect  can
     stack if multiple shield shrubs are adjacent.
@@ -262,9 +263,12 @@ MonoBehaviour:
   _gardenTile: {fileID: 0}
   effectedGardenPlaceables: []
   damageIndicatorPrefab: {fileID: 985783835550424020, guid: bf932e9924e884748b9300dabc7007d9, type: 3}
+  lowHealthColorFlashTime: 0.5
+  healColorTime: 1.5
+  damageColorFlashTime: 0.1
   flowerVisuals: {fileID: 664455259692123256}
   _plantType: 2
-  _rarity: 1
+  _rarity: 2
 --- !u!4 &9218323910527567288 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7061688495639312982, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}

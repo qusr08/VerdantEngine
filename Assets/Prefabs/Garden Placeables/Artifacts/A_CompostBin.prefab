@@ -276,11 +276,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gardenManager: {fileID: 0}
   playerDataManager: {fileID: 0}
+  combatManager: {fileID: 0}
   spriteRenderers: []
   _startingHealth: 4
-  _cost: 1
+  _cost: 26
   _name: Compost Bin
-  _description: When a plant is destroyed, generate 1 energy.
+  _description: When a plant is destroyed, generate 5 energy.
   _inventorySprite: {fileID: 21300000, guid: 85738079ed4068142af756ce5191bb54, type: 3}
   _gardenTile: {fileID: 0}
   effectedGardenPlaceables: []
