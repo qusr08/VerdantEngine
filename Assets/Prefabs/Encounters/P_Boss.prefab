@@ -51,12 +51,12 @@ MonoBehaviour:
   EncounterType: 0
   player: {fileID: 0}
   mapUI: {fileID: 0}
-  combatEncounter: {fileID: 11400000, guid: 623439e88c4d836498ec68d9dfa4bb32, type: 2}
+  combatEncounter: {fileID: 11400000, guid: 30f51f530703d6846ac16a1e39ba52e2, type: 2}
   combatManager: {fileID: 0}
   clearedSprite: {fileID: 0}
   Name: Boss
   Rewards: Victory
-  Description: Fight in your strongest battle yet
+  Description: Fight in your hardest battle yet
 --- !u!70 &-687664823255271156
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
