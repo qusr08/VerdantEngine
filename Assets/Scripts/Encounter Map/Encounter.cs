@@ -10,6 +10,7 @@ public class Encounter : MonoBehaviour
     public bool First = false;
 
     public List<GameObject> ConnectingNode;
+    public List<GameObject> ConnectingLines;
     public EncounterTypes EncounterType;
     [SerializeField] private MapPlayer player;
     [SerializeField] private MapUI mapUI;
@@ -82,9 +83,20 @@ public class Encounter : MonoBehaviour
     /// <summary>
     /// Runs when the player is at this encounter, and then leaves it
     /// </summary>
-    public void PlayerLeave()
+    public void PlayerLeave(GameObject connection)
     {
-        //Currently this doesn't do anything.
+        if(ConnectingNode.Contains(connection))
+        {
+            foreach(GameObject line in ConnectingLines)
+            {
+                if(line.GetComponent<MapLines>().to == connection)
+                {
+                    LineRenderer lineRenderer = line.GetComponent<LineRenderer>();
+                    lineRenderer.startColor = Color.green;
+                    lineRenderer.endColor = Color.green;
+                }
+            }
+        }
     }
 
     public void AddConnection(GameObject connection)
@@ -94,13 +106,19 @@ public class Encounter : MonoBehaviour
         //Creates a child, gives it a line rendered, and then sets the line to be between this and it's connection
         GameObject child = new GameObject();
         child.transform.SetParent(transform);
+
+        ConnectingLines.Add(child);
+
+        MapLines line = child.AddComponent<MapLines>();
+        line.from = this.gameObject;
+        line.to = connection;
+
         LineRenderer lineRenderer = child.AddComponent<LineRenderer>();
         lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
         lineRenderer.widthMultiplier = 0.05f;
         lineRenderer.positionCount = 2;
         lineRenderer.startColor = new Color (.88f, .89f, .73f);
         lineRenderer.endColor = new Color(.88f, .89f, .73f);
-
 
         lineRenderer.SetPosition(0, this.transform.position);
         lineRenderer.SetPosition(1, connection.transform.position);
