@@ -355,6 +355,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	/// <returns>The actual damage that was dealt to the health of the plant. This takes into account the shield that the plant has</returns>
 	public virtual int TakeDamage (Enemy enemy, int damage) {
 		// Subtract the current shield of this garden placeable from the damage that is trying to be dealt
+		if(ShieldStat.CurrentValue>0)
 		damage -= ShieldStat.CurrentValue;
 
 		// If the damage is still greater than 0, then decrease the placeable's health

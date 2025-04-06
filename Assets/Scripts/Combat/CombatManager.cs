@@ -99,7 +99,14 @@ public class CombatManager : MonoBehaviour {
 	}
 
 	public void AllEnemiesStartRound ( ) {
-		foreach (Enemy enemy in Enemies) {
+
+        foreach (GardenTile gardenTile in playerDataManager.Garden)
+        {
+            gardenTile.IsHighlighted = false;
+
+        }
+
+        foreach (Enemy enemy in Enemies) {
 			enemy.StartRound( );
 		}
 	}
@@ -182,16 +189,17 @@ public class CombatManager : MonoBehaviour {
 		// Reset all of the garden tiles to not be attacked
 		foreach (GardenTile gardenTile in playerDataManager.Garden) {
 			gardenTile.AttackedDamage = 0;
-		}
+            gardenTile.IsHighlighted = false;
 
-		// Select only the garden tiles that the enemy is going to attack
-		foreach (Enemy enemy in Enemies) {
+        }
+
+        // Select only the garden tiles that the enemy is going to attack
+        foreach (Enemy enemy in Enemies) {
 			enemy.MarkMapBeforeAttack( );
 		}
 	}
 
 	public IEnumerator EnemyTurn ( ) {
-
         for (int i = Enemies.Count - 1; i >= 0; i--)
         {
             if (Enemies[i].CurrentCooldown == 0)

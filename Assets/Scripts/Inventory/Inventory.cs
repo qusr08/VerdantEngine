@@ -17,7 +17,8 @@ public class Inventory : MonoBehaviour {
 	private void Start ( ) {
 		
 		AddPlant(PlantType.POWER_FLOWER);/// TESTING
-		/*
+
+        /*
 		AddPlant(PlantType.POWER_FLOWER);
 
 		AddPlant(PlantType.BLAST_BLOOM);
@@ -42,7 +43,7 @@ public class Inventory : MonoBehaviour {
 
     }
 
-	private void Update ( ) {
+    private void Update ( ) {
 		// NOTE: DEBUG USE ONLY
 		// Add one of everything to your inventory if you press left shift + D at the same time
 		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.D)) {
