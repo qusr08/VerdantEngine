@@ -70,8 +70,8 @@ public class RewardManager : MonoBehaviour
     {
         for (int i = 0; i < probablility.Length; i++)
         {
-           // probablility[i] = Random.Range(0, 101); //uncomment when we have rare plants
-           probablility[i] = Random.Range(0, 81); //temporary, until we implement rare plants
+           probablility[i] = Random.Range(0, 101); //uncomment when we have rare plants
+           //probablility[i] = Random.Range(0, 81); //temporary, until we implement rare plants
         }
 
         for (int i = 0; i < commonPlants.Length; i++)
@@ -108,7 +108,7 @@ public class RewardManager : MonoBehaviour
         rareIndex = 0;
         for(int i = 0; i < probablility.Length; i++)
         {
-            if (probablility[i] <= 50)
+            if (probablility[i] <= 45)
             {
                 items[i].GetComponentInChildren<Item>().FillRewardItemDetails(commonPlants[commonIndex].GetComponent<Plant>().Name, commonPlants[commonIndex].GetComponent<Plant>().InventorySprite);
                 items[i].GetComponent<Item>().plant = commonPlants[commonIndex].GetComponent<Plant>();
@@ -121,7 +121,7 @@ public class RewardManager : MonoBehaviour
                     commonIndex = 0;
                 }
             }
-            else if (probablility[i] > 50 && probablility[i] <= 80)
+            else if (probablility[i] <= 77)
             {
                 items[i].GetComponentInChildren<Item>().FillRewardItemDetails(uncommonPlants[uncommonIndex].GetComponent<Plant>().Name, uncommonPlants[uncommonIndex].GetComponent<Plant>().InventorySprite);
                 items[i].GetComponent<Item>().plant = uncommonPlants[uncommonIndex].GetComponent<Plant>();
