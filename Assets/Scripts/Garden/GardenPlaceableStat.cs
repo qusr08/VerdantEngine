@@ -12,6 +12,7 @@ Logic Loop:
 
  */
 
+[System.Serializable]
 public class GardenPlaceableStat {
 	public delegate void StatFunction ( );
 	public StatFunction WhenZero;
