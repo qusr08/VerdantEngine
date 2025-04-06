@@ -21,7 +21,8 @@ public class PlayerCombatManager : MonoBehaviour {
     [HideInInspector] public int energyModifier;
 	 public SpriteRenderer [] tree;
     public EnemySlider enemyAttckSliderAnimation;
-	public GameObject cannonFlashAsset;
+
+    public GameObject cannonFlashAsset;
 	public float tempAnimTimer;
 	private void Start ( ) {
 		foreach (PlayerAttackSO playerAttack in playerDataManager.PlayerAttacks) {
@@ -126,6 +127,8 @@ public class PlayerCombatManager : MonoBehaviour {
 
     public IEnumerator ApplyDamageToGarden(Enemy enemy, EnemyAttackSO enemyAttack)
     {
+		
+		
       //  enemyAttckSliderAnimation.enemyImage.texture = enemy.Icon.texture;
       //  enemyAttckSliderAnimation.gameObject.GetComponent<PlayableDirector>().Play();
       //  yield return new WaitForSeconds((float)enemyAttckSliderAnimation.gameObject.GetComponent<PlayableDirector>().duration);

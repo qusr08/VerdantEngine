@@ -25,10 +25,11 @@ public class CombatManager : MonoBehaviour {
 
 	public Material greenSky;
     public Material redSky;
-	
-	
-	//Need to be removed after edge
-	private bool isBoss = false;
+    public Animator enemyAnimator;
+
+
+    //Need to be removed after edge
+    private bool isBoss = false;
 	public GameObject ThanksForPlayingScreen;
 
 
@@ -200,6 +201,8 @@ public class CombatManager : MonoBehaviour {
 	}
 
 	public IEnumerator EnemyTurn ( ) {
+        enemyAnimator.SetTrigger("Attack");
+
         for (int i = Enemies.Count - 1; i >= 0; i--)
         {
             if (Enemies[i].CurrentCooldown == 0)
