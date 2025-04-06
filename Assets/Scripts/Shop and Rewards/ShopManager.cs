@@ -80,8 +80,8 @@ public class ShopManager : MonoBehaviour
     {
         for (int i = 0; i < plantProbablility.Length; i++)
         {
-            // plantProbablility[i] = Random.Range(0, 101); //uncomment when we have rare plants
-            plantProbablility[i] = Random.Range(0, 81); //temporary, until we implement rare plants
+            plantProbablility[i] = Random.Range(0, 101); //uncomment when we have rare plants
+            // plantProbablility[i] = Random.Range(0, 81); //temporary, until we implement rare plants
         }
         for (int i = 0; i < commonPlants.Length; i++)
         {
@@ -132,7 +132,7 @@ public class ShopManager : MonoBehaviour
         rareIndex = 0;
         for (int i = 0; i < plantProbablility.Length; i++)
         {
-            if (plantProbablility[i] <= 50)
+            if (plantProbablility[i] <= 45)
             {
                 plantItems[i].GetComponent<Item>().FillShopItemDetails(commonPlants[commonIndex].GetComponent<Plant>().Name, commonPlants[commonIndex].GetComponent<Plant>().Cost, commonPlants[commonIndex].GetComponent<Plant>().InventorySprite, commonPlants[commonIndex].GetComponent<Plant>().Description);
                 plantItems[i].GetComponent<Item>().plant = commonPlants[commonIndex].GetComponent<Plant>();
@@ -145,7 +145,7 @@ public class ShopManager : MonoBehaviour
                     commonIndex = 0;
                 }
             }
-            else if (plantProbablility[i] > 50 && plantProbablility[i] <= 80)
+            else if (plantProbablility[i] <= 77)
             {
                 plantItems[i].GetComponent<Item>().FillShopItemDetails(uncommonPlants[uncommonIndex].GetComponent<Plant>().Name, uncommonPlants[uncommonIndex].GetComponent<Plant>().Cost, uncommonPlants[uncommonIndex].GetComponent<Plant>().InventorySprite, uncommonPlants[uncommonIndex].GetComponent<Plant>().Description);
                 plantItems[i].GetComponent<Item>().plant = uncommonPlants[uncommonIndex].GetComponent<Plant>();
