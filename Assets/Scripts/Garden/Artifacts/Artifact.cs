@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.WSA;
+//using UnityEngine.WSA; - idk what this is but it's causing a build error
 
 public enum ArtifactType {
     WHEELBARROW,

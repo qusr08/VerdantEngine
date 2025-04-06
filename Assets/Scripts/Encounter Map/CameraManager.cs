@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.FilePathAttribute;
+//using static UnityEditor.FilePathAttribute; - idk what this is but it's causing a build error so uhhh??
 
 public enum ActiveScene { Map, Garden, Shop};
 
