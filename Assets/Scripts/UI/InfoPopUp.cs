@@ -27,7 +27,7 @@ public class InfoPopUp : MonoBehaviour
 
     }
     public Vector2 offsetPlant = new Vector2(20f, 20f); // Optional offset to position the UI element next to the cursor.
-    public Vector2 offsetEnemy = new Vector2(-80f, -80f); // Optional offset to position the UI element next to the cursor.
+    public Vector2 offsetEnemy = new Vector2(-160f, -160f); // Optional offset to position the UI element next to the cursor.
 
     // Method to be called to update the UI element position.
     public void UpdateUIElementPosition()
