@@ -100,7 +100,9 @@ public class CombatUIManager : MonoBehaviour
 		foreach (EnemyHealthUIObject enemyHealthUIObject in enemyHealthUIObjects) {
 			if (enemyHealthUIObject.Enemy == enemy) {
 				enemyHealthUIObject.Kill( );
-			}
+				enemyHealthUIObject.X.SetActive(true);
+
+            }
 		}
 	}
 

@@ -19,8 +19,9 @@ public class Enemy : MonoBehaviour {
 	[SerializeField] private Sprite _icon;
 	[SerializeField] private List<GardenTile> _finalAim = new List<GardenTile>( );
 	[SerializeField] private List<EnemyAttackSO> attacks;
-    
-	public List<GardenTile> FinalAim { get => _finalAim; private set => _finalAim = value; }
+
+    private AttackDirection currentAttackDiraction;
+    public List<GardenTile> FinalAim { get => _finalAim; private set => _finalAim = value; }
 
 	/// <summary>
 	/// The sprite icon of this enemy
@@ -37,6 +38,7 @@ public class Enemy : MonoBehaviour {
 			combatUIManager.UpdateHealth(this);
 
 			if (_currentHealth <= 0) {
+                CurrentHealth = 0;
 				UnmarkGardenTiles( );
 				combatManager.KillEnemy(this);
 			}
@@ -121,8 +123,9 @@ public class Enemy : MonoBehaviour {
 
 	public void StartRound ( ) {
 		arrowObject.SetActive(false);
+        UnMarkMapForIndictor();
 
-		isInitialized = false;
+        isInitialized = false;
 		CurrentCooldown--;
 		combatUIManager.UpdateCooldown(this);
 	}
@@ -151,6 +154,7 @@ public class Enemy : MonoBehaviour {
         else if (CurrentAttack.EnemyTargetingType == EnemyTargetingType.SHAPE)
         {
             AreaAim();
+            currentAttackDiraction = AttackDirection.Area;
         }
 
         if (currentAim.Count == 0)
@@ -168,17 +172,23 @@ public class Enemy : MonoBehaviour {
             // What are these rotations for? - Frankie
             if (!CurrentAttack.IsLineAttackHorizontal)
             {
+                currentAttackDiraction = AttackDirection.Foward;
+
                 arrowObject.transform.localPosition = Vector3.zero + new Vector3(2, -1, -1);
                 arrowObject.transform.rotation = new Quaternion(0.00228309655f, -0.707103133f, 0.707103133f, -0.00228309655f);
             }
             else if (randomAttackDirection)
             {
+                currentAttackDiraction = AttackDirection.Right;
+
                 //right
                 arrowObject.transform.localPosition = Vector3.zero + new Vector3(0.75f, 0f, -1f);
                 arrowObject.transform.localEulerAngles = new Vector3(0, 180, 270);
             }
             else
             {
+                currentAttackDiraction = AttackDirection.Left;
+
                 //left
                 arrowObject.transform.localPosition = Vector3.zero + new Vector3(1, -2, -1);
                 arrowObject.transform.localEulerAngles = new Vector3(0, 0, 90);
@@ -206,13 +216,16 @@ public class Enemy : MonoBehaviour {
                 break;
             }
         }
+        MarkMapForIndictor();
     }
 
     public void UnmarkGardenTiles ( ) {
 		Debug.LogWarning(gameObject.name + " Unmarked his targets");
 		foreach (GardenTile gardenTile in FinalAim) {
 			gardenTile.AttackedDamage = 0;
-		}
+            gardenTile.indicatorManager.StopIndicator();
+
+        }
 
 		FinalAim.Clear( );
 		currentAim.Clear( );
@@ -343,11 +356,28 @@ public class Enemy : MonoBehaviour {
                 if (tile != null)
                 {
                     currentAim.Add(tile);
-               }
+
+                }
 
             }
 
         }
     }
+
+    void MarkMapForIndictor()
+    {
+        foreach (GardenTile tile in FinalAim)
+        {
+            tile.indicatorManager.StartIndicator(currentAttackDiraction);
+        }
+    }
+    void UnMarkMapForIndictor()
+    {
+        foreach (GardenTile tile in FinalAim)
+        {
+            tile.indicatorManager.StopIndicator();
+        }
+    }
+
 
 }
