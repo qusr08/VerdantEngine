@@ -138,23 +138,23 @@ public class MapPlayer : MonoBehaviour
 
     public void UpdateCameraPosition()
     {
+        gardenStuff.SetActive(false);
+        shopStuff.SetActive(false);
+        mapStuff.SetActive(false);
+        walker.SetActive(false);
+        eventStuff.SetActive(false);
+
         switch (scene)
         {
             case ActiveScene.Map:
-                gardenStuff.SetActive(false);
-                shopStuff.SetActive(false);
                 mapStuff.SetActive(true);
                 walker.SetActive(true);
-                eventStuff.SetActive(false);
+
                 camera.transform.position = this.transform.position;
                 camera.transform.rotation = this.transform.rotation;
                 break;
             case ActiveScene.Garden:
                 gardenStuff.SetActive(true);
-                shopStuff.SetActive(false);
-                mapStuff.SetActive(false);
-                walker.SetActive(false);
-                eventStuff.SetActive(false);
 
                 camera.transform.position = gardenCameraLocation.transform.position;
                 camera.transform.rotation = gardenCameraLocation.transform.rotation;
@@ -162,9 +162,6 @@ public class MapPlayer : MonoBehaviour
             case ActiveScene.Shop:
                 gardenStuff.SetActive(true);
                 shopStuff.SetActive(true);
-                mapStuff.SetActive(false);
-                walker.SetActive(false);
-                eventStuff.SetActive(false);
 
                 camera.transform.position = gardenCameraLocation.transform.position;
                 camera.transform.rotation = gardenCameraLocation.transform.rotation;
@@ -172,9 +169,6 @@ public class MapPlayer : MonoBehaviour
             case ActiveScene.Event:
                 gardenStuff.SetActive(true);
                 eventStuff.SetActive(true);
-                shopStuff.SetActive(false);
-                mapStuff.SetActive(false);
-                walker.SetActive(false);
 
                 camera.transform.position = gardenCameraLocation.transform.position;
                 camera.transform.rotation = gardenCameraLocation.transform.rotation;
