@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 //using static UnityEditor.FilePathAttribute; - idk what this is but it's causing a build error so uhhh??
 
-public enum ActiveScene { Map, Garden, Shop};
+public enum ActiveScene { Map, Garden, Shop, Event};
 
 public class MapPlayer : MonoBehaviour
 {
@@ -16,6 +16,7 @@ public class MapPlayer : MonoBehaviour
     [SerializeField] private GameObject gardenStuff;
     [SerializeField] private GameObject mapStuff;
     [SerializeField] private GameObject shopStuff;
+    [SerializeField] private GameObject eventStuff;
     [SerializeField] private GameObject camera;
     [SerializeField] private CombatUIManager uiManager;
     [SerializeField] private GameObject walker;
@@ -130,6 +131,10 @@ public class MapPlayer : MonoBehaviour
     {
         ChangeScenes(ActiveScene.Shop);
     }
+    public void GoToEvent()
+    {
+        ChangeScenes(ActiveScene.Event);
+    }
 
     public void UpdateCameraPosition()
     {
@@ -140,8 +145,7 @@ public class MapPlayer : MonoBehaviour
                 shopStuff.SetActive(false);
                 mapStuff.SetActive(true);
                 walker.SetActive(true);
-
-
+                eventStuff.SetActive(false);
                 camera.transform.position = this.transform.position;
                 camera.transform.rotation = this.transform.rotation;
                 break;
@@ -150,6 +154,7 @@ public class MapPlayer : MonoBehaviour
                 shopStuff.SetActive(false);
                 mapStuff.SetActive(false);
                 walker.SetActive(false);
+                eventStuff.SetActive(false);
 
                 camera.transform.position = gardenCameraLocation.transform.position;
                 camera.transform.rotation = gardenCameraLocation.transform.rotation;
@@ -159,7 +164,17 @@ public class MapPlayer : MonoBehaviour
                 shopStuff.SetActive(true);
                 mapStuff.SetActive(false);
                 walker.SetActive(false);
+                eventStuff.SetActive(false);
 
+                camera.transform.position = gardenCameraLocation.transform.position;
+                camera.transform.rotation = gardenCameraLocation.transform.rotation;
+                break;
+            case ActiveScene.Event:
+                gardenStuff.SetActive(true);
+                eventStuff.SetActive(true);
+                shopStuff.SetActive(false);
+                mapStuff.SetActive(false);
+                walker.SetActive(false);
 
                 camera.transform.position = gardenCameraLocation.transform.position;
                 camera.transform.rotation = gardenCameraLocation.transform.rotation;

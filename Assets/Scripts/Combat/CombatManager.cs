@@ -78,8 +78,9 @@ public class CombatManager : MonoBehaviour {
     /// Set Up all starting enemies in an encounter
     /// </summary>
     private void SetUpEnemies ( ) {
+		playerCombatManager.ResetEnergy();
 
-		if(currentCombatPreset == null)
+        if (currentCombatPreset == null)
 		{
 			return;
 		}
@@ -191,6 +192,7 @@ public class CombatManager : MonoBehaviour {
 		foreach (GardenTile gardenTile in playerDataManager.Garden) {
 			gardenTile.AttackedDamage = 0;
             gardenTile.IsHighlighted = false;
+			gardenTile.indicatorManager.StopIndicator();
 
         }
 

@@ -13,6 +13,7 @@ public class EnemyHealthUIObject : MonoBehaviour, IPointerEnterHandler, IPointer
 	[SerializeField] private Image image;
 	[SerializeField] TextMeshProUGUI cooldownText;
 	[SerializeField] InfoPopUp hover;
+	public GameObject X;
 
     public Enemy Enemy {
 		get => _enemy;

@@ -25,6 +25,7 @@ public class GardenTile : MonoBehaviour
 
     [Space]
     [SerializeField] private InfoPopUp _PopUpDisplay;
+    public TileDamageIndicatorManager indicatorManager;
 
     /// <summary>
     /// The current amount of damage that this tile is being attacked for

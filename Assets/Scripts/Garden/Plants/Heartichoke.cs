@@ -9,6 +9,10 @@ public class Heartichoke : Plant
         foreach (Plant plant in GetSurroundingPlants(1))
         {
             plant.Heal(1);
-        } 
-	}
+        }
+        foreach (Artifact artifact in GetSurroundingArtifacts(1))
+        {
+            artifact.Heal(1);
+        }
+    }
 }
