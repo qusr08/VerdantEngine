@@ -90,7 +90,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 			}
 
 			// Remove the reference of this garden placeable from the old garden tile
-			if (_gardenTile != null) {
+			if (_gardenTile != null && _gardenTile.GardenPlaceable == this) {
 				_gardenTile.GardenPlaceable = null;
 			}
 			_gardenTile = value;

@@ -145,7 +145,8 @@ public class GardenTile : MonoBehaviour
 		foreach (SpriteRenderer spriteRenderer in GardenPlaceable.SpriteRenderers) {
 			spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
 		}
-	}
+		PopUpDisplay.gameObject.SetActive(false);
+    }
 
     private void OnMouseUp()
     {
@@ -225,10 +226,10 @@ public class GardenTile : MonoBehaviour
     }
     private void OnMouseEnter()
     {
-        if (GardenPlaceable != null)
-        {
-            _PopUpDisplay.gameObject.SetActive(true);
-            _PopUpDisplay.SetUpPlant(GardenPlaceable);
+        // Only show the placeable info pop-up if there is a garden placeable on this tile and there is not a plant currently being moved
+        if (GardenPlaceable != null && playerDataManager.MouseSprite == null) {
+			PopUpDisplay.SetUpPlant(GardenPlaceable);
+			PopUpDisplay.gameObject.SetActive(true);
             //Debug.Log(GardenPlaceable.gameObject.name);
         }
 
@@ -238,6 +239,7 @@ public class GardenTile : MonoBehaviour
     private void OnMouseExit()
     {
         IsSelected = false;
-        _PopUpDisplay.gameObject.SetActive(false);
+
+        PopUpDisplay.gameObject.SetActive(false);
     }
 }
