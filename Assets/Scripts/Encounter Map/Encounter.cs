@@ -68,6 +68,16 @@ public class Encounter : MonoBehaviour
 
         //this.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
         this.gameObject.GetComponent<SpriteRenderer>().sprite = clearedSprite;
+        foreach (GameObject connection in ConnectingNode)
+        {
+            connection.GetComponent<Encounter>().UnHideEncounter();
+        }
+        foreach (GameObject line in ConnectingLines)
+        {
+            LineRenderer lineRenderer = line.GetComponent<LineRenderer>();
+            lineRenderer.startColor = new Color(.88f, .89f, .73f);
+            lineRenderer.endColor = new Color(.88f, .89f, .73f);
+        }
 
         if (EncounterType == EncounterTypes.Enemy)
         {
@@ -127,14 +137,6 @@ public class Encounter : MonoBehaviour
             lineRenderer.endColor = Color.grey;
         }
         this.GetComponent<SpriteRenderer>().color = Color.grey;
-
-        foreach (GameObject connection in ConnectingNode)
-        {
-            if (connection.GetComponent<Encounter>().onlyOneConnection)
-            {
-                connection.GetComponent<Encounter>().HideEncounter();
-            }
-        }
     }
 
     /// <summary>
@@ -142,18 +144,7 @@ public class Encounter : MonoBehaviour
     /// </summary>
     public void UnHideEncounter()
     {
-        foreach (GameObject line in ConnectingLines)
-        {
-            LineRenderer lineRenderer = line.GetComponent<LineRenderer>();
-            lineRenderer.startColor = Color.gray;
-            lineRenderer.endColor = Color.grey;
-        }
-        this.GetComponent<SpriteRenderer>().color = Color.grey;
-
-        foreach (GameObject connection in ConnectingNode)
-        {
-            connection.GetComponent<SpriteRenderer>().color = Color.white;
-        }
+        this.GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     public void AddConnection(GameObject connection)

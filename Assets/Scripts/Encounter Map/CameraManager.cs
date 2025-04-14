@@ -66,7 +66,7 @@ public class MapPlayer : MonoBehaviour
                 GameObject flowerTrail = Instantiate(flowerTrailPrefab, mapStuff.transform);
                 flowerTrail.transform.position = playerSprite.transform.position;
                 flowerTrailPrefab.GetComponent<SpriteRenderer>().sprite = flowerTrailSprites[Random.Range(0, flowerTrailSprites.Length)];
-                flowerTrail.transform.position = new Vector3(flowerTrail.transform.position.x, flowerTrail.transform.position.y - Random.Range(.2f, .8f), flowerTrail.transform.position.z);
+                flowerTrail.transform.position = new Vector3(flowerTrail.transform.position.x, flowerTrail.transform.position.y - Random.Range(.4f, .6f), flowerTrail.transform.position.z);
                 timeSinceFlowerSpawn = 0;
             }
             
