@@ -3424,10 +3424,10 @@ PrefabInstance:
       addedObject: {fileID: 892162716}
     - targetCorrespondingSourceObject: {fileID: 3792805984168831317, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 621441219}
+      addedObject: {fileID: 1454483273}
     - targetCorrespondingSourceObject: {fileID: 3792805984168831317, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1454483273}
+      addedObject: {fileID: 621441219}
     - targetCorrespondingSourceObject: {fileID: 3792805984168831317, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1825975241}
@@ -9918,8 +9918,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Balance : '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1366204b72399024681645432d8029b1, type: 2}
+  m_sharedMaterial: {fileID: -3782092305888825, guid: 1366204b72399024681645432d8029b1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -11348,8 +11348,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Go to garden
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1366204b72399024681645432d8029b1, type: 2}
+  m_sharedMaterial: {fileID: -3782092305888825, guid: 1366204b72399024681645432d8029b1, type: 2}
   m_fontSharedMaterials:
   - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
@@ -11374,7 +11374,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.6
+  m_fontSize: 24.5
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -14034,8 +14034,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Health : '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1366204b72399024681645432d8029b1, type: 2}
+  m_sharedMaterial: {fileID: -3782092305888825, guid: 1366204b72399024681645432d8029b1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

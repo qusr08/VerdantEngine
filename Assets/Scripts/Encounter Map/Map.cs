@@ -245,7 +245,16 @@ public class Map : MonoBehaviour
                 prevEncounters[1].GetComponent<Encounter>().AddConnection(encounters[encounters.Count - 1]);
                 //Debug.DrawLine(prevEncounters[1].transform.position, encounters[encounters.Count - 1].transform.position, Color.black, 5);
             }
+
+            if (encounterOptions != 2)
+            {
+                encounters[encounters.Count - 1].GetComponent<Encounter>().onlyOneConnection = true;
+            }
+
         }
+
+            encounters[encounters.Count - 1].GetComponent<Encounter>().HideEncounter();
+
 
     }
 

@@ -174,6 +174,13 @@ public class MapPlayer : MonoBehaviour
 
             return true;
         }
+
+        if(CurrentEncounter == location)
+        {
+            GoToGarden();
+            return true;
+        }
+
         if (CurrentEncounter.GetComponent<Encounter>().ConnectingNode.Contains(location))
         {
 

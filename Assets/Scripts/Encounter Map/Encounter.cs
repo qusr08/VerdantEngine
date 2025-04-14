@@ -8,6 +8,7 @@ public class Encounter : MonoBehaviour
 {
 
     public bool First = false;
+    public bool onlyOneConnection = false;
 
     public List<GameObject> ConnectingNode;
     public List<GameObject> ConnectingLines;
@@ -89,13 +90,69 @@ public class Encounter : MonoBehaviour
         {
             foreach(GameObject line in ConnectingLines)
             {
-                if(line.GetComponent<MapLines>().to == connection)
+                LineRenderer lineRenderer = line.GetComponent<LineRenderer>();
+
+                if (line.GetComponent<MapLines>().to == connection)
                 {
-                    LineRenderer lineRenderer = line.GetComponent<LineRenderer>();
                     lineRenderer.startColor = Color.green;
                     lineRenderer.endColor = Color.green;
                 }
+                else
+                {
+                    lineRenderer.startColor = Color.gray;
+                    lineRenderer.endColor = Color.gray;
+                }
             }
+
+            //Loops through options. If option is unpicked hide it
+            foreach(GameObject otherTile in ConnectingNode)
+            {
+                if(otherTile != connection)
+                {
+                    otherTile.GetComponent<Encounter>().HideEncounter();
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Hides an unpicked/unpickable encounter
+    /// </summary>
+    public void HideEncounter()
+    {
+        foreach(GameObject line in ConnectingLines)
+        {
+            LineRenderer lineRenderer = line.GetComponent<LineRenderer>();
+            lineRenderer.startColor = Color.gray;
+            lineRenderer.endColor = Color.grey;
+        }
+        this.GetComponent<SpriteRenderer>().color = Color.grey;
+
+        foreach (GameObject connection in ConnectingNode)
+        {
+            if (connection.GetComponent<Encounter>().onlyOneConnection)
+            {
+                connection.GetComponent<Encounter>().HideEncounter();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Hides an unpicked/unpickable encounter
+    /// </summary>
+    public void UnHideEncounter()
+    {
+        foreach (GameObject line in ConnectingLines)
+        {
+            LineRenderer lineRenderer = line.GetComponent<LineRenderer>();
+            lineRenderer.startColor = Color.gray;
+            lineRenderer.endColor = Color.grey;
+        }
+        this.GetComponent<SpriteRenderer>().color = Color.grey;
+
+        foreach (GameObject connection in ConnectingNode)
+        {
+            connection.GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
 
@@ -117,8 +174,10 @@ public class Encounter : MonoBehaviour
         lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
         lineRenderer.widthMultiplier = 0.05f;
         lineRenderer.positionCount = 2;
-        lineRenderer.startColor = new Color (.88f, .89f, .73f);
-        lineRenderer.endColor = new Color(.88f, .89f, .73f);
+        lineRenderer.startColor = Color.gray;
+        lineRenderer.endColor = Color.grey;
+        //lineRenderer.startColor = new Color (.88f, .89f, .73f);
+        //lineRenderer.endColor = new Color(.88f, .89f, .73f);
 
         lineRenderer.SetPosition(0, this.transform.position);
         lineRenderer.SetPosition(1, connection.transform.position);
