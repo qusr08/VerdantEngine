@@ -8,7 +8,7 @@ public class Event_SO : ScriptableObject
 {
     public string title;
     public string text;
-    public Image image;
+    public Sprite image;
     public EventOutcome_SO [] Options;
     
 }

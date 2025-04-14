@@ -15,9 +15,11 @@ public class EventOutcome_SO : ScriptableObject
 {
     public string outcomeText;
     public EventOutcomeType outcomeType;
-    public Plant[] potinalPlantReward;
-    public Artifact[] potinalArtifactReward;
+    public PlantType[] potinalPlantReward;
+    public ArtifactType[] potinalArtifactReward;
     public int MoneyChange;
     public int HealthChange;
+    public bool ForceMoenyChange;
+    public bool ForceHealthChange;
 
 }

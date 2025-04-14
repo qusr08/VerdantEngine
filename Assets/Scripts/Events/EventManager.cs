@@ -24,7 +24,7 @@ public class EventManager : MonoBehaviour
 
         this.event_SO = event_SO;
         eventTitle.text = event_SO.title;
-        eventImage = event_SO.image;
+        eventImage.sprite = event_SO.image;
         eventText.text = event_SO.text;
 
         for (int i = 0; i < buttons.Length; i++)
@@ -49,25 +49,26 @@ public class EventManager : MonoBehaviour
         switch (chosen.outcomeType)
         {
             case EventOutcomeType.NewFlower:
-                Plant plant;
+                PlantType plant;
                 if (chosen.potinalPlantReward.Length > 1)
                 {
                     plant = chosen.potinalPlantReward[Random.Range(0, chosen.potinalPlantReward.Length)];
 
+
                 }
                 else plant = chosen.potinalPlantReward[0];
-                inventory.AddPlant(plant.PlantType);
+                inventory.AddPlant(plant);
 
                 break;
             case EventOutcomeType.NewArtifact:
-                Artifact artifact;
+                ArtifactType artifact;
                 if (chosen.potinalPlantReward.Length > 1)
                 {
                     artifact = chosen.potinalArtifactReward[Random.Range(0, chosen.potinalArtifactReward.Length)];
 
                 }
                 else artifact = chosen.potinalArtifactReward[0];
-                inventory.AddArtifact(artifact.ArtifactType);
+                inventory.AddArtifact(artifact);
                 break;
             case EventOutcomeType.GetMoeny:
                 playerDataManager.Money += chosen.MoneyChange;
@@ -79,6 +80,9 @@ public class EventManager : MonoBehaviour
             default:
                 break;
         }
+        if(chosen.ForceHealthChange) playerDataManager.CurrentHealth += chosen.HealthChange;
+        if (chosen.ForceMoenyChange) playerDataManager.Money += chosen.MoneyChange;
+
         eventPanal.SetActive(false);
     }
 
