@@ -12,7 +12,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	[SerializeField] protected GardenManager gardenManager;
 	[SerializeField] protected PlayerDataManager playerDataManager;
 	[SerializeField] protected CombatManager combatManager;
-	[SerializeField] protected List<SpriteRenderer> spriteRenderers;
+	[SerializeField] protected List<SpriteRenderer> _spriteRenderers;
 	[Space]
 	[SerializeField, Min(0), Tooltip("The starting health of this garden placeable.")] private int _startingHealth;
 	[SerializeField, Min(0), Tooltip("The cost of this garden placeable in the shop.")] private int _cost;
@@ -32,6 +32,11 @@ public abstract class GardenPlaceable : MonoBehaviour {
 
 	public GameObject flowerVisuals;
 	private Coroutine colorCoroutine = null;
+
+	/// <summary>
+	/// A list of all the sprite renderers that make up the visuals for the placeable
+	/// </summary>
+	public List<SpriteRenderer> SpriteRenderers { get => _spriteRenderers; private set => _spriteRenderers = value; }
 
 	/// <summary>
 	/// The starting health of this garden placeable
@@ -102,7 +107,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 		gardenManager = FindObjectOfType<GardenManager>( );
 		playerDataManager = FindObjectOfType<PlayerDataManager>( );
         combatManager = FindObjectOfType<CombatManager>( );
-        spriteRenderers = GetComponentsInChildren<SpriteRenderer>( ).ToList();
+        SpriteRenderers = GetComponentsInChildren<SpriteRenderer>( ).ToList();
 
 		effectedGardenPlaceables = new List<GardenPlaceable>();
 
@@ -304,7 +309,6 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	/// <summary>
 	/// Called on the first drop of a garden Placeble
 	/// </summary
-	bool isFirst = true;
     public virtual void OnFirstPlanted()
 	{
       
@@ -405,7 +409,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 				t = Mathf.Min(fadeInTime, t + Time.deltaTime);
 
 				// Since there are multiple sprite renderers on each garden placeable, loop through all of them and tint their color
-				foreach (SpriteRenderer spriteRenderer in spriteRenderers) {
+				foreach (SpriteRenderer spriteRenderer in SpriteRenderers) {
 					spriteRenderer.color = Color.Lerp(Color.white, color, t / fadeInTime);
 				}
 
@@ -419,7 +423,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 				t = Mathf.Min(fadeOutTime, t + Time.deltaTime);
 
 				// Since there are multiple sprite renderers on each garden placeable, loop through all of them and tint their color
-				foreach (SpriteRenderer spriteRenderer in spriteRenderers) {
+				foreach (SpriteRenderer spriteRenderer in SpriteRenderers) {
 					spriteRenderer.color = Color.Lerp(color, Color.white, t / fadeOutTime);
 				}
 

@@ -142,8 +142,10 @@ public class GardenTile : MonoBehaviour
         }
 
         playerDataManager.MouseSprite = GardenPlaceable.InventorySprite;
-        GardenPlaceable.flowerVisuals.SetActive(false);
-    }
+		foreach (SpriteRenderer spriteRenderer in GardenPlaceable.SpriteRenderers) {
+			spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
+		}
+	}
 
     private void OnMouseUp()
     {
@@ -153,8 +155,10 @@ public class GardenTile : MonoBehaviour
             return;
         }
 
-        GardenPlaceable.flowerVisuals.SetActive(true);
-        playerDataManager.MouseSprite = null;
+		foreach (SpriteRenderer spriteRenderer in GardenPlaceable.SpriteRenderers) {
+			spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+		}
+		playerDataManager.MouseSprite = null;
 
         // If there is no selected garden tile, then also return
         if (gardenManager.SelectedGardenTile == null)
@@ -235,6 +239,5 @@ public class GardenTile : MonoBehaviour
     {
         IsSelected = false;
         _PopUpDisplay.gameObject.SetActive(false);
-
     }
 }
