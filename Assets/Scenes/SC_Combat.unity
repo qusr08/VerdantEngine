@@ -13687,6 +13687,42 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 643021303}
     - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
+      propertyPath: walkerSprites.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
+      propertyPath: walkerSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: -7393274, guid: ab1857d84d01f414491466749c349a08, type: 3}
+    - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
+      propertyPath: walkerSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 256114073, guid: ab1857d84d01f414491466749c349a08, type: 3}
+    - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
+      propertyPath: walkerSprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 1527327016, guid: ab1857d84d01f414491466749c349a08, type: 3}
+    - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
+      propertyPath: walkerSprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 1679036149, guid: ab1857d84d01f414491466749c349a08, type: 3}
+    - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
+      propertyPath: walkerSprites.Array.data[4]
+      value: 
+      objectReference: {fileID: 998711996, guid: ab1857d84d01f414491466749c349a08, type: 3}
+    - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
+      propertyPath: walkerSprites.Array.data[5]
+      value: 
+      objectReference: {fileID: 951990786, guid: ab1857d84d01f414491466749c349a08, type: 3}
+    - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
+      propertyPath: walkerSprites.Array.data[6]
+      value: 
+      objectReference: {fileID: 1740752747, guid: ab1857d84d01f414491466749c349a08, type: 3}
+    - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
+      propertyPath: walkerSprites.Array.data[7]
+      value: 
+      objectReference: {fileID: -1867327183, guid: ab1857d84d01f414491466749c349a08, type: 3}
+    - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
       propertyPath: flowerTrailSprites.Array.size
       value: 6
       objectReference: {fileID: 0}
