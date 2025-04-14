@@ -341,14 +341,13 @@ public abstract class GardenPlaceable : MonoBehaviour {
 			heal = 0;
 		}
 
-        if (heal > 0)
-            SpawnHealIndicator(heal);
-		FlashColor(Color.green, healColorTime / 4f, healColorTime, 1);
+        if (heal > 0) {
+			SpawnHealIndicator(heal);
+			FlashColor(Color.green, healColorTime / 4f, healColorTime, 1);
 
-		//triggered global on heal triggers for all garden placbles. used by artifacts
-		if (heal > 0)
+			//triggered global on heal triggers for all garden placbles. used by artifacts
 			gardenManager.GlobalOnHealedTrigger(this, heal);
-
+		}
 	}
 
 	/// <summary>
@@ -359,8 +358,9 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	/// <returns>The actual damage that was dealt to the health of the plant. This takes into account the shield that the plant has</returns>
 	public virtual int TakeDamage (Enemy enemy, int damage) {
 		// Subtract the current shield of this garden placeable from the damage that is trying to be dealt
-		if(ShieldStat.CurrentValue>0)
-		damage -= ShieldStat.CurrentValue;
+		if(ShieldStat.CurrentValue>0) {
+			damage -= ShieldStat.CurrentValue;
+		}
 
 		// If the damage is still greater than 0, then decrease the placeable's health
 		if (damage > 0) {
@@ -378,7 +378,12 @@ public abstract class GardenPlaceable : MonoBehaviour {
 			return damage;
 		}
 
+		// No damage was taken because of the shield
 		SpawnDamageIndicator(0);
+		if (ShieldStat.CurrentValue > 0) {
+			FlashColor(new Color(0f, 0.5f, 1f), healColorTime / 4f, healColorTime, 1);
+		}
+
 		return 0;
 	}
 
