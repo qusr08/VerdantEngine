@@ -63,7 +63,7 @@ public class MapPlayer : MonoBehaviour
 
             walker.transform.position = Vector3.Lerp(currentLocation, nextLocationEdited, movingPercent);
 
-            if (timeSinceFlowerSpawn >= .1f)
+            if (timeSinceFlowerSpawn >= .08f)
             {
                 GameObject flowerTrail = Instantiate(flowerTrailPrefab, mapStuff.transform);
                 flowerTrail.transform.position = walker.transform.position;
