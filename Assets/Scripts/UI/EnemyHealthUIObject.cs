@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 
 public class EnemyHealthUIObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-	[SerializeField] private Slider healthSlider;
+	[SerializeField] public Slider healthSlider;
 	[SerializeField] private Enemy _enemy;
 	[SerializeField] private Image image;
 	[SerializeField] TextMeshProUGUI cooldownText;
@@ -34,7 +34,9 @@ public class EnemyHealthUIObject : MonoBehaviour, IPointerEnterHandler, IPointer
     }
 
     public void UpdateHealth ( ) {
-		healthSlider.value = Enemy.CurrentHealth;
+		if (Enemy.CurrentHealth < 0) healthSlider.value = 0;
+		else
+        healthSlider.value = Enemy.CurrentHealth;
 	}
 
 	public void UpdateCoolDown ( ) {
@@ -49,7 +51,7 @@ public class EnemyHealthUIObject : MonoBehaviour, IPointerEnterHandler, IPointer
 
 	public void Kill ( ) {
 		image.color = Color.gray;
-		healthSlider.value = 0;
+		healthSlider.value = healthSlider.minValue;
 	}
 
     public void OnPointerEnter(PointerEventData eventData)

@@ -75,15 +75,19 @@ public class CombatUIManager : MonoBehaviour
 		EnemyHealthUIObject enemyHealthUIObject = Instantiate(enemyHealthUIPrefab, healthUIContainer).GetComponent<EnemyHealthUIObject>( );
 		enemyHealthUIObject.Enemy = enemy;
 		enemyHealthUIObject.Hover = popUp.GetComponent<InfoPopUp>();
+		enemyHealthUIObject.healthSlider.maxValue = enemy.MaxHealth;
         enemyHealthUIObjects.Add(enemyHealthUIObject);
 	}
 
 	public void UpdateHealth (Enemy enemy) {
-		foreach (EnemyHealthUIObject enemyHealthUIObject in enemyHealthUIObjects) {
-			if (enemyHealthUIObject.Enemy.EnemyID == enemy.EnemyID) {
-				enemyHealthUIObject.UpdateHealth( );
-				break;
-			}
+		for (int i = 0; i < enemyHealthUIObjects.Count; i++)
+		{
+            if (enemyHealthUIObjects[i].Enemy.EnemyID == enemy.EnemyID)
+            {
+                enemyHealthUIObjects[i].UpdateHealth();
+                break;
+            }
+	
 		}
 	}
 
@@ -99,8 +103,15 @@ public class CombatUIManager : MonoBehaviour
 	public void KillEnemy (Enemy enemy) {
 		foreach (EnemyHealthUIObject enemyHealthUIObject in enemyHealthUIObjects) {
 			if (enemyHealthUIObject.Enemy == enemy) {
+<<<<<<< Updated upstream
 				enemyHealthUIObject.Kill( );
 			}
+=======
+                enemyHealthUIObject.X.SetActive(true);
+                enemyHealthUIObject.Kill( );
+				Destroy(enemyHealthUIObject);
+            }
+>>>>>>> Stashed changes
 		}
 	}
 
