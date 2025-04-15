@@ -18,7 +18,7 @@ public class Inventory : MonoBehaviour {
 		
 		AddPlant(PlantType.POWER_FLOWER);/// TESTING
 
-        /*
+        
 		AddPlant(PlantType.POWER_FLOWER);
 
 		AddPlant(PlantType.BLAST_BLOOM);
@@ -39,7 +39,7 @@ public class Inventory : MonoBehaviour {
 		AddArtifact(ArtifactType.WHEELBARROW);
         AddArtifact(ArtifactType.FLAMINGO);
         AddArtifact(ArtifactType.COMPOST);
-		*/
+		
 
     }
 
