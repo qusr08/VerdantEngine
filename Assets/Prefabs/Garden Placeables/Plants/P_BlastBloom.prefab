@@ -282,7 +282,7 @@ MonoBehaviour:
   _cost: 16
   _name: Blast Bloom
   _description: When the Blast Bloom is adjacent to three other plants, all weapons
-    deal +1 damage
+    deal +1 damage.
   _inventorySprite: {fileID: 21300000, guid: ca95c795063b3134e94b2b240b20aa3d, type: 3}
   _gardenTile: {fileID: 0}
   effectedGardenPlaceables: []

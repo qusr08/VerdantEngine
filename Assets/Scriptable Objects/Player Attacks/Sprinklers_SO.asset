@@ -15,7 +15,7 @@ MonoBehaviour:
   _damage: 1
   _manaCost: 3
   _cost: 20
-  _description: Heal 1 all plants
+  _description: Heal 1 to all plants.
   _name: Sprinklers
   _attackType: 0
   _playerTargetingType: 1
