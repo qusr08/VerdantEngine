@@ -14,6 +14,7 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public TMP_Text description;
     public Image[] raritySlots;
     public Sprite rarityStar;
+    public Sprite rarityStarEmpty;
 
     public bool needTooltip;
 
@@ -44,16 +45,30 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         this.displayImage.sprite = displayImage;
         this.description.text = description;
 
-        for(int i = 0; i < rarity; i++)
+        for (int i = 0; i < raritySlots.Length; i++)
+        {
+            raritySlots[i].sprite = rarityStarEmpty;
+        }
+        for (int i = 0; i < rarity; i++)
         {
             raritySlots[i].sprite = rarityStar;
         }
     }
 
-    public void FillRewardItemDetails(string itemName, Sprite displayImage)
+    public void FillRewardItemDetails(string itemName, Sprite displayImage, string description, int rarity)
     {
         this.itemName.text = itemName;
         this.displayImage.sprite = displayImage;
+        this.description.text = description;
+
+        for (int i = 0; i < raritySlots.Length; i++)
+        {
+            raritySlots[i].sprite = rarityStarEmpty;
+        }
+        for (int i = 0; i < rarity; i++)
+        {
+            raritySlots[i].sprite = rarityStar;
+        }
     }
 
 }

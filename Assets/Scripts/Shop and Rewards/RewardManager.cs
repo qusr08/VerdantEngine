@@ -11,6 +11,7 @@ public class RewardManager : MonoBehaviour
     [SerializeField] GameObject[] plantPrefabs;
   
     [SerializeField] TMP_Text moneyRewardText;
+    [SerializeField] TMP_Text healthText;
 
     [SerializeField] int[] probablility;
 
@@ -110,7 +111,7 @@ public class RewardManager : MonoBehaviour
         {
             if (probablility[i] <= 45)
             {
-                items[i].GetComponentInChildren<Item>().FillRewardItemDetails(commonPlants[commonIndex].GetComponent<Plant>().Name, commonPlants[commonIndex].GetComponent<Plant>().InventorySprite);
+                items[i].GetComponentInChildren<Item>().FillRewardItemDetails(commonPlants[commonIndex].GetComponent<Plant>().Name, commonPlants[commonIndex].GetComponent<Plant>().InventorySprite, commonPlants[commonIndex].GetComponent<Plant>().Description, 1);
                 items[i].GetComponent<Item>().plant = commonPlants[commonIndex].GetComponent<Plant>();
                 if (commonIndex < commonPlants.Length - 1)
                 {
@@ -123,7 +124,7 @@ public class RewardManager : MonoBehaviour
             }
             else if (probablility[i] <= 77)
             {
-                items[i].GetComponentInChildren<Item>().FillRewardItemDetails(uncommonPlants[uncommonIndex].GetComponent<Plant>().Name, uncommonPlants[uncommonIndex].GetComponent<Plant>().InventorySprite);
+                items[i].GetComponentInChildren<Item>().FillRewardItemDetails(uncommonPlants[uncommonIndex].GetComponent<Plant>().Name, uncommonPlants[uncommonIndex].GetComponent<Plant>().InventorySprite, uncommonPlants[uncommonIndex].GetComponent<Plant>().Description, 2);
                 items[i].GetComponent<Item>().plant = uncommonPlants[uncommonIndex].GetComponent<Plant>();
                 if (uncommonIndex < uncommonPlants.Length - 1)
                 {
@@ -136,7 +137,7 @@ public class RewardManager : MonoBehaviour
             }
             else
             {
-                items[i].GetComponentInChildren<Item>().FillRewardItemDetails(rarePlants[rareIndex].GetComponent<Plant>().Name, rarePlants[rareIndex].GetComponent<Plant>().InventorySprite);
+                items[i].GetComponentInChildren<Item>().FillRewardItemDetails(rarePlants[rareIndex].GetComponent<Plant>().Name, rarePlants[rareIndex].GetComponent<Plant>().InventorySprite, rarePlants[rareIndex].GetComponent<Plant>().Description, 3);
                 items[i].GetComponent<Item>().plant = rarePlants[rareIndex].GetComponent<Plant>();
                 if (rareIndex <  rarePlants.Length - 1)
                 {
@@ -150,6 +151,7 @@ public class RewardManager : MonoBehaviour
         }
 
         moneyRewardText.text = "Money earned from encounter : " + moneyReward.ToString();
+        healthText.text = "Health : " + playerDataManager.CurrentHealth.ToString() + "/" + playerDataManager.MaxHealth.ToString();
     }
     public void AddToInventoryAfterFight(int itemIndex)
     {
