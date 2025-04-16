@@ -18,6 +18,7 @@ public class EventManager : MonoBehaviour
     [SerializeField] PlayerDataManager playerDataManager;
     public CombatManager combatManager;
     [SerializeField] Inventory inventory;
+    [SerializeReference] MapPlayer camManager;
     public void InitilazeEvent(Event_SO event_SO)
     {
         eventPanal.SetActive(true);
@@ -26,6 +27,7 @@ public class EventManager : MonoBehaviour
         eventTitle.text = event_SO.title;
         eventImage.sprite = event_SO.image;
         eventText.text = event_SO.text;
+
 
         for (int i = 0; i < buttons.Length; i++)
         {
@@ -76,6 +78,10 @@ public class EventManager : MonoBehaviour
             case EventOutcomeType.Health:
                 playerDataManager.CurrentHealth += chosen.HealthChange;
 
+                break;
+            case EventOutcomeType.Combat:
+                combatManager.NewCombat(chosen.combatPresetSO);
+                camManager.GoToGarden();
                 break;
             default:
                 break;

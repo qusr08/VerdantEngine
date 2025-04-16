@@ -7,7 +7,8 @@ public enum EventOutcomeType
     NewFlower,
     NewArtifact,
     GetMoeny,
-    Health
+    Health,
+    Combat
 }
 [CreateAssetMenu(fileName = "EventOutcome_SO", menuName = "ScriptableObjects/EventOutcome_SO", order = 2)]
 
@@ -21,5 +22,6 @@ public class EventOutcome_SO : ScriptableObject
     public int HealthChange;
     public bool ForceMoenyChange;
     public bool ForceHealthChange;
+    public CombatPresetSO combatPresetSO;
 
 }
