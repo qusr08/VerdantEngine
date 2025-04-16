@@ -12,6 +12,8 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public TMP_Text cost;
     public Image displayImage;
     public TMP_Text description;
+    public Image[] raritySlots;
+    public Sprite rarityStar;
 
     public bool needTooltip;
 
@@ -35,12 +37,17 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
     }
 
-    public void FillShopItemDetails(string itemName, int cost, Sprite displayImage, string description)
+    public void FillShopItemDetails(string itemName, int cost, Sprite displayImage, string description, int rarity)
     {
         this.itemName.text = itemName;
         this.cost.text = cost.ToString();
         this.displayImage.sprite = displayImage;
         this.description.text = description;
+
+        for(int i = 0; i < rarity; i++)
+        {
+            raritySlots[i].sprite = rarityStar;
+        }
     }
 
     public void FillRewardItemDetails(string itemName, Sprite displayImage)
