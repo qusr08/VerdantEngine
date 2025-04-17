@@ -15,6 +15,7 @@ public class SpriteSortingOrder : MonoBehaviour
     public int prevAddToSortOrder;
 
     List<string> spriteIDs = new List<string>();
+
     public void SortSprites(int x, int y)
     {
         this.x = x; 
