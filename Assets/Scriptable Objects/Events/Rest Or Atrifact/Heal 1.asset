@@ -17,6 +17,11 @@ MonoBehaviour:
   potinalPlantReward: 
   potinalArtifactReward: 01000000
   MoneyChange: 0
-  HealthChange: 5
+  HealthChange: 0
   ForceMoenyChange: 0
   ForceHealthChange: 0
+  ForceCombat: 0
+  resultWindowImage: {fileID: 21300000, guid: 85738079ed4068142af756ce5191bb54, type: 3}
+  resultWindowText: "You take no rest, but you manage to find a rare artifact among
+    the wreckage\u2014a piece of natural garbage! You found a compost bin!"
+  combatPresetSO: {fileID: 0}

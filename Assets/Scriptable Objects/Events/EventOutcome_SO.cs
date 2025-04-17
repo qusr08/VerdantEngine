@@ -22,6 +22,10 @@ public class EventOutcome_SO : ScriptableObject
     public int HealthChange;
     public bool ForceMoenyChange;
     public bool ForceHealthChange;
+    public bool ForceCombat;
+    public Sprite resultWindowImage;
+    public string resultWindowText;
+
     public CombatPresetSO combatPresetSO;
 
 }
