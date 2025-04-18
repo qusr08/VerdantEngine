@@ -20,3 +20,8 @@ MonoBehaviour:
   HealthChange: 5
   ForceMoenyChange: 0
   ForceHealthChange: 0
+  ForceCombat: 0
+  resultWindowImage: {fileID: 21300000, guid: f80174f1996921e4d9f65fb1f6807eca, type: 3}
+  resultWindowText: You rest fo a moment to soak the sun, your tree of life heal
+    5 health.
+  combatPresetSO: {fileID: 0}

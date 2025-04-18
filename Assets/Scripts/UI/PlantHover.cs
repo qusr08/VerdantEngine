@@ -10,7 +10,9 @@ public class PlantHover : MonoBehaviour {
 	[SerializeField] private TMP_Text plantHealthText;
 	[SerializeField] private TMP_Text plantShieldText;
 	[SerializeField] private Image plantImage;
-	
+
+
+    [SerializeField] Sprite treeImage;
 
 	public void UpdateText (GardenPlaceable gardenPlaceable) {
 		plantNameText.text = gardenPlaceable.Name;
@@ -41,4 +43,24 @@ public class PlantHover : MonoBehaviour {
 			plantShieldText.text = gardenPlaceable.ShieldStat.CurrentValue.ToString( );
 		}
 	}
+    public void UpdateTextTree(PlayerDataManager data)
+    {
+        plantNameText.text = "Tree Of Life";
+        plantDescriptionText.text = "The Tree of life is the power source of your mech, if he dies, hope dies with it";
+        plantImage.sprite = treeImage;
+
+        // If the health stat is null, then this garden placeable is a prefab in the inventory
+        // Just get the starting health value instead of the health stat current value
+        
+            plantHealthText.text = data.CurrentHealth.ToString();
+        
+   
+
+        // If the shield stat is null, then this garden placeable is a prefab in the inventory
+        // Just set the default value to be 0 (this may be changed in the future)
+        
+            plantShieldText.text = "0";
+        
+        
+    }
 }

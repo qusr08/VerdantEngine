@@ -111,7 +111,7 @@ MonoBehaviour:
   _startingHealth: 4
   _cost: 8
   _name: Hardy Hedge
-  _description: Has a lot of health
+  _description: Has a lot of health.
   _inventorySprite: {fileID: 21300000, guid: c3bc6a5feed97b048902d88014cfb28a, type: 3}
   _gardenTile: {fileID: 0}
   effectedGardenPlaceables: []

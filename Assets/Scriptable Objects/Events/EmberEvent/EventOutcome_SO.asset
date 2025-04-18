@@ -20,3 +20,7 @@ MonoBehaviour:
   HealthChange: 0
   ForceMoenyChange: 0
   ForceHealthChange: 0
+  ForceCombat: 0
+  resultWindowImage: {fileID: 21300000, guid: 58a815c38d477a34bbf93f7ca0f96f9e, type: 3}
+  resultWindowText: No risks are needed, you add a common flower to your inventory.
+  combatPresetSO: {fileID: 0}

@@ -26,6 +26,15 @@ public class InfoPopUp : MonoBehaviour
         isPlant = true;
 
     }
+    public void SetUpTree(PlayerDataManager tree)
+    {
+        UpdateUIElementPosition();
+        plantHover.gameObject.SetActive(true);
+        enemyHover.gameObject.SetActive(false);
+        plantHover.UpdateTextTree(tree);
+        isPlant = true;
+
+    }
     public Vector2 offsetPlant = new Vector2(20f, 20f); // Optional offset to position the UI element next to the cursor.
     public Vector2 offsetEnemy = new Vector2(-160f, -160f); // Optional offset to position the UI element next to the cursor.
 
