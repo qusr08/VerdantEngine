@@ -18,12 +18,14 @@ public class MapUI : MonoBehaviour
     [SerializeField] PlayerDataManager playerDataManager;
 
     private bool hovering;
-    public Vector2 offset = new Vector2(-80f, -80f); // Optional offset to position the UI element next to the cursor.
+    public Vector2 offset = new Vector2(0, 0); // Optional offset to position the UI element next to the cursor.
+    private GameObject hoveredEncounter;
 
     // Start is called before the first frame update
     void Start()
     {
         hovering = false;
+        hoveredEncounter = null;
 
         if (playerDataManager == null)
         {
@@ -74,13 +76,14 @@ public class MapUI : MonoBehaviour
     }*/
 
 
-    public void StartHover(string encounterName, string encounterReward, string encounterDescription)
+    public void StartHover(GameObject encounter, string encounterName, string encounterReward, string encounterDescription)
     {
         hovering = true;
 
         name.text = encounterName;
         reward.text = encounterReward;
         description.text = encounterDescription;
+        hoveredEncounter = encounter;
     }
 
     public void EndHover()
@@ -93,13 +96,15 @@ public class MapUI : MonoBehaviour
     // Method to be called to update the UI element position.
     public void UpdateUIElementPosition()
     {
-
-        Vector3 mousePosition = Input.mousePosition; // Get current mouse position in screen space.
-
-        // Convert screen position to local position in the canvas space
         RectTransform rectTransform = this.GetComponent<RectTransform>();
+        Vector3 toWorldVec = Camera.main.WorldToScreenPoint(hoveredEncounter.transform.position);
 
-        rectTransform.position = mousePosition + new Vector3(offset.x, offset.y, 0);
+        rectTransform.position = toWorldVec;
+        rectTransform.position += new Vector3(offset.x, offset.y, 0);
+
+        //This is for setting it to mouse pos, decided not to use
+        //Vector3 mousePosition = Input.mousePosition; // Get current mouse position in screen space.
+        //rectTransform.position = mousePosition + new Vector3(offset.x, offset.y, 0);
 
     }
 

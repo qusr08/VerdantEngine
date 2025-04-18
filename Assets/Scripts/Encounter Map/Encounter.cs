@@ -190,7 +190,7 @@ public class Encounter : MonoBehaviour
     private void OnMouseEnter()
     {
 
-        mapUI.StartHover(Name, Rewards, Description);
+        mapUI.StartHover(this.gameObject, Name, Rewards, Description);
         //_PopUpDisplay.gameObject.SetActive(true);
 
     }
