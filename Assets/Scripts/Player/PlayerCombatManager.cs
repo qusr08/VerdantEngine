@@ -16,12 +16,13 @@ public class PlayerCombatManager : MonoBehaviour {
 	[SerializeField] private GameObject weaponMenuItemPrefab;
 	[SerializeField] private TextMeshProUGUI energyText;
 	[SerializeField] private GameObject damageIndicatorPrefab;
+	
 	[Space]
 	[SerializeField] private int energy = 0;
     [HideInInspector] public int energyModifier;
 	 public SpriteRenderer [] tree;
     public EnemySlider enemyAttckSliderAnimation;
-
+	public Inventory inventory; // used for flowers to get a reference
     public GameObject cannonFlashAsset;
 	public float tempAnimTimer;
 	private void Start ( ) {
@@ -47,14 +48,12 @@ public class PlayerCombatManager : MonoBehaviour {
 
     public void PlayerStartTurn()
     {
-        energy += gardenManager.CountPlants(new List<PlantType>() { PlantType.POWER_FLOWER }, null);
         energy += energyModifier;
-        energyModifier = 0;
 		energyText.text = energy.ToString();
 
 
     }
-    public void UpdateEnrgy(int value)
+    public void UpdateEnergy(int value)
     {
 		energy += value;
         energyText.text = energy.ToString();

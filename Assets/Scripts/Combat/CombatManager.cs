@@ -156,6 +156,25 @@ public class CombatManager : MonoBehaviour {
        
     }
 
+	public void damageAllEnemies(int damage)
+    {
+		if (Enemies.Count == 0)
+			return;
+      
+
+        // Deselect all enemies
+        foreach (Enemy enemy in Enemies)
+        {
+         
+
+            enemy.GetComponent<SpriteRenderer>().color = Color.red;
+            enemy.Attacked(damage);
+        }
+
+        
+       
+    }
+
     /// <summary>
     /// Get a list of targeted enemies based on the mech part
     /// </summary>
