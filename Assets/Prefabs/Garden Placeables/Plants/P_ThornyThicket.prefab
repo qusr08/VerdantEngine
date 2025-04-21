@@ -230,7 +230,7 @@ MonoBehaviour:
   _startingHealth: 3
   _cost: 8
   _name: Thorny Thicket
-  _description: 'When this plant takes damage, it deals equal damage to the targeted
+  _description: 'When this plant takes damage, it deals equal damage to the front
     enemy.
 
 '

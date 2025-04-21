@@ -14,11 +14,17 @@ public class EventManager : MonoBehaviour
     [SerializeField] GameObject[] buttons;
     [SerializeField] TextMeshProUGUI[] buttonsText;
 
+    [SerializeField] GameObject resultPanal;
+    [SerializeField] TextMeshProUGUI resultTitle;
+    [SerializeField] TextMeshProUGUI resultText;
+    [SerializeField] Image resultImage;
+
     Event_SO event_SO;
     [SerializeField] PlayerDataManager playerDataManager;
     public CombatManager combatManager;
     [SerializeField] Inventory inventory;
     [SerializeReference] MapPlayer camManager;
+    EventOutcome_SO chosen;
     public void InitilazeEvent(Event_SO event_SO)
     {
         eventPanal.SetActive(true);
@@ -47,7 +53,7 @@ public class EventManager : MonoBehaviour
 
     public void EventOutcomeChosen(int index)
     {
-        EventOutcome_SO chosen = event_SO.Options[index];
+         chosen = event_SO.Options[index];
         switch (chosen.outcomeType)
         {
             case EventOutcomeType.NewFlower:
@@ -79,17 +85,37 @@ public class EventManager : MonoBehaviour
                 playerDataManager.CurrentHealth += chosen.HealthChange;
 
                 break;
-            case EventOutcomeType.Combat:
-                combatManager.NewCombat(chosen.combatPresetSO);
-                camManager.GoToGarden();
-                break;
+          
             default:
                 break;
         }
         if(chosen.ForceHealthChange) playerDataManager.CurrentHealth += chosen.HealthChange;
         if (chosen.ForceMoenyChange) playerDataManager.Money += chosen.MoneyChange;
-
-        eventPanal.SetActive(false);
+        OpenResults();
     }
+
+    public void OpenResults()
+    {
+        resultPanal.SetActive(true);
+        eventPanal.SetActive(false);
+        resultText.text = chosen.resultWindowText;
+        resultTitle.text = event_SO.title;
+        resultImage.sprite = chosen.resultWindowImage;
+
+
+
+
+    }
+    public void CloseEvent()
+    { 
+        if(chosen.ForceCombat)
+        {
+            combatManager.NewCombat(chosen.combatPresetSO);
+            camManager.GoToGarden();
+        }
+        resultPanal.SetActive(false);
+    }
+    
+
 
 }

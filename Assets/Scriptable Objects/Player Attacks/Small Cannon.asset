@@ -15,7 +15,7 @@ MonoBehaviour:
   _damage: 2
   _manaCost: 1
   _cost: 10
-  _description: Deals 1 damage to the target.
+  _description: Deals 2 damage to the front enemy.
   _name: 'Small Cannon '
   _attackType: 2
   _playerTargetingType: 2
