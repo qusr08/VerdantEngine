@@ -3640,6 +3640,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: eventSO.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: spawnType.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -3651,6 +3655,14 @@ PrefabInstance:
       propertyPath: eventRates.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: eventSO.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1193e832a89caa345ad1467bc3d015f2, type: 2}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: eventSO.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: b0f73f958f795ae4abd0f4d6adc81129, type: 2}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: spawnIndex.Array.size
       value: 5
@@ -19676,7 +19688,7 @@ GameObject:
   - component: {fileID: 1963304775}
   - component: {fileID: 1963304774}
   m_Layer: 5
-  m_Name: To Garden (1)
+  m_Name: ToEvent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

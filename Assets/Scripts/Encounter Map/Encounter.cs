@@ -15,7 +15,9 @@ public class Encounter : MonoBehaviour
     public EncounterTypes EncounterType;
     [SerializeField] private MapPlayer player;
     [SerializeField] private MapUI mapUI;
+    [SerializeField] private Map mapManager;
     [SerializeField] private CombatPresetSO combatEncounter;
+    [SerializeField] private Event_SO eventEncounter;
     [SerializeField] private CombatManager combatManager;
     [SerializeField] private Sprite clearedSprite;
 
@@ -41,6 +43,11 @@ public class Encounter : MonoBehaviour
             mapUI = GameObject.Find("Hover Text").GetComponent<MapUI>();
         }
 
+        if (mapManager == null)
+        {
+            mapManager = GameObject.Find("MapManager").GetComponent<Map>();
+        }
+
 
         if (First)
         {
@@ -58,6 +65,12 @@ public class Encounter : MonoBehaviour
     {
         combatEncounter = newCombat;
         Rewards = Rewards + " + $" + newCombat.rewardMoeny;
+    }
+
+    public void SetEvent()
+    {
+        eventEncounter = mapManager.GetEvent();
+        //Rewards = Rewards + " + $" + newCombat.rewardMoeny;
     }
 
     /// <summary>
@@ -83,6 +96,11 @@ public class Encounter : MonoBehaviour
         {
             combatManager.NewCombat(combatEncounter);
             mapUI.ToGarden();
+        }
+        else if(EncounterType == EncounterTypes.Event)
+        {
+            SetEvent();
+            mapUI.ToEvent();
         }
         else if(EncounterType == EncounterTypes.Shop)
         {
