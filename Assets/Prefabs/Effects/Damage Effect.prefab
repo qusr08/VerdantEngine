@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 540789922973818328}
   - component: {fileID: 8286004267330373554}
   m_Layer: 0
-  m_Name: 'Shield Effect '
+  m_Name: Damage Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,7 +142,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e16bc9dd79945cc40b59899615f6e16c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8b269ef49ee817941bfea53931190ffc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
