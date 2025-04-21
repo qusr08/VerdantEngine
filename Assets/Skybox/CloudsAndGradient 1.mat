@@ -58,13 +58,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DistanceFadePower: 2.59
+    - _DistanceFadePower: 1
     - _NadirBlendPower: 0.65
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ZenithBlendPower: 1.41
     m_Colors:
-    - _AnimationSpeed: {r: 0.05, g: 0.1, b: 0, a: 0}
+    - _AnimationSpeed: {r: 0.015, g: -0.015, b: 0, a: 0}
     - _CloudColor: {r: 1, g: 1, b: 1, a: 0.05490196}
     - _CloudScale: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _Horizon: {r: 0.4433962, g: 0, b: 0, a: 0}

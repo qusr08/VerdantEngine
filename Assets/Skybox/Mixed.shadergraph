@@ -413,8 +413,8 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "x": 0.05000000074505806,
-        "y": 0.10000000149011612,
+        "x": 0.029999999329447748,
+        "y": 0.029999999329447748,
         "z": 0.0,
         "w": 0.0
     }
@@ -1215,7 +1215,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 1.350000023841858,
+    "m_Value": 0.0,
     "m_FloatType": 0,
     "m_RangeValues": {
         "x": 0.0,
