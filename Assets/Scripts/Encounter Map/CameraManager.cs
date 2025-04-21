@@ -19,6 +19,7 @@ public class MapPlayer : MonoBehaviour
     [SerializeField] private GameObject eventStuff;
     [SerializeField] private GameObject camera;
     [SerializeField] private CombatUIManager uiManager;
+    [SerializeField] private EventManager eventManager;
     [SerializeField] private GameObject walker;
     [SerializeField] private Sprite[] walkerSprites;
     private int currentSpriteIndex = 0;
@@ -36,6 +37,11 @@ public class MapPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(eventManager == null)
+        {
+            eventManager = GameObject.Find("EventManager").GetComponent<EventManager>();
+        }
+
         UpdateCameraPosition();
     }
 
@@ -131,8 +137,9 @@ public class MapPlayer : MonoBehaviour
     {
         ChangeScenes(ActiveScene.Shop);
     }
-    public void GoToEvent()
+    public void GoToEvent(Event_SO incomingEvent)
     {
+        eventManager.InitilazeEvent(incomingEvent);
         ChangeScenes(ActiveScene.Event);
     }
 

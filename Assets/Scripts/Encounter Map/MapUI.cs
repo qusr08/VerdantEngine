@@ -120,9 +120,8 @@ public class MapUI : MonoBehaviour
         cameraManager.UpdateCameraPosition();
     }
 
-    public void ToEvent()
+    public void ToEvent(Event_SO incomingEvent)
     {
-        cameraManager.scene = ActiveScene.Event;
-        cameraManager.UpdateCameraPosition();
+        cameraManager.GoToEvent(incomingEvent);
     }
 }

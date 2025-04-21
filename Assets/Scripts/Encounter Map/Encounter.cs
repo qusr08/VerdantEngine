@@ -70,6 +70,7 @@ public class Encounter : MonoBehaviour
     public void SetEvent()
     {
         eventEncounter = mapManager.GetEvent();
+        Debug.Log(eventEncounter);
         //Rewards = Rewards + " + $" + newCombat.rewardMoeny;
     }
 
@@ -100,7 +101,7 @@ public class Encounter : MonoBehaviour
         else if(EncounterType == EncounterTypes.Event)
         {
             SetEvent();
-            mapUI.ToEvent();
+            mapUI.ToEvent(eventEncounter);
         }
         else if(EncounterType == EncounterTypes.Shop)
         {
