@@ -105,12 +105,14 @@ MonoBehaviour:
   EncounterType: 2
   player: {fileID: 0}
   mapUI: {fileID: 0}
+  mapManager: {fileID: 0}
   combatEncounter: {fileID: 0}
+  eventEncounter: {fileID: 0}
   combatManager: {fileID: 0}
   clearedSprite: {fileID: 0}
-  Name: ???
-  Rewards: ??? x?
-  Description: 
+  Name: Event
+  Rewards: ???
+  Description: There is a mysterious presence here
 --- !u!61 &-490246456750264881
 BoxCollider2D:
   m_ObjectHideFlags: 0
