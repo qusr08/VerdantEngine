@@ -19,4 +19,5 @@ MonoBehaviour:
   - {fileID: 2017004346278228227, guid: fd2a5a697d33bd343985756c8bda53ac, type: 3}
   _isEliteRewards: 1
   isBoss: 0
+  difficulty: 7
   rewardMoeny: 28

@@ -23,9 +23,7 @@ public class Map : MonoBehaviour
     [SerializeField] private GameObject startPrefab;
 
     [Header("SOs")]
-    [SerializeField] private CombatPresetSO[] easyEnemies;
-    [SerializeField] private CombatPresetSO[] mediumEnemies;
-    [SerializeField] private CombatPresetSO[] hardEnemies;
+    [SerializeField] private List<CombatPresetSO> combatSO;
     [SerializeField] private List<Event_SO> eventSO;
 
 
@@ -173,30 +171,86 @@ public class Map : MonoBehaviour
             nextPosition.x += 3f;
         }
         
+        if(encounterNumber == 3 && encounterOptions == 2)
+        {
+            type = Type.Shop;
+        }
+        else if(encounterNumber <= 3 && type == Type.Shop)
+        {
+            type = Type.Enemy;
+        }
 
         switch (type)
             {
             case Type.Enemy:
                 int enemyDifficulty = 0;
 
-                //Forces the first few encounters. I don't like this but it needs to be hard coded
-                if(encounterNumber > 1)
+                /*
+                //This is for COMPLETELY randomized combat appearences
+                enemyDifficulty = GetSubType<CombatPresetSO>(combatSO);
+                enemyDifficulty = combatSO[enemyDifficulty].difficulty;
+                */
+
+                switch(encounterNumber)
                 {
-                    enemyDifficulty = GetSubType(enemyRates);
-                }
-                if(encounterNumber == 1 && encounterOptions == 2)
-                {
-                    enemyDifficulty = 1;
+                    case 0:
+                        enemyDifficulty = 1;
+                        break;
+                    case 1:
+                        enemyDifficulty = Random.Range(1, 3); //inclusive, exclusive
+                        break;
+                    case 2:
+                        enemyDifficulty = Random.Range(1, 4); //inclusive, exclusive
+                        break;
+                    case 3:
+                        enemyDifficulty = Random.Range(2, 5); //inclusive, exclusive
+                        break;
+                    case 4:
+                        enemyDifficulty = Random.Range(3, 6); //inclusive, exclusive
+                        break;
+                    case 5:
+                        enemyDifficulty = Random.Range(4, 7); //inclusive, exclusive
+                        break;
+                    case 6:
+                        enemyDifficulty = Random.Range(5, 8); //inclusive, exclusive
+                        break;
+                    case 7:
+                        enemyDifficulty = Random.Range(6, 9); //inclusive, exclusive
+                        break;
+                    case 8:
+                        enemyDifficulty = Random.Range(7, 10); //inclusive, exclusive
+                        break;
+                    case 9:
+                        enemyDifficulty = Random.Range(8, 10); //inclusive, exclusive
+                        break;
                 }
 
-                encounters.Add(Instantiate(enemyPrefabs[enemyDifficulty], nextPosition, transform.rotation, this.gameObject.transform));
+                switch(enemyDifficulty)
+                {
+                    case 1:
+                    case 2:
+                    case 3:
+                        encounters.Add(Instantiate(enemyPrefabs[0], nextPosition, transform.rotation, this.gameObject.transform));
+                        break;
+                    case 4:
+                    case 5:
+                    case 6:
+                        encounters.Add(Instantiate(enemyPrefabs[1], nextPosition, transform.rotation, this.gameObject.transform));
+                        break;
+                    case 7:
+                    case 8:
+                    case 9:
+                        encounters.Add(Instantiate(enemyPrefabs[2], nextPosition, transform.rotation, this.gameObject.transform));
+                        break;
+
+                }
                 UpdateCombatEncounter(enemyDifficulty);
                 break;
             case Type.Shop:
                 encounters.Add(Instantiate(shopPrefabs[0], nextPosition, transform.rotation, this.gameObject.transform));
                 break;
             case Type.Event:
-                encounters.Add(Instantiate(eventPrefabs[GetSubType(eventRates)], nextPosition, transform.rotation, this.gameObject.transform));
+                encounters.Add(Instantiate(eventPrefabs[0], nextPosition, transform.rotation, this.gameObject.transform));
                 break;
             case Type.Boss:
                 encounters.Add(Instantiate(bossPrefabs[0], nextPosition, transform.rotation, this.gameObject.transform));
@@ -264,7 +318,19 @@ public class Map : MonoBehaviour
     /// </summary>
     /// <param name="odds">The chances for each sub-type</param>
     /// <returns>The index of the chosen value</returns>
-    private int GetSubType(int[] odds)
+    private int GetSubType<T>(List<T> options)
+    {
+        int nextEncounter = Random.Range(0, options.Count); //Inclusive, exclusive
+
+        return nextEncounter;
+    }
+
+    /// <summary>
+    /// Takes an array of ints 1-10 (that add to 10) and randomly selects an index based on values (that represent the chance of being picked)
+    /// </summary>
+    /// <param name="odds">The chances for each sub-type</param>
+    /// <returns>The index of the chosen value</returns>
+    private int GetSubTypeSeeded(int[] odds)
     {
         int nextEncounter = Random.Range(0, 10);
 
@@ -291,21 +357,19 @@ public class Map : MonoBehaviour
 
     private void UpdateCombatEncounter(int i)
     {
-        CombatPresetSO newCombat = easyEnemies[0];
+        CombatPresetSO newCombat = combatSO[0];
 
-        switch (i)
+        List<CombatPresetSO> possibleCombats = new List<CombatPresetSO>();
+
+        foreach(CombatPresetSO combat in combatSO)
         {
-            case 0: //Easy enemy
-                newCombat = easyEnemies[Random.Range(0, easyEnemies.Length)];
-                break;
-            case 1: //Medium enemy
-                newCombat = mediumEnemies[Random.Range(0, mediumEnemies.Length)];
-                break;
-            case 2: //Hard enemy
-                newCombat = hardEnemies[Random.Range(0, hardEnemies.Length)];
-                break;
+            if(combat.difficulty == i)
+            {
+                possibleCombats.Add(combat);
+            }
         }
 
+        newCombat = possibleCombats[Random.Range(0, possibleCombats.Count)];
         encounters[encounters.Count - 1].GetComponent<Encounter>().SetCombat(newCombat);
     }
 
