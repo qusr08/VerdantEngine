@@ -7,8 +7,9 @@ using UnityEngine.InputSystem;
 public class CameraDrag : MonoBehaviour
 {
 
-    private Vector3 origin;
-    private Vector3 difference;
+    [SerializeField] private float scrollSpeed = .2f;
+
+    private float yValueChange;
 
     private Camera mainCamera;
 
@@ -17,6 +18,7 @@ public class CameraDrag : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        yValueChange = 0;
         mainCamera = Camera.main;
     }
 
@@ -28,38 +30,30 @@ public class CameraDrag : MonoBehaviour
 
     public void OnDrag(InputAction.CallbackContext context)
     {
-        if(context.started)
-        {
-            origin = GetMousePosition();
-            origin.x = transform.position.x;
-            origin.z = transform.position.z;
-        }
+        
         isDragging = context.started || context.performed;
+        
+        if(isDragging)
+        {
+            yValueChange = context.ReadValue<float>();
+
+            float newY = transform.position.y + (yValueChange * scrollSpeed);
+            transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+
+            if (transform.position.y >= 23)
+            {
+                transform.position = new Vector3(transform.position.x, 23, transform.position.z);
+            }
+            else if (transform.position.y <= 0)
+            {
+                transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+            }
+        }
     }
 
-    private void LateUpdate()
-    {
-        if(!isDragging)
-        {
-            return;
-        }
 
-        difference = GetMousePosition() - transform.position;
-        difference.x = 0;
-        difference.z = 0;
-        transform.position = origin - difference;
 
-        if(transform.position.y >= 23)
-        {
-            transform.position = new Vector3(transform.position.x, 23, transform.position.z);
-        }
-        else if (transform.position.y <= 0)
-        {
-            transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-        }
-
-    }
-
+    //Currently unused
     private Vector3 GetMousePosition()
     {
         return mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());

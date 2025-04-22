@@ -16,12 +16,12 @@
                 },
                 {
                     "name": "Drag",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "9302259e-c036-4349-9c55-947a94ba9f5b",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -39,7 +39,7 @@
                 {
                     "name": "",
                     "id": "966e8e5d-7e21-40d7-acdd-cf3f8c5bf4cd",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Mouse>/scroll/y",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
