@@ -3,7 +3,17 @@ guid: e0e8969ad918afc428aa1ba711dc7d98
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - gardenManager: {instanceID: 0}
+  - playerDataManager: {instanceID: 0}
+  - combatManager: {instanceID: 0}
+  - _inventorySprite: {instanceID: 0}
+  - _gardenTile: {instanceID: 0}
+  - damageIndicatorPrefab: {instanceID: 0}
+  - healEffectPrefab: {instanceID: 0}
+  - damageEffectPrefab: {instanceID: 0}
+  - shieldEffectPrefab: {instanceID: 0}
+  - flowerVisuals: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
