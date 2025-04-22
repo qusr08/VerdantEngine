@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   First: 1
   ConnectingNode: []
+  ConnectingLines: []
   EncounterType: 3
   player: {fileID: 0}
   mapUI: {fileID: 0}
@@ -57,7 +58,6 @@ MonoBehaviour:
   Name: Start
   Rewards: 
   Description: The tile you start on :P
-  rewardsMoney: 0
 --- !u!212 &-6042004484014543850
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -153,5 +153,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1}
+  m_Size: {x: 0.3, y: 0.3}
   m_EdgeRadius: 0

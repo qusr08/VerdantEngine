@@ -26,6 +26,7 @@ public class Map : MonoBehaviour
     [SerializeField] private CombatPresetSO[] easyEnemies;
     [SerializeField] private CombatPresetSO[] mediumEnemies;
     [SerializeField] private CombatPresetSO[] hardEnemies;
+    [SerializeField] private List<Event_SO> eventSO;
 
 
     [Header("Debug")]
@@ -245,7 +246,16 @@ public class Map : MonoBehaviour
                 prevEncounters[1].GetComponent<Encounter>().AddConnection(encounters[encounters.Count - 1]);
                 //Debug.DrawLine(prevEncounters[1].transform.position, encounters[encounters.Count - 1].transform.position, Color.black, 5);
             }
+
+            if (encounterOptions != 2)
+            {
+                encounters[encounters.Count - 1].GetComponent<Encounter>().onlyOneConnection = true;
+            }
+
         }
+
+            encounters[encounters.Count - 1].GetComponent<Encounter>().HideEncounter();
+
 
     }
 
@@ -315,7 +325,34 @@ public class Map : MonoBehaviour
     }
 
 
+    public Event_SO GetEvent()
+    {
+        int eventIndex = Random.Range(0, eventSO.Count);
+
+        Event_SO returnedEvent = eventSO[eventIndex];
+        eventSO.RemoveAt(eventIndex);
+
+        return returnedEvent;
+
+    }
+
+
     //===================UNUSED====================
+
+    /// <summary>
+    /// Clears all encounters in the map, will be used when resetting the map
+    /// </summary>
+    public void ClearMap()
+    {
+        foreach(Transform child in this.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+    
+    
+    
+    
     /// <summary>
     /// Basically reduces the chance of the selected encounter and increases the chances of the others
     /// </summary>

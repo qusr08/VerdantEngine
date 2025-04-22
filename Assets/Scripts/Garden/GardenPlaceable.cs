@@ -27,6 +27,13 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	[SerializeField, Tooltip("The time it takes for the color to fade when healing this garden placeable")] private float healColorTime = 1.5f;
 	[SerializeField, Tooltip("The time in between flashes when this garden placeable is taking damage")] private float damageColorFlashTime = 0.1f;
 
+
+	[Header("Heal/ Shield/ Damage effects")]
+	[SerializeField] protected GameObject healEffectPrefab;
+	[SerializeField] protected GameObject damageEffectPrefab;
+	[SerializeField] protected GameObject shieldEffectPrefab;
+
+
 	private GardenPlaceableStat _healthStat;
 	private GardenPlaceableStat _shieldStat;
 
@@ -337,8 +344,13 @@ public abstract class GardenPlaceable : MonoBehaviour {
 			heal = 0;
 		}
 
-        if (heal > 0)
-            SpawnHealIndicator(heal);
+        if (heal > 0){
+			SpawnHealIndicator(heal);
+			GameObject effect = Instantiate(healEffectPrefab, transform.position, transform.rotation);
+			effect.transform.parent = transform;
+			Destroy(effect, 5f);
+		}
+            
 		FlashColor(Color.green, healColorTime / 4f, healColorTime, 1);
 
 		//triggered global on heal triggers for all garden placbles. used by artifacts
@@ -358,6 +370,12 @@ public abstract class GardenPlaceable : MonoBehaviour {
 		if(ShieldStat.CurrentValue>0)
 		damage -= ShieldStat.CurrentValue;
 
+		if(damage <= 0)
+        {
+			GameObject effect = Instantiate(shieldEffectPrefab, transform.position, transform.rotation);
+			effect.transform.parent = transform;
+			Destroy(effect, 5f);
+        }
 		// If the damage is still greater than 0, then decrease the placeable's health
 		if (damage > 0) {
 			HealthStat.BaseValue -= damage;
@@ -370,6 +388,10 @@ public abstract class GardenPlaceable : MonoBehaviour {
 
 			// Flash the sprite a certain color when it takes damage
 			FlashColor(Color.red, damageColorFlashTime / 2f, damageColorFlashTime, 2);
+
+			GameObject effect = Instantiate(damageEffectPrefab, transform.position, transform.rotation);
+			effect.transform.parent = transform;
+			Destroy(effect, 5f);
 
 			return damage;
 		}

@@ -19,7 +19,10 @@ public class MapPlayer : MonoBehaviour
     [SerializeField] private GameObject eventStuff;
     [SerializeField] private GameObject camera;
     [SerializeField] private CombatUIManager uiManager;
-    [SerializeField] private GameObject playerSprite;
+    [SerializeField] private EventManager eventManager;
+    [SerializeField] private GameObject walker;
+    [SerializeField] private Sprite[] walkerSprites;
+    private int currentSpriteIndex = 0;
 
     [SerializeField] private GameObject flowerTrailPrefab;
     [SerializeField] private Sprite[] flowerTrailSprites;
@@ -34,6 +37,11 @@ public class MapPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(eventManager == null)
+        {
+            eventManager = GameObject.Find("EventManager").GetComponent<EventManager>();
+        }
+
         UpdateCameraPosition();
     }
 
@@ -53,22 +61,31 @@ public class MapPlayer : MonoBehaviour
 
             if (nextLocationEdited.x < currentLocation.x)
             {
-                playerSprite.GetComponent<SpriteRenderer>().flipX = true;
+                walker.GetComponent<SpriteRenderer>().flipX = true;
             }
             else
             {
-                playerSprite.GetComponent<SpriteRenderer>().flipX = false;
+                walker.GetComponent<SpriteRenderer>().flipX = false;
             }
 
-            playerSprite.transform.position = Vector3.Lerp(currentLocation, nextLocationEdited, movingPercent);
+            walker.transform.position = Vector3.Lerp(currentLocation, nextLocationEdited, movingPercent);
 
-            if (timeSinceFlowerSpawn >= .1f)
+            if (timeSinceFlowerSpawn >= .08f)
             {
                 GameObject flowerTrail = Instantiate(flowerTrailPrefab, mapStuff.transform);
-                flowerTrail.transform.position = playerSprite.transform.position;
+                flowerTrail.transform.position = walker.transform.position;
                 flowerTrailPrefab.GetComponent<SpriteRenderer>().sprite = flowerTrailSprites[Random.Range(0, flowerTrailSprites.Length)];
-                flowerTrail.transform.position = new Vector3(flowerTrail.transform.position.x, flowerTrail.transform.position.y - Random.Range(.2f, .8f), flowerTrail.transform.position.z);
+                flowerTrail.transform.position = new Vector3(flowerTrail.transform.position.x, flowerTrail.transform.position.y - Random.Range(.4f, .6f), flowerTrail.transform.position.z);
                 timeSinceFlowerSpawn = 0;
+
+                currentSpriteIndex++;
+
+                if (currentSpriteIndex >= walkerSprites.Length)
+                {
+                    currentSpriteIndex = 0;
+                }
+
+                walker.GetComponent<SpriteRenderer>().sprite = walkerSprites[currentSpriteIndex];
             }
             
 
@@ -87,7 +104,7 @@ public class MapPlayer : MonoBehaviour
                 CurrentEncounter = nextLocation;
 
                 transform.position = new Vector3(0, nextLocation.transform.position.y + 3, -10);
-                playerSprite.transform.position = new Vector3(nextLocation.transform.position.x, transform.position.y - 2.5f, playerSprite.transform.position.z);
+                walker.transform.position = new Vector3(nextLocation.transform.position.x, transform.position.y - 2.5f, walker.transform.position.z);
 
                 UpdateCameraPosition();
 
@@ -120,32 +137,31 @@ public class MapPlayer : MonoBehaviour
     {
         ChangeScenes(ActiveScene.Shop);
     }
-    public void GoToEvent()
+    public void GoToEvent(Event_SO incomingEvent)
     {
+        eventManager.InitilazeEvent(incomingEvent);
         ChangeScenes(ActiveScene.Event);
     }
 
     public void UpdateCameraPosition()
     {
+        gardenStuff.SetActive(false);
+        shopStuff.SetActive(false);
+        mapStuff.SetActive(false);
+        walker.SetActive(false);
+        eventStuff.SetActive(false);
+
         switch (scene)
         {
             case ActiveScene.Map:
-                gardenStuff.SetActive(false);
-                shopStuff.SetActive(false);
                 mapStuff.SetActive(true);
-                playerSprite.SetActive(true);
-                eventStuff.SetActive(false);
-
+                walker.SetActive(true);
 
                 camera.transform.position = this.transform.position;
                 camera.transform.rotation = this.transform.rotation;
                 break;
             case ActiveScene.Garden:
                 gardenStuff.SetActive(true);
-                shopStuff.SetActive(false);
-                mapStuff.SetActive(false);
-                playerSprite.SetActive(false);
-                eventStuff.SetActive(false);
 
                 camera.transform.position = gardenCameraLocation.transform.position;
                 camera.transform.rotation = gardenCameraLocation.transform.rotation;
@@ -153,10 +169,6 @@ public class MapPlayer : MonoBehaviour
             case ActiveScene.Shop:
                 gardenStuff.SetActive(true);
                 shopStuff.SetActive(true);
-                mapStuff.SetActive(false);
-                playerSprite.SetActive(false);
-                eventStuff.SetActive(false);
-
 
                 camera.transform.position = gardenCameraLocation.transform.position;
                 camera.transform.rotation = gardenCameraLocation.transform.rotation;
@@ -164,10 +176,6 @@ public class MapPlayer : MonoBehaviour
             case ActiveScene.Event:
                 gardenStuff.SetActive(true);
                 eventStuff.SetActive(true);
-                shopStuff.SetActive(false);
-                mapStuff.SetActive(false);
-                playerSprite.SetActive(false);
-
 
                 camera.transform.position = gardenCameraLocation.transform.position;
                 camera.transform.rotation = gardenCameraLocation.transform.rotation;
@@ -189,10 +197,17 @@ public class MapPlayer : MonoBehaviour
         {
             CurrentEncounter = location;
             transform.position = new Vector3(0, location.transform.position.y + 3, -10);
-            playerSprite.transform.position = new Vector3(location.transform.position.x, playerSprite.transform.position.y, playerSprite.transform.position.z);
+            walker.transform.position = new Vector3(location.transform.position.x, walker.transform.position.y, walker.transform.position.z);
 
             return true;
         }
+
+        if(CurrentEncounter == location)
+        {
+            GoToGarden();
+            return true;
+        }
+
         if (CurrentEncounter.GetComponent<Encounter>().ConnectingNode.Contains(location))
         {
 

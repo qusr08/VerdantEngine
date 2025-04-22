@@ -8,13 +8,16 @@ public class Encounter : MonoBehaviour
 {
 
     public bool First = false;
+    public bool onlyOneConnection = false;
 
     public List<GameObject> ConnectingNode;
     public List<GameObject> ConnectingLines;
     public EncounterTypes EncounterType;
     [SerializeField] private MapPlayer player;
     [SerializeField] private MapUI mapUI;
+    [SerializeField] private Map mapManager;
     [SerializeField] private CombatPresetSO combatEncounter;
+    [SerializeField] private Event_SO eventEncounter;
     [SerializeField] private CombatManager combatManager;
     [SerializeField] private Sprite clearedSprite;
 
@@ -40,6 +43,11 @@ public class Encounter : MonoBehaviour
             mapUI = GameObject.Find("Hover Text").GetComponent<MapUI>();
         }
 
+        if (mapManager == null)
+        {
+            mapManager = GameObject.Find("MapManager").GetComponent<Map>();
+        }
+
 
         if (First)
         {
@@ -59,6 +67,13 @@ public class Encounter : MonoBehaviour
         Rewards = Rewards + " + $" + newCombat.rewardMoeny;
     }
 
+    public void SetEvent()
+    {
+        eventEncounter = mapManager.GetEvent();
+        Debug.Log(eventEncounter);
+        //Rewards = Rewards + " + $" + newCombat.rewardMoeny;
+    }
+
     /// <summary>
     /// Runs when the player reaches this encounter
     /// </summary>
@@ -67,11 +82,26 @@ public class Encounter : MonoBehaviour
 
         //this.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
         this.gameObject.GetComponent<SpriteRenderer>().sprite = clearedSprite;
+        foreach (GameObject connection in ConnectingNode)
+        {
+            connection.GetComponent<Encounter>().UnHideEncounter();
+        }
+        foreach (GameObject line in ConnectingLines)
+        {
+            LineRenderer lineRenderer = line.GetComponent<LineRenderer>();
+            lineRenderer.startColor = new Color(.88f, .89f, .73f);
+            lineRenderer.endColor = new Color(.88f, .89f, .73f);
+        }
 
         if (EncounterType == EncounterTypes.Enemy)
         {
             combatManager.NewCombat(combatEncounter);
             mapUI.ToGarden();
+        }
+        else if(EncounterType == EncounterTypes.Event)
+        {
+            SetEvent();
+            mapUI.ToEvent(eventEncounter);
         }
         else if(EncounterType == EncounterTypes.Shop)
         {
@@ -89,14 +119,51 @@ public class Encounter : MonoBehaviour
         {
             foreach(GameObject line in ConnectingLines)
             {
-                if(line.GetComponent<MapLines>().to == connection)
+                LineRenderer lineRenderer = line.GetComponent<LineRenderer>();
+
+                if (line.GetComponent<MapLines>().to == connection)
                 {
-                    LineRenderer lineRenderer = line.GetComponent<LineRenderer>();
                     lineRenderer.startColor = Color.green;
                     lineRenderer.endColor = Color.green;
                 }
+                else
+                {
+                    lineRenderer.startColor = Color.gray;
+                    lineRenderer.endColor = Color.gray;
+                }
+            }
+
+            //Loops through options. If option is unpicked hide it
+            foreach(GameObject otherTile in ConnectingNode)
+            {
+                if(otherTile != connection)
+                {
+                    otherTile.GetComponent<Encounter>().HideEncounter();
+                }
             }
         }
+    }
+
+    /// <summary>
+    /// Hides an unpicked/unpickable encounter
+    /// </summary>
+    public void HideEncounter()
+    {
+        foreach(GameObject line in ConnectingLines)
+        {
+            LineRenderer lineRenderer = line.GetComponent<LineRenderer>();
+            lineRenderer.startColor = Color.gray;
+            lineRenderer.endColor = Color.grey;
+        }
+        this.GetComponent<SpriteRenderer>().color = Color.grey;
+    }
+
+    /// <summary>
+    /// Hides an unpicked/unpickable encounter
+    /// </summary>
+    public void UnHideEncounter()
+    {
+        this.GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     public void AddConnection(GameObject connection)
@@ -117,8 +184,10 @@ public class Encounter : MonoBehaviour
         lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
         lineRenderer.widthMultiplier = 0.05f;
         lineRenderer.positionCount = 2;
-        lineRenderer.startColor = new Color (.88f, .89f, .73f);
-        lineRenderer.endColor = new Color(.88f, .89f, .73f);
+        lineRenderer.startColor = Color.gray;
+        lineRenderer.endColor = Color.grey;
+        //lineRenderer.startColor = new Color (.88f, .89f, .73f);
+        //lineRenderer.endColor = new Color(.88f, .89f, .73f);
 
         lineRenderer.SetPosition(0, this.transform.position);
         lineRenderer.SetPosition(1, connection.transform.position);
@@ -140,7 +209,7 @@ public class Encounter : MonoBehaviour
     private void OnMouseEnter()
     {
 
-        mapUI.StartHover(Name, Rewards, Description);
+        mapUI.StartHover(this.gameObject, Name, Rewards, Description);
         //_PopUpDisplay.gameObject.SetActive(true);
 
     }
