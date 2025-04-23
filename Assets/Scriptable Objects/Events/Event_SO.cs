@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Event_SO : ScriptableObject
 {
     public string title;
+    [TextArea(15, 20)]
     public string text;
     public Sprite image;
     public EventOutcome_SO [] Options;
