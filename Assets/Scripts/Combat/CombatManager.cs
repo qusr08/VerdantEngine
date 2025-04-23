@@ -27,6 +27,8 @@ public class CombatManager : MonoBehaviour {
     public Material redSky;
     public Animator enemyAnimator;
 
+	//Used to fix error on first round no showing the arrow damage indicators
+	private bool IsTurn1;
 
     //Need to be removed after edge
     private bool isBoss = false;
@@ -64,13 +66,11 @@ public class CombatManager : MonoBehaviour {
 		playerCombatManager.PlayerStartTurn();
 		isPlayerPaused = false;
         soundManager.Playcomabt();
-
+		IsTurn1 = true;
         RenderSettings.skybox = redSky ;
         DynamicGI.UpdateEnvironment();
 
 			isBoss = newCombat.isBoss;
-
-
 
     }
 
@@ -98,22 +98,27 @@ public class CombatManager : MonoBehaviour {
 		}
 
 		AllEnemiesStartRound( );
-	}
 
-	public void AllEnemiesStartRound ( ) {
+    }
 
-        foreach (GardenTile gardenTile in playerDataManager.Garden)
-        {
-            gardenTile.IsHighlighted = false;
+	public void AllEnemiesStartRound()
+	{
 
-        }
+		foreach (GardenTile gardenTile in playerDataManager.Garden)
+		{
+			gardenTile.IsHighlighted = false;
 
-        foreach (Enemy enemy in Enemies) {
-			enemy.StartRound( );
+		}
+
+		foreach (Enemy enemy in Enemies)
+		{
+			enemy.StartRound();
 		}
 	}
 
-	public IEnumerator IUpdateTargetedEnemies (PlayerAttackSO mechPart) {
+
+
+    public IEnumerator IUpdateTargetedEnemies (PlayerAttackSO mechPart) {
 		// Get the targeted enemies based on the mech part
 		List<Enemy> targetEnemies = GetTargets(mechPart);
 		

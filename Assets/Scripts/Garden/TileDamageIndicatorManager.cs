@@ -40,12 +40,22 @@ public class TileDamageIndicatorManager : MonoBehaviour
     }
     void StartAnim(Animator indicaotr, string trigger)
     {
+
         if (indicaotr.gameObject.activeSelf)
-        { return; }
+        { 
+            return;
+        }
         indicaotr.gameObject.SetActive(true);
         indicaotr.SetTrigger(trigger);
 
     }
+
+    public IEnumerator WaitForLoad (Animator indicaotr, string trigger)
+    {
+        yield return new WaitForSeconds(0.2f);
+        StartAnim(indicaotr, trigger);
+    }
+
     public void StopIndicator()
     {
         foreach (Animator item in incomingAttackIndicators)

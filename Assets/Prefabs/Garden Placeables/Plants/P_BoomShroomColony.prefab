@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: M_ShieldingShrub
       objectReference: {fileID: 0}
+    - target: {fileID: -8653719598885068355, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3418fa23b4ed2e049b84031ccfc07a34, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.20402873
@@ -342,6 +346,9 @@ MonoBehaviour:
   lowHealthColorFlashTime: 0.5
   healColorTime: 1.5
   damageColorFlashTime: 0.1
+  healEffectPrefab: {fileID: 0}
+  damageEffectPrefab: {fileID: 0}
+  shieldEffectPrefab: {fileID: 0}
   flowerVisuals: {fileID: 664455259692123256}
   _plantType: 10
   _rarity: 2
