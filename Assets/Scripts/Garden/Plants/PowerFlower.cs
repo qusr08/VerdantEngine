@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PowerFlower : Plant {
-    bool isFirst = true;
 
     public override void OnTurnStart ( ) {
-		// Generates 1 energy each turn
-		Debug.Log("Generate 1 Energy");
-		//FindObjectOfType<GardenManager>().PlayerData.Energy += 1;
+        // Generates 1 energy each turn
+        gardenManager.combatManager.playerCombatManager.UpdateEnergy(1);
+        Debug.Log("Generate 1 Energy");
 	}
 
 

@@ -34,6 +34,8 @@ public class MapPlayer : MonoBehaviour
 
     public BG_Music_Manager soundManager;
 
+    public CombatManager combatManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +43,10 @@ public class MapPlayer : MonoBehaviour
         {
             eventManager = GameObject.Find("EventManager").GetComponent<EventManager>();
         }
-
+        if (combatManager == null)
+        {
+            combatManager = GameObject.Find("CombatManager").GetComponent<CombatManager>();
+        }
         UpdateCameraPosition();
     }
 
@@ -165,6 +170,12 @@ public class MapPlayer : MonoBehaviour
 
                 camera.transform.position = gardenCameraLocation.transform.position;
                 camera.transform.rotation = gardenCameraLocation.transform.rotation;
+
+                //check combat
+                if(combatManager.Enemies.Count>0)
+                {
+                    combatManager.UpdateEnemyAttackVisuals();
+                }
                 break;
             case ActiveScene.Shop:
                 gardenStuff.SetActive(true);
