@@ -445,7 +445,7 @@ public class GardenManager : MonoBehaviour {
 
     public void SaveGardenState()
 	{
-        GardenPlaceable[,] SavedGardenState = new GardenPlaceable[playerDataManager.GardenSize, playerDataManager.GardenSize];
+      SavedGardenState = new GardenPlaceable[playerDataManager.GardenSize, playerDataManager.GardenSize];
 		foreach (GardenPlaceable item in Plants)
 		{
 			SavedGardenState[item.Position.x, item.Position.y] = item;
@@ -457,4 +457,96 @@ public class GardenManager : MonoBehaviour {
 
         }
     }
+    public void LoadGardenState()
+    {
+		if(SavedGardenState == null)
+		{
+			Debug.Log("No save map data!");
+				return;
+		}
+		for (int x = 0; x < playerDataManager.GardenSize; x++)
+		{
+			for (int y = 0; y < playerDataManager.GardenSize; y++)
+			{
+				//if both enpty do nothing
+				if (playerDataManager.Garden[x, y].GardenPlaceable == null && SavedGardenState[x, y] == null)
+					continue;
+				//If only used to be emtoy, clear
+                else if (playerDataManager.Garden[x, y].GardenPlaceable != null && SavedGardenState[x, y] == null)
+				{
+                    //clear space if needed
+                    if (playerDataManager.Garden[x, y].GardenPlaceable != null)
+                    {
+                        //Uproot what is there
+                        if (playerDataManager.Garden[x, y].GardenPlaceable.isPlant)
+                        {
+
+                            Plant plant = (playerDataManager.Garden[x, y].GardenPlaceable as Plant);
+                            UprootPlant(plant);
+                        }
+                        else
+                        {
+                            Artifact artifact = (playerDataManager.Garden[x, y].GardenPlaceable as Artifact);
+                            UprootArtifact(artifact);
+                        }
+
+
+                    }
+					
+                }
+				else if(playerDataManager.Garden[x, y].GardenPlaceable == null && SavedGardenState[x, y] != null)
+				{
+                    if (SavedGardenState[x, y].isPlant)
+                    {
+
+                        Plant plant = (SavedGardenState[x, y] as Plant);
+                        PlacePlant(plant.PlantType, x, y);
+                    }
+                    else 
+                    {
+                        Artifact artifact =( SavedGardenState[x, y] as Artifact);
+                        PlaceArtifact(artifact.ArtifactType, x, y);
+                    }
+                }
+
+
+                    //check if there is a diffrence between the saved and current satets
+                   else if (playerDataManager.Garden[x, y].GardenPlaceable != SavedGardenState[x, y])
+				{
+					//clear space if needed
+                    if ( playerDataManager.Garden[x, y].GardenPlaceable !=null)
+                    {
+						//Uproot what is there
+						if(playerDataManager.Garden[x, y].GardenPlaceable.isPlant)
+						{
+							
+							Plant plant = (playerDataManager.Garden[x, y].GardenPlaceable as Plant);
+							UprootPlant(plant);
+						}
+						else
+						{
+                            Artifact artifact = (playerDataManager.Garden[x, y].GardenPlaceable as Artifact);
+                            UprootArtifact(artifact);
+                        }
+
+                        if (SavedGardenState[x, y].isPlant)
+                        {
+
+                            Plant plant = (SavedGardenState[x, y] as Plant);
+                            PlacePlant(plant.PlantType, x, y);
+                        }
+                        else
+                        {
+                            Artifact artifact = (SavedGardenState[x, y] as Artifact);
+                            PlaceArtifact(artifact.ArtifactType, x, y);
+                        }
+                    }
+				
+				}
+
+            }
+
+        }
+    }
+
 }

@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 /// The highest abstracted class for all objects that will be able to be placed in the garden. This includes artifacts and plants (so far)
 /// </summary>
 public abstract class GardenPlaceable : MonoBehaviour {
+	public bool isPlant = true;
 	[Header("GardenPlaceable")]
 	[SerializeField] protected GardenManager gardenManager;
 	[SerializeField] protected PlayerDataManager playerDataManager;

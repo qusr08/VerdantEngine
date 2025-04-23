@@ -7,6 +7,11 @@ using UnityEngine.UI;
 
 public class SaveGameState_SO : ScriptableObject
 {
-    public GardenPlaceable[,] SavedGardenState;
-
+    public GardenPlaceable[,] SavedGardenState =  new GardenPlaceable[6,6];
+    public List <PlantType>PlacedPlants;
+    public List <ArtifactType> PlacedArtifacts;
+    public List<Enemy> EnemiesStates;
+    public int Health;
+    public int energy;
+    public int actions;
 }

@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 608c92246c7d07e4286e0b45db11832a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlant: 1
   gardenManager: {fileID: 0}
   playerDataManager: {fileID: 0}
   combatManager: {fileID: 0}
@@ -258,6 +259,9 @@ MonoBehaviour:
   lowHealthColorFlashTime: 0.5
   healColorTime: 1.5
   damageColorFlashTime: 0.1
+  healEffectPrefab: {fileID: 0}
+  damageEffectPrefab: {fileID: 0}
+  shieldEffectPrefab: {fileID: 0}
   flowerVisuals: {fileID: 1276710809253557445}
   _plantType: 8
   _rarity: 1

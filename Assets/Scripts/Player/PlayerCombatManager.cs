@@ -20,7 +20,7 @@ public class PlayerCombatManager : MonoBehaviour {
 	[SerializeField] private GameObject damageIndicatorPrefab;
 	
 	[Space]
-	[SerializeField] private int energy = 0;
+	[SerializeField] public int energy = 0;
     [HideInInspector] public int energyModifier;
 	 public SpriteRenderer [] tree;
     public EnemySlider enemyAttckSliderAnimation;
@@ -50,7 +50,6 @@ public class PlayerCombatManager : MonoBehaviour {
 
     public void PlayerStartTurn()
     {
-		StartOfTurnEffects();
         energy += energyModifier;
 		energyText.text = energy.ToString();
 	}
@@ -67,6 +66,8 @@ public class PlayerCombatManager : MonoBehaviour {
             item.OnTurnStart();
 
         }
+        StartOfTurnEffects();
+        combatManager.SaveGameState();
 
     }
 

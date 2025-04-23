@@ -33,7 +33,7 @@ public class CombatManager : MonoBehaviour {
     //Need to be removed after edge
     private bool isBoss = false;
 	public GameObject ThanksForPlayingScreen;
-
+	public Inventory inventory; 
 
 
     private void Awake ( ) {
@@ -71,7 +71,6 @@ public class CombatManager : MonoBehaviour {
         DynamicGI.UpdateEnvironment();
 
 			isBoss = newCombat.isBoss;
-
     }
 
     /// <summary>
@@ -98,10 +97,11 @@ public class CombatManager : MonoBehaviour {
 		}
 
 		AllEnemiesStartRound( );
+        SaveGameState();
 
     }
 
-	public void AllEnemiesStartRound()
+    public void AllEnemiesStartRound()
 	{
 
 		foreach (GardenTile gardenTile in playerDataManager.Garden)
@@ -323,10 +323,63 @@ public class CombatManager : MonoBehaviour {
 		playerDataManager.CurrentActions = playerDataManager.MaxActions;
 
 	}
-	///                ///
-	/// Code Graveyard ///
-	///                ///
-	/*   public void SelectEnemy(Enemy enemy)
+
+
+    public SaveGameState_SO saveGameState;
+
+    public void SaveGameState()
+    {
+		saveGameState.PlacedArtifacts.Clear();
+		saveGameState.PlacedPlants.Clear();
+
+
+        saveGameState.EnemiesStates = Enemies;
+		saveGameState.Health = playerDataManager.CurrentHealth;
+		
+		gardenManager.SaveGardenState();
+		saveGameState.SavedGardenState = gardenManager.SavedGardenState;
+
+		saveGameState.energy = playerCombatManager.energy;
+		saveGameState.actions = playerDataManager.CurrentActions;
+    }
+	public void ResetTurn()
+	{
+
+      playerDataManager.CurrentHealth = saveGameState.Health ;
+         playerCombatManager.energy = saveGameState.energy;
+		playerCombatManager.UpdateEnergy(0);
+
+        playerDataManager.CurrentActions = saveGameState.actions;
+
+
+		//Need to add enemy hp reset
+		//Need to add inventory Reset
+		foreach (var item in saveGameState.PlacedPlants)
+		{
+			inventory.AddPlant(item);
+
+        }
+        foreach (var item in saveGameState.PlacedArtifacts)
+        {
+            inventory.AddArtifact(item);
+
+        }
+        // add cisual fix to action  reset
+
+        gardenManager.LoadGardenState();
+		UpdateEnemyAttackVisuals();
+        gardenManager.SaveGardenState();
+
+    }
+
+
+
+
+
+    ///                ///
+    /// Code Graveyard ///
+    ///                ///
+    /*   public void SelectEnemy(Enemy enemy)
        {
            if(selectedEnemis.Count>=maxTargets)
            {

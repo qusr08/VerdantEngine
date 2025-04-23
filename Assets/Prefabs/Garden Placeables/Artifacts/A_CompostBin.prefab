@@ -91,6 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c90354a08ccdcc84498df37bc3ffd1bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlant: 0
   gardenManager: {fileID: 0}
   playerDataManager: {fileID: 0}
   combatManager: {fileID: 0}
