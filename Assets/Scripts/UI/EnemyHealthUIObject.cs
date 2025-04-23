@@ -14,6 +14,7 @@ public class EnemyHealthUIObject : MonoBehaviour, IPointerEnterHandler, IPointer
 	[SerializeField] TextMeshProUGUI cooldownText;
 	[SerializeField] InfoPopUp hover;
 	public GameObject X;
+	public bool isdead = false;
 
     public Enemy Enemy {
 		get => _enemy;
@@ -51,7 +52,9 @@ public class EnemyHealthUIObject : MonoBehaviour, IPointerEnterHandler, IPointer
 	public void Kill ( ) {
 		image.color = Color.gray;
 		healthSlider.value = 0;
-	}
+		isdead = true;
+
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {

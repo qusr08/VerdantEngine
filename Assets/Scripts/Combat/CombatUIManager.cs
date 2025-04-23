@@ -106,6 +106,19 @@ public class CombatUIManager : MonoBehaviour
 		}
 	}
 
+	public void ResetTurn_RestUI(List<Enemy> enemies)
+	{
+		PurgeList();
+
+        foreach (var enemy in enemies)
+		{
+			AddEnemyHealth(enemy);
+			UpdateHealth(enemy);
+			UpdateCooldown(enemy);
+			
+		}
+	}
+
 	public void PurgeList()
 	{
 
@@ -116,11 +129,15 @@ public class CombatUIManager : MonoBehaviour
 			enemyHealthUIObjects.RemoveAt(0);
         }
     }
-	/// <summary>
-	/// Set the game state of the game from a function. This is used for UI elements as it cannot set variables directly
-	/// </summary>
-	/// <param name="gameState">The integer representation of the game state to set</param>
-	public void SetGameState(int gameState)
+
+
+
+
+    /// <summary>
+    /// Set the game state of the game from a function. This is used for UI elements as it cannot set variables directly
+    /// </summary>
+    /// <param name="gameState">The integer representation of the game state to set</param>
+    public void SetGameState(int gameState)
 	{
 		GameState = (GameState)gameState;
 	}

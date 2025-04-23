@@ -34,17 +34,18 @@ public class Enemy : MonoBehaviour {
 	public int CurrentHealth {
 		get => _currentHealth;
 		private set {
+            _currentHealth = value;
 
 
             if (_currentHealth <= 0)
             {
                 _currentHealth = 0;
+                combatUIManager.UpdateHealth(this);
                 UnmarkGardenTiles();
                 combatManager.KillEnemy(this);
             }
             else
             {
-                _currentHealth = value;
                 combatUIManager.UpdateHealth(this);
             }
         }
