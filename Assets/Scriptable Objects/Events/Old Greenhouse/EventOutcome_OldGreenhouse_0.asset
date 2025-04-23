@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: EventOutcome_OldGreenhouse_0
   m_EditorClassIdentifier: 
   outcomeText: Claim the life-support systems for your own garden.
-  outcomeType: 0
-  potinalPlantReward: 010000000300000004000000
+  outcomeType: 5
+  potinalPlantReward: 
   potinalArtifactReward: 
+  potinalPartReward:
+  - {fileID: 11400000, guid: 944ffad48c7ea094db0d9de5a1ec003b, type: 2}
   MoneyChange: 0
   HealthChange: 0
   ForceMoenyChange: 0
