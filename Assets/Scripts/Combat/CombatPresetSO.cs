@@ -8,6 +8,8 @@ public class CombatPresetSO : ScriptableObject {
 	[SerializeField] private bool _isEliteRewards;
     public bool isBoss;
 
+	[Range(1, 9)] public byte difficulty;
+
     public int rewardMoeny;
 	/// <summary>
 	/// A list of all the enemies that will be spawned in this combat
@@ -18,4 +20,6 @@ public class CombatPresetSO : ScriptableObject {
 	/// Whether or not the rewards from this combat is elite
 	/// </summary>
 	public bool IsEliteRewards => _isEliteRewards;
+
+
 }

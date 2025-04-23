@@ -2713,6 +2713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0768c51df2d84944f837b5eb507824e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrollSpeed: 0.005
 --- !u!1 &261010250
 GameObject:
   m_ObjectHideFlags: 0
@@ -3648,11 +3649,11 @@ PrefabInstance:
       objectReference: {fileID: 155304117}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: shopChance
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: enemyChance
-      value: 70
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: eventChance
@@ -3660,11 +3661,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: eventSO.Array.size
-      value: 2
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: combatSO.Array.size
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: spawnType.Array.size
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: enemyRates.Array.size
@@ -3683,9 +3688,57 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: b0f73f958f795ae4abd0f4d6adc81129, type: 2}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: eventSO.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: b0f73f958f795ae4abd0f4d6adc81129, type: 2}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: eventSO.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: b0f73f958f795ae4abd0f4d6adc81129, type: 2}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: eventSO.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: b0f73f958f795ae4abd0f4d6adc81129, type: 2}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: spawnIndex.Array.size
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: combatSO.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 31b4822fd2f0e9948b3b16dff0555a7b, type: 2}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: combatSO.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 84f39928743390949ac2a692f876d64d, type: 2}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: combatSO.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7407d4b6d9ce7574bbdadb56d3b13017, type: 2}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: combatSO.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 84dec0ba82c1ceb4baf4b2385a878a2e, type: 2}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: combatSO.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5eed758795bab754ca2c6453a9c83332, type: 2}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: combatSO.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1e4e09088ce2982439448ff5eda702ef, type: 2}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: combatSO.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: e712bd32eca8b584195387c3fa99063f, type: 2}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: combatSO.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: 967351198fa1f464596e77502d0e6217, type: 2}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: combatSO.Array.data[8]
+      value: 
+      objectReference: {fileID: 11400000, guid: d84b4ae7be832dd4cabd0f4e2a4c5769, type: 2}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: easyEnemies.Array.size
       value: 3
