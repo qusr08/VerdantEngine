@@ -85,6 +85,17 @@ public class EventManager : MonoBehaviour
                 playerDataManager.CurrentHealth += chosen.HealthChange;
 
                 break;
+            case EventOutcomeType.Part:
+                PlayerAttackSO attackSO;
+                if (chosen.potinalPlantReward.Length > 1)
+                {
+                    attackSO = chosen.potinalPartReward[Random.Range(0, chosen.potinalPartReward.Length)];
+
+                }
+                else attackSO = chosen.potinalPartReward[0];
+                playerDataManager.PlayerAttacks.Add(attackSO);
+                combatManager.playerCombatManager.SetUpWeapons();
+                break;
           
             default:
                 break;
