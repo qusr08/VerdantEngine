@@ -50,9 +50,11 @@ public class PlayerCombatManager : MonoBehaviour {
 
     public void PlayerStartTurn()
     {
+        StartOfTurnEffects();
         energy += energyModifier;
 		energyText.text = energy.ToString();
-	}
+
+    }
 	
 	public void StartOfTurnEffects()
 	{
@@ -66,7 +68,6 @@ public class PlayerCombatManager : MonoBehaviour {
             item.OnTurnStart();
 
         }
-        StartOfTurnEffects();
         combatManager.SaveGameState();
 
     }

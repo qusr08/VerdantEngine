@@ -44,7 +44,9 @@ public class PlantInventoryBox : InventoryBox {
 
 		// Place the selected plant type in the garden
 		gardenManager.PlacePlant(PlantType, gardenManager.SelectedGardenTile.Position.x, gardenManager.SelectedGardenTile.Position.y);
-		playerDataManager.CurrentActions--;
+        combatManager.saveGameState.PlacedPlants.Add(PlantType);
+
+        playerDataManager.CurrentActions--;
 		Amount--;
 		combatManager.UpdateEnemyAttackVisuals();
 	}

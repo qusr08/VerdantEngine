@@ -365,6 +365,8 @@ public class CombatManager : MonoBehaviour {
 
         }
         // add cisual fix to action  reset
+        saveGameState.PlacedArtifacts.Clear();
+        saveGameState.PlacedPlants.Clear();
 
         gardenManager.LoadGardenState();
 		UpdateEnemyAttackVisuals();

@@ -126,7 +126,6 @@ public class Inventory : MonoBehaviour {
 			// If the current inventory box is holding a plant and the plant type matches, then just increment the item's amount by 1
 			if ((box as PlantInventoryBox).PlantType == plantType) {
 				box.Amount -= 1;
-				combatManager.saveGameState.PlacedPlants.Add(plantType);
 				return true;
 				
 			}
@@ -150,7 +149,6 @@ public class Inventory : MonoBehaviour {
 			// If the current inventory box is holding a plant and the artifact type matches, then just increment the item's amount by 1
 			if ((box as ArtifactInventoryBox).ArtifactType == artifactType) {
 				box.Amount -= 1;
-                combatManager.saveGameState.PlacedArtifacts.Add(artifactType);
 
                 return true;
 			}
