@@ -8,7 +8,8 @@ public enum EventOutcomeType
     NewArtifact,
     GetMoeny,
     Health,
-    Combat
+    Combat,
+    Part
 }
 [CreateAssetMenu(fileName = "EventOutcome_SO", menuName = "ScriptableObjects/EventOutcome_SO", order = 2)]
 
@@ -18,6 +19,8 @@ public class EventOutcome_SO : ScriptableObject
     public EventOutcomeType outcomeType;
     public PlantType[] potinalPlantReward;
     public ArtifactType[] potinalArtifactReward;
+    public PlayerAttackSO [] potinalPartReward;
+    
     public int MoneyChange;
     public int HealthChange;
     public bool ForceMoenyChange;
