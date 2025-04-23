@@ -31,10 +31,12 @@ public class Map : MonoBehaviour
     [SerializeField] private byte encountersBeforeBoss;
     [SerializeField] private MapPlayer player;
     [SerializeField] private int[] percents;
+    public int encounterSinceLastCombat = 0;
     private byte encounterNumber;
     private byte encounterOptions;
     private List<GameObject> encounters;
     private List<GameObject> prevEncounters;
+    private EventManager eventManager;
 
     enum Type { Enemy, Shop, Event, Boss };
 
@@ -46,6 +48,11 @@ public class Map : MonoBehaviour
         if (player == null)
         {
             player = GameObject.Find("CameraManager").GetComponent<MapPlayer>();
+        }
+
+        if(eventManager == null)
+        {
+            eventManager = GameObject.Find("EventManager").GetComponent<EventManager>();
         }
 
         encounterNumber = 0;
@@ -191,39 +198,7 @@ public class Map : MonoBehaviour
                 enemyDifficulty = combatSO[enemyDifficulty].difficulty;
                 */
 
-                switch(encounterNumber)
-                {
-                    case 0:
-                        enemyDifficulty = 1;
-                        break;
-                    case 1:
-                        enemyDifficulty = Random.Range(1, 3); //inclusive, exclusive
-                        break;
-                    case 2:
-                        enemyDifficulty = Random.Range(1, 4); //inclusive, exclusive
-                        break;
-                    case 3:
-                        enemyDifficulty = Random.Range(2, 5); //inclusive, exclusive
-                        break;
-                    case 4:
-                        enemyDifficulty = Random.Range(3, 6); //inclusive, exclusive
-                        break;
-                    case 5:
-                        enemyDifficulty = Random.Range(4, 7); //inclusive, exclusive
-                        break;
-                    case 6:
-                        enemyDifficulty = Random.Range(5, 8); //inclusive, exclusive
-                        break;
-                    case 7:
-                        enemyDifficulty = Random.Range(6, 9); //inclusive, exclusive
-                        break;
-                    case 8:
-                        enemyDifficulty = Random.Range(7, 10); //inclusive, exclusive
-                        break;
-                    case 9:
-                        enemyDifficulty = Random.Range(8, 10); //inclusive, exclusive
-                        break;
-                }
+                enemyDifficulty = GetDifficulty();
 
                 switch(enemyDifficulty)
                 {
@@ -391,13 +366,58 @@ public class Map : MonoBehaviour
 
     public Event_SO GetEvent()
     {
+
         int eventIndex = Random.Range(0, eventSO.Count);
 
         Event_SO returnedEvent = eventSO[eventIndex];
         eventSO.RemoveAt(eventIndex);
 
+        //For when adding events leading to combat
+        //returnedEvent.ForceCombat
+
+
         return returnedEvent;
 
+    }
+
+    private int GetDifficulty()
+    {
+        int enemyDifficulty = 0;
+        switch (encounterNumber)
+        {
+            case 0:
+                enemyDifficulty = 1;
+                break;
+            case 1:
+                enemyDifficulty = Random.Range(1, 3); //inclusive, exclusive
+                break;
+            case 2:
+                enemyDifficulty = Random.Range(1, 4); //inclusive, exclusive
+                break;
+            case 3:
+                enemyDifficulty = Random.Range(2, 5); //inclusive, exclusive
+                break;
+            case 4:
+                enemyDifficulty = Random.Range(3, 6); //inclusive, exclusive
+                break;
+            case 5:
+                enemyDifficulty = Random.Range(4, 7); //inclusive, exclusive
+                break;
+            case 6:
+                enemyDifficulty = Random.Range(5, 8); //inclusive, exclusive
+                break;
+            case 7:
+                enemyDifficulty = Random.Range(6, 9); //inclusive, exclusive
+                break;
+            case 8:
+                enemyDifficulty = Random.Range(7, 10); //inclusive, exclusive
+                break;
+            case 9:
+                enemyDifficulty = Random.Range(8, 10); //inclusive, exclusive
+                break;
+        }
+
+        return enemyDifficulty;
     }
 
 
