@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fd380a38585994f83a23e76004138d, type: 3}
+  m_Name: EventOutcome_OldGreenhouse_0
+  m_EditorClassIdentifier: 
+  outcomeText: Claim the life-support systems for your own garden.
+  outcomeType: 0
+  potinalPlantReward: 010000000300000004000000
+  potinalArtifactReward: 
+  MoneyChange: 0
+  HealthChange: 0
+  ForceMoenyChange: 0
+  ForceHealthChange: 0
+  ForceCombat: 0
+  resultWindowImage: {fileID: 21300000, guid: 58a815c38d477a34bbf93f7ca0f96f9e, type: 3}
+  resultWindowText: "Your roots slither through the cracked foundation, binding with
+    old irrigation lines and photosynthetic arrays. As if the greenhouse were exhaling
+    one final breath, its sprinklers emit a brief warm mist, before falling into
+    silence.\nCondensation forms across your garden canopy. And for a moment, you
+    feel something ancient and forgotten\u2014a memory of rain.\r\nYour determination
+    strengthens. The old world must die so yours can bloom.\r\n(Gained Revitalizing
+    Sprinklers)\r"
+  combatPresetSO: {fileID: 0}

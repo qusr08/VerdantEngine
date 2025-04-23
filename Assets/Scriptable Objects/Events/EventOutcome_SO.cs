@@ -27,6 +27,7 @@ public class EventOutcome_SO : ScriptableObject
     public bool ForceHealthChange;
     public bool ForceCombat;
     public Sprite resultWindowImage;
+    [TextArea(15, 20)]
     public string resultWindowText;
 
     public CombatPresetSO combatPresetSO;
