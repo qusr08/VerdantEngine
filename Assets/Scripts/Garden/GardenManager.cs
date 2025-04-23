@@ -441,4 +441,20 @@ public class GardenManager : MonoBehaviour {
             }
         }
     }
+	public GardenPlaceable[,] SavedGardenState;
+
+    public void SaveGardenState()
+	{
+        GardenPlaceable[,] SavedGardenState = new GardenPlaceable[playerDataManager.GardenSize, playerDataManager.GardenSize];
+		foreach (GardenPlaceable item in Plants)
+		{
+			SavedGardenState[item.Position.x, item.Position.y] = item;
+
+        }
+        foreach (Artifact item in Artifacts)
+        {
+            SavedGardenState[item.Position.x, item.Position.y] = item;
+
+        }
+    }
 }

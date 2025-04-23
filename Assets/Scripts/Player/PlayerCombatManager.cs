@@ -6,6 +6,8 @@ using TMPro;
 using UnityEngine.Playables;
 using Unity.VisualScripting;
 using static UnityEngine.EventSystems.EventTrigger;
+using System.Numerics;
+using UnityEditor.Experimental;
 
 public class PlayerCombatManager : MonoBehaviour {
 	[SerializeField] private GardenManager gardenManager;
@@ -48,11 +50,26 @@ public class PlayerCombatManager : MonoBehaviour {
 
     public void PlayerStartTurn()
     {
+		StartOfTurnEffects();
         energy += energyModifier;
 		energyText.text = energy.ToString();
+	}
+	
+	public void StartOfTurnEffects()
+	{
+        foreach (GardenPlaceable item in gardenManager.Plants)
+        {
+			item.OnTurnStart();
 
+        }
+        foreach (GardenPlaceable item in gardenManager.Artifacts)
+        {
+            item.OnTurnStart();
+
+        }
 
     }
+
     public void UpdateEnergy(int value)
     {
 		energy += value;
