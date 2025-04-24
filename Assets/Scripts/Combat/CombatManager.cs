@@ -31,8 +31,8 @@ public class CombatManager : MonoBehaviour {
 	private bool IsTurn1;
 
     //Need to be removed after edge
-    private bool isBoss = false;
-	public GameObject ThanksForPlayingScreen;
+    public bool isBoss = false;
+	//public GameObject ThanksForPlayingScreen;
 
 
 
@@ -306,8 +306,10 @@ public class CombatManager : MonoBehaviour {
 	{
 		if(isBoss)
 		{
-			ThanksForPlayingScreen.SetActive(true);
-
+            //ThanksForPlayingScreen.SetActive(true);
+            cameraManager.scene = ActiveScene.Win;
+            cameraManager.UpdateCameraPosition();
+			return;
         }
 
 		playerDataManager.Money += currentCombatPreset.rewardMoeny;

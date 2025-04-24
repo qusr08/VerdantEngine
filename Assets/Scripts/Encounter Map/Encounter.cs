@@ -93,8 +93,11 @@ public class Encounter : MonoBehaviour
             lineRenderer.endColor = new Color(.88f, .89f, .73f);
         }
 
+        mapManager.encounterSinceLastCombat++;
+
         if (EncounterType == EncounterTypes.Enemy)
         {
+            mapManager.encounterSinceLastCombat = 0;
             combatManager.NewCombat(combatEncounter);
             mapUI.ToGarden();
         }
