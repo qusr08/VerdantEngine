@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fd380a38585994f83a23e76004138d, type: 3}
+  m_Name: EventOutcome_TheBiovault_1
+  m_EditorClassIdentifier: 
+  outcomeText: See if you can find a less dangerous specimen.
+  outcomeType: 0
+  potinalPlantReward: 0100000003000000
+  potinalArtifactReward: 
+  potinalPartReward: []
+  MoneyChange: 0
+  HealthChange: 0
+  ForceMoenyChange: 0
+  ForceHealthChange: 0
+  ForceCombat: 0
+  resultWindowImage: {fileID: 21300000, guid: 7df10940cd11b4942bc0b80375566c94, type: 3}
+  resultWindowText: 'You back away from the twitching pod, its petals scraping faintly
+    against the glass. Further down the row, you find a smaller container - cracked
+    but stable.
+
+    Inside grows a quiet thing, brittle but alive, still clinging
+    to its nutrient gel like a child to its cradle.
+
+    You take it with care.
+    It does not glow. It does not bite.
+
+    But it lives. And that is enough.
+
+    (Gained
+    a plant)'
+  combatPresetSO: {fileID: 0}

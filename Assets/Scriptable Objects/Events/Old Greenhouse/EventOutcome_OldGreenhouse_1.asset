@@ -16,15 +16,16 @@ MonoBehaviour:
   outcomeType: 0
   potinalPlantReward: 02000000040000000a0000000800000007000000
   potinalArtifactReward: 
+  potinalPartReward: []
   MoneyChange: 0
   HealthChange: 0
   ForceMoenyChange: 0
   ForceHealthChange: 0
   ForceCombat: 0
-  resultWindowImage: {fileID: 21300000, guid: 6f24d2ac812d14b42bb3febc452be133, type: 3}
+  resultWindowImage: {fileID: 21300000, guid: 2f420188590f024449d1efbe454c9a97, type: 3}
   resultWindowText: "Your roots move carefully among the overgrown troughs, past
     broken grow lights and empty nutrient tanks. Nestled in a corner, still pulsing
-    faintly, is a vine with radiant leaves\u2014its genome stretched thin by desperation,
+    faintly, is a vine with radiant leaves - its genome stretched thin by desperation,
     but alive.\r\nYou cradle it in your rootwork. It shivers once, then settles.\r\nAnother
     survivor joins your garden. Another echo of humanity granted a new life.\r\n(Gained
     a plant)\r"

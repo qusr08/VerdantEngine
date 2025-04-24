@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa5eaf6cc74559f4ebcc549a68e6874d, type: 3}
+  m_Name: Event_BroadcastTower
+  m_EditorClassIdentifier: 
+  title: The Broadcast Tower
+  text: "A rusted radio tower juts from the ground like a splintered bone. As you
+    approach, you realize that the radio tower is still emitting a signal. You direct
+    the mech's instruments to tune in to the broadcast, causing your screens to flicker
+    to life. A human face flickers into focus - looped endlessly from a time long
+    past. \"Keep calm. Help is coming,\" it repeats.\r\r"
+  image: {fileID: 21300000, guid: 74d527e255df1134eb9ed56daf01bab9, type: 3}
+  Options:
+  - {fileID: 11400000, guid: ef4eef1d18b9bb943b359977f469a4d6, type: 2}
+  - {fileID: 11400000, guid: 1f314b28429697940bf07ec13ca60db2, type: 2}

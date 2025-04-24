@@ -23,12 +23,12 @@ MonoBehaviour:
   ForceMoenyChange: 0
   ForceHealthChange: 0
   ForceCombat: 0
-  resultWindowImage: {fileID: 21300000, guid: 58a815c38d477a34bbf93f7ca0f96f9e, type: 3}
+  resultWindowImage: {fileID: 21300000, guid: 2f420188590f024449d1efbe454c9a97, type: 3}
   resultWindowText: "Your roots slither through the cracked foundation, binding with
     old irrigation lines and photosynthetic arrays. As if the greenhouse were exhaling
     one final breath, its sprinklers emit a brief warm mist, before falling into
-    silence.\nCondensation forms across your garden canopy. And for a moment, you
-    feel something ancient and forgotten\u2014a memory of rain.\r\nYour determination
+    silence.\r\nCondensation forms across your garden canopy. And for a moment, you
+    feel something ancient and forgotten - a memory of rain.\r\nYour determination
     strengthens. The old world must die so yours can bloom.\r\n(Gained Revitalizing
-    Sprinklers)\r"
+    Sprinklers)\r\r"
   combatPresetSO: {fileID: 0}

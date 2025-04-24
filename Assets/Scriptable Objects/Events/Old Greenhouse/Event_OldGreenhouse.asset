@@ -17,8 +17,8 @@ MonoBehaviour:
     where the last survivors of humanity once grew their food in safety from the
     pollution. Somehow, the structure\u2019s life-support systems have not yet failed
     - ventilation hums weakly, solar panels flicker, and condensation drips down
-    shattered glass panes like tears."
-  image: {fileID: 21300000, guid: 1d619408c033d914c922fd78cab4ee5f, type: 3}
+    shattered glass panes like tears.\r"
+  image: {fileID: 21300000, guid: 2f420188590f024449d1efbe454c9a97, type: 3}
   Options:
   - {fileID: 11400000, guid: 9bfa1a11ece6ced4ea4a312712e097c0, type: 2}
   - {fileID: 11400000, guid: c9003ecd28c673846981d124de5cee0f, type: 2}
