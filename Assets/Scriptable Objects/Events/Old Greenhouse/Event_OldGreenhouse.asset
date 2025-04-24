@@ -15,7 +15,7 @@ MonoBehaviour:
   title: Old Greenhouse
   text: "As you stomp across the city, you stumble upon the husk of an old greenhouse,
     where the last survivors of humanity once grew their food in safety from the
-    pollution. Somehow, the structure\u2019s life-support systems have not yet failed
+    pollution. Somehow, the structure's life-support systems have not yet failed
     - ventilation hums weakly, solar panels flicker, and condensation drips down
     shattered glass panes like tears.\r"
   image: {fileID: 21300000, guid: 2f420188590f024449d1efbe454c9a97, type: 3}
