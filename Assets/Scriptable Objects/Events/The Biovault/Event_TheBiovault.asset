@@ -22,5 +22,6 @@ MonoBehaviour:
     beside it reads: \"Specimen #039: CARNIFLORA // DO NOT ENGAGE.\"\r\r"
   image: {fileID: 21300000, guid: 7df10940cd11b4942bc0b80375566c94, type: 3}
   Options:
-  - {fileID: 11400000, guid: a66db1ffe55b9b24cacc1f5358d32bcc, type: 2}
-  - {fileID: 11400000, guid: 1f2baf534b6b7454b93abd860b2a6cd4, type: 2}
+  - {fileID: 11400000, guid: 9cc31f090915d7940a7d6677ca903e8c, type: 2}
+  - {fileID: 11400000, guid: 813b52966c859d640b75bc8021042cb1, type: 2}
+  - {fileID: 11400000, guid: a7ab192a69e075547bacb07cd10e1925, type: 2}

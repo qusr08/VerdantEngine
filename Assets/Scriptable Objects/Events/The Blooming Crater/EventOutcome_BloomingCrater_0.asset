@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fd380a38585994f83a23e76004138d, type: 3}
+  m_Name: EventOutcome_BloomingCrater_0
+  m_EditorClassIdentifier: 
+  outcomeText: Allow one of the plants onto your vessel.
+  outcomeType: 0
+  potinalPlantReward: 020000000a00000005000000
+  potinalArtifactReward: 
+  potinalPartReward: []
+  MoneyChange: 0
+  HealthChange: 0
+  ForceMoenyChange: 0
+  ForceHealthChange: 0
+  ForceCombat: 0
+  resultWindowImage: {fileID: 21300000, guid: 747f82ffd5be7f14388c29353e626929, type: 3}
+  resultWindowText: "A tendril detaches from the mass, drifting toward you like a
+    curious hand. Its movement is slow - deliberate - and when it brushes against
+    your shell, your vines recoil, then reach back.\r\nContact.\r\nThe plant folds
+    inward, shrinking into a tight bulb. It presses into your chassis, embedding
+    itself like a seed finding soil.\r\nIt makes no sound, but its memories flow
+    through you.\r\nSomething new has joined your garden. Something older than you.\r\n(Gained
+    a plant)\r\r\r"
+  combatPresetSO: {fileID: 0}

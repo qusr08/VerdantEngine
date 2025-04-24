@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fd380a38585994f83a23e76004138d, type: 3}
+  m_Name: EventOutcome_PinkSentinel_1
+  m_EditorClassIdentifier: 
+  outcomeText: Walk away and never return.
+  outcomeType: 3
+  potinalPlantReward: 
+  potinalArtifactReward: 
+  potinalPartReward: []
+  MoneyChange: 0
+  HealthChange: 0
+  ForceMoenyChange: 0
+  ForceHealthChange: 0
+  ForceCombat: 0
+  resultWindowImage: {fileID: 21300000, guid: ce3e6655bb91a56478f194aebe81b87c, type: 3}
+  resultWindowText: 'You turn from the flamingo, its presence lingering in your sensors
+    like a phantom. As you retreat, the air grows colder, and the silence deepens.
+
+    Behind
+    you, the flamingo continues its gentle sway, untouched by time, a solitary sentinel
+    in a forgotten suburb.
+
+    Your garden remains still, the moment passing without
+    further incident. Yet, a subtle unease settles within you, as if you''ve left
+    something important behind.
+
+    (Nothing happens... For now)'
+  combatPresetSO: {fileID: 0}

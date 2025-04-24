@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa5eaf6cc74559f4ebcc549a68e6874d, type: 3}
+  m_Name: Event_PinkSentinel
+  m_EditorClassIdentifier: 
+  title: The Pink Sentinel
+  text: "In the middle of a collapsed suburb, surrounded by twisted fences and ash-covered
+    lawns, a single plastic flamingo stands perfectly upright. Untouched by rust,
+    time, or war. Sun-bleached and glowing faintly pink in the gloom.\r\nIt shouldn\u2019t
+    be here. Not after all this time. The wind is dead still, yet the flamingo gently
+    sways. The earth beneath it is blackened, scorched into a perfect ring around
+    its base. The garden stirs atop the mech - some of your plants lean subtly toward
+    it\u2026 others recoil.\r\r\r"
+  image: {fileID: 21300000, guid: ce3e6655bb91a56478f194aebe81b87c, type: 3}
+  Options:
+  - {fileID: 11400000, guid: 347adc67aac00464a9ebaa9facad5a74, type: 2}
+  - {fileID: 11400000, guid: 2c932bab847cb0e43a1f8eec5800e1ce, type: 2}
