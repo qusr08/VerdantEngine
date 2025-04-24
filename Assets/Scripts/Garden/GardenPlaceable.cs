@@ -26,6 +26,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	[SerializeField, Tooltip("The time between flashes when this garden placeable is on low health")] private float lowHealthColorFlashTime = 0.5f;
 	[SerializeField, Tooltip("The time it takes for the color to fade when healing this garden placeable")] private float healColorTime = 1.5f;
 	[SerializeField, Tooltip("The time in between flashes when this garden placeable is taking damage")] private float damageColorFlashTime = 0.1f;
+	[SerializeField] private List<GardenTile> _effectedTiles;
 
 
 	[Header("Heal/ Shield/ Damage effects")]
@@ -84,6 +85,11 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	/// The position of this plant in the garden
 	/// </summary>
 	public Vector2Int Position => GardenTile.Position;
+
+	/// <summary>
+	/// The tiles that this garden placeable is currently effecting or being effected by
+	/// </summary>
+	public List<GardenTile> EffectedTiles { get => _effectedTiles; private set => _effectedTiles = value; }
 
 	/// <summary>
 	/// The garden tile that this plant is on
@@ -157,6 +163,34 @@ public abstract class GardenPlaceable : MonoBehaviour {
 		// Make sure the plants are always facing towards the camera
 		// transform.LookAt(-Camera.main.transform.position + transform.position);
 		// transform.localEulerAngles = new Vector3(0f, transform.localEulerAngles.y, 0f);
+	}
+
+	/// <summary>
+	/// Get all of the surrounding garden tiles within a certain radius around this garden placeable
+	/// </summary>
+	/// <param name="radius">The radius around this garden placeable to check for garden tiles</param>
+	/// <returns>A list of all the surrounding garden tiles</returns>
+	public List<GardenTile> GetSurroundingGardenTiles (int radius) {
+		List<GardenTile> gardenTiles = new List<GardenTile>();
+
+		// Loop through all possible positions that are surrounding this garden placeable within a certain radius
+		for (int x = -radius; x <= radius; x++) {
+			for (int y = -radius; y <= radius; y++) {
+				int checkX = Position.x + x;
+				int checkY = Position.y + y;
+
+				// If the position to check is not within the bounds of the garden, then continue to the next position
+				// Also continue to the next position if the current plant being checked is this placeable
+				if (!gardenManager.IsPositionWithinGarden(checkX, checkY) || (x == 0 && y == 0)) {
+					continue;
+				}
+
+				// Add the garden tile to the list of garden tiles
+				gardenTiles.Add(playerDataManager.Garden[checkX, checkY]);
+			}
+		}
+
+		return gardenTiles;
 	}
 
 	/// <summary>

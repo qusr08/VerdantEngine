@@ -275,7 +275,12 @@ public class GardenManager : MonoBehaviour {
 			/// Should be able to pass "null" into the UpdateText() function to clear all data
             SelectedGardenTile.PopUpDisplay.gameObject.SetActive(true);
             SelectedGardenTile.PopUpDisplay.SetUpPlant(SelectedGardenTile.GardenPlaceable);
-        }
+
+			// Indicate which tiles the current garden placeable is effecting
+			foreach (GardenTile effectedGardenTile in SelectedGardenTile.GardenPlaceable.EffectedTiles) {
+				effectedGardenTile.IsIndicated = true;
+			}
+		}
 	}
 
 	/// <summary>

@@ -5,7 +5,20 @@ using UnityEngine;
 public class BoomShroomColony : Plant
 {
 
-    public override void OnTurnEnd()
+	public override void OnGardenUpdated ( ) {
+		base.OnGardenUpdated( );
+
+        // Update the effected tiles for this plant
+        EffectedTiles.Clear( );
+		foreach (Plant plant in gardenManager.Plants) {
+            EffectedTiles.Add(plant.GardenTile);
+		}
+		foreach (Artifact artifact in gardenManager.Artifacts) {
+			EffectedTiles.Add(artifact.GardenTile);
+		}
+	}
+
+	public override void OnTurnEnd()
     {
         base.OnTurnEnd();
         gardenManager.combatManager.playerCombatManager.inventory.AddPlant(PlantType.BOOM_SHROOM);

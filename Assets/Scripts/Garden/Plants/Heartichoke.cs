@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Heartichoke : Plant
 {
+	public override void OnGardenUpdated ( ) {
+		base.OnGardenUpdated( );
+
+		// Update the effected tiles of this plant
+		EffectedTiles.Clear( );
+		EffectedTiles.AddRange(GetSurroundingGardenTiles(1));
+	}
+
 	public override void OnTurnEnd()
 	{
         foreach (Plant plant in GetSurroundingPlants(1))
