@@ -12,7 +12,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	[SerializeField] protected GardenManager gardenManager;
 	[SerializeField] protected PlayerDataManager playerDataManager;
 	[SerializeField] protected CombatManager combatManager;
-	[SerializeField] protected List<SpriteRenderer> spriteRenderers;
+	[SerializeField] protected List<SpriteRenderer> _spriteRenderers;
 	[Space]
 	[SerializeField, Min(0), Tooltip("The starting health of this garden placeable.")] private int _startingHealth;
 	[SerializeField, Min(0), Tooltip("The cost of this garden placeable in the shop.")] private int _cost;
@@ -39,6 +39,11 @@ public abstract class GardenPlaceable : MonoBehaviour {
 
 	public GameObject flowerVisuals;
 	private Coroutine colorCoroutine = null;
+
+	/// <summary>
+	/// A list of all the sprite renderers that make up the visuals for the placeable
+	/// </summary>
+	public List<SpriteRenderer> SpriteRenderers { get => _spriteRenderers; private set => _spriteRenderers = value; }
 
 	/// <summary>
 	/// The starting health of this garden placeable
@@ -92,7 +97,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 			}
 
 			// Remove the reference of this garden placeable from the old garden tile
-			if (_gardenTile != null) {
+			if (_gardenTile != null && _gardenTile.GardenPlaceable == this) {
 				_gardenTile.GardenPlaceable = null;
 			}
 			_gardenTile = value;
@@ -109,7 +114,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 		gardenManager = FindObjectOfType<GardenManager>( );
 		playerDataManager = FindObjectOfType<PlayerDataManager>( );
         combatManager = FindObjectOfType<CombatManager>( );
-        spriteRenderers = GetComponentsInChildren<SpriteRenderer>( ).ToList();
+        SpriteRenderers = GetComponentsInChildren<SpriteRenderer>( ).ToList();
 
 		effectedGardenPlaceables = new List<GardenPlaceable>();
 
@@ -311,7 +316,6 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	/// <summary>
 	/// Called on the first drop of a garden Placeble
 	/// </summary
-	bool isFirst = true;
     public virtual void OnFirstPlanted()
 	{
       
@@ -353,10 +357,8 @@ public abstract class GardenPlaceable : MonoBehaviour {
             
 		FlashColor(Color.green, healColorTime / 4f, healColorTime, 1);
 
-		//triggered global on heal triggers for all garden placbles. used by artifacts
-		if (heal > 0)
+			//triggered global on heal triggers for all garden placbles. used by artifacts
 			gardenManager.GlobalOnHealedTrigger(this, heal);
-
 	}
 
 	/// <summary>
@@ -367,8 +369,9 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	/// <returns>The actual damage that was dealt to the health of the plant. This takes into account the shield that the plant has</returns>
 	public virtual int TakeDamage (Enemy enemy, int damage) {
 		// Subtract the current shield of this garden placeable from the damage that is trying to be dealt
-		if(ShieldStat.CurrentValue>0)
-		damage -= ShieldStat.CurrentValue;
+		if(ShieldStat.CurrentValue>0) {
+			damage -= ShieldStat.CurrentValue;
+		}
 
 		if(damage <= 0)
         {
@@ -396,7 +399,12 @@ public abstract class GardenPlaceable : MonoBehaviour {
 			return damage;
 		}
 
+		// No damage was taken because of the shield
 		SpawnDamageIndicator(0);
+		if (ShieldStat.CurrentValue > 0) {
+			FlashColor(new Color(0f, 0.5f, 1f), healColorTime / 4f, healColorTime, 1);
+		}
+
 		return 0;
 	}
 
@@ -427,7 +435,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 				t = Mathf.Min(fadeInTime, t + Time.deltaTime);
 
 				// Since there are multiple sprite renderers on each garden placeable, loop through all of them and tint their color
-				foreach (SpriteRenderer spriteRenderer in spriteRenderers) {
+				foreach (SpriteRenderer spriteRenderer in SpriteRenderers) {
 					spriteRenderer.color = Color.Lerp(Color.white, color, t / fadeInTime);
 				}
 
@@ -441,7 +449,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 				t = Mathf.Min(fadeOutTime, t + Time.deltaTime);
 
 				// Since there are multiple sprite renderers on each garden placeable, loop through all of them and tint their color
-				foreach (SpriteRenderer spriteRenderer in spriteRenderers) {
+				foreach (SpriteRenderer spriteRenderer in SpriteRenderers) {
 					spriteRenderer.color = Color.Lerp(color, Color.white, t / fadeOutTime);
 				}
 
