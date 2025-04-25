@@ -27,10 +27,17 @@ public class PlayerCombatManager : MonoBehaviour {
 	public Inventory inventory; // used for flowers to get a reference
     public GameObject cannonFlashAsset;
 	public float tempAnimTimer;
+	public InfoPopUp popUp;
 	private void Start ( ) {
 		foreach (PlayerAttackSO playerAttack in playerDataManager.PlayerAttacks) {
-			weaponMenuItems.Add(Instantiate(weaponMenuItemPrefab, weaponMenuContainer).GetComponent<PlayerAttackMenuItem>( ));
-			weaponMenuItems[weaponMenuItems.Count - 1].PlayerAttack = playerAttack;
+            PlayerAttackMenuItem attackMenuItem = Instantiate(weaponMenuItemPrefab, weaponMenuContainer).GetComponent<PlayerAttackMenuItem>();
+            attackMenuItem.PlayerAttack = playerAttack;
+            attackMenuItem.UIDisplay = popUp;
+            if (attackMenuItem.PlayerAttack.Cooldown == 0)
+                attackMenuItem.ReadyToFire();
+            else
+                attackMenuItem.GetOnCooldown();
+            weaponMenuItems.Add(attackMenuItem);
 		}
 	}
 	public void SetUpWeapons()
@@ -45,7 +52,11 @@ public class PlayerCombatManager : MonoBehaviour {
         {
 			PlayerAttackMenuItem attackMenuItem = Instantiate(weaponMenuItemPrefab, weaponMenuContainer).GetComponent<PlayerAttackMenuItem>();
             attackMenuItem.PlayerAttack = playerAttack;
-            attackMenuItem.UIDisplay = combatManager.inventory.popUp;
+            attackMenuItem.UIDisplay = popUp;
+            if (attackMenuItem.PlayerAttack.Cooldown == 0)
+                attackMenuItem.ReadyToFire();
+            else
+                attackMenuItem.GetOnCooldown();
             weaponMenuItems.Add(attackMenuItem);
 
             if (playerAttack.MaxCooldown>0)
@@ -123,8 +134,8 @@ public class PlayerCombatManager : MonoBehaviour {
 				}
 
 				weaponMenuItem.GetComponent<Image>( ).color = Color.white;
+                weaponMenuItem.PlayerAttack.Cooldown = weaponMenuItem.PlayerAttack.MaxCooldown;
                 weaponMenuItem.GetOnCooldown();
-
                 // Fire the part after targeting is complete (or immediately if no targeting needed)
             }
             else if(weaponMenuItem.PlayerAttack.Cooldown <= 0 && (energy - weaponMenuItem.PlayerAttack.ManaCost) < 0)

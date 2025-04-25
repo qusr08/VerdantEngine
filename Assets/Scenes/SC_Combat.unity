@@ -1296,8 +1296,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 180.625, y: -290.0349}
-  m_SizeDelta: {x: 287, y: 446}
+  m_AnchoredPosition: {x: 180.625, y: -290.03488}
+  m_SizeDelta: {x: 287, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &168390829
 MonoBehaviour:
@@ -3069,7 +3069,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &269203956
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3298,16 +3298,16 @@ MonoBehaviour:
       m_Calls: []
   m_text: Go to map
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1366204b72399024681645432d8029b1, type: 2}
+  m_sharedMaterial: {fileID: -3782092305888825, guid: 1366204b72399024681645432d8029b1, type: 2}
   m_fontSharedMaterials:
   - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3324,8 +3324,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3391,7 +3391,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &313113003
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5213,6 +5213,7 @@ MonoBehaviour:
   viewMapButton: {fileID: 688685845}
   popUp: {fileID: 1739724147}
   plantUIPanal: {fileID: 639326216}
+  GoBackToMap: {fileID: 0}
   _gameState: 1
 --- !u!4 &414572768
 Transform:
@@ -7685,7 +7686,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &688685846
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7703,8 +7704,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -91.8999, y: 60.30005}
-  m_SizeDelta: {x: 145, y: 89}
+  m_AnchoredPosition: {x: -176.1, y: 91.1}
+  m_SizeDelta: {x: 347, y: 157}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &688685847
 MonoBehaviour:
@@ -7806,7 +7807,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 688aa4b7310e5b149828b7bbc0cf6c1b, type: 3}
+  m_Sprite: {fileID: -1371769362, guid: 9f9bcbf246fab2b4ba4e09834e87df6c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13046,6 +13047,7 @@ MonoBehaviour:
   inventory: {fileID: 1030742013}
   cannonFlashAsset: {fileID: 1632057261}
   tempAnimTimer: 0.2
+  popUp: {fileID: 1739724151}
 --- !u!4 &1198069309
 Transform:
   m_ObjectHideFlags: 0
@@ -14304,7 +14306,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -0.00033797682, y: 144.04968}
-  m_SizeDelta: {x: -70.27002, y: 30}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1349983611
 MonoBehaviour:
@@ -16421,6 +16423,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1994835567}
     - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 567520254}
+    - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
+      propertyPath: combatManager
+      value: 
+      objectReference: {fileID: 261010251}
+    - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
       propertyPath: flowerTrailPrefab
       value: 
       objectReference: {fileID: 2533840000157061721, guid: d2aa478bfd47e0e4899baf0045eaebeb, type: 3}
@@ -17801,7 +17811,7 @@ RectTransform:
   m_Father: {fileID: 870644728}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -19631,7 +19641,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1777532274
 Transform:
   m_ObjectHideFlags: 0
@@ -20143,7 +20153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1834970130
 RectTransform:
   m_ObjectHideFlags: 0
