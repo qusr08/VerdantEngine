@@ -125,6 +125,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5306314669448112019}
     m_Modifications:
+    - target: {fileID: -9217378346571676185, guid: 47eb4e64fa6e7244a89d48defbdbc4bc, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -8653719598885068355, guid: 47eb4e64fa6e7244a89d48defbdbc4bc, type: 3}
       propertyPath: m_Name
       value: Boom_Shroom
@@ -196,6 +200,10 @@ PrefabInstance:
     - target: {fileID: -1769476780763268507, guid: 47eb4e64fa6e7244a89d48defbdbc4bc, type: 3}
       propertyPath: m_SortingOrder
       value: 98
+      objectReference: {fileID: 0}
+    - target: {fileID: -267900153379761914, guid: 47eb4e64fa6e7244a89d48defbdbc4bc, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6897434314638451626, guid: 47eb4e64fa6e7244a89d48defbdbc4bc, type: 3}
       propertyPath: m_SortingOrder
