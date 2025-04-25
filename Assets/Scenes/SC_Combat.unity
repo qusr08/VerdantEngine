@@ -1371,7 +1371,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 180.625, y: -290.03494}
+  m_AnchoredPosition: {x: 180.625, y: -290.03497}
   m_SizeDelta: {x: 327, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &168390829
@@ -4707,11 +4707,11 @@ PrefabInstance:
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: combatSO.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 31b4822fd2f0e9948b3b16dff0555a7b, type: 2}
+      objectReference: {fileID: 11400000, guid: 84f39928743390949ac2a692f876d64d, type: 2}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: combatSO.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 84f39928743390949ac2a692f876d64d, type: 2}
+      objectReference: {fileID: 11400000, guid: 31b4822fd2f0e9948b3b16dff0555a7b, type: 2}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: combatSO.Array.data[2]
       value: 
@@ -4723,11 +4723,11 @@ PrefabInstance:
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: combatSO.Array.data[4]
       value: 
-      objectReference: {fileID: 11400000, guid: 5eed758795bab754ca2c6453a9c83332, type: 2}
+      objectReference: {fileID: 11400000, guid: 1e4e09088ce2982439448ff5eda702ef, type: 2}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: combatSO.Array.data[5]
       value: 
-      objectReference: {fileID: 11400000, guid: 1e4e09088ce2982439448ff5eda702ef, type: 2}
+      objectReference: {fileID: 11400000, guid: 279d382cad6b0b644b9fe7ccfd96dae5, type: 2}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: combatSO.Array.data[6]
       value: 
