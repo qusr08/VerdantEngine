@@ -628,15 +628,19 @@ MonoBehaviour:
   selectedColors:
   - {r: 0.9056604, g: 0.9056604, b: 0.089711644, a: 1}
   - {r: 0.5754717, g: 0.5754717, b: 0.13843894, a: 1}
-  highLightColors:
-  - {r: 0.9529412, g: 0.53616977, b: 0.2666429, a: 0}
-  - {r: 0.59119487, g: 0.37611252, b: 0.23610607, a: 0}
+  highlightColors:
+  - {r: 0.90588236, g: 0.49803922, b: 0.090196095, a: 1}
+  - {r: 0.5764706, g: 0.35686275, b: 0.1372549, a: 1}
+  indicatedColors:
+  - {r: 0.090196095, g: 0.8379084, b: 0.90588236, a: 1}
+  - {r: 0.1372549, g: 0.53986925, b: 0.5764706, a: 1}
   _position: {x: 0, y: 0}
   _gardenPlaceable: {fileID: 0}
   _isAttacked: 0
   _attackedDamage: 0
   _isSelected: 0
   _isHighlighted: 0
+  _isIndicated: 0
   _PopUpDisplay: {fileID: 0}
   indicatorManager: {fileID: 1027638271154073093}
 --- !u!114 &1027638271154073093

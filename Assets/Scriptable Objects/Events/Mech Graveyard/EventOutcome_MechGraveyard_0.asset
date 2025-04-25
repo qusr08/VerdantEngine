@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fd380a38585994f83a23e76004138d, type: 3}
+  m_Name: EventOutcome_MechGraveyard_0
+  m_EditorClassIdentifier: 
+  outcomeText: Scavenge the old war machines for a working weapon.
+  outcomeType: 5
+  potinalPlantReward: 
+  potinalArtifactReward: 
+  potinalPartReward:
+  - {fileID: 11400000, guid: a26505c909cfb76419bd43a9ec21ae20, type: 2}
+  MoneyChange: 0
+  HealthChange: 0
+  ForceMoenyChange: 0
+  ForceHealthChange: 0
+  ForceCombat: 0
+  resultWindowImage: {fileID: 21300000, guid: 747f82ffd5be7f14388c29353e626929, type: 3}
+  resultWindowText: "You sift through fractured plating and shattered limbs, peeling
+    back layers of rust and memory. Beneath one collapsed frame, you find a sealed
+    payload chamber, kept miraculously intact.\r\nInside: a cluster of dormant missiles,
+    their guidance systems blind, but their payloads still hungry.\r\nYou connect
+    them to your chassis. Roots curl around launch ports.\r\nTheir purpose has changed.\r\nBut
+    their fire remains.\r\n(Gained Split Missiles)\r\r\r"
+  combatPresetSO: {fileID: 0}

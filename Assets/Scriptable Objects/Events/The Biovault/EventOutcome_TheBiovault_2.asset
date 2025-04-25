@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fd380a38585994f83a23e76004138d, type: 3}
+  m_Name: EventOutcome_TheBiovault_2
+  m_EditorClassIdentifier: 
+  outcomeText: Seal the vault, and ensure that whatever is in there remains buried.
+  outcomeType: 3
+  potinalPlantReward: 
+  potinalArtifactReward: 
+  potinalPartReward: []
+  MoneyChange: 0
+  HealthChange: 0
+  ForceMoenyChange: 0
+  ForceHealthChange: 0
+  ForceCombat: 0
+  resultWindowImage: {fileID: 21300000, guid: 7df10940cd11b4942bc0b80375566c94, type: 3}
+  resultWindowText: "You reroute the emergency seals and flood the chamber with containment
+    foam. The pod twitches once - twice - then goes still beneath the rising frost.\r\nThe
+    console sparks, then dies.\r\nYou turn away as the heavy doors grind closed,
+    entombing the vault once more beneath rust and root.\r\nThrough the entire ordeal,
+    the specimen makes no noise.\r\nBut you feel it watching, long after you\u2019ve
+    left.\r\n(Nothing happens... For now)"
+  combatPresetSO: {fileID: 0}

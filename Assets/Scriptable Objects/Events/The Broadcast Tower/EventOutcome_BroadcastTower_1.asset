@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fd380a38585994f83a23e76004138d, type: 3}
+  m_Name: EventOutcome_BroadcastTower_1
+  m_EditorClassIdentifier: 
+  outcomeText: Take one of the flowers that sprouts in the signal relays.
+  outcomeType: 0
+  potinalPlantReward: 01000000
+  potinalArtifactReward: 
+  potinalPartReward: []
+  MoneyChange: 0
+  HealthChange: 0
+  ForceMoenyChange: 0
+  ForceHealthChange: 0
+  ForceCombat: 0
+  resultWindowImage: {fileID: 21300000, guid: 74d527e255df1134eb9ed56daf01bab9, type: 3}
+  resultWindowText: 'At the base of the relay, nestled in a nest of tangled wires
+    and corroded metal, a single flower sways gently, its petals flickering faintly
+    in time with the transmission.
+
+    You pluck it carefully. The moment it leaves
+    the circuit, the signal dies.
+
+    The screen goes dark. The voice is gone.
+
+    But
+    the flower hums quietly in your garden now - charged with memory, or maybe just
+    static.
+
+    (Gain a Power Flower)'
+  combatPresetSO: {fileID: 0}

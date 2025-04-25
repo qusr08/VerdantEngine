@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class VampireFlytrap : Plant
 {
-    public override void OnTurnEnd()
+	public override void OnGardenUpdated ( ) {
+		base.OnGardenUpdated( );
+
+		// Update the effected tiles of this plant
+		EffectedTiles.Clear( );
+		EffectedTiles.AddRange(GetSurroundingGardenTiles(1));
+	}
+
+	public override void OnTurnEnd()
     {
         foreach (Plant plant in GetSurroundingPlants(1))
         {

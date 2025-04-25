@@ -13,7 +13,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	[SerializeField] protected GardenManager gardenManager;
 	[SerializeField] protected PlayerDataManager playerDataManager;
 	[SerializeField] protected CombatManager combatManager;
-	[SerializeField] protected List<SpriteRenderer> spriteRenderers;
+	[SerializeField] protected List<SpriteRenderer> _spriteRenderers;
 	[Space]
 	[SerializeField, Min(0), Tooltip("The starting health of this garden placeable.")] private int _startingHealth;
 	[SerializeField, Min(0), Tooltip("The cost of this garden placeable in the shop.")] private int _cost;
@@ -27,6 +27,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	[SerializeField, Tooltip("The time between flashes when this garden placeable is on low health")] private float lowHealthColorFlashTime = 0.5f;
 	[SerializeField, Tooltip("The time it takes for the color to fade when healing this garden placeable")] private float healColorTime = 1.5f;
 	[SerializeField, Tooltip("The time in between flashes when this garden placeable is taking damage")] private float damageColorFlashTime = 0.1f;
+	[SerializeField] private List<GardenTile> _effectedTiles;
 
 
 	[Header("Heal/ Shield/ Damage effects")]
@@ -40,6 +41,11 @@ public abstract class GardenPlaceable : MonoBehaviour {
 
 	public GameObject flowerVisuals;
 	private Coroutine colorCoroutine = null;
+
+	/// <summary>
+	/// A list of all the sprite renderers that make up the visuals for the placeable
+	/// </summary>
+	public List<SpriteRenderer> SpriteRenderers { get => _spriteRenderers; private set => _spriteRenderers = value; }
 
 	/// <summary>
 	/// The starting health of this garden placeable
@@ -82,6 +88,11 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	public Vector2Int Position => GardenTile.Position;
 
 	/// <summary>
+	/// The tiles that this garden placeable is currently effecting or being effected by
+	/// </summary>
+	public List<GardenTile> EffectedTiles { get => _effectedTiles; private set => _effectedTiles = value; }
+
+	/// <summary>
 	/// The garden tile that this plant is on
 	/// </summary>
 	public GardenTile GardenTile {
@@ -93,7 +104,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 			}
 
 			// Remove the reference of this garden placeable from the old garden tile
-			if (_gardenTile != null) {
+			if (_gardenTile != null && _gardenTile.GardenPlaceable == this) {
 				_gardenTile.GardenPlaceable = null;
 			}
 			_gardenTile = value;
@@ -110,7 +121,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 		gardenManager = FindObjectOfType<GardenManager>( );
 		playerDataManager = FindObjectOfType<PlayerDataManager>( );
         combatManager = FindObjectOfType<CombatManager>( );
-        spriteRenderers = GetComponentsInChildren<SpriteRenderer>( ).ToList();
+        SpriteRenderers = GetComponentsInChildren<SpriteRenderer>( ).ToList();
 
 		effectedGardenPlaceables = new List<GardenPlaceable>();
 
@@ -153,6 +164,34 @@ public abstract class GardenPlaceable : MonoBehaviour {
 		// Make sure the plants are always facing towards the camera
 		// transform.LookAt(-Camera.main.transform.position + transform.position);
 		// transform.localEulerAngles = new Vector3(0f, transform.localEulerAngles.y, 0f);
+	}
+
+	/// <summary>
+	/// Get all of the surrounding garden tiles within a certain radius around this garden placeable
+	/// </summary>
+	/// <param name="radius">The radius around this garden placeable to check for garden tiles</param>
+	/// <returns>A list of all the surrounding garden tiles</returns>
+	public List<GardenTile> GetSurroundingGardenTiles (int radius) {
+		List<GardenTile> gardenTiles = new List<GardenTile>();
+
+		// Loop through all possible positions that are surrounding this garden placeable within a certain radius
+		for (int x = -radius; x <= radius; x++) {
+			for (int y = -radius; y <= radius; y++) {
+				int checkX = Position.x + x;
+				int checkY = Position.y + y;
+
+				// If the position to check is not within the bounds of the garden, then continue to the next position
+				// Also continue to the next position if the current plant being checked is this placeable
+				if (!gardenManager.IsPositionWithinGarden(checkX, checkY) || (x == 0 && y == 0)) {
+					continue;
+				}
+
+				// Add the garden tile to the list of garden tiles
+				gardenTiles.Add(playerDataManager.Garden[checkX, checkY]);
+			}
+		}
+
+		return gardenTiles;
 	}
 
 	/// <summary>
@@ -317,7 +356,6 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	/// <summary>
 	/// Called on the first drop of a garden Placeble
 	/// </summary
-	bool isFirst = true;
     public virtual void OnFirstPlanted()
 	{
       
@@ -359,10 +397,8 @@ public abstract class GardenPlaceable : MonoBehaviour {
             
 		FlashColor(Color.green, healColorTime / 4f, healColorTime, 1);
 
-		//triggered global on heal triggers for all garden placbles. used by artifacts
-		if (heal > 0)
+			//triggered global on heal triggers for all garden placbles. used by artifacts
 			gardenManager.GlobalOnHealedTrigger(this, heal);
-
 	}
 
 	/// <summary>
@@ -373,8 +409,9 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	/// <returns>The actual damage that was dealt to the health of the plant. This takes into account the shield that the plant has</returns>
 	public virtual int TakeDamage (Enemy enemy, int damage) {
 		// Subtract the current shield of this garden placeable from the damage that is trying to be dealt
-		if(ShieldStat.CurrentValue>0)
-		damage -= ShieldStat.CurrentValue;
+		if(ShieldStat.CurrentValue>0) {
+			damage -= ShieldStat.CurrentValue;
+		}
 
 		if(damage <= 0)
         {
@@ -402,7 +439,12 @@ public abstract class GardenPlaceable : MonoBehaviour {
 			return damage;
 		}
 
+		// No damage was taken because of the shield
 		SpawnDamageIndicator(0);
+		if (ShieldStat.CurrentValue > 0) {
+			FlashColor(new Color(0f, 0.5f, 1f), healColorTime / 4f, healColorTime, 1);
+		}
+
 		return 0;
 	}
 
@@ -433,7 +475,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 				t = Mathf.Min(fadeInTime, t + Time.deltaTime);
 
 				// Since there are multiple sprite renderers on each garden placeable, loop through all of them and tint their color
-				foreach (SpriteRenderer spriteRenderer in spriteRenderers) {
+				foreach (SpriteRenderer spriteRenderer in SpriteRenderers) {
 					spriteRenderer.color = Color.Lerp(Color.white, color, t / fadeInTime);
 				}
 
@@ -447,7 +489,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 				t = Mathf.Min(fadeOutTime, t + Time.deltaTime);
 
 				// Since there are multiple sprite renderers on each garden placeable, loop through all of them and tint their color
-				foreach (SpriteRenderer spriteRenderer in spriteRenderers) {
+				foreach (SpriteRenderer spriteRenderer in SpriteRenderers) {
 					spriteRenderer.color = Color.Lerp(color, Color.white, t / fadeOutTime);
 				}
 

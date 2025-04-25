@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 //using static UnityEditor.FilePathAttribute; - idk what this is but it's causing a build error so uhhh??
 
-public enum ActiveScene { Map, Garden, Shop, Event};
+public enum ActiveScene { Map, Garden, Shop, Event, Win};
 
 public class MapPlayer : MonoBehaviour
 {
@@ -17,6 +17,7 @@ public class MapPlayer : MonoBehaviour
     [SerializeField] private GameObject mapStuff;
     [SerializeField] private GameObject shopStuff;
     [SerializeField] private GameObject eventStuff;
+    [SerializeField] private GameObject winStuff;
     [SerializeField] private GameObject camera;
     [SerializeField] private CombatUIManager uiManager;
     [SerializeField] private EventManager eventManager;
@@ -147,6 +148,10 @@ public class MapPlayer : MonoBehaviour
         eventManager.InitilazeEvent(incomingEvent);
         ChangeScenes(ActiveScene.Event);
     }
+    public void GoToWin()
+    {
+        ChangeScenes(ActiveScene.Win);
+    }
 
     public void UpdateCameraPosition()
     {
@@ -190,6 +195,9 @@ public class MapPlayer : MonoBehaviour
 
                 camera.transform.position = gardenCameraLocation.transform.position;
                 camera.transform.rotation = gardenCameraLocation.transform.rotation;
+                break;
+            case ActiveScene.Win:
+                winStuff.SetActive(true);
                 break;
         }
 

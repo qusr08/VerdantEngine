@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class BoomShroom : Plant
 {
-    public override void OnKilled()
+	public override void OnGardenUpdated ( ) {
+		base.OnGardenUpdated( );
+
+		// Update the effected tiles of this plant
+		EffectedTiles.Clear( );
+        EffectedTiles.AddRange(GetSurroundingGardenTiles(1));
+	}
+
+	public override void OnKilled()
     {
         foreach (Plant plant in GetSurroundingPlants(1))
         {

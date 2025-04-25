@@ -210,8 +210,7 @@ public class GardenManager : MonoBehaviour {
 	/// Move a plant from its current position to another one
 	/// </summary>
 	/// <param name="plant">The plant that will be moved</param>
-	/// <param name="x">The x coordinate to move the plant to</param>
-	/// <param name="y">The y coordinate to move the plant to</param>
+	/// <param name="gardenTile">The garden tile to move the plant to</param>
 	/// <returns>true if the plant was successfully moved, false otherwise. Also returns false if the position that the plant was going to move to is out of the bounds of the garden or there was already a plant at that position</returns>
 	public bool MovePlant (Plant plant, GardenTile gardenTile) {
 		// If the plant that was going to be moved is null, then return false
@@ -219,9 +218,9 @@ public class GardenManager : MonoBehaviour {
 			return false;
 		}
 
-		// If there is a plant at the garden tile already, do not try to move this garden placeable to that tile
+		// If there is a plant at the garden tile already, swap the current plant being moved with the one on the tile
 		if (gardenTile.GardenPlaceable != null) {
-			return false;
+			gardenTile.GardenPlaceable.GardenTile = plant.GardenTile;
 		}
 
 		// Remove the reference to the plant from its current position and add it to the position it is being moved to
@@ -232,28 +231,26 @@ public class GardenManager : MonoBehaviour {
 		return true;
 	}
 
-    /// <summary>
-    /// Move an artifact from its current position to another one
-    /// </summary>
-    /// <param name="artifact">The artifact that will be moved</param>
-    /// <param name="x">The x coordinate to move the plant to</param>
-    /// <param name="y">The y coordinate to move the plant to</param>
-    /// <returns>true if the plant was successfully moved, false otherwise. Also returns false if the position that the plant was going to move to is out of the bounds of the garden or there was already a plant at that position</returns>
-    public bool MoveArtifact(Artifact artifact, GardenTile gardenTile)
+	/// <summary>
+	/// Move an artifact from its current position to another one
+	/// </summary>
+	/// <param name="artifact">The artifact that will be moved</param>
+	/// <param name="gardenTile">The garden tile to move the artifact to</param>
+	/// <returns>true if the plant was successfully moved, false otherwise. Also returns false if the position that the artifact was going to move to is out of the bounds of the garden or there was already a placeable at that position</returns>
+	public bool MoveArtifact(Artifact artifact, GardenTile gardenTile)
     {
-        // If the plant that was going to be moved is null, then return false
+        // If the artifact that was going to be moved is null, then return false
         if (artifact == null || gardenTile == null)
         {
             return false;
         }
 
-        // If there is a plant at the garden tile already, do not try to move this garden placeable to that tile
-        if (gardenTile.GardenPlaceable != null)
-        {
-            return false;
+		// If there is an artifact at the garden tile already, swap the current artifact being moved with the one on the tile
+		if (gardenTile.GardenPlaceable != null) {
+			gardenTile.GardenPlaceable.GardenTile = artifact.GardenTile;
         }
 
-        // Remove the reference to the plant from its current position and add it to the position it is being moved to
+        // Remove the reference to the artifact from its current position and add it to the position it is being moved to
         artifact.GardenTile = gardenTile;
         UpdateGarden();
         artifact.OnMoved();
@@ -281,7 +278,12 @@ public class GardenManager : MonoBehaviour {
 			/// Should be able to pass "null" into the UpdateText() function to clear all data
             SelectedGardenTile.PopUpDisplay.gameObject.SetActive(true);
             SelectedGardenTile.PopUpDisplay.SetUpPlant(SelectedGardenTile.GardenPlaceable);
-        }
+
+			// Indicate which tiles the current garden placeable is effecting
+			foreach (GardenTile effectedGardenTile in SelectedGardenTile.GardenPlaceable.EffectedTiles) {
+				effectedGardenTile.IsIndicated = true;
+			}
+		}
 	}
 
 	/// <summary>

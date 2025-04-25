@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa5eaf6cc74559f4ebcc549a68e6874d, type: 3}
+  m_Name: Event_BloomingCrater
+  m_EditorClassIdentifier: 
+  title: The Blooming Crater
+  text: "You stumble upon a crater filled with radiant, bioluminescent plant life.
+    Strange tendrils dance in the air like jellyfish tentacles, casting shifting
+    shadows on the broken ground. The crater pulses with color - soft pinks, violent
+    blues, and deep, whispering greens. It feels alive. As you approach in your metal
+    husk, the tendrils turn toward you. They are not hostile. They\u2019re\u2026
+    trying to communicate.\nYour vines twitch in sympathy, unsure whether this is
+    kinship or mimicry. At the center of the crater, something glows brighter than
+    the rest: a pulsating node that seems to breathe.\r\r\r\r"
+  image: {fileID: 21300000, guid: 5a95ea772ef201948890280da7903ba2, type: 3}
+  Options:
+  - {fileID: 11400000, guid: c374e0dcfac79d04aae2f7622227c37a, type: 2}
+  - {fileID: 11400000, guid: a292c64e1b5603e419ca9fac0649519a, type: 2}

@@ -18,6 +18,7 @@ public abstract class Plant : GardenPlaceable {
 	[Header("Plant")]
 	[SerializeField] private PlantType _plantType;
 	[SerializeField] private Rarity _rarity;
+
 	/// <summary>
 	/// The type of this plant
 	/// </summary>

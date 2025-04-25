@@ -7,8 +7,18 @@ using UnityEngine.UI;
 public class Event_SO : ScriptableObject
 {
     public string title;
+    [TextArea(15, 20)]
     public string text;
     public Sprite image;
     public EventOutcome_SO [] Options;
+
+    public void ForceCombat(CombatPresetSO combat)
+    {
+        foreach (EventOutcome_SO outcomes in Options)
+        {
+            outcomes.ForceCombat = true;
+            outcomes.combatPresetSO = combat;
+        }
+    }
     
 }

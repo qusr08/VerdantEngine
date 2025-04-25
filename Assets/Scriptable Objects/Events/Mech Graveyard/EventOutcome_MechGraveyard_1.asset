@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fd380a38585994f83a23e76004138d, type: 3}
+  m_Name: EventOutcome_MechGraveyard_1
+  m_EditorClassIdentifier: 
+  outcomeText: Harvest the wreckage for scrap.
+  outcomeType: 2
+  potinalPlantReward: 
+  potinalArtifactReward: 
+  potinalPartReward: []
+  MoneyChange: 20
+  HealthChange: 0
+  ForceMoenyChange: 0
+  ForceHealthChange: 0
+  ForceCombat: 0
+  resultWindowImage: {fileID: 21300000, guid: 747f82ffd5be7f14388c29353e626929, type: 3}
+  resultWindowText: 'You sweep through the graveyard like a storm of vines and steel,
+    pulling copper veins from the husks and stripping plating from broken limbs.
+    The mechs offer no resistance - just hollow silence and brittle bones.
+
+    Somewhere
+    beneath your feet, something groans. Not alive. Just the dirt, settling.
+
+    You
+    leave with your bounty, and behind you, the battlefield sinks an inch deeper
+    into the past.
+
+    (Gained scrap)'
+  combatPresetSO: {fileID: 0}
