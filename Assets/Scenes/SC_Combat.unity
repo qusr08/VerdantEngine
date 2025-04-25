@@ -4879,11 +4879,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: enemyChance
-      value: 65
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: eventChance
-      value: 20
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: eventSO.Array.size
@@ -17450,15 +17450,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2556926179643352607, guid: 8a51119c7cd6f0a438d3f7cce5dfe65c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.1
+      value: 1.15
       objectReference: {fileID: 0}
     - target: {fileID: 2556926179643352607, guid: 8a51119c7cd6f0a438d3f7cce5dfe65c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.1006142
+      value: 1.150642
       objectReference: {fileID: 0}
     - target: {fileID: 2556926179643352607, guid: 8a51119c7cd6f0a438d3f7cce5dfe65c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.5791612
+      value: 1.6509411
       objectReference: {fileID: 0}
     - target: {fileID: 2556926179643352607, guid: 8a51119c7cd6f0a438d3f7cce5dfe65c, type: 3}
       propertyPath: m_AnchoredPosition.x
