@@ -45,7 +45,11 @@ public class Inventory : MonoBehaviour {
 
 			AddArtifact(ArtifactType.WHEELBARROW);
 			AddArtifact(ArtifactType.COMPOST);
-			AddArtifact(ArtifactType.FLAMINGO);
+            AddArtifact(ArtifactType.SUNDAIL);
+            AddArtifact(ArtifactType.GNOMEO);
+            AddArtifact(ArtifactType.GNOMIET);
+
+            AddArtifact(ArtifactType.FLAMINGO);
 		}
 	}
 
