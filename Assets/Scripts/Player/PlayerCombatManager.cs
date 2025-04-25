@@ -51,9 +51,9 @@ public class PlayerCombatManager : MonoBehaviour {
     public void PlayerStartTurn()
     {
         StartOfTurnEffects();
-        energy += energyModifier;
+        energy += playerDataManager.actionCountModifier;
 		energyText.text = energy.ToString();
-
+		
     }
 	
 	public void StartOfTurnEffects()
