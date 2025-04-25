@@ -4658,7 +4658,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: eventSO.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: combatSO.Array.size
@@ -4679,23 +4679,27 @@ PrefabInstance:
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: eventSO.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 1193e832a89caa345ad1467bc3d015f2, type: 2}
+      objectReference: {fileID: 11400000, guid: f1099c4eb4f4f8a4b905f3555191c062, type: 2}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: eventSO.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: b0f73f958f795ae4abd0f4d6adc81129, type: 2}
+      objectReference: {fileID: 11400000, guid: d0a66aae4bb322b47801ebe5984631b8, type: 2}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: eventSO.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: b0f73f958f795ae4abd0f4d6adc81129, type: 2}
+      objectReference: {fileID: 11400000, guid: 85a37d3bb5a1d6644b91d5d10a5c0551, type: 2}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: eventSO.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: b0f73f958f795ae4abd0f4d6adc81129, type: 2}
+      objectReference: {fileID: 11400000, guid: 0641db3a34416dc46a27f00402131ca9, type: 2}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: eventSO.Array.data[4]
       value: 
-      objectReference: {fileID: 11400000, guid: b0f73f958f795ae4abd0f4d6adc81129, type: 2}
+      objectReference: {fileID: 11400000, guid: 9315f1eb5256a62448a803863ca8d177, type: 2}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: eventSO.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 161de6455d37036468790ea75aa9361b, type: 2}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: spawnIndex.Array.size
       value: 1
