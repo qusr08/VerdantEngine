@@ -22084,7 +22084,7 @@ MonoBehaviour:
   healthText: {fileID: 1502954837}
   balanceText: {fileID: 1096758308}
   playerDataManager: {fileID: 1707282257}
-  offset: {x: -61, y: -90}
+  offset: {x: -61, y: -135}
 --- !u!1 &1825975240
 GameObject:
   m_ObjectHideFlags: 0
