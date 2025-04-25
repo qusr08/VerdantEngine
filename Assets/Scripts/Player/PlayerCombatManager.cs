@@ -157,9 +157,13 @@ public class PlayerCombatManager : MonoBehaviour {
             weaponMenuItem.PlayerAttack.Cooldown--;
 
 
+
             weaponMenuItem.UpdateCoolDown( );
-			if (weaponMenuItem.PlayerAttack.Cooldown ==0)
-			weaponMenuItem.ReadyToFire();
+            if (weaponMenuItem.PlayerAttack.Cooldown <= 0)
+            { 
+                weaponMenuItem.ReadyToFire();
+                weaponMenuItem.PlayerAttack.Cooldown = 0;
+            }
 
 		}
 		EndOfTurnEffects(); 
