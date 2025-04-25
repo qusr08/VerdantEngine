@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6cf40a5b777aa5c4d8c312620b0373a4, type: 3}
-  m_Name: SO_C_D8_Set1
+  m_Name: SO_C_D7_Set2
   m_EditorClassIdentifier: 
   _enemyPrefabs:
-  - {fileID: 7051596728495582928, guid: 6b5a6edf2e86eab49b6176a6190b92f5, type: 3}
+  - {fileID: 2017004346278228227, guid: 66ee2199c899e3843a0cb50de7122e9a, type: 3}
   - {fileID: 2017004346278228227, guid: 2548157c74d36bf41accae1f3492187a, type: 3}
-  - {fileID: 7786875835180863173, guid: ac49bd55185b4f540ace940e170ff3c9, type: 3}
-  - {fileID: 2017004346278228227, guid: 84357f829fd3e394f95e0ad4593e0e77, type: 3}
+  - {fileID: 7051596728495582928, guid: 1ffae97745094e64cbf10eda26c90eaf, type: 3}
+  - {fileID: 2017004346278228227, guid: fd2a5a697d33bd343985756c8bda53ac, type: 3}
   _isEliteRewards: 1
   isBoss: 0
-  difficulty: 8
+  difficulty: 7
   rewardMoeny: 28

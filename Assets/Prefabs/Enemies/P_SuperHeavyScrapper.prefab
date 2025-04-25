@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8800485679191302099
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 210805236550136860, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 4413dd028841597499f80bf331dbd3c1, type: 3}
+    - target: {fileID: 210805236550136860, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+      propertyPath: _icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 812f858939842ce478c57b85eb9aa4a2, type: 3}
+    - target: {fileID: 210805236550136860, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+      propertyPath: health
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 210805236550136860, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+      propertyPath: enemyName
+      value: Super Heavy Scrapper
+      objectReference: {fileID: 0}
+    - target: {fileID: 210805236550136860, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+      propertyPath: maxHealth
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 210805236550136860, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+      propertyPath: _maxHealth
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 210805236550136860, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+      propertyPath: _currentAttack
+      value: 
+      objectReference: {fileID: 11400000, guid: ff0afbd64d88c1a4082b9dcd6b757f18, type: 2}
+    - target: {fileID: 210805236550136860, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+      propertyPath: _currentHealth
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 210805236550136860, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+      propertyPath: attacks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 210805236550136860, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+      propertyPath: attacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: d27183b01616eba409be6605c08bc361, type: 2}
+    - target: {fileID: 5466528007316484414, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466528007316484414, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466528007316484414, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466528007316484414, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466528007316484414, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466528007316484414, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466528007316484414, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466528007316484414, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466528007316484414, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466528007316484414, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051596728495582928, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+      propertyPath: m_Name
+      value: P_SuperHeavyScrapper
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035251765469001550, guid: b95126a70dec6f54f82474ca31982657, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2f64eb3a2524ce64d9dc6af4b9a8d4b8, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b95126a70dec6f54f82474ca31982657, type: 3}

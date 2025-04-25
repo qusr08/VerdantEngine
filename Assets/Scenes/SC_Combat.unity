@@ -4662,7 +4662,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: combatSO.Array.size
-      value: 9
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: spawnType.Array.size
@@ -4707,39 +4707,43 @@ PrefabInstance:
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: combatSO.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 31b4822fd2f0e9948b3b16dff0555a7b, type: 2}
+      objectReference: {fileID: 11400000, guid: 84f39928743390949ac2a692f876d64d, type: 2}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: combatSO.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 84dec0ba82c1ceb4baf4b2385a878a2e, type: 2}
+      objectReference: {fileID: 11400000, guid: 31b4822fd2f0e9948b3b16dff0555a7b, type: 2}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: combatSO.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: e712bd32eca8b584195387c3fa99063f, type: 2}
+      objectReference: {fileID: 11400000, guid: 280d1b265aff6004a883f8e8eb5355ae, type: 2}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: combatSO.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: 45b0bfd4d8d696b44a9e312692ce08d1, type: 2}
+      objectReference: {fileID: 11400000, guid: 7407d4b6d9ce7574bbdadb56d3b13017, type: 2}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: combatSO.Array.data[4]
       value: 
-      objectReference: {fileID: 11400000, guid: 5eed758795bab754ca2c6453a9c83332, type: 2}
+      objectReference: {fileID: 11400000, guid: 05db4e741063b3b41b47ec03ea9107d8, type: 2}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: combatSO.Array.data[5]
       value: 
-      objectReference: {fileID: 11400000, guid: 279d382cad6b0b644b9fe7ccfd96dae5, type: 2}
+      objectReference: {fileID: 11400000, guid: 45b0bfd4d8d696b44a9e312692ce08d1, type: 2}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: combatSO.Array.data[6]
       value: 
-      objectReference: {fileID: 11400000, guid: 3fa1129c0b81fc6429952d5b0833e20f, type: 2}
+      objectReference: {fileID: 11400000, guid: 6012d593c77d0f54884d40ef266216e5, type: 2}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: combatSO.Array.data[7]
       value: 
-      objectReference: {fileID: 11400000, guid: 967351198fa1f464596e77502d0e6217, type: 2}
+      objectReference: {fileID: 11400000, guid: 1e4e09088ce2982439448ff5eda702ef, type: 2}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: combatSO.Array.data[8]
       value: 
-      objectReference: {fileID: 11400000, guid: d84b4ae7be832dd4cabd0f4e2a4c5769, type: 2}
+      objectReference: {fileID: 11400000, guid: 5eed758795bab754ca2c6453a9c83332, type: 2}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: combatSO.Array.data[9]
+      value: 
+      objectReference: {fileID: 11400000, guid: 279d382cad6b0b644b9fe7ccfd96dae5, type: 2}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: easyEnemies.Array.size
       value: 3
@@ -4748,6 +4752,30 @@ PrefabInstance:
       propertyPath: hardEnemies.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: combatSO.Array.data[10]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5116d2e8991b1f341bae5a826c5782fb, type: 2}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: combatSO.Array.data[11]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3fa1129c0b81fc6429952d5b0833e20f, type: 2}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: combatSO.Array.data[12]
+      value: 
+      objectReference: {fileID: 11400000, guid: aa1c7083a46494e4d8cd11d41596eb35, type: 2}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: combatSO.Array.data[13]
+      value: 
+      objectReference: {fileID: 11400000, guid: 967351198fa1f464596e77502d0e6217, type: 2}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: combatSO.Array.data[14]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c3800e0f9b21094c9058a91dda28f9b, type: 2}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: combatSO.Array.data[15]
+      value: 
+      objectReference: {fileID: 11400000, guid: c0d37ec1cb4c20844ba89eba5ebeb8ce, type: 2}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: enemyPrefabs.Array.size
       value: 3
