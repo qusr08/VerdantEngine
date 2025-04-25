@@ -12,11 +12,17 @@ public enum TutorialType {
 public class TutorialManager : MonoBehaviour
 {
     [SerializeField] private MapPlayer mapPlayer;
+
     [SerializeField] private GameObject stepSelectorMenu;
     [SerializeField] private TextMeshProUGUI stepSelectorMenuText;
+    [SerializeField] private TextMeshProUGUI previousStepText;
+    [SerializeField] private TextMeshProUGUI nextStepText;
+    [SerializeField] private TextMeshProUGUI xStepText;
+
     [SerializeField] private List<GameObject> gardenTutorialSteps;
     [SerializeField] private List<GameObject> mapTutorialSteps;
     [SerializeField] private List<GameObject> combatTutorialSteps;
+
     [SerializeField] private CombatUIManager uiManager;
     
 
@@ -45,6 +51,22 @@ public class TutorialManager : MonoBehaviour
         } else if (currentStep >= steps.Count) {
             EndTutorial();
             return;
+        }
+
+        // Change the prev step text
+        if (currentStep == 0) {
+            previousStepText.text = "";
+        } else {
+            previousStepText.text = "<";
+        }
+
+        // change the next step text
+        if (currentStep == steps.Count - 1) {
+            nextStepText.gameObject.SetActive(false);
+            xStepText.gameObject.SetActive(true);
+        } else {
+            nextStepText.gameObject.SetActive(true);
+            xStepText.gameObject.SetActive(false);
         }
         
         DeactivateAllTutorialSteps();
