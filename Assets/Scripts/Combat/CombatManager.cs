@@ -103,8 +103,9 @@ public class CombatManager : MonoBehaviour {
 
       
         }
+		playerCombatManager.ResetWeapons();
 
-		AllEnemiesStartRound( );
+        AllEnemiesStartRound( );
         SaveGameState();
 
     }

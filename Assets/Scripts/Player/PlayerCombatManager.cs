@@ -72,8 +72,20 @@ public class PlayerCombatManager : MonoBehaviour {
 		energyText.text = energy.ToString();
 		
     }
-	
-	public void StartOfTurnEffects()
+	public void ResetWeapons()
+    {
+        foreach (PlayerAttackMenuItem weaponMenuItem in weaponMenuItems)
+        {
+            weaponMenuItem._playerAttack.Cooldown = weaponMenuItem._playerAttack.MaxCooldown;
+            weaponMenuItem.UpdateCoolDown();
+            if (weaponMenuItem.PlayerAttack.Cooldown == 0)
+                weaponMenuItem.ReadyToFire();
+            else
+                weaponMenuItem.GetOnCooldown();
+        }
+
+    }
+        public void StartOfTurnEffects()
 	{
         foreach (GardenPlaceable item in gardenManager.Plants)
         {
