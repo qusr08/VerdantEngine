@@ -181,15 +181,7 @@ public class CombatManager : MonoBehaviour {
             Enemies[i].Attacked(damage);
         }
 
-        // Deselect all enemies
-        foreach (Enemy enemy in Enemies)
-        {
-         
-
-            enemy.GetComponent<SpriteRenderer>().color = Color.red;
-            enemy.Attacked(damage);
-        }
-
+      
         
        
     }
