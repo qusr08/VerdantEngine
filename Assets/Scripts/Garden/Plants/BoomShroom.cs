@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BoomShroom : Plant
 {
+    bool isFirstTime = true;
 	public override void OnGardenUpdated ( ) {
 		base.OnGardenUpdated( );
 
@@ -14,6 +15,11 @@ public class BoomShroom : Plant
 
 	public override void OnKilled()
     {
+        if(!isFirstTime)
+        {
+            return;
+        }
+        isFirstTime = false;
         foreach (Plant plant in GetSurroundingPlants(1))
         {
             plant.TakeDamage(null, 1);
