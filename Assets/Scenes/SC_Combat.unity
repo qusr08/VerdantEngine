@@ -1371,7 +1371,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 180.625, y: -290.03476}
+  m_AnchoredPosition: {x: 180.625, y: -288.45285}
   m_SizeDelta: {x: 327, y: 446}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &168390829
@@ -16700,7 +16700,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 547.35, y: -882.86}
+  m_AnchoredPosition: {x: 547.35, y: -971}
   m_SizeDelta: {x: 466.54, y: 198.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1419972434
@@ -17293,16 +17293,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 155304117}
     - target: {fileID: 8128533964952258417, guid: 8a51119c7cd6f0a438d3f7cce5dfe65c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1475
+      objectReference: {fileID: 0}
+    - target: {fileID: 8128533964952258417, guid: 8a51119c7cd6f0a438d3f7cce5dfe65c, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 807.41
+      value: 857.3188
       objectReference: {fileID: 0}
     - target: {fileID: 8128533964952258417, guid: 8a51119c7cd6f0a438d3f7cce5dfe65c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -626.1
+      value: -653
       objectReference: {fileID: 0}
     - target: {fileID: 8128533964952258417, guid: 8a51119c7cd6f0a438d3f7cce5dfe65c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 53.5
+      value: 40.2514
       objectReference: {fileID: 0}
     - target: {fileID: 8422432585834594688, guid: 8a51119c7cd6f0a438d3f7cce5dfe65c, type: 3}
       propertyPath: m_text
@@ -23404,7 +23408,7 @@ MonoBehaviour:
         m_MethodName: GoToEvent
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 1193e832a89caa345ad1467bc3d015f2, type: 2}
+          m_ObjectArgument: {fileID: 11400000, guid: 85a37d3bb5a1d6644b91d5d10a5c0551, type: 2}
           m_ObjectArgumentAssemblyTypeName: Event_SO, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
