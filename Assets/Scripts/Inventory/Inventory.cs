@@ -29,6 +29,8 @@ public class Inventory : MonoBehaviour {
 		AddPlant(PlantType.BLAST_BLOOM);
 
         AddPlant(PlantType.BOOM_SHROOM_COLONY);
+        AddPlant(PlantType.BOOM_SHROOM_COLONY);
+        AddPlant(PlantType.BOOM_SHROOM_COLONY);
 
 
 

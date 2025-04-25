@@ -237,6 +237,8 @@ public class CombatManager : MonoBehaviour {
 
         for (int i = Enemies.Count - 1; i >= 0; i--)
         {
+			if (i > Enemies.Count-1)
+				continue;
             if (Enemies[i].CurrentCooldown == 0)
             {
                 StartCoroutine(playerCombatManager.ApplyDamageToGarden(Enemies[i], Enemies[i].CurrentAttack));

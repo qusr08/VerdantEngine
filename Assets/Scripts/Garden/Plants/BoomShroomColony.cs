@@ -30,11 +30,15 @@ public class BoomShroomColony : Plant
 
         for (int i = gardenManager.Plants.Count-1; i >= 0; i--)
         {
+            if (i > gardenManager.Plants.Count - 1)
+                continue;
             gardenManager.Plants[i].TakeDamage(null, 1);
         }
         for (int i = gardenManager.Artifacts.Count - 1; i >= 0; i--)
 
         {
+            if (i > gardenManager.Artifacts.Count - 1)
+                continue;
             gardenManager.Artifacts[i].TakeDamage(null, 1);
 
         }
