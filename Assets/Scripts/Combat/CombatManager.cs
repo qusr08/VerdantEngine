@@ -6,6 +6,7 @@ using TMPro;
 using System.Linq;
 using System;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 
 public class CombatManager : MonoBehaviour {
 	[SerializeField] public PlayerCombatManager playerCombatManager;
@@ -18,7 +19,9 @@ public class CombatManager : MonoBehaviour {
 	[SerializeField] private GameObject explosionPrefab;
 	public float endOfTurnWaitTime;
 	public List<Enemy> Enemies { get; private set; }
-	private bool isPlayerPaused = false;
+    public List<Enemy> EnemiesSavedData { get; private set; }
+
+    private bool isPlayerPaused = false;
 	public BG_Music_Manager soundManager;
 	// private int maxTargets; // Number of enemies to select
 	// private bool isTargeting = false;
@@ -71,6 +74,7 @@ public class CombatManager : MonoBehaviour {
         DynamicGI.UpdateEnvironment();
 
 			isBoss = newCombat.isBoss;
+		SaveGameState();
     }
 
     /// <summary>
@@ -89,12 +93,16 @@ public class CombatManager : MonoBehaviour {
 		// Currently the game is limited to 3 enemies each
 		for (int i = 0; i < currentCombatPreset.EnemyPrefabs.Count; i++) {
 			Enemies.Add(Instantiate(currentCombatPreset.EnemyPrefabs[i]).GetComponent<Enemy>( ));
-			Enemies[i].combatManager = this;
+           
+            Enemies[i].combatManager = this;
 			Enemies[i].EnemyID = i;
 			Enemies[i].gameObject.name = "Enemy " + i;
 			combatUIManager.AddEnemyHealth(Enemies[i]);
 			combatUIManager.UpdateHealth(Enemies[i]);
-		}
+
+
+      
+        }
 
 		AllEnemiesStartRound( );
         SaveGameState();
@@ -333,7 +341,7 @@ public class CombatManager : MonoBehaviour {
 		saveGameState.PlacedPlants.Clear();
 
 
-        saveGameState.EnemiesStates = Enemies;
+		
 		saveGameState.Health = playerDataManager.CurrentHealth;
 		
 		gardenManager.SaveGardenState();
@@ -351,6 +359,14 @@ public class CombatManager : MonoBehaviour {
 
         playerDataManager.CurrentActions = saveGameState.actions;
 
+        Enemies.Clear();
+        foreach (Enemy item in saveGameState.EnemiesStates)
+        {
+            Enemy enemy = new Enemy();
+            enemy = item;
+            Enemies.Add(item);
+
+        }
 
         //Need to add enemy hp reset
         combatUIManager.ResetTurn_RestUI(saveGameState.EnemiesStates);

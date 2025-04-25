@@ -304,10 +304,15 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	/// </summary>
 	public virtual void OnTurnEnd ( ) { }
 
-	/// <summary>
-	/// Called when this garden placeable takes damage
-	/// </summary>
-	public virtual void OnTakeDamage ( ) { }
+    ///<summary>
+    ///Called when this object is moved in the garden
+    ///</summary>
+    public virtual void OnMoved() { }
+
+    /// <summary>
+    /// Called when this garden placeable takes damage
+    /// </summary>
+    public virtual void OnTakeDamage ( ) { }
 
 	/// <summary>
 	/// Called on the first drop of a garden Placeble

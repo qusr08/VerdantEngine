@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6012dec6c1eb1140b82b307640b3630, type: 3}
   m_Name: SaveGameState_SO
   m_EditorClassIdentifier: 
-  PlacedPlants: []
-  PlacedArtifacts: []
-  EnemiesStates: []
-  Health: 0
-  energy: 0
+  PlacedPlants: 
+  PlacedArtifacts: 
+  EnemiesStates:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Health: 10
+  energy: 2
+  actions: 3

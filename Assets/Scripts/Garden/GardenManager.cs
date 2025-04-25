@@ -227,6 +227,7 @@ public class GardenManager : MonoBehaviour {
 		// Remove the reference to the plant from its current position and add it to the position it is being moved to
 		plant.GardenTile = gardenTile;
 		UpdateGarden( );
+		plant.OnMoved();
 
 		return true;
 	}
@@ -255,6 +256,8 @@ public class GardenManager : MonoBehaviour {
         // Remove the reference to the plant from its current position and add it to the position it is being moved to
         artifact.GardenTile = gardenTile;
         UpdateGarden();
+        artifact.OnMoved();
+
 
         return true;
     }

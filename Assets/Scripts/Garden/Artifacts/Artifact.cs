@@ -7,6 +7,9 @@ public enum ArtifactType {
     WHEELBARROW,
     COMPOST,
     FLAMINGO,
+    GNOMEO,
+    GNOMIET,
+    SUNDAIL,
     NONE
 }
 public enum ArtifactAbilityType
@@ -16,6 +19,7 @@ public enum ArtifactAbilityType
     OnDestroy,
     OnRoundEnd,
     OnPlacePlant,
+    OnMoved,
     Passive
 }
 
@@ -26,6 +30,8 @@ public abstract class Artifact : GardenPlaceable {
 	[Header("Artifact")]
 	[SerializeField] private ArtifactType _artifactType;
     [SerializeField] private ArtifactAbilityType _artifactAbilityType;
+
+    
 
     /// <summary>
     /// The type of this artifact

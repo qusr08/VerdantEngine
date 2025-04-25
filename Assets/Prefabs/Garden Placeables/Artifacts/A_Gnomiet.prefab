@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8653719598885068355, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
       propertyPath: m_Name
-      value: M_Wheelbarrow
+      value: M_Flamingo
       objectReference: {fileID: 0}
     - target: {fileID: -8158773749668215637, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
       propertyPath: m_Sprite
@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.23
+      value: 0.20932621
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3d8aed8ce5f545346ae600bc1166e03d, type: 3}
       propertyPath: m_LocalScale.y
@@ -151,7 +151,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 100
-  m_Sprite: {fileID: 21300000, guid: e5c6f54554881dd45bf64d06ac6edf58, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c58afbd1ea86b6c4d8af0b864e71ae04, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -177,7 +177,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 164589016474248900, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
       propertyPath: m_Name
-      value: A_Wheelbarrow
+      value: A_Gnomiet
       objectReference: {fileID: 0}
     - target: {fileID: 4482992049444851102, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
       propertyPath: m_Enabled
@@ -236,51 +236,17 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 164589016474248900, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7026284614776917842}
+      addedObject: {fileID: 4283494125578995247}
     - targetCorrespondingSourceObject: {fileID: 164589016474248900, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4490389264933152813}
+      addedObject: {fileID: -3849542348670514258}
   m_SourcePrefab: {fileID: 100100000, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
 --- !u!1 &3020584395285068545 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 164589016474248900, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}
   m_PrefabInstance: {fileID: 3144631114005290437}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7026284614776917842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3020584395285068545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77875cf77b3a1d64999ad88f276fc449, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPlant: 1
-  gardenManager: {fileID: 0}
-  playerDataManager: {fileID: 0}
-  combatManager: {fileID: 0}
-  spriteRenderers: []
-  _startingHealth: 3
-  _cost: 26
-  _name: 'Wheelbarrow '
-  _description: Gains +1 action point.
-  _inventorySprite: {fileID: 21300000, guid: e5c6f54554881dd45bf64d06ac6edf58, type: 3}
-  _gardenTile: {fileID: 0}
-  effectedGardenPlaceables: []
-  damageIndicatorPrefab: {fileID: 985783835550424020, guid: bf932e9924e884748b9300dabc7007d9, type: 3}
-  lowHealthColorFlashTime: 0.5
-  healColorTime: 1.5
-  damageColorFlashTime: 0.1
-  healEffectPrefab: {fileID: 4755694855457511726, guid: 3f33c2256c56b604bb9033effc1870b7, type: 3}
-  damageEffectPrefab: {fileID: 4378352163553255896, guid: 75b2a8ba3840eae47a131f5d467c9093, type: 3}
-  shieldEffectPrefab: {fileID: 4378352163553255896, guid: 000d52545145f7741b6acb95a0d90c19, type: 3}
-  flowerVisuals: {fileID: 109867650300612706}
-  _artifactType: 3
-  _artifactAbilityType: 5
---- !u!114 &4490389264933152813
+--- !u!114 &4283494125578995247
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -296,6 +262,41 @@ MonoBehaviour:
   y: 0
   addToSortOrder: 0
   prevAddToSortOrder: 0
+--- !u!114 &-3849542348670514258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3020584395285068545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef454453f3c9be846bb34537a5763eeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlant: 0
+  gardenManager: {fileID: 0}
+  playerDataManager: {fileID: 0}
+  combatManager: {fileID: 0}
+  spriteRenderers: []
+  _startingHealth: 3
+  _cost: 26
+  _name: Gnomiet
+  _description: When Gnomiet is placed in a new tile, heal all adjacent plants by
+    1.  When Gnomeit is placed adjacent to Gnomeo, damage all enemies by 1.
+  _inventorySprite: {fileID: 21300000, guid: c58afbd1ea86b6c4d8af0b864e71ae04, type: 3}
+  _gardenTile: {fileID: 0}
+  effectedGardenPlaceables: []
+  damageIndicatorPrefab: {fileID: 109867650300612706}
+  lowHealthColorFlashTime: 0.5
+  healColorTime: 1.5
+  damageColorFlashTime: 0.1
+  healEffectPrefab: {fileID: 4755694855457511726, guid: 3f33c2256c56b604bb9033effc1870b7, type: 3}
+  damageEffectPrefab: {fileID: 4378352163553255896, guid: 75b2a8ba3840eae47a131f5d467c9093, type: 3}
+  shieldEffectPrefab: {fileID: 4378352163553255896, guid: 000d52545145f7741b6acb95a0d90c19, type: 3}
+  flowerVisuals: {fileID: 109867650300612706}
+  _artifactType: 4
+  _artifactAbilityType: 0
 --- !u!4 &5306314669448112019 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7061688495639312982, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}

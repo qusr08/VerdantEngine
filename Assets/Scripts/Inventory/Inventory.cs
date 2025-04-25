@@ -15,30 +15,21 @@ public class Inventory : MonoBehaviour {
 	public List<InventoryBox> InventoryBoxes { get => _inventoryBoxes; private set => _inventoryBoxes = value; }
 
 	private void Start ( ) {
-		
-		AddPlant(PlantType.POWER_FLOWER);/// TESTING
+
+        AddArtifact(ArtifactType.GNOMEO);
+        AddArtifact(ArtifactType.GNOMIET);
+        AddArtifact(ArtifactType.SUNDAIL);
+
+        AddPlant(PlantType.POWER_FLOWER);/// TESTING
 
         
 		AddPlant(PlantType.POWER_FLOWER);
 
 		AddPlant(PlantType.BLAST_BLOOM);
 
-		AddPlant(PlantType.SHIELDING_SHRUB);
-		AddPlant(PlantType.SHIELDING_SHRUB);
+		
 
-		AddPlant(PlantType.HARDY_HEDGE);
-		AddPlant(PlantType.HARDY_HEDGE);
-		AddPlant(PlantType.HARDY_HEDGE);
 
-		AddPlant(PlantType.HEARTICHOKE);
-
-		AddPlant(PlantType.THORNY_THICKET);
-
-		AddPlant(PlantType.VAMPIRE_FLYTRAP);
-
-		AddArtifact(ArtifactType.WHEELBARROW);
-        AddArtifact(ArtifactType.FLAMINGO);
-        AddArtifact(ArtifactType.COMPOST);
 		
 
     }

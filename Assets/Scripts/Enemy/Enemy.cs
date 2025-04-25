@@ -28,6 +28,8 @@ public class Enemy : MonoBehaviour {
 	/// </summary>
 	public Sprite Icon => _icon;
 
+    [HideInInspector]public bool isDead = false;
+
 	/// <summary>
 	/// The current health of this enemy
 	/// </summary>
