@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class BoomShroomColony : Plant
 {
@@ -21,20 +22,27 @@ public class BoomShroomColony : Plant
 	public override void OnTurnEnd()
     {
         base.OnTurnEnd();
-        gardenManager.combatManager.playerCombatManager.inventory.AddPlant(PlantType.BOOM_SHROOM);
+        gardenManager.combatManager.inventory.AddPlant(PlantType.BOOM_SHROOM);
     }
     public override void OnKilled()
     {
-        foreach (Plant item in gardenManager.Plants)
+        gardenManager.Plants.Remove(this);
+
+        for (int i = gardenManager.Plants.Count-1; i >= 0; i--)
         {
-            item.TakeDamage(null, 1);
+            gardenManager.Plants[i].TakeDamage(null, 1);
         }
-        foreach (Artifact item in gardenManager.Artifacts)
+        for (int i = gardenManager.Artifacts.Count - 1; i >= 0; i--)
+
         {
-            item.TakeDamage(null, 1);
+            gardenManager.Artifacts[i].TakeDamage(null, 1);
+
         }
+        
         gardenManager.playerDataManager.CurrentHealth--;
         combatManager.damageAllEnemies(1);
+        base.OnKilled();
+
     }
 
 }

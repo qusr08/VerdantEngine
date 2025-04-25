@@ -68,8 +68,19 @@ public abstract class InventoryBox : MonoBehaviour, IPointerDownHandler, IPointe
 		UIDisplay = FindObjectOfType<InfoPopUp>();
 
 	}
+    public void GetReferences()
+    {
+        
+            inventory = FindObjectOfType<Inventory>();
+            gardenManager = FindObjectOfType<GardenManager>();
+            playerDataManager = FindObjectOfType<PlayerDataManager>();
+            combatManager = FindObjectOfType<CombatManager>();
+            UIDisplay = FindObjectOfType<InfoPopUp>();
 
-	public void OnPointerDown(PointerEventData eventData)
+        
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
 	{
 		playerDataManager.MouseSprite = Prefab.GetComponent<GardenPlaceable>().InventorySprite;
 	}
@@ -81,8 +92,14 @@ public abstract class InventoryBox : MonoBehaviour, IPointerDownHandler, IPointe
 	}
 
     private void OnMouseEnter()
-	{
-		Debug.Log(Prefab.GetComponent<GardenPlaceable>().Name);
+	{ 
+		if(UIDisplay ==null)
+		{
+			UIDisplay = inventory.popUp;
+
+        }
+		
+        Debug.Log(Prefab.GetComponent<GardenPlaceable>().Name);
 		if (UIDisplay.gameObject != null)
 
 		{

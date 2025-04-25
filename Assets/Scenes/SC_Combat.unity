@@ -2298,11 +2298,14 @@ MonoBehaviour:
     - {fileID: 3020584395285068545, guid: 33022c5db8ddf1242ab88c272b756f47, type: 3}
     - {fileID: 2280655750686021930, guid: 454afde0ed252fc4b8148365b465a7f2, type: 3}
   _artifactPrefabs:
-    m_keys: 000000000100000002000000
+    m_keys: 000000000100000002000000030000000400000005000000
     m_values:
     - {fileID: 3020584395285068545, guid: 61d52a537df66c642a83f0d770767607, type: 3}
     - {fileID: 3020584395285068545, guid: c8a06eb4dcaec7b449c19662c430cc88, type: 3}
     - {fileID: 3020584395285068545, guid: 2b35725d391b29f49a858f0d006bcebd, type: 3}
+    - {fileID: 3020584395285068545, guid: d353f13a3ce60054f92f31f6a968b828, type: 3}
+    - {fileID: 3020584395285068545, guid: 4967dc170d9acb24895543e191e49f64, type: 3}
+    - {fileID: 3020584395285068545, guid: 2ea4975f755d6494d8f89170d9243793, type: 3}
   groundTilePrefab: {fileID: 6778073468744122207, guid: e849fdfe6785c8844ae36b546a419676, type: 3}
   playerDataManager: {fileID: 1707282257}
   _selectedGardenTile: {fileID: 0}
@@ -2756,7 +2759,9 @@ MonoBehaviour:
   greenSky: {fileID: 2100000, guid: 07e15e9aba241cf40a2ea40d8eaed014, type: 2}
   redSky: {fileID: 2100000, guid: fb994fff68fadfc45bf7c02f1cbdc0f7, type: 2}
   enemyAnimator: {fileID: 1351641218}
-  isBoss: 0
+  ThanksForPlayingScreen: {fileID: 2006969510}
+  inventory: {fileID: 1030742013}
+  saveGameState: {fileID: 11400000, guid: 90f03d15e5bdc5546a0bd0d4a52bbfa6, type: 2}
 --- !u!4 &261010252
 Transform:
   m_ObjectHideFlags: 0
@@ -10053,6 +10058,7 @@ MonoBehaviour:
   itemBoxesContainer: {fileID: 168390826}
   plantInventoryBoxPrefab: {fileID: 3238021987426479396, guid: ceed34fd4434c70409ea344eca908668, type: 3}
   artifactInventoryBoxPrefab: {fileID: 4097344936816239343, guid: 88de780301c1e784685cf3c7f7e6bb95, type: 3}
+  combatManager: {fileID: 261010251}
 --- !u!1 &1044118693
 GameObject:
   m_ObjectHideFlags: 0
@@ -11895,7 +11901,7 @@ MonoBehaviour:
   - {fileID: 1689730081}
   - {fileID: 817460585}
   enemyAttckSliderAnimation: {fileID: 738094045}
-  inventory: {fileID: 0}
+  inventory: {fileID: 1030742013}
   cannonFlashAsset: {fileID: 1632057261}
   tempAnimTimer: 0.2
 --- !u!4 &1198069309
@@ -18801,6 +18807,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: ec9eb13b4efc3234ab45311465fcf6e8, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -23705,6 +23712,9 @@ MonoBehaviour:
   - {fileID: 3020584395285068545, guid: c8a06eb4dcaec7b449c19662c430cc88, type: 3}
   - {fileID: 3020584395285068545, guid: 2b35725d391b29f49a858f0d006bcebd, type: 3}
   - {fileID: 3020584395285068545, guid: 61d52a537df66c642a83f0d770767607, type: 3}
+  - {fileID: 3020584395285068545, guid: d353f13a3ce60054f92f31f6a968b828, type: 3}
+  - {fileID: 3020584395285068545, guid: 4967dc170d9acb24895543e191e49f64, type: 3}
+  - {fileID: 3020584395285068545, guid: 2ea4975f755d6494d8f89170d9243793, type: 3}
   partPrefabs:
   - {fileID: 11400000, guid: 001b5f5f0c0685f489002903a568926f, type: 2}
   - {fileID: 11400000, guid: 944ffad48c7ea094db0d9de5a1ec003b, type: 2}

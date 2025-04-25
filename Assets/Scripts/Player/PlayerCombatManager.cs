@@ -139,13 +139,16 @@ public class PlayerCombatManager : MonoBehaviour {
 	public void EndOfTurnEffects()
     {
 		//heathichoke & FLYTRAP vempire effects
-		foreach (Plant plant in gardenManager.GetFilteredPlants((new List<PlantType>() { PlantType.HEARTICHOKE,PlantType.VAMPIRE_FLYTRAP })))
+		foreach (Plant plant in gardenManager.Plants )
         {
 			plant.OnTurnEnd();
         }
-     
+        foreach (Artifact artifact in gardenManager.Artifacts)
+        {
+            artifact.OnTurnEnd();
+        }
 
-	}
+    }
 
     public IEnumerator ApplyDamageToGarden(Enemy enemy, EnemyAttackSO enemyAttack)
     {

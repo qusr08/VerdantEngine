@@ -9,10 +9,11 @@ public class Inventory : MonoBehaviour {
 	[SerializeField] private GameObject plantInventoryBoxPrefab;
 	[SerializeField] private GameObject artifactInventoryBoxPrefab;
     [SerializeField] CombatManager combatManager;
-	/// <summary>
-	/// A list of all the inventory boxes
-	/// </summary>
-	public List<InventoryBox> InventoryBoxes { get => _inventoryBoxes; private set => _inventoryBoxes = value; }
+	public InfoPopUp popUp;
+    /// <summary>
+    /// A list of all the inventory boxes
+    /// </summary>
+    public List<InventoryBox> InventoryBoxes { get => _inventoryBoxes; private set => _inventoryBoxes = value; }
 
 	private void Start ( ) {
 
@@ -27,10 +28,11 @@ public class Inventory : MonoBehaviour {
 
 		AddPlant(PlantType.BLAST_BLOOM);
 
-		
+        AddPlant(PlantType.BOOM_SHROOM_COLONY);
 
 
-		
+
+
 
     }
 
@@ -38,7 +40,11 @@ public class Inventory : MonoBehaviour {
 		// NOTE: DEBUG USE ONLY
 		// Add one of everything to your inventory if you press left shift + D at the same time
 		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.D)) {
-			AddPlant(PlantType.POWER_FLOWER);
+
+            AddPlant(PlantType.BOOM_SHROOM_COLONY);
+            AddPlant(PlantType.KARMIC_KALMIA);
+
+            AddPlant(PlantType.POWER_FLOWER);
 			AddPlant(PlantType.SHIELDING_SHRUB);
 			AddPlant(PlantType.HARDY_HEDGE);
 			AddPlant(PlantType.VAMPIRE_FLYTRAP);

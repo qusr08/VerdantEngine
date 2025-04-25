@@ -278,7 +278,7 @@ MonoBehaviour:
   gardenManager: {fileID: 0}
   playerDataManager: {fileID: 0}
   combatManager: {fileID: 0}
-  spriteRenderers: []
+  _spriteRenderers: []
   _startingHealth: 3
   _cost: 26
   _name: Gnomiet
@@ -287,10 +287,11 @@ MonoBehaviour:
   _inventorySprite: {fileID: 21300000, guid: c58afbd1ea86b6c4d8af0b864e71ae04, type: 3}
   _gardenTile: {fileID: 0}
   effectedGardenPlaceables: []
-  damageIndicatorPrefab: {fileID: 109867650300612706}
+  damageIndicatorPrefab: {fileID: 985783835550424020, guid: bf932e9924e884748b9300dabc7007d9, type: 3}
   lowHealthColorFlashTime: 0.5
   healColorTime: 1.5
   damageColorFlashTime: 0.1
+  _effectedTiles: []
   healEffectPrefab: {fileID: 4755694855457511726, guid: 3f33c2256c56b604bb9033effc1870b7, type: 3}
   damageEffectPrefab: {fileID: 4378352163553255896, guid: 75b2a8ba3840eae47a131f5d467c9093, type: 3}
   shieldEffectPrefab: {fileID: 4378352163553255896, guid: 000d52545145f7741b6acb95a0d90c19, type: 3}

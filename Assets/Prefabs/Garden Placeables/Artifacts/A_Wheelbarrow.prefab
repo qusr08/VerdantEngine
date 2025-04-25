@@ -258,11 +258,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77875cf77b3a1d64999ad88f276fc449, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlant: 1
+  isPlant: 0
   gardenManager: {fileID: 0}
   playerDataManager: {fileID: 0}
   combatManager: {fileID: 0}
-  spriteRenderers: []
+  _spriteRenderers: []
   _startingHealth: 3
   _cost: 26
   _name: 'Wheelbarrow '
@@ -274,11 +274,12 @@ MonoBehaviour:
   lowHealthColorFlashTime: 0.5
   healColorTime: 1.5
   damageColorFlashTime: 0.1
+  _effectedTiles: []
   healEffectPrefab: {fileID: 4755694855457511726, guid: 3f33c2256c56b604bb9033effc1870b7, type: 3}
   damageEffectPrefab: {fileID: 4378352163553255896, guid: 75b2a8ba3840eae47a131f5d467c9093, type: 3}
   shieldEffectPrefab: {fileID: 4378352163553255896, guid: 000d52545145f7741b6acb95a0d90c19, type: 3}
   flowerVisuals: {fileID: 109867650300612706}
-  _artifactType: 3
+  _artifactType: 0
   _artifactAbilityType: 5
 --- !u!114 &4490389264933152813
 MonoBehaviour:
