@@ -4894,6 +4894,10 @@ PrefabInstance:
       value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
+      propertyPath: percents.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 725706330965509725, guid: 08fb3d33096b7a245a04066604bd6085, type: 3}
       propertyPath: spawnType.Array.size
       value: 1
       objectReference: {fileID: 0}
