@@ -150,7 +150,7 @@ public class RewardManager : MonoBehaviour
             }
         }
 
-        moneyRewardText.text = "Money earned from encounter : " + moneyReward.ToString();
+        moneyRewardText.text = "Scrap earned from encounter : " + moneyReward.ToString();
         healthText.text = "Health : " + playerDataManager.CurrentHealth.ToString() + "/" + playerDataManager.MaxHealth.ToString();
     }
     public void AddToInventoryAfterFight(int itemIndex)
