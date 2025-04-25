@@ -282,8 +282,8 @@ MonoBehaviour:
   _startingHealth: 3
   _cost: 26
   _name: Gnomiet
-  _description: When Gnomiet is placed in a new tile, heal all adjacent plants by
-    1.  When Gnomeit is placed adjacent to Gnomeo, damage all enemies by 1.
+  _description: On end of turn, heal all adjacent plants by 1.  If Gnomeit is placed
+    adjacent to Gnomeo, damage all enemies by 1 instead.
   _inventorySprite: {fileID: 21300000, guid: c58afbd1ea86b6c4d8af0b864e71ae04, type: 3}
   _gardenTile: {fileID: 0}
   effectedGardenPlaceables: []
@@ -296,7 +296,7 @@ MonoBehaviour:
   shieldEffectPrefab: {fileID: 4378352163553255896, guid: 000d52545145f7741b6acb95a0d90c19, type: 3}
   flowerVisuals: {fileID: 109867650300612706}
   _artifactType: 4
-  _artifactAbilityType: 0
+  _artifactAbilityType: 3
 --- !u!4 &5306314669448112019 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7061688495639312982, guid: 502cb0f1ed14b684a91dead0effe5ff3, type: 3}

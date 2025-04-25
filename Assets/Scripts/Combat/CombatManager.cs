@@ -359,17 +359,9 @@ public class CombatManager : MonoBehaviour {
 
         playerDataManager.CurrentActions = saveGameState.actions;
 
-        Enemies.Clear();
-        foreach (Enemy item in saveGameState.EnemiesStates)
-        {
-            Enemy enemy = new Enemy();
-            enemy = item;
-            Enemies.Add(item);
+    
 
-        }
-
-        //Need to add enemy hp reset
-        combatUIManager.ResetTurn_RestUI(saveGameState.EnemiesStates);
+ 
         //Need to add inventory Reset
         foreach (var item in saveGameState.PlacedPlants)
 		{

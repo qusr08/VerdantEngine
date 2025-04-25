@@ -6,7 +6,7 @@ public class A_Gnomiet : Artifact
 {
     List<ArtifactType> gnomio = new List<ArtifactType>() { ArtifactType.GNOMEO };
     List<Artifact> surroundingArtifact;
-    public override void OnMoved()
+    public override void OnTurnEnd()
     {
 
         base.OnMoved();
