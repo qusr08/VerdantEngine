@@ -312,26 +312,41 @@ public class CombatManager : MonoBehaviour {
     }
     private void WinGame()
 	{
-		if(isBoss)
+		if (isBoss)
 		{
 			ThanksForPlayingScreen.SetActive(true);
 
-        }
+		}
+		else
+		{
 
-		playerDataManager.Money += currentCombatPreset.rewardMoeny;
+			playerDataManager.Money += currentCombatPreset.rewardMoeny;
 
-		winScreen.GetComponent<RewardManager>().moneyReward = currentCombatPreset.rewardMoeny;
-        winScreen.SetActive(true);
+			winScreen.GetComponent<RewardManager>().moneyReward = currentCombatPreset.rewardMoeny;
+			StartCoroutine(WinGameCoretine());
+		}
 
 		// NOTE: This should be replaced with end-screen rewards
 		// Once the reward is chosen, then do the below code
 
 		// Reset the player actions so the player can update their board in between combats
 		// Also set the game state from COMBAT back to IDLE
-		playerDataManager.CurrentActions = playerDataManager.MaxActions;
 
 	}
+    private IEnumerator WinGameCoretine()
+    {
+        winScreen.SetActive(true);
 
+        // NOTE: This should be replaced with end-screen rewards
+        // Once the reward is chosen, then do the below code
+        yield return new WaitForSeconds(2f);
+
+        // Reset the player actions so the player can update their board in between combats
+        // Also set the game state from COMBAT back to IDLE
+        winScreen.SetActive(false);
+        playerDataManager.CurrentActions = playerDataManager.MaxActions;
+        combatUIManager.GameState = GameState.IDLE;
+    }
 
     public SaveGameState_SO saveGameState;
 
