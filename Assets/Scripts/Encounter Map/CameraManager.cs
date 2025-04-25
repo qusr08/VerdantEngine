@@ -37,6 +37,8 @@ public class MapPlayer : MonoBehaviour
 
     public CombatManager combatManager;
 
+    public GameObject[] enemyHP;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -179,7 +181,13 @@ public class MapPlayer : MonoBehaviour
                 //check combat
                 if(combatManager.Enemies.Count>0)
                 {
+                    ShowEnemeyPartsUI();
+
                     combatManager.UpdateEnemyAttackVisuals();
+                }
+                else
+                {
+                    HideEnemeyPartsUI();
                 }
                 break;
             case ActiveScene.Shop:
@@ -203,6 +211,21 @@ public class MapPlayer : MonoBehaviour
 
     }
 
+    public void HideEnemeyPartsUI()
+    {
+        foreach (var item in enemyHP)
+        {
+            item.SetActive(false);
+        }
+    }
+
+    public void ShowEnemeyPartsUI()
+    {
+        foreach (var item in enemyHP)
+        {
+            item.SetActive(true);
+        }
+    }
 
     /// <summary>
     /// Moves the player to selected encounter
