@@ -7,6 +7,8 @@ public class InfoPopUp : MonoBehaviour
     public GameObject infoPopUpObject;
     public PlantHover plantHover;
     public EnemyHover enemyHover;
+    public PartHover partHover;
+
     public Canvas canvas; // Reference to the Canvas the UI element belongs to.
     bool isPlant;
     public void SetUpEnemey(Enemy enemy)
@@ -14,6 +16,7 @@ public class InfoPopUp : MonoBehaviour
         UpdateUIElementPosition();
         plantHover.gameObject.SetActive(false);
         enemyHover.gameObject.SetActive(true);
+        partHover.gameObject.SetActive(false);
         enemyHover.UpdateText(enemy);
         isPlant = false;
     }
@@ -24,6 +27,18 @@ public class InfoPopUp : MonoBehaviour
         enemyHover.gameObject.SetActive(false);
         plantHover.UpdateText(placeble);
         isPlant = true;
+        partHover.gameObject.SetActive(false);
+
+
+    }
+    public void SetUpWeapon(PlayerAttackMenuItem part)
+    {
+        UpdateUIElementPosition();
+        plantHover.gameObject.SetActive(false);
+        enemyHover.gameObject.SetActive(false);
+        partHover.gameObject.SetActive(true);
+        partHover.UpdateText(part);
+        isPlant = true;
 
     }
     public void SetUpTree(PlayerDataManager tree)
@@ -32,6 +47,8 @@ public class InfoPopUp : MonoBehaviour
         plantHover.gameObject.SetActive(true);
         enemyHover.gameObject.SetActive(false);
         plantHover.UpdateTextTree(tree);
+        partHover.gameObject.SetActive(false);
+
         isPlant = true;
 
     }

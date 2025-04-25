@@ -43,8 +43,14 @@ public class PlayerCombatManager : MonoBehaviour {
 		weaponMenuItems.Clear();
         foreach (PlayerAttackSO playerAttack in playerDataManager.PlayerAttacks)
         {
-            weaponMenuItems.Add(Instantiate(weaponMenuItemPrefab, weaponMenuContainer).GetComponent<PlayerAttackMenuItem>());
-            weaponMenuItems[weaponMenuItems.Count - 1].PlayerAttack = playerAttack;
+			PlayerAttackMenuItem attackMenuItem = Instantiate(weaponMenuItemPrefab, weaponMenuContainer).GetComponent<PlayerAttackMenuItem>();
+            attackMenuItem.PlayerAttack = playerAttack;
+            attackMenuItem.UIDisplay = combatManager.inventory.popUp;
+            weaponMenuItems.Add(attackMenuItem);
+
+            if (playerAttack.MaxCooldown>0)
+            weaponMenuItems[weaponMenuItems.Count - 1].GetOnCooldown();
+
         }
     }
 
@@ -87,7 +93,6 @@ public class PlayerCombatManager : MonoBehaviour {
     public IEnumerator PlayerTurn ( ) {
 		
 		foreach (PlayerAttackMenuItem weaponMenuItem in weaponMenuItems) {
-			weaponMenuItem.PlayerAttack.Cooldown--;
 
 			if (weaponMenuItem.PlayerAttack.Cooldown <= 0 && (energy - weaponMenuItem.PlayerAttack.ManaCost) >= 0) {
 				energy -= weaponMenuItem.PlayerAttack.ManaCost;
@@ -118,14 +123,21 @@ public class PlayerCombatManager : MonoBehaviour {
 				}
 
 				weaponMenuItem.GetComponent<Image>( ).color = Color.white;
+                weaponMenuItem.GetOnCooldown();
 
-				// Fire the part after targeting is complete (or immediately if no targeting needed)
-			} else if(weaponMenuItem.PlayerAttack.Cooldown <= 0 && (energy - weaponMenuItem.PlayerAttack.ManaCost) < 0)
+                // Fire the part after targeting is complete (or immediately if no targeting needed)
+            }
+            else if(weaponMenuItem.PlayerAttack.Cooldown <= 0 && (energy - weaponMenuItem.PlayerAttack.ManaCost) < 0)
             {
 				weaponMenuItem.PlayerAttack.Cooldown = 1;
 			}
+            weaponMenuItem.PlayerAttack.Cooldown--;
 
-			weaponMenuItem.UpdateCoolDown( );
+
+            weaponMenuItem.UpdateCoolDown( );
+			if (weaponMenuItem.PlayerAttack.Cooldown ==0)
+			weaponMenuItem.ReadyToFire();
+
 		}
 		EndOfTurnEffects(); 
 		StartCoroutine( combatManager.EnemyTurn( ));
