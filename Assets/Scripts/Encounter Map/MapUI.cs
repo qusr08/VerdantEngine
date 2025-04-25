@@ -35,8 +35,8 @@ public class MapUI : MonoBehaviour
 
     private void OnEnable()
     {
-        balanceText.text = "Balance : " + playerDataManager.Money.ToString();
-        healthText.text = "Health : " + playerDataManager.CurrentHealth.ToString() + "/" + playerDataManager.MaxHealth.ToString();
+        balanceText.text = playerDataManager.Money.ToString();
+        healthText.text = playerDataManager.CurrentHealth.ToString() + "/" + playerDataManager.MaxHealth.ToString();
 
     }
 
