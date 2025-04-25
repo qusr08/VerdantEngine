@@ -21504,6 +21504,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TutorialManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2675301878607754954, guid: 9cd38cc5b544ac34d9f6711db35f51e5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3460602376052110135, guid: 9cd38cc5b544ac34d9f6711db35f51e5, type: 3}
       propertyPath: m_Color.a
       value: 1
@@ -21512,7 +21516,19 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4554692406864095484, guid: 9cd38cc5b544ac34d9f6711db35f51e5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893362753629635447, guid: 9cd38cc5b544ac34d9f6711db35f51e5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000061035156
+      objectReference: {fileID: 0}
     - target: {fileID: 5565277139539061130, guid: 9cd38cc5b544ac34d9f6711db35f51e5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6228412690324553038, guid: 9cd38cc5b544ac34d9f6711db35f51e5, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
