@@ -30,6 +30,10 @@ public class TutorialManager : MonoBehaviour
     private TutorialType currentTutorialType;
     private int currentStep = 0;
 
+    private bool hasActivatedOnMap = false;
+    private bool hasActivatedOnGarden = false;
+    private bool hasActivatedOnCombat = false;
+
     public void StartTutorial(TutorialType tutorialType) {
 
         if (!tutorialIsActive) {
@@ -149,5 +153,18 @@ public class TutorialManager : MonoBehaviour
             StartTutorial(TutorialType.GardenTutorial);
         }
 
+    }
+
+    private void Update() {
+        if (!hasActivatedOnMap && (mapPlayer.scene == ActiveScene.Map)) {
+            hasActivatedOnMap = true;
+            StartTutorial(TutorialType.MapTutorial);
+        } else if ((mapPlayer.scene != ActiveScene.Map) && !hasActivatedOnCombat && (uiManager.GameState == GameState.COMBAT)) {
+            hasActivatedOnCombat = true;
+            StartTutorial(TutorialType.CombatTutorial);
+        } else if (!hasActivatedOnGarden && (mapPlayer.scene == ActiveScene.Garden)) {
+            hasActivatedOnGarden = true;
+            StartTutorial(TutorialType.GardenTutorial);
+        }
     }
 }
