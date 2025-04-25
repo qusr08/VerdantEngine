@@ -27,10 +27,17 @@ public class PlayerCombatManager : MonoBehaviour {
 	public Inventory inventory; // used for flowers to get a reference
     public GameObject cannonFlashAsset;
 	public float tempAnimTimer;
+	public InfoPopUp popUp;
 	private void Start ( ) {
 		foreach (PlayerAttackSO playerAttack in playerDataManager.PlayerAttacks) {
-			weaponMenuItems.Add(Instantiate(weaponMenuItemPrefab, weaponMenuContainer).GetComponent<PlayerAttackMenuItem>( ));
-			weaponMenuItems[weaponMenuItems.Count - 1].PlayerAttack = playerAttack;
+            PlayerAttackMenuItem attackMenuItem = Instantiate(weaponMenuItemPrefab, weaponMenuContainer).GetComponent<PlayerAttackMenuItem>();
+            attackMenuItem.PlayerAttack = playerAttack;
+            attackMenuItem.UIDisplay = popUp;
+            if (attackMenuItem.PlayerAttack.Cooldown == 0)
+                attackMenuItem.ReadyToFire();
+            else
+                attackMenuItem.GetOnCooldown();
+            weaponMenuItems.Add(attackMenuItem);
 		}
 	}
 	public void SetUpWeapons()
@@ -43,20 +50,42 @@ public class PlayerCombatManager : MonoBehaviour {
 		weaponMenuItems.Clear();
         foreach (PlayerAttackSO playerAttack in playerDataManager.PlayerAttacks)
         {
-            weaponMenuItems.Add(Instantiate(weaponMenuItemPrefab, weaponMenuContainer).GetComponent<PlayerAttackMenuItem>());
-            weaponMenuItems[weaponMenuItems.Count - 1].PlayerAttack = playerAttack;
+			PlayerAttackMenuItem attackMenuItem = Instantiate(weaponMenuItemPrefab, weaponMenuContainer).GetComponent<PlayerAttackMenuItem>();
+            attackMenuItem.PlayerAttack = playerAttack;
+            attackMenuItem.UIDisplay = popUp;
+            if (attackMenuItem.PlayerAttack.Cooldown == 0)
+                attackMenuItem.ReadyToFire();
+            else
+                attackMenuItem.GetOnCooldown();
+            weaponMenuItems.Add(attackMenuItem);
+
+            if (playerAttack.MaxCooldown>0)
+            weaponMenuItems[weaponMenuItems.Count - 1].GetOnCooldown();
+
         }
     }
 
     public void PlayerStartTurn()
     {
         StartOfTurnEffects();
-        energy += energyModifier;
+        energy += playerDataManager.actionCountModifier;
 		energyText.text = energy.ToString();
+		
+    }
+	public void ResetWeapons()
+    {
+        foreach (PlayerAttackMenuItem weaponMenuItem in weaponMenuItems)
+        {
+            weaponMenuItem._playerAttack.Cooldown = weaponMenuItem._playerAttack.MaxCooldown;
+            weaponMenuItem.UpdateCoolDown();
+            if (weaponMenuItem.PlayerAttack.Cooldown == 0)
+                weaponMenuItem.ReadyToFire();
+            else
+                weaponMenuItem.GetOnCooldown();
+        }
 
     }
-	
-	public void StartOfTurnEffects()
+        public void StartOfTurnEffects()
 	{
         foreach (GardenPlaceable item in gardenManager.Plants)
         {
@@ -87,7 +116,6 @@ public class PlayerCombatManager : MonoBehaviour {
     public IEnumerator PlayerTurn ( ) {
 		
 		foreach (PlayerAttackMenuItem weaponMenuItem in weaponMenuItems) {
-			weaponMenuItem.PlayerAttack.Cooldown--;
 
 			if (weaponMenuItem.PlayerAttack.Cooldown <= 0 && (energy - weaponMenuItem.PlayerAttack.ManaCost) >= 0) {
 				energy -= weaponMenuItem.PlayerAttack.ManaCost;
@@ -118,14 +146,21 @@ public class PlayerCombatManager : MonoBehaviour {
 				}
 
 				weaponMenuItem.GetComponent<Image>( ).color = Color.white;
-
-				// Fire the part after targeting is complete (or immediately if no targeting needed)
-			} else if(weaponMenuItem.PlayerAttack.Cooldown <= 0 && (energy - weaponMenuItem.PlayerAttack.ManaCost) < 0)
+                weaponMenuItem.PlayerAttack.Cooldown = weaponMenuItem.PlayerAttack.MaxCooldown;
+                weaponMenuItem.GetOnCooldown();
+                // Fire the part after targeting is complete (or immediately if no targeting needed)
+            }
+            else if(weaponMenuItem.PlayerAttack.Cooldown <= 0 && (energy - weaponMenuItem.PlayerAttack.ManaCost) < 0)
             {
 				weaponMenuItem.PlayerAttack.Cooldown = 1;
 			}
+            weaponMenuItem.PlayerAttack.Cooldown--;
 
-			weaponMenuItem.UpdateCoolDown( );
+
+            weaponMenuItem.UpdateCoolDown( );
+			if (weaponMenuItem.PlayerAttack.Cooldown ==0)
+			weaponMenuItem.ReadyToFire();
+
 		}
 		EndOfTurnEffects(); 
 		StartCoroutine( combatManager.EnemyTurn( ));

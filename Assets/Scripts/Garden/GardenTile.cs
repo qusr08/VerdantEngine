@@ -227,7 +227,8 @@ public class GardenTile : MonoBehaviour {
 				effectedGardenTile.IsIndicated = false;
 			}
 		}
-
+		if
+			(PopUpDisplay!=null)
 		PopUpDisplay.gameObject.SetActive(false);
 
 		IsSelected = false;

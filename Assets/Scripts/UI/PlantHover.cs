@@ -32,8 +32,16 @@ public class PlantHover : MonoBehaviour {
 			} else if (gardenPlaceable.HealthStat.TotalModifier < 0) {
 				healthModifierString = $"<color=\"red\"> - {gardenPlaceable.HealthStat.TotalModifier}</color>";
 			}
-			plantHealthText.text = Mathf.Max(0, gardenPlaceable.HealthStat.BaseValue) + healthModifierString + "/" + gardenPlaceable.StartingHealth.ToString();
-		}
+			if (gardenPlaceable.HealthStat.CurrentValue > 0)
+			{
+				plantHealthText.text = Mathf.Max(0, gardenPlaceable.HealthStat.CurrentValue) + healthModifierString + "/" + gardenPlaceable.StartingHealth.ToString();
+			}
+			else
+			{
+                plantHealthText.text = gardenPlaceable.StartingHealth.ToString() + healthModifierString + "/" + gardenPlaceable.StartingHealth.ToString();
+
+            }
+        }
 
 		// If the shield stat is null, then this garden placeable is a prefab in the inventory
 		// Just set the default value to be 0 (this may be changed in the future)

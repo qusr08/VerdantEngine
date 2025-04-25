@@ -24,7 +24,7 @@ public class CombatUIManager : MonoBehaviour
 	[SerializeField] private GameObject viewMapButton;
     [SerializeField] private GameObject popUp;
     [SerializeField] private GameObject plantUIPanal;
-
+	[SerializeField] private GameObject GoBackToMap;
 
     [Space]
 	[SerializeField] private GameState _gameState;
@@ -42,18 +42,18 @@ public class CombatUIManager : MonoBehaviour
 			switch (_gameState)
 			{
 				case GameState.IDLE:
-					lowerPanel.anchoredPosition = new Vector3(383, 0f, 0f); // Should probably be changed later with a variable
+					lowerPanel.gameObject.SetActive(false);
 
-					moveCounter.SetActive(false);
+                    moveCounter.SetActive(false);
 			//resetTurnButton.SetActive(false);
 					endTurnButton.SetActive(false);
 					viewMapButton.SetActive(true);
 
 					break;
 				case GameState.COMBAT:
-					lowerPanel.anchoredPosition = Vector3.zero;
+                    lowerPanel.gameObject.SetActive(true); 
 
-					moveCounter.SetActive(true);
+                    moveCounter.SetActive(true);
 //esetTurnButton.SetActive(true);
 					endTurnButton.SetActive(true);
 					viewMapButton.SetActive(false);

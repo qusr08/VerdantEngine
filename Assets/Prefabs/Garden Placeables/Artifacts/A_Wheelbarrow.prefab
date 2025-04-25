@@ -280,7 +280,7 @@ MonoBehaviour:
   shieldEffectPrefab: {fileID: 4378352163553255896, guid: 000d52545145f7741b6acb95a0d90c19, type: 3}
   flowerVisuals: {fileID: 109867650300612706}
   _artifactType: 0
-  _artifactAbilityType: 5
+  _artifactAbilityType: 6
 --- !u!114 &4490389264933152813
 MonoBehaviour:
   m_ObjectHideFlags: 0

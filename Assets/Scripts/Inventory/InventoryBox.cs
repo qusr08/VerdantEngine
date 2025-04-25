@@ -110,6 +110,11 @@ public abstract class InventoryBox : MonoBehaviour, IPointerDownHandler, IPointe
 
 	public void OnMouseExit()
 	{
+        if (UIDisplay == null)
+        {
+            UIDisplay = inventory.popUp;
+
+        }
         Debug.Log(Prefab.GetComponent<GardenPlaceable>().Name + "");
 		if(UIDisplay.gameObject !=null)
         UIDisplay.gameObject.SetActive(false);
