@@ -8,8 +8,9 @@ public class Map : MonoBehaviour
     [SerializeField] private int enemyChance;
     [SerializeField] private int shopChance;
     [SerializeField] private int eventChance;
-    [SerializeField] private int[] enemyRates;
-    [SerializeField] private int[] eventRates;
+    //These aren't used anymore. They were for spawning different events/enemies in the early days
+    //[SerializeField] private int[] enemyRates;
+    //[SerializeField] private int[] eventRates;
 
     [Header("Forced Encounters")]
     [SerializeField] private int[] spawnIndex;
