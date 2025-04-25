@@ -7,6 +7,7 @@ using System.Linq;
 using System;
 using Unity.Mathematics;
 using Unity.VisualScripting;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class CombatManager : MonoBehaviour {
 	[SerializeField] public PlayerCombatManager playerCombatManager;
@@ -174,17 +175,13 @@ public class CombatManager : MonoBehaviour {
     {
 		if (Enemies.Count == 0)
 			return;
-      
-
-        // Deselect all enemies
-        foreach (Enemy enemy in Enemies)
+        for (int i = Enemies.Count - 1; i >= 0; i--)
         {
-         
-
-            enemy.GetComponent<SpriteRenderer>().color = Color.red;
-            enemy.Attacked(damage);
+			Enemies[i].GetComponent<SpriteRenderer>().color = Color.red;
+            Enemies[i].Attacked(damage);
         }
 
+      
         
        
     }
