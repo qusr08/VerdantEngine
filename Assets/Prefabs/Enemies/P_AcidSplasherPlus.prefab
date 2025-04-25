@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 210805236550136860}
   - component: {fileID: 6843448182824146307}
   m_Layer: 0
-  m_Name: P_AcidSplasher
+  m_Name: P_AcidSplasherPlus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -188,10 +188,10 @@ MonoBehaviour:
   playerDataManager: {fileID: 0}
   combatManager: {fileID: 0}
   arrowObject: {fileID: 5387549191876080225}
-  enemyName: Acid Splasher
+  enemyName: Acid Splasher +
   EnemyID: 0
-  _maxHealth: 2
-  _currentHealth: 2
+  _maxHealth: 6
+  _currentHealth: 6
   _currentCooldown: 0
   _icon: {fileID: 21300000, guid: 419d52bed1d891b47a11463e077de1a9, type: 3}
   _finalAim: []

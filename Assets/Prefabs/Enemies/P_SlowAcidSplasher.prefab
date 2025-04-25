@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 210805236550136860}
   - component: {fileID: 6843448182824146307}
   m_Layer: 0
-  m_Name: P_AcidSplasher
+  m_Name: P_SlowAcidSplasher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,11 +192,11 @@ MonoBehaviour:
   EnemyID: 0
   _maxHealth: 2
   _currentHealth: 2
-  _currentCooldown: 0
+  _currentCooldown: 1
   _icon: {fileID: 21300000, guid: 419d52bed1d891b47a11463e077de1a9, type: 3}
   _finalAim: []
   attacks:
-  - {fileID: 11400000, guid: 33cb20a479ce9714293e16b24f67ff34, type: 2}
+  - {fileID: 11400000, guid: 57fa67944c7b4b24fabc0c0a8712bfac, type: 2}
   isDead: 0
 --- !u!65 &6843448182824146307
 BoxCollider:
