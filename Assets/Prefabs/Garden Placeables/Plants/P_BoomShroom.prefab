@@ -113,7 +113,7 @@ MonoBehaviour:
   _cost: 3
   _name: Boom Shroom
   _description: When this plant is destroyed, deal 1 damage to all adjacent plants
-    and the targeted enemy.
+    and the front enemy.
   _inventorySprite: {fileID: 21300000, guid: f8357776349640b4fb45861561827e31, type: 3}
   _gardenTile: {fileID: 0}
   effectedGardenPlaceables: []
