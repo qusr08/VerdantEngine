@@ -217,7 +217,11 @@ public class GardenManager : MonoBehaviour {
 		if (plant == null || gardenTile == null) {
 			return false;
 		}
-
+		//we moved into the same spot.
+		if(gardenTile == plant.GardenTile)
+		{
+			return false;
+		}
 		// If there is a plant at the garden tile already, swap the current plant being moved with the one on the tile
 		if (gardenTile.GardenPlaceable != null) {
 			gardenTile.GardenPlaceable.GardenTile = plant.GardenTile;
@@ -244,9 +248,13 @@ public class GardenManager : MonoBehaviour {
         {
             return false;
         }
-
-		// If there is an artifact at the garden tile already, swap the current artifact being moved with the one on the tile
-		if (gardenTile.GardenPlaceable != null) {
+        //we moved into the same spot.
+        if (gardenTile == artifact.GardenTile)
+        {
+            return false;
+        }
+        // If there is an artifact at the garden tile already, swap the current artifact being moved with the one on the tile
+        if (gardenTile.GardenPlaceable != null) {
 			gardenTile.GardenPlaceable.GardenTile = artifact.GardenTile;
         }
 

@@ -116,11 +116,12 @@ public class PlayerCombatManager : MonoBehaviour {
     public IEnumerator PlayerTurn ( ) {
 		
 		foreach (PlayerAttackMenuItem weaponMenuItem in weaponMenuItems) {
-
-			if (weaponMenuItem.PlayerAttack.Cooldown <= 0 && (energy - weaponMenuItem.PlayerAttack.ManaCost) >= 0) {
+           
+            //weapon can fire
+            if (weaponMenuItem.PlayerAttack.Cooldown <= 0 && (energy - weaponMenuItem.PlayerAttack.ManaCost) >= 0) {
 				energy -= weaponMenuItem.PlayerAttack.ManaCost;
 				energyText.text = energy.ToString( );
-				weaponMenuItem.GetComponent<Image>( ).color = Color.red;
+				weaponMenuItem.GetComponent<Image>( ).color = Color.yellow;
 				weaponMenuItem.PlayerAttack.Cooldown = weaponMenuItem.PlayerAttack.MaxCooldown;
 
 				//If attack is targetting enemies, handle it
@@ -148,25 +149,31 @@ public class PlayerCombatManager : MonoBehaviour {
 				weaponMenuItem.GetComponent<Image>( ).color = Color.white;
                 weaponMenuItem.PlayerAttack.Cooldown = weaponMenuItem.PlayerAttack.MaxCooldown;
                 weaponMenuItem.GetOnCooldown();
+
                 // Fire the part after targeting is complete (or immediately if no targeting needed)
             }
+            //weapon dont have eniugh enery
             else if(weaponMenuItem.PlayerAttack.Cooldown <= 0 && (energy - weaponMenuItem.PlayerAttack.ManaCost) < 0)
             {
 				weaponMenuItem.PlayerAttack.Cooldown = 1;
 			}
-            weaponMenuItem.PlayerAttack.Cooldown--;
+            //Tick down cool down if not at 0
+            else
+            {
+                weaponMenuItem.PlayerAttack.Cooldown--;
+            }
 
-
-
-            weaponMenuItem.UpdateCoolDown( );
+            weaponMenuItem.UpdateCoolDown();
             if (weaponMenuItem.PlayerAttack.Cooldown <= 0)
-            { 
+            {
                 weaponMenuItem.ReadyToFire();
                 weaponMenuItem.PlayerAttack.Cooldown = 0;
             }
+            
 
-		}
-		EndOfTurnEffects(); 
+
+        }
+        EndOfTurnEffects(); 
 		StartCoroutine( combatManager.EnemyTurn( ));
 	}
 
