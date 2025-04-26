@@ -88,18 +88,20 @@ public class PlayerCombatManager : MonoBehaviour {
     }
         public void StartOfTurnEffects()
 	{
-        for (int i = gardenManager.Plants.Count - 1; i >= gardenManager.Plants.Count; i--)
+        for (int i = (gardenManager.Plants.Count - 1); i >= 0; i--)
         {
             if (gardenManager.Plants[i] != null)
                 gardenManager.Plants[i].OnTurnStart();
 
         }
-        for (int i = gardenManager.Artifacts.Count - 1; i >= gardenManager.Artifacts.Count; i--)
+        for (int i = gardenManager.Artifacts.Count - 1; i >= 0; i--)
         {
             if (gardenManager.Artifacts[i] != null)
                 gardenManager.Artifacts[i].OnTurnStart();
 
         }
+
+     
         combatManager.SaveGameState();
 
     }
@@ -187,13 +189,13 @@ public class PlayerCombatManager : MonoBehaviour {
 	}
 	public void EndOfTurnEffects()
     {
-        for (int i = gardenManager.Plants.Count-1; i >= gardenManager.Plants.Count; i--)
+        for (int i = gardenManager.Plants.Count-1; i >= 0; i--)
         {
             if (gardenManager.Plants[i]!=null)
             gardenManager.Plants[i].OnTurnEnd();
 
         }
-        for (int i = gardenManager.Artifacts.Count - 1; i >= gardenManager.Artifacts.Count; i--)
+        for (int i = gardenManager.Artifacts.Count - 1; i >= 0; i--)
         {
             if (gardenManager.Artifacts[i] != null)
                 gardenManager.Artifacts[i].OnTurnEnd();
