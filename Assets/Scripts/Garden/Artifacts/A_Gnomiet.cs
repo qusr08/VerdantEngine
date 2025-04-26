@@ -13,9 +13,10 @@ public class A_Gnomiet : Artifact
         surroundingArtifact = GetSurroundingArtifacts(1, gnomio);
         if (surroundingArtifact != null && surroundingArtifact.Count > 0)
         {
-            combatManager.damageAllEnemies(1);
-
-           
+            foreach (Plant plant in (gardenManager.Plants))
+            {
+                plant.Heal(1);
+            }
         }
         else
         {
