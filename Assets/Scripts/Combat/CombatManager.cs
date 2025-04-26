@@ -260,12 +260,14 @@ public class CombatManager : MonoBehaviour {
 
 		playerCombatManager.PlayerStartTurn();
 		AllEnemiesStartRound();
-	}
+        SaveGameState();
 
-	/// <summary>
-	/// Called at the end of the player's turn
-	/// </summary>
-	public void EndPlayerTurn ( ) {
+    }
+
+    /// <summary>
+    /// Called at the end of the player's turn
+    /// </summary>
+    public void EndPlayerTurn ( ) {
 		if (!isPlayerPaused) {
 			isPlayerPaused = true;
 
