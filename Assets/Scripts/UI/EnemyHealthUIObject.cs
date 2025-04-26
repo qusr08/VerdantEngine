@@ -50,7 +50,7 @@ public class EnemyHealthUIObject : MonoBehaviour, IPointerEnterHandler, IPointer
 		if (Enemy.CurrentCooldown == 0) {
 			OnCoolDownOverlay.SetActive(false);
 
-        } else {
+        } else if(!isdead) {
             OnCoolDownOverlay.SetActive(true);
         }
 
@@ -60,7 +60,8 @@ public class EnemyHealthUIObject : MonoBehaviour, IPointerEnterHandler, IPointer
 	public void Kill ( ) {
 		image.color = Color.gray;
 		healthSlider.value = 0;
-		isdead = true;
+        OnCoolDownOverlay.SetActive(false);
+        isdead = true;
 
     }
 

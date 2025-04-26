@@ -20,6 +20,6 @@ MonoBehaviour:
   _attackType: 2
   _playerTargetingType: 2
   _targetNumber: 2
-  _maxCooldown: 3
+  _maxCooldown: 2
   _icon: {fileID: 21300000, guid: cacb4f59281c58d4593481c56e7581a2, type: 3}
   Cooldown: 3
