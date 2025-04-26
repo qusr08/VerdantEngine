@@ -22,7 +22,7 @@ MonoBehaviour:
   ForceMoenyChange: 0
   ForceHealthChange: 0
   ForceCombat: 0
-  resultWindowImage: {fileID: 21300000, guid: 7df10940cd11b4942bc0b80375566c94, type: 3}
+  resultWindowImage: {fileID: 21300000, guid: 6a5667361681fb84a9832b9544494939, type: 3}
   resultWindowText: "You reroute the emergency seals and flood the chamber with containment
     foam. The pod twitches once - twice - then goes still beneath the rising frost.\r\nThe
     console sparks, then dies.\r\nYou turn away as the heavy doors grind closed,
