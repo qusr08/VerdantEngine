@@ -22,18 +22,18 @@ MonoBehaviour:
   ForceMoenyChange: 0
   ForceHealthChange: 0
   ForceCombat: 0
-  resultWindowImage: {fileID: 21300000, guid: ce3e6655bb91a56478f194aebe81b87c, type: 3}
+  resultWindowImage: {fileID: 21300000, guid: 4745781ccfff05144acfef159f9414fa, type: 3}
   resultWindowText: 'Your vines encircle the flamingo''s legs. The plastic is warm
     - unnaturally so. As you lift, a tremor runs through your chassis.
 
-    The
-    flamingo slides free with unsettling ease.
+    The flamingo
+    slides free with unsettling ease.
 
-    You secure it among your garden.
-    The relic remains motionless, its pink hue stark against the vibrant green.
+    You secure it among your garden. The relic
+    remains motionless, its pink hue stark against the vibrant green.
 
-    Yet,
-    at times, you sense a subtle shift in its posture. Perhaps it''s simply the dirt
+    Yet, at
+    times, you sense a subtle shift in its posture. Perhaps it''s simply the dirt
     shifting as it jostles with every step. Still, you cannot shake the feeling that
     it watches you.
 
