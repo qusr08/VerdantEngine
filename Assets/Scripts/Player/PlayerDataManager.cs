@@ -42,9 +42,12 @@ public class PlayerDataManager : MonoBehaviour {
 	public int CurrentHealth {
 		get => _currentHealth;
 		set {
-			_currentHealth = value;
 
-			hpSlider.value = (float) _currentHealth / (float) MaxHealth;
+			_currentHealth = value;
+			if (_currentHealth > MaxHealth)
+				_currentHealth = MaxHealth;
+
+            hpSlider.value = (float) _currentHealth / (float) MaxHealth;
 			if (_currentHealth <= 0) {
 				youLose.SetActive(true);
 
