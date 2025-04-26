@@ -17,19 +17,10 @@ public class Inventory : MonoBehaviour {
 
 	private void Start ( ) {
 
-        AddArtifact(ArtifactType.GNOMEO);
-        AddArtifact(ArtifactType.GNOMIET);
-        AddArtifact(ArtifactType.SUNDAIL);
-
-        AddPlant(PlantType.POWER_FLOWER);/// TESTING
-
-        
+        AddPlant(PlantType.POWER_FLOWER);
 		AddPlant(PlantType.POWER_FLOWER);
 
-		AddPlant(PlantType.BLAST_BLOOM);
-
-        AddPlant(PlantType.BOOM_SHROOM_COLONY);
-
+	
 
 
 
@@ -54,7 +45,11 @@ public class Inventory : MonoBehaviour {
 
 			AddArtifact(ArtifactType.WHEELBARROW);
 			AddArtifact(ArtifactType.COMPOST);
-			AddArtifact(ArtifactType.FLAMINGO);
+            AddArtifact(ArtifactType.SUNDAIL);
+            AddArtifact(ArtifactType.GNOMEO);
+            AddArtifact(ArtifactType.GNOMIET);
+
+            AddArtifact(ArtifactType.FLAMINGO);
 		}
 	}
 

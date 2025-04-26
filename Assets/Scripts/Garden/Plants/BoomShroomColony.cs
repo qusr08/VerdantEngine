@@ -5,6 +5,7 @@ using static UnityEditor.Progress;
 
 public class BoomShroomColony : Plant
 {
+    int counter = 0;
 
 	public override void OnGardenUpdated ( ) {
 		base.OnGardenUpdated( );
@@ -21,6 +22,15 @@ public class BoomShroomColony : Plant
 
 	public override void OnTurnEnd()
     {
+        if (counter == 1)
+        { counter = 0; 
+        }
+        else
+        {
+            counter++;
+            return;
+        }
+        
         base.OnTurnEnd();
         gardenManager.combatManager.inventory.AddPlant(PlantType.BOOM_SHROOM);
     }
@@ -30,11 +40,15 @@ public class BoomShroomColony : Plant
 
         for (int i = gardenManager.Plants.Count-1; i >= 0; i--)
         {
+            if (i > gardenManager.Plants.Count - 1)
+                continue;
             gardenManager.Plants[i].TakeDamage(null, 1);
         }
         for (int i = gardenManager.Artifacts.Count - 1; i >= 0; i--)
 
         {
+            if (i > gardenManager.Artifacts.Count - 1)
+                continue;
             gardenManager.Artifacts[i].TakeDamage(null, 1);
 
         }

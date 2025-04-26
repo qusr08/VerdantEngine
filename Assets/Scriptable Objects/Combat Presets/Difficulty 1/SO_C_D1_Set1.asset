@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SO_C_D1_Set1
   m_EditorClassIdentifier: 
   _enemyPrefabs:
-  - {fileID: 7786875835180863173, guid: 0e4fcfec4a0aea94fbcfd9b301d82a52, type: 3}
   - {fileID: 7051596728495582928, guid: 27ff76f6194db2c40a11a6eaa0626474, type: 3}
-  - {fileID: 7786875835180863173, guid: 0e4fcfec4a0aea94fbcfd9b301d82a52, type: 3}
+  - {fileID: 7051596728495582928, guid: efaaca5eea14ea845a934dea9cf158e5, type: 3}
+  - {fileID: 7051596728495582928, guid: 27ff76f6194db2c40a11a6eaa0626474, type: 3}
   - {fileID: 2017004346278228227, guid: 67c9c44a9bcb5f149b07f721d371a8f4, type: 3}
   _isEliteRewards: 0
   isBoss: 0

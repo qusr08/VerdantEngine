@@ -7,6 +7,7 @@ using System.Linq;
 using System;
 using Unity.Mathematics;
 using Unity.VisualScripting;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class CombatManager : MonoBehaviour {
 	[SerializeField] public PlayerCombatManager playerCombatManager;
@@ -174,17 +175,13 @@ public class CombatManager : MonoBehaviour {
     {
 		if (Enemies.Count == 0)
 			return;
-      
-
-        // Deselect all enemies
-        foreach (Enemy enemy in Enemies)
+        for (int i = Enemies.Count - 1; i >= 0; i--)
         {
-         
-
-            enemy.GetComponent<SpriteRenderer>().color = Color.red;
-            enemy.Attacked(damage);
+			Enemies[i].GetComponent<SpriteRenderer>().color = Color.red;
+            Enemies[i].Attacked(damage);
         }
 
+      
         
        
     }
@@ -240,6 +237,8 @@ public class CombatManager : MonoBehaviour {
 
         for (int i = Enemies.Count - 1; i >= 0; i--)
         {
+			if (i > Enemies.Count-1)
+				continue;
             if (Enemies[i].CurrentCooldown == 0)
             {
                 StartCoroutine(playerCombatManager.ApplyDamageToGarden(Enemies[i], Enemies[i].CurrentAttack));
@@ -261,12 +260,14 @@ public class CombatManager : MonoBehaviour {
 
 		playerCombatManager.PlayerStartTurn();
 		AllEnemiesStartRound();
-	}
+        SaveGameState();
 
-	/// <summary>
-	/// Called at the end of the player's turn
-	/// </summary>
-	public void EndPlayerTurn ( ) {
+    }
+
+    /// <summary>
+    /// Called at the end of the player's turn
+    /// </summary>
+    public void EndPlayerTurn ( ) {
 		if (!isPlayerPaused) {
 			isPlayerPaused = true;
 
@@ -323,6 +324,7 @@ public class CombatManager : MonoBehaviour {
 
         playerDataManager.Money += currentCombatPreset.rewardMoeny;
 
+		cameraManager.HideTutorial();
         winScreen.GetComponent<RewardManager>().moneyReward = currentCombatPreset.rewardMoeny;
         winScreen.SetActive(true);
 

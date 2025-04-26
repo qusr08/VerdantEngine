@@ -45,13 +45,13 @@ public class ShopManager : MonoBehaviour
         plantProbablility = new int[plantItems.Length];
         ArrangeByRarity();
         Shuffle();
-        balanceText.text = "Balance : " + playerDataManager.Money.ToString();
+        balanceText.text = playerDataManager.Money.ToString();
         healCost.text = costToHeal.ToString();
     }
     private void OnEnable()
     {
         Shuffle();
-        balanceText.text = "Balance : " + playerDataManager.Money.ToString();
+        balanceText.text = playerDataManager.Money.ToString();
         healCost.text = costToHeal.ToString();
     }
     private void ArrangeByRarity()
@@ -196,14 +196,14 @@ public class ShopManager : MonoBehaviour
             partItems[i].GetComponentInChildren<Button>().interactable = true;
         }
 
-        healthText.text = "Health : " + playerDataManager.CurrentHealth.ToString() + "/" + playerDataManager.MaxHealth.ToString();
+        healthText.text = playerDataManager.CurrentHealth.ToString() + "/" + playerDataManager.MaxHealth.ToString();
     }
     public void BuyPlant(int itemIndex)
     {
         if (playerDataManager.Money >= plantItems[itemIndex - 1].GetComponent<Item>().plant.Cost) 
         {
             playerDataManager.Money = playerDataManager.Money - plantItems[itemIndex - 1].GetComponentInChildren<Item>().plant.Cost;
-            balanceText.text = "Balance : " + playerDataManager.Money.ToString();
+            balanceText.text = playerDataManager.Money.ToString();
             inventory.AddPlant(plantItems[itemIndex - 1].GetComponent<Item>().plant.PlantType);
 
             purchaseText.text = "Purchased " + plantItems[itemIndex - 1].GetComponent<Item>().itemName.text;
@@ -221,7 +221,7 @@ public class ShopManager : MonoBehaviour
         if (playerDataManager.Money >= artifactItems[itemIndex - 1].GetComponent<Item>().artifact.Cost)
         {
             playerDataManager.Money = playerDataManager.Money - artifactItems[itemIndex - 1].GetComponent<Item>().artifact.Cost;
-            balanceText.text = "Balance : " + playerDataManager.Money.ToString();
+            balanceText.text = playerDataManager.Money.ToString();
             inventory.AddArtifact(artifactItems[itemIndex - 1].GetComponent<Item>().artifact.ArtifactType);
 
             purchaseText.text = "Purchased " + artifactItems[itemIndex - 1].GetComponent<Item>().itemName.text;
@@ -242,7 +242,7 @@ public class ShopManager : MonoBehaviour
             if(playerDataManager.PlayerAttacks.Count < 4)
             {
                 playerDataManager.Money = playerDataManager.Money - partItems[itemIndex - 1].GetComponent<Item>().part.Cost;
-                balanceText.text = "Balance : " + playerDataManager.Money.ToString();
+                balanceText.text = playerDataManager.Money.ToString();
                 playerDataManager.PlayerAttacks.Add(partItems[itemIndex - 1].GetComponent<Item>().part);
                 playerCombatManager.SetUpWeapons();
                 purchaseText.text = "Purchased " + partItems[itemIndex - 1].GetComponent<Item>().itemName.text;
@@ -267,11 +267,11 @@ public class ShopManager : MonoBehaviour
             if(playerDataManager.CurrentHealth < playerDataManager.MaxHealth)
             {
                 playerDataManager.Money = playerDataManager.Money - costToHeal;
-                balanceText.text = "Balance : " + playerDataManager.Money.ToString();
+                balanceText.text = playerDataManager.Money.ToString();
 
                 playerDataManager.CurrentHealth = playerDataManager.MaxHealth;
 
-                healthText.text = "Health : " + playerDataManager.CurrentHealth.ToString() + "/" + playerDataManager.MaxHealth.ToString();
+                healthText.text = playerDataManager.CurrentHealth.ToString() + "/" + playerDataManager.MaxHealth.ToString();
 
                 purchaseText.text = "Health Restored!";
             }

@@ -217,7 +217,11 @@ public class GardenManager : MonoBehaviour {
 		if (plant == null || gardenTile == null) {
 			return false;
 		}
-
+		//we moved into the same spot.
+		if(gardenTile == plant.GardenTile)
+		{
+			return false;
+		}
 		// If there is a plant at the garden tile already, swap the current plant being moved with the one on the tile
 		if (gardenTile.GardenPlaceable != null) {
 			gardenTile.GardenPlaceable.GardenTile = plant.GardenTile;
@@ -244,9 +248,13 @@ public class GardenManager : MonoBehaviour {
         {
             return false;
         }
-
-		// If there is an artifact at the garden tile already, swap the current artifact being moved with the one on the tile
-		if (gardenTile.GardenPlaceable != null) {
+        //we moved into the same spot.
+        if (gardenTile == artifact.GardenTile)
+        {
+            return false;
+        }
+        // If there is an artifact at the garden tile already, swap the current artifact being moved with the one on the tile
+        if (gardenTile.GardenPlaceable != null) {
 			gardenTile.GardenPlaceable.GardenTile = artifact.GardenTile;
         }
 
@@ -485,16 +493,18 @@ public class GardenManager : MonoBehaviour {
                         //Uproot what is there
                         if (playerDataManager.Garden[x, y].GardenPlaceable.isPlant)
                         {
-
                             Plant plant = (playerDataManager.Garden[x, y].GardenPlaceable as Plant);
+							plant.RemoveModifiersFromEffectedGardenPlaceables();
+
                             UprootPlant(plant);
                         }
                         else
                         {
                             Artifact artifact = (playerDataManager.Garden[x, y].GardenPlaceable as Artifact);
-                            UprootArtifact(artifact);
-                        }
+                            artifact.RemoveModifiersFromEffectedGardenPlaceables();
 
+                            UprootArtifact(artifact); 
+                        }
 
                     }
 					
@@ -505,12 +515,13 @@ public class GardenManager : MonoBehaviour {
                     {
 
                         Plant plant = (SavedGardenState[x, y] as Plant);
-                        PlacePlant(plant.PlantType, x, y);
+
+                        PlacePlant(plant.PlantType, x, y); 
                     }
                     else 
                     {
                         Artifact artifact =( SavedGardenState[x, y] as Artifact);
-                        PlaceArtifact(artifact.ArtifactType, x, y);
+                        PlaceArtifact(artifact.ArtifactType, x, y); 
                     }
                 }
 
@@ -526,11 +537,16 @@ public class GardenManager : MonoBehaviour {
 						{
 							
 							Plant plant = (playerDataManager.Garden[x, y].GardenPlaceable as Plant);
-							UprootPlant(plant);
-						}
+                            plant.RemoveModifiersFromEffectedGardenPlaceables();
+
+                            UprootPlant(plant); 
+
+                        }
 						else
 						{
                             Artifact artifact = (playerDataManager.Garden[x, y].GardenPlaceable as Artifact);
+                            artifact.RemoveModifiersFromEffectedGardenPlaceables();
+
                             UprootArtifact(artifact);
                         }
 
@@ -543,7 +559,7 @@ public class GardenManager : MonoBehaviour {
                         else
                         {
                             Artifact artifact = (SavedGardenState[x, y] as Artifact);
-                            PlaceArtifact(artifact.ArtifactType, x, y);
+                            PlaceArtifact(artifact.ArtifactType, x, y); 
                         }
                     }
 				
@@ -552,6 +568,7 @@ public class GardenManager : MonoBehaviour {
             }
 
         }
+
     }
 
 }

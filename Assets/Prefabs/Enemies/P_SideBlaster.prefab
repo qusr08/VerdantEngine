@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 210805236550136860, guid: b95126a70dec6f54f82474ca31982657, type: 3}
       propertyPath: _maxHealth
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 210805236550136860, guid: b95126a70dec6f54f82474ca31982657, type: 3}
       propertyPath: _currentAttack
@@ -38,7 +38,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: e451f4e3cb6f0b34889c05d54a9784b6, type: 2}
     - target: {fileID: 210805236550136860, guid: b95126a70dec6f54f82474ca31982657, type: 3}
       propertyPath: _currentHealth
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 210805236550136860, guid: b95126a70dec6f54f82474ca31982657, type: 3}
       propertyPath: attacks.Array.size

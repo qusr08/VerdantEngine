@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2fd380a38585994f83a23e76004138d, type: 3}
   m_Name: EventOutcome_SO 1
   m_EditorClassIdentifier: 
-  outcomeText: ' Risk the heat and grasp the rarer flower below.'
+  outcomeText: Risk the heat and grasp the rarer flower below.
   outcomeType: 0
   potinalPlantReward: 060000000700000005000000
   potinalArtifactReward: 
+  potinalPartReward: []
   MoneyChange: 0
   HealthChange: -2
   ForceMoenyChange: 0

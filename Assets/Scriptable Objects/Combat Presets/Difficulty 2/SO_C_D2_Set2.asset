@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: SO_C_D2_Set2
   m_EditorClassIdentifier: 
   _enemyPrefabs:
-  - {fileID: 7786875835180863173, guid: 0e4fcfec4a0aea94fbcfd9b301d82a52, type: 3}
+  - {fileID: 7051596728495582928, guid: 27ff76f6194db2c40a11a6eaa0626474, type: 3}
+  - {fileID: 2017004346278228227, guid: 91ae285e3e28582409c6b88b1a5af28a, type: 3}
+  - {fileID: 7051596728495582928, guid: 27ff76f6194db2c40a11a6eaa0626474, type: 3}
   - {fileID: 2017004346278228227, guid: 67c9c44a9bcb5f149b07f721d371a8f4, type: 3}
-  - {fileID: 7051596728495582928, guid: 1ffae97745094e64cbf10eda26c90eaf, type: 3}
-  - {fileID: 2017004346278228227, guid: 2548157c74d36bf41accae1f3492187a, type: 3}
   _isEliteRewards: 0
   isBoss: 0
-  difficulty: 5
-  rewardMoeny: 20
+  difficulty: 2
+  rewardMoeny: 12

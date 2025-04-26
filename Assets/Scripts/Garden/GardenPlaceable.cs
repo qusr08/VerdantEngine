@@ -313,7 +313,7 @@ public abstract class GardenPlaceable : MonoBehaviour {
 	/// <summary>
 	/// Remove all modifiers from all the garden placeables that are effected by this garden placeable. This should be used before recalculating modifiers
 	/// </summary>
-	protected void RemoveModifiersFromEffectedGardenPlaceables ( ) {
+	public void RemoveModifiersFromEffectedGardenPlaceables ( ) {
 		// Clear all modifiers from the previously effected garden placeables
 		for (int i = effectedGardenPlaceables.Count - 1; i >= 0; i--) {
 			effectedGardenPlaceables[i].HealthStat.RemoveModifiers(this);

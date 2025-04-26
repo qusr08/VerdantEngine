@@ -13,17 +13,24 @@ public class EnemyHealthUIObject : MonoBehaviour, IPointerEnterHandler, IPointer
 	[SerializeField] private Image image;
 	[SerializeField] TextMeshProUGUI cooldownText;
 	[SerializeField] InfoPopUp hover;
+	[SerializeField] GameObject OnCoolDownOverlay;
 	public GameObject X;
 	public bool isdead = false;
 
-    public Enemy Enemy {
+    public Enemy Enemy
+	{
 		get => _enemy;
-		set {
+		set
+		{
 			_enemy = value;
 
 			healthSlider.maxValue = _enemy.MaxHealth;
 			healthSlider.value = _enemy.CurrentHealth;
 			image.sprite = _enemy.Icon;
+			UpdateCoolDown();
+
+
+
 		}
 	}
     public InfoPopUp Hover
@@ -41,18 +48,20 @@ public class EnemyHealthUIObject : MonoBehaviour, IPointerEnterHandler, IPointer
 
 	public void UpdateCoolDown ( ) {
 		if (Enemy.CurrentCooldown == 0) {
-			cooldownText.color = Color.red;
-		} else {
-			cooldownText.color = Color.white;
-		}
+			OnCoolDownOverlay.SetActive(false);
 
-		cooldownText.text = Enemy.CurrentCooldown.ToString( );
+        } else if(!isdead) {
+            OnCoolDownOverlay.SetActive(true);
+        }
+
+        cooldownText.text = Enemy.CurrentCooldown.ToString( );
 	}
 
 	public void Kill ( ) {
 		image.color = Color.gray;
 		healthSlider.value = 0;
-		isdead = true;
+        OnCoolDownOverlay.SetActive(false);
+        isdead = true;
 
     }
 
