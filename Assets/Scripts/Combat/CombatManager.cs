@@ -322,6 +322,7 @@ public class CombatManager : MonoBehaviour {
 
         playerDataManager.Money += currentCombatPreset.rewardMoeny;
 
+		cameraManager.HideTutorial();
         winScreen.GetComponent<RewardManager>().moneyReward = currentCombatPreset.rewardMoeny;
         winScreen.SetActive(true);
 

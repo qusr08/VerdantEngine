@@ -16233,7 +16233,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 823575662535304690, guid: 9cd38cc5b544ac34d9f6711db35f51e5, type: 3}
   m_PrefabInstance: {fileID: 2064491892}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2105818126}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 629a2687895fb2f4a9b454449a01cc6a, type: 3}
@@ -18580,6 +18580,10 @@ PrefabInstance:
       propertyPath: combatManager
       value: 
       objectReference: {fileID: 261010251}
+    - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
+      propertyPath: tutorialStuff
+      value: 
+      objectReference: {fileID: 2105818126}
     - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
       propertyPath: flowerTrailPrefab
       value: 
@@ -26614,6 +26618,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8279345224470271721, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
   m_PrefabInstance: {fileID: 1473837541}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2105818126 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2675301878607754954, guid: 9cd38cc5b544ac34d9f6711db35f51e5, type: 3}
+  m_PrefabInstance: {fileID: 2064491892}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2108950087
 GameObject:
