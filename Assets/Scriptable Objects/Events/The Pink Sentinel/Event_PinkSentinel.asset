@@ -20,7 +20,7 @@ MonoBehaviour:
     sways. The earth beneath it is blackened, scorched into a perfect ring around
     its base. The garden stirs atop the mech - some of your plants lean subtly toward
     it\u2026 others recoil.\r\r\r"
-  image: {fileID: 21300000, guid: ce3e6655bb91a56478f194aebe81b87c, type: 3}
+  image: {fileID: 21300000, guid: 4745781ccfff05144acfef159f9414fa, type: 3}
   Options:
   - {fileID: 11400000, guid: 347adc67aac00464a9ebaa9facad5a74, type: 2}
   - {fileID: 11400000, guid: 2c932bab847cb0e43a1f8eec5800e1ce, type: 2}
