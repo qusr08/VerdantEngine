@@ -219,7 +219,7 @@ public class Enemy : MonoBehaviour {
             tile.AttackedDamage += CurrentAttack.Damage;
             FinalAim.Add(tile);
             Debug.Log(gameObject.name + " is marking tile as attacked: " + tile.Position);
-            if (tile.GardenPlaceable != null && CurrentAttack.EnemyTargetingType == EnemyTargetingType.LINE)
+            if (tile.GardenPlaceable != null && (CurrentAttack.EnemyTargetingType == EnemyTargetingType.LINE|| CurrentAttack.EnemyTargetingType == EnemyTargetingType.SHAPE))
             {
                 break;
             }

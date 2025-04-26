@@ -8,6 +8,7 @@ using Unity.VisualScripting;
 using static UnityEngine.EventSystems.EventTrigger;
 using System.Numerics;
 using UnityEditor.Experimental;
+using System.Drawing;
 
 public class PlayerCombatManager : MonoBehaviour {
 	[SerializeField] private GardenManager gardenManager;
@@ -87,16 +88,20 @@ public class PlayerCombatManager : MonoBehaviour {
     }
         public void StartOfTurnEffects()
 	{
-        foreach (GardenPlaceable item in gardenManager.Plants)
+        for (int i = (gardenManager.Plants.Count - 1); i >= 0; i--)
         {
-			item.OnTurnStart();
+            if (gardenManager.Plants[i] != null)
+                gardenManager.Plants[i].OnTurnStart();
 
         }
-        foreach (GardenPlaceable item in gardenManager.Artifacts)
+        for (int i = gardenManager.Artifacts.Count - 1; i >= 0; i--)
         {
-            item.OnTurnStart();
+            if (gardenManager.Artifacts[i] != null)
+                gardenManager.Artifacts[i].OnTurnStart();
 
         }
+
+     
         combatManager.SaveGameState();
 
     }
@@ -121,7 +126,7 @@ public class PlayerCombatManager : MonoBehaviour {
             if (weaponMenuItem.PlayerAttack.Cooldown <= 0 && (energy - weaponMenuItem.PlayerAttack.ManaCost) >= 0) {
 				energy -= weaponMenuItem.PlayerAttack.ManaCost;
 				energyText.text = energy.ToString( );
-				weaponMenuItem.GetComponent<Image>( ).color = Color.yellow;
+				weaponMenuItem.GetComponent<Image>( ).color = UnityEngine.Color.yellow;
 				weaponMenuItem.PlayerAttack.Cooldown = weaponMenuItem.PlayerAttack.MaxCooldown;
 
 				//If attack is targetting enemies, handle it
@@ -146,7 +151,7 @@ public class PlayerCombatManager : MonoBehaviour {
 					}
 				}
 
-				weaponMenuItem.GetComponent<Image>( ).color = Color.white;
+				weaponMenuItem.GetComponent<Image>( ).color = UnityEngine.Color.white;
                 weaponMenuItem.PlayerAttack.Cooldown = weaponMenuItem.PlayerAttack.MaxCooldown;
                 weaponMenuItem.GetOnCooldown();
 
@@ -184,15 +189,19 @@ public class PlayerCombatManager : MonoBehaviour {
 	}
 	public void EndOfTurnEffects()
     {
-		//heathichoke & FLYTRAP vempire effects
-		foreach (Plant plant in gardenManager.Plants )
+        for (int i = gardenManager.Plants.Count-1; i >= 0; i--)
         {
-			plant.OnTurnEnd();
+            if (gardenManager.Plants[i]!=null)
+            gardenManager.Plants[i].OnTurnEnd();
+
         }
-        foreach (Artifact artifact in gardenManager.Artifacts)
+        for (int i = gardenManager.Artifacts.Count - 1; i >= 0; i--)
         {
-            artifact.OnTurnEnd();
+            if (gardenManager.Artifacts[i] != null)
+                gardenManager.Artifacts[i].OnTurnEnd();
+
         }
+      
 
     }
 
@@ -221,12 +230,13 @@ public class PlayerCombatManager : MonoBehaviour {
             playerDataManager.CurrentHealth -= enemyAttack.Damage;
 			foreach (SpriteRenderer mesh in tree)
 			{
-                mesh.color = Color.red;
+                mesh.color = UnityEngine.Color.red;
             }
 			yield return new WaitForSeconds(0.2f);
             foreach (SpriteRenderer mesh in tree)
             {
-                mesh.color = Color.white;
+                mesh.color = UnityEngine.Color.red;
+                mesh.color = UnityEngine.Color.white;
             }
             Debug.Log(enemy.name + " attacked the player using " + enemyAttack.Name + " dealing " + enemyAttack.Damage + " to the player");
         }
