@@ -1373,7 +1373,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 180.625, y: -290.03485}
+  m_AnchoredPosition: {x: 180.625, y: -290.0348}
   m_SizeDelta: {x: 327, y: 446}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &168390829
@@ -4110,6 +4110,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1351641215}
+  - {fileID: 2064685643}
   m_Father: {fileID: 1544708345}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
@@ -5888,9 +5889,12 @@ MonoBehaviour:
   resetTurnButton: {fileID: 480892286}
   endTurnButton: {fileID: 601665982}
   viewMapButton: {fileID: 688685845}
+  EnemyViewPort: {fileID: 0}
   popUp: {fileID: 1739724147}
   plantUIPanal: {fileID: 639326216}
   GoBackToMap: {fileID: 0}
+  enemyUIContainer: {fileID: 323802815}
+  enemyUIBackGround: {fileID: 673550632}
   _gameState: 1
 --- !u!4 &414572768
 Transform:
@@ -5901,11 +5905,11 @@ Transform:
   m_GameObject: {fileID: 414572766}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -170.05531, y: -168.97592, z: -67.98953}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1777532274}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &428887525
 GameObject:
@@ -17962,6 +17966,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1777532273}
     - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
+      propertyPath: eventManager
+      value: 
+      objectReference: {fileID: 1993645274}
+    - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
       propertyPath: playerSprite
       value: 
       objectReference: {fileID: 1994835567}
@@ -18001,6 +18009,10 @@ PrefabInstance:
       propertyPath: enemyHP.Array.data[2]
       value: 
       objectReference: {fileID: 2064685642}
+    - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
+      propertyPath: enemyHP.Array.data[3]
+      value: 
+      objectReference: {fileID: 673550632}
     - target: {fileID: 4223078030928860180, guid: e280f8262ca6cc24eb928d6cd7b963c3, type: 3}
       propertyPath: walkerSprites.Array.size
       value: 8
@@ -18915,7 +18927,6 @@ RectTransform:
   - {fileID: 1635992151}
   - {fileID: 673550633}
   - {fileID: 323802816}
-  - {fileID: 2064685643}
   - {fileID: 61612797}
   - {fileID: 269203956}
   - {fileID: 688685846}
@@ -21726,7 +21737,6 @@ Transform:
   m_Children:
   - {fileID: 1544708345}
   - {fileID: 1198069309}
-  - {fileID: 414572768}
   - {fileID: 281454751}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25831,14 +25841,14 @@ RectTransform:
   m_GameObject: {fileID: 2064685642}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1544708345}
+  m_Father: {fileID: 323802816}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -198, y: -9}
+  m_AnchoredPosition: {x: 212.7779, y: -10.000027}
   m_SizeDelta: {x: 396.13, y: 285.6}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2064685645
@@ -29289,6 +29299,7 @@ SceneRoots:
   - {fileID: 357858567}
   - {fileID: 1777532274}
   - {fileID: 261010252}
+  - {fileID: 414572768}
   - {fileID: 2064491892}
   - {fileID: 1426713767}
   - {fileID: 129746788}
