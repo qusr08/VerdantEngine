@@ -1373,7 +1373,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 180.625, y: -290.0348}
+  m_AnchoredPosition: {x: 180.625, y: -290.03464}
   m_SizeDelta: {x: 327, y: 446}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &168390829
@@ -12448,7 +12448,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &985348246
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21462,6 +21462,7 @@ MonoBehaviour:
   plantHover: {fileID: 639326218}
   enemyHover: {fileID: 1834970133}
   partHover: {fileID: 313113006}
+  isStoreOpen: 0
   canvas: {fileID: 1544708344}
   offsetPlant: {x: 20, y: 20}
   offsetEnemy: {x: -200, y: -200}
@@ -28264,7 +28265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -28963,6 +28964,7 @@ MonoBehaviour:
   commonIndex: 0
   uncommonIndex: 0
   rareIndex: 0
+  popUp: {fileID: 1739724151}
 --- !u!114 &7866287645069361460
 MonoBehaviour:
   m_ObjectHideFlags: 0

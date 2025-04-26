@@ -111,7 +111,13 @@ public class EventManager : MonoBehaviour
         eventPanal.SetActive(false);
         resultText.text = chosen.resultWindowText;
         resultTitle.text = event_SO.title;
+        if(chosen.resultWindowImage!=null)
         resultImage.sprite = chosen.resultWindowImage;
+        else
+        {
+            resultImage.sprite = event_SO.image;
+
+        }
 
 
 

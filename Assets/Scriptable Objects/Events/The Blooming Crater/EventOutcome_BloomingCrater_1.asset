@@ -22,7 +22,7 @@ MonoBehaviour:
   ForceMoenyChange: 0
   ForceHealthChange: 0
   ForceCombat: 0
-  resultWindowImage: {fileID: 21300000, guid: 747f82ffd5be7f14388c29353e626929, type: 3}
+  resultWindowImage: {fileID: 21300000, guid: 5a95ea772ef201948890280da7903ba2, type: 3}
   resultWindowText: "You extend your roots, cautiously threading them into the soft,
     glowing soil. The moment they reach the node, the world quiets.\r\nA pulse. Then
     another.\r\nThe crater breathes with you, through you - flushing your systems

@@ -38,7 +38,7 @@ public class ShopManager : MonoBehaviour
     public int commonIndex;
     public int uncommonIndex;
     public int rareIndex;
-
+    public InfoPopUp popUp;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +50,7 @@ public class ShopManager : MonoBehaviour
     }
     private void OnEnable()
     {
+        popUp.isStoreOpen = true;
         Shuffle();
         balanceText.text = playerDataManager.Money.ToString();
         healCost.text = costToHeal.ToString();
@@ -288,6 +289,8 @@ public class ShopManager : MonoBehaviour
 
     public void CloseShopScreen()
     {
+        popUp.isStoreOpen = false;
+
         gameObject.SetActive(false);
     }
 }

@@ -8,11 +8,13 @@ public class InfoPopUp : MonoBehaviour
     public PlantHover plantHover;
     public EnemyHover enemyHover;
     public PartHover partHover;
-
+    public bool isStoreOpen = false;
     public Canvas canvas; // Reference to the Canvas the UI element belongs to.
     bool isPlant;
     public void SetUpEnemey(Enemy enemy)
     {
+        if (isStoreOpen)
+            return;
         UpdateUIElementPosition();
         plantHover.gameObject.SetActive(false);
         enemyHover.gameObject.SetActive(true);
@@ -22,6 +24,8 @@ public class InfoPopUp : MonoBehaviour
     }
     public void SetUpPlant(GardenPlaceable placeble)
     {
+        if (isStoreOpen)
+            return;
         UpdateUIElementPosition();
         plantHover.gameObject.SetActive(true);
         enemyHover.gameObject.SetActive(false);
@@ -33,6 +37,8 @@ public class InfoPopUp : MonoBehaviour
     }
     public void SetUpWeapon(PlayerAttackMenuItem part)
     {
+        if (isStoreOpen)
+            return;
         UpdateUIElementPosition();
         plantHover.gameObject.SetActive(false);
         enemyHover.gameObject.SetActive(false);
@@ -43,6 +49,8 @@ public class InfoPopUp : MonoBehaviour
     }
     public void SetUpTree(PlayerDataManager tree)
     {
+        if (isStoreOpen)
+            return;
         UpdateUIElementPosition();
         plantHover.gameObject.SetActive(true);
         enemyHover.gameObject.SetActive(false);
