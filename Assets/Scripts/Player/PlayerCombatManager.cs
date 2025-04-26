@@ -19,8 +19,8 @@ public class PlayerCombatManager : MonoBehaviour {
 	[SerializeField] private GameObject weaponMenuItemPrefab;
 	[SerializeField] private TextMeshProUGUI energyText;
 	[SerializeField] private GameObject damageIndicatorPrefab;
-	
-	[Space]
+
+    [Space]
 	[SerializeField] public int energy = 0;
     [HideInInspector] public int energyModifier;
 	 public SpriteRenderer [] tree;

@@ -22,9 +22,13 @@ public class CombatUIManager : MonoBehaviour
 	[SerializeField] private GameObject resetTurnButton;
 	[SerializeField] private GameObject endTurnButton;
 	[SerializeField] private GameObject viewMapButton;
+    [SerializeField] private GameObject EnemyViewPort;
+
     [SerializeField] private GameObject popUp;
     [SerializeField] private GameObject plantUIPanal;
 	[SerializeField] private GameObject GoBackToMap;
+    [SerializeField] private GameObject enemyUIContainer;
+    [SerializeField] private GameObject enemyUIBackGround;
 
     [Space]
 	[SerializeField] private GameState _gameState;
@@ -42,15 +46,22 @@ public class CombatUIManager : MonoBehaviour
 			switch (_gameState)
 			{
 				case GameState.IDLE:
-					lowerPanel.gameObject.SetActive(false);
+					enemyUIContainer.SetActive(false);
+                    enemyUIBackGround.SetActive(false);
+
+                    lowerPanel.gameObject.SetActive(false);
 
                     moveCounter.SetActive(false);
 			//resetTurnButton.SetActive(false);
 					endTurnButton.SetActive(false);
 					viewMapButton.SetActive(true);
 
+
 					break;
 				case GameState.COMBAT:
+                    enemyUIContainer.SetActive(true);
+                    enemyUIBackGround.SetActive(true);
+
                     lowerPanel.gameObject.SetActive(true); 
 
                     moveCounter.SetActive(true);

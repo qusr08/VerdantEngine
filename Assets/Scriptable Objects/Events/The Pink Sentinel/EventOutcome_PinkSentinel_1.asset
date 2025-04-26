@@ -22,7 +22,7 @@ MonoBehaviour:
   ForceMoenyChange: 0
   ForceHealthChange: 0
   ForceCombat: 0
-  resultWindowImage: {fileID: 21300000, guid: ce3e6655bb91a56478f194aebe81b87c, type: 3}
+  resultWindowImage: {fileID: 21300000, guid: 4745781ccfff05144acfef159f9414fa, type: 3}
   resultWindowText: 'You turn from the flamingo, its presence lingering in your sensors
     like a phantom. As you retreat, the air grows colder, and the silence deepens.
 

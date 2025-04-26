@@ -326,8 +326,7 @@ public class CombatManager : MonoBehaviour {
 
 		cameraManager.HideTutorial();
         winScreen.GetComponent<RewardManager>().moneyReward = currentCombatPreset.rewardMoeny;
-        winScreen.SetActive(true);
-
+		StartCoroutine(WinDelay());
         // NOTE: This should be replaced with end-screen rewards
         // Once the reward is chosen, then do the below code
 
@@ -336,22 +335,15 @@ public class CombatManager : MonoBehaviour {
         playerDataManager.CurrentActions = playerDataManager.MaxActions;
 
     }
-    private IEnumerator WinGameCoretine()
-    {
-        yield return new WaitForSeconds(1f);
 
+	public IEnumerator WinDelay()
+	{
+		yield return new WaitForSeconds(1);
         winScreen.SetActive(true);
-
-        // NOTE: This should be replaced with end-screen rewards
-        // Once the reward is chosen, then do the below code
-        yield return new WaitForSeconds(2f);
-
-        // Reset the player actions so the player can update their board in between combats
-        // Also set the game state from COMBAT back to IDLE
-        winScreen.SetActive(false);
         playerDataManager.CurrentActions = playerDataManager.MaxActions;
-        combatUIManager.GameState = GameState.IDLE;
+		combatUIManager.GameState=GameState.IDLE;
     }
+
 
     public SaveGameState_SO saveGameState;
 

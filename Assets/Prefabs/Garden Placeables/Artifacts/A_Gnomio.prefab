@@ -286,8 +286,8 @@ MonoBehaviour:
   _startingHealth: 3
   _cost: 26
   _name: Gnomeo
-  _description: On end of turn, deal 1 damage to the front enemy. If  Gnomeo is placed
-    adjacent to Gnomiet, heal all plants by 1.
+  _description: 'On end of turn, deal 1 damage to the front enemy. If placed next
+    to Gnomiet, damage all enemies instead '
   _inventorySprite: {fileID: 21300000, guid: 5fb9eb56a6cd4ab46bf34358498325c4, type: 3}
   _gardenTile: {fileID: 0}
   effectedGardenPlaceables: []
