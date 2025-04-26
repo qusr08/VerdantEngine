@@ -22,7 +22,7 @@ MonoBehaviour:
   ForceMoenyChange: 0
   ForceHealthChange: 0
   ForceCombat: 0
-  resultWindowImage: {fileID: 21300000, guid: 7df10940cd11b4942bc0b80375566c94, type: 3}
+  resultWindowImage: {fileID: 21300000, guid: 6a5667361681fb84a9832b9544494939, type: 3}
   resultWindowText: 'You back away from the twitching pod, its petals scraping faintly
     against the glass. Further down the row, you find a smaller container - cracked
     but stable.
@@ -30,8 +30,8 @@ MonoBehaviour:
     Inside grows a quiet thing, brittle but alive, still clinging
     to its nutrient gel like a child to its cradle.
 
-    You take it with care.
-    It does not glow. It does not bite.
+    You take it with care. It
+    does not glow. It does not bite.
 
     But it lives. And that is enough.
 

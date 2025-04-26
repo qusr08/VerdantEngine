@@ -20,7 +20,7 @@ MonoBehaviour:
     its spiked mouth closed tight around something that faintly glows. Its roots
     shudder when it senses your presence, stretching toward the glass. The console
     beside it reads: \"Specimen #039: CARNIFLORA // DO NOT ENGAGE.\"\r\r"
-  image: {fileID: 21300000, guid: 7df10940cd11b4942bc0b80375566c94, type: 3}
+  image: {fileID: 21300000, guid: 6a5667361681fb84a9832b9544494939, type: 3}
   Options:
   - {fileID: 11400000, guid: 9cc31f090915d7940a7d6677ca903e8c, type: 2}
   - {fileID: 11400000, guid: 813b52966c859d640b75bc8021042cb1, type: 2}
