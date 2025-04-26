@@ -120,7 +120,7 @@ public class PlayerCombatManager : MonoBehaviour {
 			if (weaponMenuItem.PlayerAttack.Cooldown <= 0 && (energy - weaponMenuItem.PlayerAttack.ManaCost) >= 0) {
 				energy -= weaponMenuItem.PlayerAttack.ManaCost;
 				energyText.text = energy.ToString( );
-				weaponMenuItem.GetComponent<Image>( ).color = Color.red;
+				weaponMenuItem.GetComponent<Image>( ).color = Color.yellow;
 				weaponMenuItem.PlayerAttack.Cooldown = weaponMenuItem.PlayerAttack.MaxCooldown;
 
 				//If attack is targetting enemies, handle it
@@ -158,15 +158,15 @@ public class PlayerCombatManager : MonoBehaviour {
 
 
 
-            weaponMenuItem.UpdateCoolDown( );
             if (weaponMenuItem.PlayerAttack.Cooldown <= 0)
             { 
                 weaponMenuItem.ReadyToFire();
                 weaponMenuItem.PlayerAttack.Cooldown = 0;
             }
+            weaponMenuItem.UpdateCoolDown();
 
-		}
-		EndOfTurnEffects(); 
+        }
+        EndOfTurnEffects(); 
 		StartCoroutine( combatManager.EnemyTurn( ));
 	}
 
