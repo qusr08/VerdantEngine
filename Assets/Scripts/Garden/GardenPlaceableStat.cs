@@ -86,10 +86,12 @@ public class GardenPlaceableStat {
 	public GardenPlaceableStat (int startingValue) {
 		this.startingValue = startingValue;
 		BaseValue = startingValue;
-
+		
 		TotalModifier = 0;
 		modifiers = new List<GardenPlaceableStatModifier>( );
-	}
+		Reset();
+
+    }
 
 	/// <summary>
 	/// Reset this stat back to its starting value and remove all modifiers
