@@ -18,6 +18,7 @@ public class MapPlayer : MonoBehaviour
     [SerializeField] private GameObject shopStuff;
     [SerializeField] private GameObject eventStuff;
     [SerializeField] private GameObject winStuff;
+    [SerializeField] private GameObject tutorialStuff;
     [SerializeField] private GameObject camera;
     [SerializeField] private CombatUIManager uiManager;
     [SerializeField] private EventManager eventManager;
@@ -155,6 +156,11 @@ public class MapPlayer : MonoBehaviour
         ChangeScenes(ActiveScene.Win);
     }
 
+    public void HideTutorial()
+    {
+        tutorialStuff.SetActive(false);
+    }
+
     public void UpdateCameraPosition()
     {
         gardenStuff.SetActive(false);
@@ -162,18 +168,21 @@ public class MapPlayer : MonoBehaviour
         mapStuff.SetActive(false);
         walker.SetActive(false);
         eventStuff.SetActive(false);
-
+        winStuff.SetActive(false);
+        tutorialStuff.SetActive(false);
         switch (scene)
         {
             case ActiveScene.Map:
                 mapStuff.SetActive(true);
                 walker.SetActive(true);
+                tutorialStuff.SetActive(true);
 
                 camera.transform.position = this.transform.position;
                 camera.transform.rotation = this.transform.rotation;
                 break;
             case ActiveScene.Garden:
                 gardenStuff.SetActive(true);
+                tutorialStuff.SetActive(true);
 
                 camera.transform.position = gardenCameraLocation.transform.position;
                 camera.transform.rotation = gardenCameraLocation.transform.rotation;
