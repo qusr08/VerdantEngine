@@ -66,11 +66,9 @@ public class TutorialManager : MonoBehaviour
 
         // change the next step text
         if (currentStep == steps.Count - 1) {
-            nextStepText.gameObject.SetActive(false);
-            xStepText.gameObject.SetActive(true);
+            nextStepText.text = "";
         } else {
-            nextStepText.gameObject.SetActive(true);
-            xStepText.gameObject.SetActive(false);
+            nextStepText.text = ">";
         }
         
         DeactivateAllTutorialSteps();
