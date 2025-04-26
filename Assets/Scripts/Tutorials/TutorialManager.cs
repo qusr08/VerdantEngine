@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Video;
 
 
 public enum TutorialType {
@@ -23,8 +24,13 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private List<GameObject> mapTutorialSteps;
     [SerializeField] private List<GameObject> combatTutorialSteps;
 
+    [SerializeField] private List<VideoClip> gardenTutorialVideos;
+    [SerializeField] private List<VideoClip> mapTutorialVideos;
+    [SerializeField] private List<VideoClip> combatTutorialVideos;
+
     [SerializeField] private CombatUIManager uiManager;
-    
+    [SerializeField] private VideoPlayer videoPlayer;
+
 
     private bool tutorialIsActive = false;
     private TutorialType currentTutorialType;
@@ -48,6 +54,7 @@ public class TutorialManager : MonoBehaviour
     private void GoToStep(int i) {
 
         List<GameObject> steps = GetTutorialSteps(currentTutorialType);
+        List<VideoClip> videos = GetTutorialVideos(currentTutorialType);
         currentStep = i;
 
         if (currentStep < 0) {
@@ -73,6 +80,7 @@ public class TutorialManager : MonoBehaviour
         
         DeactivateAllTutorialSteps();
         steps[currentStep].SetActive(true);
+        videoPlayer.clip = videos[currentStep];
         ChangeStepSelectorMenuText();
     }
 
@@ -106,6 +114,20 @@ public class TutorialManager : MonoBehaviour
         }
         else if (tutorialType == TutorialType.CombatTutorial) {
             return combatTutorialSteps;
+        }
+
+        return null;
+
+    }
+
+    private List<VideoClip> GetTutorialVideos(TutorialType tutorialType) {
+
+        if (tutorialType == TutorialType.GardenTutorial) {
+            return gardenTutorialVideos;
+        } else if (tutorialType == TutorialType.MapTutorial) {
+            return mapTutorialVideos;
+        } else if (tutorialType == TutorialType.CombatTutorial) {
+            return combatTutorialVideos;
         }
 
         return null;

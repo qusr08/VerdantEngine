@@ -1556,7 +1556,18 @@ MonoBehaviour:
   - {fileID: 8403383008169090962}
   - {fileID: 8224495476438506750}
   - {fileID: 4554692406864095484}
+  gardenTutorialVideos:
+  - {fileID: 32900000, guid: e79f0dd910a64a54faa4ad60265628ee, type: 3}
+  mapTutorialVideos:
+  - {fileID: 32900000, guid: 80822ff23ae40414cb50735a1db765de, type: 3}
+  combatTutorialVideos:
+  - {fileID: 32900000, guid: 3f621053cea411747954877cd4fe9f80, type: 3}
+  - {fileID: 32900000, guid: 9e450e9bd688a1149aee8fb3929acaa4, type: 3}
+  - {fileID: 32900000, guid: e5f4de5c090c3ea478ce00c09d968868, type: 3}
+  - {fileID: 32900000, guid: 9e598000a84f7ee449cc95e114408d7b, type: 3}
+  - {fileID: 32900000, guid: f3ba5478a20178042a6e2142129bda80, type: 3}
   uiManager: {fileID: 0}
+  videoPlayer: {fileID: 3599881185460980607}
 --- !u!1 &2755247436138210116
 GameObject:
   m_ObjectHideFlags: 0
@@ -2664,7 +2675,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2543124077730069424
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4013,7 +4024,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6952799736845397635}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 575860949e7b4f14c934fc47c49d479e, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 80822ff23ae40414cb50735a1db765de, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -4022,7 +4033,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 2
-  m_AspectRatio: 2
+  m_AspectRatio: 5
   m_DataSource: 0
   m_TimeUpdateMode: 2
   m_PlaybackSpeed: 1
