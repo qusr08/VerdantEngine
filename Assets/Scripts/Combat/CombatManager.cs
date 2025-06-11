@@ -241,21 +241,29 @@ public class CombatManager : MonoBehaviour {
 				continue;
             if (Enemies[i].CurrentCooldown == 0)
             {
+				foreach (GardenTile gardenTile in Enemies[i].FinalAim)
+
+                {
+					gardenTile.indicatorManager.StopIndicator();
+                    
+                    AnimationManager.Instance.AddExplosionToList(gardenTile.transform);
+					gardenTile.ClearColorForAnimation();
+                }
+                yield return StartCoroutine( AnimationManager.Instance.TriggerExplosions());
+
                 StartCoroutine(playerCombatManager.ApplyDamageToGarden(Enemies[i], Enemies[i].CurrentAttack));
             }
         }
-       
-	//	yield return new WaitForSeconds((float)playerCombatManager.enemyAttckSliderAnimation.director.duration);
-		foreach (GardenTile gardenTile in playerDataManager.Garden)
-		{
-			if (gardenTile.AttackedDamage > 0)
-			{
-				Instantiate(explosionPrefab, gardenTile.gameObject.transform.position, Quaternion.identity);
-			}
 
-			gardenTile.AttackedDamage = 0;
-		}
-		yield return new WaitForSeconds(0.2f);
+        //	yield return new WaitForSeconds((float)playerCombatManager.enemyAttckSliderAnimation.director.duration);
+        foreach (GardenTile gardenTile in playerDataManager.Garden)
+        {
+
+
+            gardenTile.AttackedDamage = 0;
+        }
+
+        yield return new WaitForSeconds(0.2f);
 		isPlayerPaused = false;
 
 		playerCombatManager.PlayerStartTurn();

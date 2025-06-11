@@ -205,7 +205,19 @@ public class GardenTile : MonoBehaviour {
 		meshRenderer.material = tempMaterial;
 	}
 
-	private void OnMouseEnter ( ) {
+    public void ClearColorForAnimation()
+    {
+
+        // Set the material color of the ground tile
+        Material tempMaterial = new Material(meshRenderer.material);
+  
+        tempMaterial.color = ((_position.x + _position.y) % 2 == 0 ? basicColors[0] : basicColors[1]);
+        
+        meshRenderer.material = tempMaterial;
+    }
+
+
+    private void OnMouseEnter ( ) {
 		// Only show the placeable info pop-up if there is a garden placeable on this tile and there is not a plant currently being moved
 		if (GardenPlaceable != null && playerDataManager.MouseSprite == null) {
 			PopUpDisplay.SetUpPlant(GardenPlaceable);
