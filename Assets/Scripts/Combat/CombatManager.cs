@@ -314,10 +314,10 @@ public class CombatManager : MonoBehaviour {
         combatUIManager.GameState = GameState.IDLE;
         cameraManager.scene = ActiveScene.Map;
 		cameraManager.UpdateCameraPosition();
-		soundManager.PlayGarden();
         RenderSettings.skybox = greenSky;
         DynamicGI.UpdateEnvironment();
-		
+        soundManager.PlayMap();
+
 
     }
     private void WinGame()
@@ -350,6 +350,8 @@ public class CombatManager : MonoBehaviour {
         winScreen.SetActive(true);
         playerDataManager.CurrentActions = playerDataManager.MaxActions;
 		combatUIManager.GameState=GameState.IDLE;
+        soundManager.PlayVictory();
+
     }
 
 

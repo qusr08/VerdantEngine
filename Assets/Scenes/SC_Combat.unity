@@ -7124,6 +7124,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatBG: {fileID: 8300000, guid: a59b86c8ccc072e43afb3cefbf79a17a, type: 3}
   gardenBG: {fileID: 8300000, guid: 8d1b176073960a64ba76ec7bf074350c, type: 3}
+  mapBG: {fileID: 8300000, guid: 1c0ba8b500eaf574a8d2a51000c73def, type: 3}
+  victoryBG: {fileID: 8300000, guid: b228002927cd30146a393acf2e9befcb, type: 3}
 --- !u!4 &567520255
 Transform:
   m_ObjectHideFlags: 0
@@ -23366,7 +23368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackedTileTransforms: []
   explosion_prefab: {fileID: 3702977640595687986, guid: 42f7a485d6c636643ae43031cbc79521, type: 3}
-  explosionDelay: 0.3
+  explosionDelay: 0.1
 --- !u!4 &1910678076
 Transform:
   m_ObjectHideFlags: 0
@@ -26231,6 +26233,10 @@ PrefabInstance:
     - target: {fileID: 3373869212221047483, guid: 9cd38cc5b544ac34d9f6711db35f51e5, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 3376966435609512030, guid: 9cd38cc5b544ac34d9f6711db35f51e5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3460602376052110135, guid: 9cd38cc5b544ac34d9f6711db35f51e5, type: 3}
       propertyPath: m_Color.a

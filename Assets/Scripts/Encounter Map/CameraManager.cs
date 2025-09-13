@@ -134,13 +134,16 @@ public class MapPlayer : MonoBehaviour
     /// </summary>
     public void GoToGarden()
     {
-       
+        soundManager.PlayGarden();
+
         ChangeScenes(ActiveScene.Garden);
 
     }
     public void GoToMap()
     {
+        soundManager.PlayMap();
         ChangeScenes(ActiveScene.Map);
+
     }
     public void GoToShop()
     {
@@ -153,6 +156,8 @@ public class MapPlayer : MonoBehaviour
     }
     public void GoToWin()
     {
+        soundManager.PlayVictory();
+
         ChangeScenes(ActiveScene.Win);
     }
 
